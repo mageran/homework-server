@@ -1,0 +1,238 @@
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: white;
+}
+
+input {
+    padding: 3px;
+}
+
+select {
+    padding: 10px;
+    background-color: aliceblue;
+}
+
+option {
+    padding: 5px;
+    background-color: blanchedalmond;
+}
+
+.error-element {
+    color: red;
+    font-size: 14pt;
+    border: 1pt dashed red;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.width500 {
+    width: 500px;
+}
+
+.width700 {
+    width: 700px;
+}
+
+.formula-container {
+    display: inline-block;
+    margin: 5px;
+}
+
+.formula-text {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #543634;
+    font-size: 16pt;
+}
+
+.formula-content {
+    margin-left: 20px;
+    border-width: 0px important;
+    padding: 10px;
+}
+
+.formula-container .mq-editable-field,
+.formula-container .mq-math-mode .mq-editable-field {
+    border: 0px solid green !important;
+    font-size: 18pt;
+}
+
+.formula-container-input .formula-content {
+    width: 75%;
+}
+
+.values-table {
+    border-spacing: 0px;
+}
+
+.values-table th {
+    border-bottom: 1px solid black;
+    padding: 5px;
+}
+
+.values-table td:first-child, .values-table th:first-child {
+    border-right: 1px solid black;
+    padding: 5px;
+}
+
+.section-container {
+    margin: 5px;
+    width: 550px;
+    padding: 5px;
+    border-top: 1pt solid green;
+    border-left: 1pt solid green;
+    border-bottom: 1pt solid green;
+}
+
+.longdiv-table {
+    border-spacing: 0px;
+    padding: 5px;
+}
+
+.longdiv-table-cell {
+    font-size: 16pt;
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.longdiv-table-cell-middle {
+    border-bottom: 1pt solid black;
+}
+
+.factoring-cross-canvas {
+    margin-left: 10px;
+}
+
+table.factor-box {
+    border-collapse: collapse;
+}
+.factor-box td {
+    width: 50px;
+    height: 50px;
+    vertical-align: bottom;
+}
+
+.factor-box tr:nth-child(2) td:nth-child(2),
+.factor-box tr:nth-child(2) td:nth-child(3),
+.factor-box tr:nth-child(3) td:nth-child(2),
+.factor-box tr:nth-child(3) td:nth-child(3) {
+    border: 1pt solid black;
+}
+
+table.angle-value-table {
+    border: 1px solid black;
+    border-spacing: 0px;
+}
+
+table.angle-value-table th {
+    border-bottom: 1px solid black;
+    min-width: 150px;
+}
+
+table.t-chart-table {
+    border-collapse: collapse;
+}
+
+.t-chart-table td {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    padding: 4px;
+}
+
+table.conversion-table {
+    border-collapse: collapse;
+}
+
+.conversion-table td {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    padding: 4px;
+}
+
+.conversion-table td:last-child {
+    border-right-width: 0px;
+}
+
+.conversion-table tr:last-child td {
+    border-bottom-width: 0px;
+}
+
+table.chemical-equation-balancing {
+    font-size: 14pt;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+}
+
+table.chemical-equation-balancing td {
+    border-bottom: 1px solid gray;
+}
+
+table.chemical-equation-balancing tr:first-child td {
+    border-bottom: 1px solid black;
+}
+
+table.chemical-equation-balancing tr:nth-child(2) td {
+    border-bottom: 2px solid black;
+}
+
+table.chemical-equation-balancing td {
+    border-right: 1px solid black;
+    padding: 10px;
+}
+
+table.chemical-equation-balancing td:last-child {
+    border-right-width: 0;
+}
+
+table.chemical-equation-balancing td.last-lhs-column {
+    border-right-width: 5pt;
+    padding-right: 30px;
+}
+
+table.chemical-equation-balancing .totals-span {
+    font-weight: bold;
+}
+
+table.chemical-equation-balancing .bfactor-span {
+    font-weight: bold;
+    color: blue;
+    border: 1px solid black;
+    padding: 4px;
+}
+
+table.chemical-equation-balancing .bfactor-span-header {
+    margin-right: 10px;
+}
+
+table.chemical-equation-balancing .balanced {
+    background-color: rgb(128, 240, 169);
+}
+
+table.chemical-equation-balancing .unbalanced {
+    background-color: red;
+}
+
+.balancing-equation-div {
+    display: inline-block;
+    font-size: 20pt;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+    margin-top: 50px;
+    border: 1px dashed black;
+}
+
+.balancing-equation-div2 {
+    display: inline-block;
+    font-size: 20pt;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+}
+
+.balancing-equation-balanced {
+    color: green;
+}
+
+.balancing-equation-unbalanced {
+    color: red;
+}

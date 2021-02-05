@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>RSM Helper</title>
+  <style>
+
+
+  </style>
+  <script src="rsm_grammar.js"></script>
+  <script src="question-parser.js"></script>
+  <script src="math.js"></script>
+  <script src="evalFormula.js"></script>
+  <script src="fraction.js"></script>
+  <script src="rsm.js"></script>
+  <!-- mathquill includes: -->
+  <link rel="stylesheet" href="mq/mathquill.css" />
+  <script src="mq/jquery.min.js"></script>
+  <script src="mq/mathquill.js"></script>
+  <script>
+      // the global MathQuill instance used throughout the code
+
+  </script>
+  <!-- end mathquill includes -->
+  <link rel="stylesheet" href="rsm.css" />
+</head>
+
+<body>
+  <h1>RSM Helper</h1>
+  <div id="question-repeat" style="display:none"></div>
+  <div id="test-input-container">
+    <input id="test-input" />
+  </div>
+  <table>
+    <tr>
+      <td valign="middle">
+        <input id="theButton" type="button" value="Go">
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td valign="middle">
+        <input type="button" value="show/hide debug info" style="display:none"/>
+      </td>
+      <td>&nbsp;</td>
+      <!--
+        <td valign="middle">
+          <input id="realRunCheckBox" type="checkbox">
+        </td>
+        <td valign="middle">
+          <label for="realRunCheckBox">real run</label>
+        </td>
+      -->
+    </tr>
+  </table>
+
+  <div id="result" style="display:none">
+    <textarea id="ta" rows="20" cols="45"></textarea>
+  </div>
+  <div id="output-math-container">
+  </div>
+
+
+  <input id="close" type="button" value="Close">
+</body>
+
+</html>

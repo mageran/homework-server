@@ -1,0 +1,30 @@
+.formula-container {
+    display: block;
+    padding: 10px;
+    margin: 5px;
+    border-top: 1px solid green;
+}
+
+.formula-text {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #543634;
+    font-size: 20pt;
+}
+
+.formula-content {
+    margin-left: 20px;
+    border-width: 0px important;
+    padding: 10px;
+}
+
+.mq-editable-field,
+.mq-math-mode .mq-editable-field {
+    border: 0px solid green !important;
+    font-size: 24pt;
+}
+
+.formula-content-previous {
+    font-size: 20pt !important;
+    color: lightgrey;
+}

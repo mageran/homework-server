@@ -1,0 +1,29 @@
+* {
+    font-family: noahfont4regular;
+    font-size:24pt;
+}
+
+body {
+    margin: 20px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th,td {
+    padding: 10px;
+}
+
+td {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+tr:last-child {
+    border-bottom: 1px solid black;
+}
+
+h1,h2,h3,h4 {
+    font-size: 24pt;
+}

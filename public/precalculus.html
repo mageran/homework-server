@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Precalculus Helper</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="rsmplugin/fraction.js"></script>
+    <script src="utils.js"></script>
+    <script src="main.js"></script>
+    <script src="classes/Numeric.js"></script>
+    <script src="classes/Angle.js"></script>
+    <script src="canvas-utils.js"></script>
+    <script src="angles.js"></script>
+    <script src="trig-functions.js"></script>
+    <script src="function-transformation.js"></script>
+    <script src="polynomials.js"></script>
+    <script src="factor-quadratic.js"></script>
+    <script src="quadratic-formulas.js"></script>
+    <script src="precalculus-topics.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://www.desmos.com/api/v1.5/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <script src="rsmplugin/math.js"></script>
+    <script src="rsmplugin/latex-formula-grammar.js"></script>
+    <script src="rsmplugin/latex-formula-parser-utils.js"></script>
+    <script src="rsmplugin/evalFormula.js"></script>
+    <!-- mathquill includes: -->
+    <link rel="stylesheet" href="rsmplugin/mq/mathquill.css" />
+    <script src="rsmplugin/mq/jquery.min.js"></script>
+    <script src="rsmplugin/mq/mathquill.js"></script>
+    <script>
+        // the global MathQuill instance used throughout the code
+        var MQ = MathQuill.getInterface(2);
+    </script>
+</head>
+
+<body onload="init()">
+    <h1>Precalculus Helper</h1>
+    <select id="content-select">
+        <option value="">Choose topic</option>
+    </select>
+    <div id="topic-content">
+        <h2 id="topic-title"></h2>
+        <p id="topic-description"></p>
+        <p id="topic-inputs"></p>
+        <p id="topic-output" style="padding: 5px"></p>
+        </topic-content>
+</body>

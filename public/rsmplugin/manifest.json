@@ -1,0 +1,19 @@
+{
+    "name": "RSM Helper",
+    "description": "Help with RSM homework",
+    "version": "1.0",
+    "permissions": [
+      "tabs", "http://*/*", "https://*/*"
+    ],
+    "browser_action": {
+        "default_title": "RSM Helper",
+        "default_icon": "rsmlogo.png",
+        "default_popup": "rsm.html",
+        "content_security_policy": "script-src 'mq/jquery.min.js' 'unsafe-inline'"
+    },
+    "content_scripts": [{
+        "matches": ["*://homework.russianschool.com/StudentPortal/*"],
+        "js": ["mq/jquery.min.js"]
+      }],
+    "manifest_version": 2
+  }

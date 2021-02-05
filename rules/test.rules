@@ -1,0 +1,2 @@
+fac(1) => 1.
+fac(X#) => $gt(X#,1),product(X#,fac(sum(X#,-1))).

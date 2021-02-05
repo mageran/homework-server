@@ -1,0 +1,20 @@
+{
+  "name": "homework-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "(pegjs src/parser/latex-formula-grammar.pegjs; pegjs src/parser/term-parser.pegjs) || true",
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matthias Anlauff",
+  "license": "ISC",
+  "devDependencies": {
+    "pegjs": "^0.10.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "pegjs": "^0.10.0"
+  }
+}

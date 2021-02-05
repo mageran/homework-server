@@ -1,0 +1,22 @@
+// basic rules
+//X => $eval(X).
+sum(0,X) => X.
+sum(X,0) => X.
+fraction(fraction(A,B),fraction(C,D)) => fraction(product(A,D),product(B,C)).
+product(fraction(A,B),C) => fraction(product(A,C),B).
+product(1,X) => X.
+product(X,1) => X.
+product(0,_) => 0.
+product(_,0) => 0.
+sum(X,fraction(A,B)) => fraction(sum(product(X,B),A),B).
+
+
+// exponent rules
+power(product(A,B),X) => product(power(A,X),power(B,X)).
+power(power(A,X),Y) => power(A,product(X,Y)).
+power(fraction(A,B),X) => fraction(power(A,X),power(B,X)).
+power(A,fraction(1,N)) => sqrt(N,A).
+power(A,fraction(M,N)) => sqrt(N,power(A,M)).power(A,uminus(X)) => fraction(1,power(A,X)).
+fraction(P,power(A,uminus(X))) => product(P,power(A,X)).
+product(power(A,X),power(A,Y)) => power(A,sum(X,Y)).
+fraction(power(A,X),power(A,Y)) => power(A,sum(X,uminus(Y))).
