@@ -66,7 +66,7 @@ const findFactorPair = (n, cfun) => {
             } else {
                 cands = [[f0, -f1], [-f0, f1]];
             }
-            for(let cindex = 0; cindex < cands.length; cindex++) {
+            for (let cindex = 0; cindex < cands.length; cindex++) {
                 let pair = cands[cindex];
                 if (typeof cfun === 'function') {
                     if (cfun(...pair)) {
@@ -160,8 +160,8 @@ function* allCombinations(min, max, length) {
     const a = new Array(length);
     a.fill(min);
     yield a;
-    for(;;) {
-        for(let i = 0; i < length; i++) {
+    for (; ;) {
+        for (let i = 0; i < length; i++) {
             if (a[i] < max) {
                 a[i]++;
                 break;
@@ -169,11 +169,35 @@ function* allCombinations(min, max, length) {
                 if (i === length - 1) {
                     return;
                 }
-                for(let j = 0; j <= i; j++) {
+                for (let j = 0; j <= i; j++) {
                     a[j] = min;
                 }
             }
         }
         yield a;
     }
+}
+
+const _htmlElement = (tag, parent, content, cssClass) => {
+    const elem = document.createElement(tag);
+    if (parent) {
+        parent.appendChild(elem);
+    }
+    if (content) {
+        if (content instanceof HTMLElement) {
+            elem.appendChild(content);
+        }
+        else if (typeof content === 'string') {
+            elem.innerHTML = content;
+        }
+        else if (Array.isArray(content)) {
+            content.forEach(childElem => {
+                elem.appendChild(childElem);
+            });
+        }
+    }
+    if (cssClass) {
+        elem.className = cssClass;
+    }
+    return elem;
 }

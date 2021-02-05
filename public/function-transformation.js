@@ -12,9 +12,11 @@ const _transformedFunctionToString = (a, b, h, k) => {
  * describes the function transformation given a starting function
  * f(x) and target function a * f(b*(x - h)) + k
  */
-const describeTransformation = (a = 1, b = 1, h = 0, k = 0) => {
+const describeTransformation = (a = 1, b = 1, h = 0, k = 0, skipHeader = false) => {
   var output = "";
-  output += (`<p>describe transformations for ${_transformedFunctionToString(a, b, h, k)}:<p>`);
+  if (!skipHeader) {
+    output += (`<p>describe transformations for ${_transformedFunctionToString(a, b, h, k)}:<p>`);
+  }
   const steps = [];
   if (a < 0) {
     steps.push('reflection over x-axis');
@@ -26,16 +28,16 @@ const describeTransformation = (a = 1, b = 1, h = 0, k = 0) => {
   b = Math.abs(b);
   if (a !== 1) {
     if (a < 1) {
-      steps.push(`vertical compression with factor ${1 / a}`);
+      steps.push(`vertical compression by a factor of ${a}`);
     } else {
-      steps.push(`vertical stretch with factor ${a}`);
+      steps.push(`vertical stretch by a factor of ${a}`);
     }
   }
   if (b !== 1) {
     if (b < 1) {
-      steps.push(`horizontal stretch with factor ${1 / b}`);
+      steps.push(`horizontal stretch by a factor of ${b}`);
     } else {
-      steps.push(`horizontal compression with factor ${b}`);
+      steps.push(`horizontal compression by a factor of ${b}`);
     }
   }
   if (h !== 0) {
@@ -184,14 +186,14 @@ const analyzeFunctionTermForTransformations = (outputElem, term) => {
   var adiv
   adiv = document.createElement('p');
   adiv.style.fontSize = '14pt';
-  addMathResult(adiv, ({mathField, textDiv}) => {
+  addMathResult(adiv, ({ mathField, textDiv }) => {
     textDiv.innerHTML = 'Horizontal Assymptote:';
     mathField.latex(`y = ${formulaToLatex(k)}`);
   });
   outputElem.appendChild(adiv);
   adiv = document.createElement('p');
   adiv.style.fontSize = '14pt';
-  addMathResult(adiv, ({mathField, textDiv}) => {
+  addMathResult(adiv, ({ mathField, textDiv }) => {
     textDiv.innerHTML = 'Vertical Assymptote:';
     mathField.latex(`x = ${formulaToLatex(h)}`);
   });
@@ -215,12 +217,12 @@ const analyzeFunctionTermForTransformations = (outputElem, term) => {
   const calc = appendGraphingCalculator(div);
   //const pterm = createPolynomial('x', ...coefficents);
   const ftermLatex = `R(x) = ${formulaToLatex(origTerm)}`;
-  calc.setExpression( { latex: ftermLatex });
+  calc.setExpression({ latex: ftermLatex });
   tpoints.forEach(([tx, ty]) => {
-    calc.setExpression( { latex: `(${tx}, ${ty})`, label: `(${tx}, ${ty})`, showLabel: true } );
+    calc.setExpression({ latex: `(${tx}, ${ty})`, label: `(${tx}, ${ty})`, showLabel: true });
   })
-  calc.setExpression( { latex: `y = ${k}` , lineStyle: "DASHED", showLabel: true });
-  calc.setExpression( { latex: `x = ${h}` , lineStyle: "DASHED", showLabel: true });
+  calc.setExpression({ latex: `y = ${k}`, lineStyle: "DASHED", showLabel: true });
+  calc.setExpression({ latex: `x = ${h}`, lineStyle: "DASHED", showLabel: true });
 }
 
 function describeFunctionBasedOnParentFunction(formulaLatex) {
@@ -229,8 +231,8 @@ function describeFunctionBasedOnParentFunction(formulaLatex) {
   try {
     formulaLatex = formulaLatex
       .replace(/\\ /g, ' ')
-      .replace(/\\left/g,'')
-      .replace(/\\right/g,'');
+      .replace(/\\left/g, '')
+      .replace(/\\right/g, '');
     const ast = latexFormulaParser.parse(formulaLatex);
     console.log(`parsed: ${JSON.stringify(ast, null, 2)}`);
     formula = simplifyFormula(ast, 0, logStepFun);

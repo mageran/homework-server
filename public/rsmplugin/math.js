@@ -84,3 +84,17 @@ const precision = (num, p = 2) => {
     const f = Math.pow(10,p);
     return Math.round(num * f)/f;
 }
+
+const findFraction = num => {
+    var numerator = num;
+    var denominator = 1;
+    for(let i = 1; i < 1000; i++) {
+        let p = num * i;
+        if (Math.trunc(p) === p) {
+            numerator = p;
+            denominator = i;
+            break;
+        }
+    }
+    return { numerator, denominator };
+}

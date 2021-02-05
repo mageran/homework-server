@@ -198,7 +198,21 @@ const _sinusodialTransformationsFromMaxMin = {
     func: sinusodialTransformationsFromMaxMin
 }
 
+const _exponentialFunctionTransformationsFromParameters = {
+    title: 'Exponential Function Transformation from Parameters',
+    description: 'Enter transformation parameters a,b,h, and k, as well as the base of the parent function n for parent function n^x',
+    parameters: [
+        { name: 'a', value: 1, size: 4 },
+        { name: 'b', value: 1, size: 4 },
+        { name: 'h', value: 0, size: 4 },
+        { name: 'k', value: 0, size: 4 },
+        { name: 'parent function base (number)', value: 1, size: 4 },
+    ],
+    func: exponentialFunctionTransformationsFromParameters
+}
+
 const topicObjects = [
+    _exponentialFunctionTransformationsFromParameters,
     _sinusodialTransformationsFromEquation,
     _sinusodialTransformationsFromParameters,
     _sinusodialTransformationsFromMaxMin,
