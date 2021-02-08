@@ -16,19 +16,15 @@
   };
 
   const simplifyUminus = t => {
-    console.log(`simplifyUminus: ${JSON.stringify(t)}`);
     if (typeof t === 'number') {
-      console.log(`...simplifyUminus: ${-t}`);
       return -t;
     }
     if (t.op === 'fraction' && t.wholeNumber === null) {
       let res = { op: 'fraction', wholeNumber: null, numerator: simplifyUminus(t.numerator), denominator: t.denominator };
-      console.log(`...simplifyUminus: ${JSON.stringify(res)}`);
       return res;
     }
     if (t.op === '*') {
       let res = _pullUminusIntoProduct(t);
-      console.log(`...simplifyUminus: ${JSON.stringify(res)}`);
       return res;
     }
     return { op: 'uminus', operands: [t] };
@@ -98,8 +94,7 @@ Equation
 
 Expression
   = head:Term? tail:(_ ("+" / "-") _ Term)* {
-      var operands = head?[head]:[new Decimal(0)];
-      console.log(`head: ${head} ${typeof head}`);
+      var operands = head?[head]:[];
       const op = "+";
       tail.forEach(elements => {
       	const d = elements[1] === '+' ? 1 : -1;
@@ -173,8 +168,8 @@ PTerm
   / p:Prim { return p; }
   
 MaybeCurlyExpression
-  = "{" expr:Expression "}" { return expr; }
-  / expr:Expression { return expr; }
+  = "{" _ expr:Expression _ "}" { return expr; }
+  / expr:PTerm { return expr; }
   
 Prim
   = Float

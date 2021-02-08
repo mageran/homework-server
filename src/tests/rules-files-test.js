@@ -1,4 +1,4 @@
-const { parseFile, parseTerm } = require('../api');
+const { parseRulesFile, parseTerm } = require('../api');
 const { simplify } = require('../solver');
 
 const termString = () => {
@@ -11,7 +11,7 @@ const termString = () => {
 
 try {
     const term = parseTerm(termString());
-    parseFile('rules/test.rules', rules => {
+    parseRulesFile('rules/test.rules', rules => {
         simplify(term, rules);
     });
 } catch (e) {

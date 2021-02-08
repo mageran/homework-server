@@ -2,6 +2,8 @@
 
 const Decimal = require('./decimal');
 const assert = require('assert');
+const { processTermWithRules } = require('./api');
+const { levelIndent, llog } = require('./utils');
 
 class Term {
 
@@ -29,6 +31,14 @@ class Term {
         return `${functor}(${operands.map(t => t.toTermString()).join(',')})`;
     }
 
+    toJson() {
+        const { operands } = this;
+        return {
+            functor: this.className.toLowerCase(),
+            operands: operands.map(t => t.toJson())
+        }
+    }
+
     _isVariableMatch(term) {
         return term instanceof Variable;
     }
@@ -46,15 +56,17 @@ class Term {
     }
 
     match(term) {
+        //console.log(`{ => try match: ${this.toTermString()} ~ ${term.toTermString()}...`);
         if (this._isVariableMatch(term)) {
+            //console.log(`    => match succeeded (isVariableMatch): ${this.toTermString()} ~ ${term.toTermString()}!}`);
             return this._variableMatch(term);
         }
         if (this._functorMatch(term)) {
-            //console.log(`no match: functor names mismatch "${this.className}" != "${term.className}"`);
+            //console.log(`    no match: functor names mismatch "${this.className}" != "${term.className}"}`);
             return false;
         }
         if (this.operands.length !== term.operands.length) {
-            //console.log(`no match: different number of operands: "${this.operands.length}" != "${term.operands.length}"`);
+            //console.log(`   no match: different number of operands: "${this.operands.length}" != "${term.operands.length}"}`);
             return false;
         }
         for (let i = 0; i < this.operands.length; i++) {
@@ -63,8 +75,10 @@ class Term {
             if (thisTerm.match(otherTerm)) {
                 continue;
             }
+            //console.log(`    => match failed at operand #${i}: ${this.toTermString()} ~ ${term.toTermString()}}`);
             return false;
         }
+        //console.log(`    => match succeeded: ${this.toTermString()} ~ ${term.toTermString()}!}`);
         return true;
     }
 
@@ -86,7 +100,7 @@ class Term {
         return false;
     }
 
-    applyRule(rule) {
+    _applyRule(rule) {
         var matchResult = false;
         var substTerm = this;
         if (!rule.isRule()) {
@@ -95,12 +109,12 @@ class Term {
         rule = rule.clone();
         if (this.match(rule.lhs)) {
             try {
-                substTerm = rule.rhs.substituteInstantiatedVariables();
+                substTerm = rule.rhs.substituteInstantiatedVariables().clone();
                 console.log(`rule match succeeded:
             rule: ${rule.toTermString()}
             term: ${this.toTermString()}
             subst: ${substTerm.toTermString()}`);
-            matchResult = true;
+                matchResult = true;
             } catch (error) {
                 console.log(`rule match failed: ${error}`);
             }
@@ -125,6 +139,61 @@ class Term {
         return { matchResult, substTerm };
     }
 
+    _getSeqTerms() {
+        return [this];
+    }
+
+    applyRules(rules, level = 0) {
+        const _applySingleRule = rule => {
+            var matchTerm;
+            var newTerms = null;
+            rule = rule.clone();
+            if (rule.isRule()) {
+                matchTerm = rule.lhs;
+                newTerms = rule.rhs._getSeqTerms();
+            } else {
+                matchTerm = rule;
+            }
+            matchTerm = matchTerm.substituteInstantiatedVariables();
+            llog(level, `matchTerm: ${matchTerm.toTermString()}`);
+            if (this.match(matchTerm)) {
+                if (newTerms) {
+                    const nterms = newTerms.map(t => t.substituteInstantiatedVariables());
+                    for (let i = 0; i < nterms.length; i++) {
+                        let nterm = nterms[i].substituteInstantiatedVariables();
+                        llog(level, `processing level ${level + 1} subterm: ${nterm.toTermString()}...`);
+                        let subres = nterm.applyRules(rules, level + 1);
+                        if (!subres) {
+                            llog(level, `match for term ${this.toTermString()} failed, because match for subterm ${nterm.toTermString()} failed.`);
+                            matchTerm.reset();
+                            return false;
+                        }
+                        llog(level, `==> ${this.substituteInstantiatedVariables().toTermString()}`)
+                    }
+                    llog(level, `matches for all subterms succeeded for ${this.toTermString()}.`);
+                }
+                return true;
+            }
+            matchTerm.reset();
+            return false;
+        };
+        llog(level, `processing term ${this.toTermString()}...`);
+        var ruleMatchOccurred = false;
+        for (let i = 0; i < rules.length; i++) {
+            let rule = rules[i];
+            llog(level, `trying rule ${rule.toTermString()}...`)
+            let success = _applySingleRule(rule);
+            if (success) {
+                llog(level, `rule ${i} is a match.`);
+                ruleMatchOccurred = true;
+                break;
+            } else {
+                llog(level, `no match    ${rule.toTermString()}...`)
+            }
+        }
+        return ruleMatchOccurred;
+    }
+
     substituteInstantiatedVariables() {
         const substOperands = this.operands.map(t => t.substituteInstantiatedVariables());
         const Cls = this.constructor;
@@ -146,6 +215,22 @@ class Term {
 
     getInstantiatedTerm() {
         return this;
+    }
+
+    _addVariableSubstitutions(substMap) {
+        this.operands.forEach(t => t._addVariableSubstitutions(substMap))
+    }
+
+    getVariableSubstitutions(asJson = false) {
+        const substMap = {};
+        this._addVariableSubstitutions(substMap);
+        if (asJson) {
+            Object.keys(substMap).forEach(varname => {
+                const term = substMap[varname].$eval();
+                substMap[varname] = term.toJson();
+            });
+        }
+        return substMap;
     }
 
     isRule() {
@@ -178,6 +263,7 @@ class Term {
     }
 
     $eval() {
+        console.log(`$eval called on ${this.toTermString()}`);
         if (this.operands) {
             const evaledOperands = this.operands.map(t => t.$eval());
             return this.$evalOp(evaledOperands);
@@ -189,7 +275,7 @@ class Term {
         //console.log(`$gt called on ${this.className} with argument ${term.className}`);
         const t0 = this.$eval();
         const t1 = term.$eval();
-        console.log(`after eval:   ${t0.value} with argument ${t1.value}`);
+        //console.log(`after eval:   ${t0.value} with argument ${t1.value}`);
         if ((t0 instanceof Num) && (t1 instanceof Num)) {
             console.log(`${t0.value.greaterThan(t1.value)}`);
             return t0.value > t1.value ? TrueTerm : FalseTerm;
@@ -230,7 +316,7 @@ class Functor extends Term {
     constructor(operands) {
         super(operands);
         this._assertOperandCountGreaterEqualThan(1);
-        const [functorNameTerm,...restOperands] = operands;
+        const [functorNameTerm, ...restOperands] = operands;
         assert.ok(functorNameTerm instanceof Identifier,
             `first argument to Functor term must be an Identifier`);
     }
@@ -239,9 +325,21 @@ class Functor extends Term {
         return operands[0];
     }
 
+    _functorMatch(term) {
+
+    }
+
     toTermString() {
         const [functor, ...operands] = this.operands;
         return `${functor.toTermString()}(${operands.map(t => t.toTermString()).join(',')})`;
+    }
+
+    toJson() {
+        const [functor, ...operands] = this.operands;
+        return {
+            functor: functor.name,
+            operands: operands.map(t => t.toJson())
+        }
     }
 
 }
@@ -272,16 +370,28 @@ class Sum extends Term {
     }
 
     $evalOp(operands) {
-        const { numOperands, otherOperands } = this._splitOperands(operands);
+        const { numOperands } = this._splitOperands(operands);
         const numObj = numOperands.reduce((res, elem) => {
             //console.log(`${JSON.stringify(res)} is an instance of Num: ${res instanceof Num}`);
             res.value = res.value.add(elem.value);
             return res;
         }, new Num(new Decimal(0)));
-        if (otherOperands.length === 0) {
-            return numObj;
+        const newOperands = [];
+        var numObjectAdded = false;
+        operands.forEach(t => {
+            if (t.isNum()) {
+                if (!numObjectAdded) {
+                    numObjectAdded = true;
+                    newOperands.push(numObj);
+                }
+            } else {
+                newOperands.push(t);
+            }
+        })
+        if (newOperands.length === 1) {
+            return newOperands[0];
         }
-        return new Sum([numObj, ...otherOperands]);
+        return new Sum(newOperands);
     }
 
 }
@@ -295,28 +405,41 @@ class Product extends Term {
     }
 
     $evalOp(operands) {
-        const { numOperands, otherOperands } = this._splitOperands(operands);
+        const { numOperands } = this._splitOperands(operands);
         const numObj = numOperands.reduce((res, elem) => {
-            console.log(`${JSON.stringify(res)} is an instance of Num: ${res instanceof Num}`);
-            res.value = res.value.mul(elem.value);
+            //console.log(`${JSON.stringify(res)} is an instance of Num: ${res instanceof Num}`);
+            res.value = res.value.times(elem.value);
             return res;
         }, new Num(new Decimal(1)));
-        if (otherOperands.length === 0) {
-            return numObj;
+        const newOperands = [];
+        var numObjectAdded = false;
+        operands.forEach(t => {
+            if (t.isNum()) {
+                if (!numObjectAdded) {
+                    numObjectAdded = true;
+                    newOperands.push(numObj);
+                }
+            } else {
+                newOperands.push(t);
+            }
+        })
+        if (newOperands.length === 1) {
+            return newOperands[0];
         }
-        return new Sum([numObj, ...otherOperands]);
+        return new Product(newOperands);
     }
 
 
 }
 
-class UMinus extends Term {
+class UMinus extends Product {
 
     constructor(operands) {
-        super(operands);
-        this._assertOperandCount(1);
+        super([new Num(new Decimal(-1)), ...operands]);
+        this._assertOperandCount(2);
     }
 
+    /*
     _$evalOp(operands) {
         const { numOperands, otherOperands } = this._splitOperands(operands);
         if (numOperands.length === 1 && otherOperands.length === 0) {
@@ -325,6 +448,7 @@ class UMinus extends Term {
         }
         return new UMinus([...numOperands, ...otherOperands]);
     }
+    */
 
 }
 
@@ -353,6 +477,10 @@ class Seq extends Term {
 
     constructor(operands) {
         super(operands);
+    }
+
+    _getSeqTerms() {
+        return this.operands;
     }
 
     substituteInstantiatedVariables() {
@@ -430,6 +558,10 @@ class Num extends Term {
         return String(this.value);
     }
 
+    toJson() {
+        return this.value;
+    }
+
     match(term) {
         if (this._isVariableMatch(term)) {
             return this._variableMatch(term);
@@ -451,6 +583,9 @@ class Num extends Term {
 
     substituteInstantiatedVariables() {
         return new Num(this.value);
+    }
+
+    _addVariableSubstitutions(substMap) {
     }
 
     _clone(ctxt) {
@@ -477,8 +612,16 @@ class Symbol extends Term {
         return String(this.name);
     }
 
+    toJson() {
+        return String(this.name);
+    }
+
     pmatch(term) {
         return this.match(term);
+    }
+
+    _addVariableSubstitutions(substMap) {
+
     }
 
 }
@@ -503,7 +646,7 @@ class Identifier extends Symbol {
         }
         const retValue = this.name === term.name;
         if (!retValue) {
-            //console.log(`match failed, because identifiers are different: ${this.name} != ${term.name}`);
+            console.log(`match failed, because identifiers are different: ${this.name} != ${term.name}`);
         }
         return retValue;
     }
@@ -577,13 +720,21 @@ class Variable extends Symbol {
         return this;
     }
 
+    _addVariableSubstitutions(substMap) {
+        if (this.isInstantiated) {
+            substMap[this.varname] = this.getInstantiatedTerm().substituteInstantiatedVariables();
+        }
+    }
+
     _clone(ctxt) {
         return ctxt.findVariableInContext(this.name);
     }
 
     toTermString() {
         const { name, uniqueId } = this;
-        return `${name}${uniqueId >= 0 ? `$${uniqueId}` : ''}`;
+        const istr = this.isInstantiated() ? '!' : '';
+        return `${name}${uniqueId >= 0 ? `$${uniqueId}` : ''}${istr}`;
+        //return name;
     }
 
 }
@@ -625,6 +776,10 @@ class AnyVariable extends Variable {
         return new AnyVariable(uid);
     }
 
+    _addVariableSubstitutions(substMap) {
+        // do not include AnyVariable instantiations to the substMap
+    }
+
     toTermString() {
         return `_${this.uniqueId}`;
     }
@@ -664,6 +819,13 @@ class Boolean extends Term {
         this.booleanValue = !!booleanValue;
     }
 
+    substituteInstantiatedVariables() {
+        return this;
+    }
+
+    _addVariableSubstitutions(substMap) {
+    }
+
     reset() {
     }
 
@@ -672,6 +834,10 @@ class Boolean extends Term {
     }
 
     toTermString() {
+        return String(this.booleanValue);
+    }
+
+    toJson() {
         return String(this.booleanValue);
     }
 
@@ -700,7 +866,6 @@ const FalseTerm = new False();
 Object.freeze(False.instance);
 
 const BoolTerm = booleanValue => booleanValue ? TrueTerm : FalseTerm;
-
 
 module.exports = {
     Term,

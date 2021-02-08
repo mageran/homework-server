@@ -1,0 +1,33 @@
+// 
+get_params(equation(_,Rhs), parameters(A,B,H,K,Base))
+=> 
+   get_k(Rhs,K, Rest1),
+   numberOrFraction(K),
+   get_a(Rest1, A, Rest2),
+   numberOrFraction(A),
+   get_base(Rest2, Base, Rest3),
+   numberOrFraction(Base),
+   get_b(Rest3, B, Rest4),
+   numberOrFraction(B),
+   get_h(Rest4, MH, x),
+   negate(MH,H),
+   numberOrFraction(MH).
+
+get_a(product(A,Rest), A, Rest).
+get_a(Pow, 1, Pow).
+
+get_k(sum(P,K),K,P).
+get_k(P, 0, P).
+
+get_base(power(Base, Exponent), Base, Exponent).
+
+get_b(product(B,HTerm), B, HTerm).
+get_b(H, 1, H).
+
+get_h(sum(X,H), H, X).
+get_h(X, 0, X).
+
+negate(X,$eval(product(-1,X))).
+
+numberOrFraction(X#).
+numberOrFraction(fraction(X,Y)) => numberOrFraction(X), numberOrFraction(Y).

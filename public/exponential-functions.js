@@ -33,7 +33,7 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
         var astr = '';
         if (a < 0) astr += '-';
         if (Math.abs(a) !== 1) {
-            astr += Math.abs(_numToLatex(a));
+            astr += _numToLatex(Math.abs(a));
         }
         var latex = `f(x) = ${astr}(${_baseToLatex()})^{${exp}}`
         if (k !== 0) {
@@ -155,12 +155,12 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
                 tr.appendChild(td);
                 // transformed x coordinate: x/B + h
                 td = document.createElement('td');
-                let xOverB = x/b;
+                let xOverB = x / b;
                 let xval = tkp.x;
                 addLatexElement(td, `${_numToLatex(xOverB)} + (${_numToLatex(h)}) = ${_numToLatex(xval)}`);
                 tr.appendChild(td);
                 td = document.createElement('td');
-                let ATimesy = a*y;
+                let ATimesy = a * y;
                 let yval = tkp.y;
                 addLatexElement(td, `${_numToLatex(ATimesy)} + (${_numToLatex(k)}) = ${_numToLatex(yval)}`);
                 tr.appendChild(td);
@@ -171,7 +171,7 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
     }
 
     const _transformPoint = ({ x, y }) => {
-        return { x: x/b+h, y: a*y + k };
+        return { x: x / b + h, y: a * y + k };
     }
 
     const _applyParentFunction = x => Math.pow(base, x);
@@ -190,5 +190,28 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
     } catch (err) {
         _addErrorElement(outputElem, err);
     }
+}
+
+function exponentialFunctionTransformationsFromEquation(latex) {
+    const outputElem = this;
+    const url = '/api/extractParametersExponentialFunction';
+    const data = { latex };
+    const success = response => {
+        //console.log(`response: ${JSON.stringify(response, null, 2)}`);
+        var resObj = response;
+        try {
+            resObj = JSON.parse(response);
+        } catch(err) {
+            console.error(err);
+        }
+        _htmlElement('pre', outputElem, JSON.stringify(resObj, null, 2));
+    }
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: success,
+        error: ajaxErrorFunction(outputElem)
+    });
 }
 

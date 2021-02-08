@@ -151,8 +151,7 @@ function peg$parse(input, options) {
       peg$c5 = "-",
       peg$c6 = peg$literalExpectation("-", false),
       peg$c7 = function(head, tail) {
-            var operands = head?[head]:[new Decimal(0)];
-            console.log(`head: ${head} ${typeof head}`);
+            var operands = head?[head]:[];
             const op = "+";
             tail.forEach(elements => {
             	const d = elements[1] === '+' ? 1 : -1;
@@ -1103,7 +1102,7 @@ function peg$parse(input, options) {
   }
 
   function peg$parseMaybeCurlyExpression() {
-    var s0, s1, s2, s3;
+    var s0, s1, s2, s3, s4, s5;
 
     s0 = peg$currPos;
     if (input.charCodeAt(peg$currPos) === 123) {
@@ -1114,19 +1113,31 @@ function peg$parse(input, options) {
       if (peg$silentFails === 0) { peg$fail(peg$c36); }
     }
     if (s1 !== peg$FAILED) {
-      s2 = peg$parseExpression();
+      s2 = peg$parse_();
       if (s2 !== peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 125) {
-          s3 = peg$c26;
-          peg$currPos++;
-        } else {
-          s3 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c27); }
-        }
+        s3 = peg$parseExpression();
         if (s3 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c21(s2);
-          s0 = s1;
+          s4 = peg$parse_();
+          if (s4 !== peg$FAILED) {
+            if (input.charCodeAt(peg$currPos) === 125) {
+              s5 = peg$c26;
+              peg$currPos++;
+            } else {
+              s5 = peg$FAILED;
+              if (peg$silentFails === 0) { peg$fail(peg$c27); }
+            }
+            if (s5 !== peg$FAILED) {
+              peg$savedPos = s0;
+              s1 = peg$c21(s3);
+              s0 = s1;
+            } else {
+              peg$currPos = s0;
+              s0 = peg$FAILED;
+            }
+          } else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
+          }
         } else {
           peg$currPos = s0;
           s0 = peg$FAILED;
@@ -1141,7 +1152,7 @@ function peg$parse(input, options) {
     }
     if (s0 === peg$FAILED) {
       s0 = peg$currPos;
-      s1 = peg$parseExpression();
+      s1 = peg$parsePTerm();
       if (s1 !== peg$FAILED) {
         peg$savedPos = s0;
         s1 = peg$c21(s1);
@@ -1534,19 +1545,15 @@ function peg$parse(input, options) {
     };
 
     const simplifyUminus = t => {
-      console.log(`simplifyUminus: ${JSON.stringify(t)}`);
       if (typeof t === 'number') {
-        console.log(`...simplifyUminus: ${-t}`);
         return -t;
       }
       if (t.op === 'fraction' && t.wholeNumber === null) {
         let res = { op: 'fraction', wholeNumber: null, numerator: simplifyUminus(t.numerator), denominator: t.denominator };
-        console.log(`...simplifyUminus: ${JSON.stringify(res)}`);
         return res;
       }
       if (t.op === '*') {
         let res = _pullUminusIntoProduct(t);
-        console.log(`...simplifyUminus: ${JSON.stringify(res)}`);
         return res;
       }
       return { op: 'uminus', operands: [t] };

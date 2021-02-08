@@ -5,6 +5,7 @@ const fs = require('fs');
 const TermParser = require('./parser/term-parser');
 const LatexParser = require('./parser/latex-formula-grammar');
 const { processAst } = require('./ast');
+const { processTerm } = require('./solver');
 
 
 const parseRulesAndTerms = termsString => {
@@ -17,7 +18,8 @@ const parseLatexTerm = latexTerm => {
     const lterm = latexTerm
         .replace(/\\ /g, ' ')
         .replace(/\\left/g, '')
-        .replace(/\\right/g, '');
+        .replace(/\\right/g, '')
+        .replace(/\\cdot/g,'*');
     console.log(lterm);
     const ast = _parseInternal(lterm, parse);
     return processAst(ast);
@@ -44,7 +46,7 @@ const parseRules = rulesString => {
     return rules;
 }
 
-const parseFile = (fileName, cb) => {
+const parseRulesFile = (fileName, cb) => {
     const lines = [];
     const readInterface = readline.createInterface({
         input: fs.createReadStream(fileName),
@@ -61,7 +63,7 @@ const parseFile = (fileName, cb) => {
         const content = lines.join('\n');
         const rules = parseRules(content);
         rules.forEach(rule => {
-            //console.log(`rule: ${rule.toTermString()}`);
+            console.log(`rule: ${rule.toTermString()}`);
         })
         if (typeof cb === 'function') {
             cb(rules);
@@ -69,11 +71,59 @@ const parseFile = (fileName, cb) => {
     })
 }
 
+const findFunctorClass = functor => {
+    const fclass = Object.keys(Terms).filter(
+        className => className.toLowerCase() === functor 
+                    && (typeof Terms[className] === 'function')
+        ).map(className => Terms[className])[0];
+    if (!fclass) {
+        //throw `no functor class found for ${functor}`;
+        return null;
+    }
+    return fclass;
+}
+
+const constructFunctorTerm = (functor, allTerms) => {
+    var fclass = findFunctorClass(functor);
+    if (fclass) {
+        return new fclass(allTerms);
+    }
+    const functorId = new Terms.Identifier(functor);
+    return new Terms.Functor([functorId, ...allTerms]);
+}
+
+/**
+ * reads the rules in rulesFile and processes the term
+ * @param {*} rulesFile 
+ * @param {*} term 
+ */
+const processTermWithRules = (term, rulesFile, functor = null, resultVariable = null, resultCallback) => {
+    const rfile = `rules/${rulesFile}.rules`;
+    const opterms = [term];
+    if (resultVariable) {
+        opterms.push(new Terms.Variable(resultVariable));
+    }
+    const inputTerm = functor ? constructFunctorTerm(functor, opterms) : term;
+    parseRulesFile(rfile, rules => {
+        const substMap = processTerm(inputTerm, rules);
+        if (typeof resultCallback === 'function') {
+            resultCallback(substMap);
+        }
+    });
+}
+
+const processLatexWithRules = (latex, rulesFile, functor = null, resultVariable = null, resultCallback) => {
+    const term = parseLatexTerm(latex);
+    processTermWithRules(term, rulesFile, functor, resultVariable, resultCallback);
+}
+
 module.exports = {
     parseRulesAndTerms,
     parseTerm,
     parseRule,
     parseRules,
-    parseFile,
-    parseLatexTerm
+    parseRulesFile,
+    parseLatexTerm,
+    processTermWithRules,
+    processLatexWithRules
 }

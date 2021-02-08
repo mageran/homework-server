@@ -67,7 +67,7 @@ RuleOrTerm
         var rhsTerm = ruleContinuation[3];
         const termTail = ruleContinuation[4];
         if (Array.isArray(termTail)) {
-            console.log(`rhs of rule has ${termTail.length + 1} terms`);
+            //console.log(`rhs of rule has ${termTail.length + 1} terms`);
             const elements = [rhsTerm, ...termTail.map(telem => telem[3])];
             rhsTerm = new Terms.Seq(elements);
         }
@@ -77,8 +77,8 @@ RuleOrTerm
 }
 
 Term
-=  functor:Functor "(" term: Term terms:("," Term _)* ")" {
-    const allTerms = [term].concat(terms.map(t => t[1]));
+=  functor:Functor "(" _ term: Term terms:(_ "," _ Term _)* _ ")" {
+    const allTerms = [term].concat(terms.map(t => t[3]));
     //const fclass = findFunctorClass(functor);
     //return new fclass(allTerms);
     return constructTermOrApply(functor, allTerms);
@@ -126,16 +126,16 @@ Number
 
 BooleanLiteral
 = "true" { return Terms.TrueTerm; }
-/ "false" { return new Terms.FalseTerm; }
+/ "false" { return Terms.FalseTerm; }
 
 NumberVariable
-= [A-Z][A-Za-z_]* "#" { return text(); }
+= [A-Z][A-Za-z_0-9]* "#" { return text(); }
 
 LowerCaseIdentifier
-= [a-z][A-Za-z_]* { return text(); }
+= [a-z][A-Za-z_0-9]* { return text(); }
 
 UpperCaseIdentifier
-= [A-Z][A-Za-z_]* { return text(); }
+= [A-Z][A-Za-z_0-9]* { return text(); }
 
 AnyVariable
 = "_" { return text(); }

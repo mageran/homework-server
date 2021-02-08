@@ -211,7 +211,18 @@ const _exponentialFunctionTransformationsFromParameters = {
     func: exponentialFunctionTransformationsFromParameters
 }
 
+const _exponentialFunctionTransformationsFromEquation = {
+    title: 'Exponential Function Transformation from Equation',
+    description: 'Enter equation of the form y = a(n)^(b(x-h)) +k ',
+    parameters: [
+        { name: 'Equation', type: 'formula', cssClass: "width700" },
+    ],
+    func: exponentialFunctionTransformationsFromEquation
+
+}
+
 const topicObjects = [
+    _exponentialFunctionTransformationsFromEquation,
     _exponentialFunctionTransformationsFromParameters,
     _sinusodialTransformationsFromEquation,
     _sinusodialTransformationsFromParameters,
