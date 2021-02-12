@@ -1,6 +1,8 @@
-function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
+function logarithmicFunctionTransformationsFromParameters(a, b, h, k, base) {
     const outputElem = _htmlElement('div', this, null, 'exponential-function-properties');
+
     const baseNum = base === 'e' ? Math.E : base;
+
 
     const _numToLatex = num => {
         const { numerator, denominator } = findFraction(num);
@@ -41,7 +43,7 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
         if (Math.abs(a) !== 1) {
             astr += _numToLatex(Math.abs(a));
         }
-        var latex = `f(x) = ${astr}(${_baseToLatex()})^{${exp}}`
+        var latex = `f(x) = ${astr}\\log_{${_baseToLatex()}}{(${exp})}`
         if (k !== 0) {
             latex += k > 0 ? '+' : '-';
             latex += _numToLatex(Math.abs(k));
@@ -52,16 +54,14 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
     const _addPropertiesTable = (includeParameters) => {
         const table = _htmlElement('table', outputElem, null, 'exponential-function-properties-table');
         const _addParameter = (pname, pvalue) => {
+            const td = _htmlElement('td')
+            addLatexElement(td, _numToLatex(pvalue))
             _htmlElement('tr', table, [
                 _htmlElement('td', null, `${pname}:`),
-                _htmlElement('td', null, String(pvalue))
+                td
             ])
 
         }
-        _htmlElement('tr', table, [
-            _htmlElement('td', null, 'Growth or Decay:'),
-            _htmlElement('td', null, Math.abs(base) < 1 ? "Decay" : "Growth")
-        ])
         if (includeParameters) {
             _addParameter('a', a);
             _addParameter('b', b);
@@ -69,24 +69,24 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
             _addParameter('k', k);
         }
         _htmlElement('tr', table, [
-            _htmlElement('td', null, '(Horizontal) Assymptote:'),
-            _htmlElement('td', null, `y = ${k}`)
+            _htmlElement('td', null, 'Vertical Assymptote:'),
+            _htmlElement('td', null, `x = ${h}`)
         ])
         var td = _htmlElement('td');
-        addLatexElement(td, `y = (${_baseToLatex()})^x`);
+        addLatexElement(td, `y = \\log_{${_baseToLatex()}}x \\text{&nbsp;&nbsp;<b>or</b>&nbsp;&nbsp;} (${_baseToLatex()})^y = x`);
         _htmlElement('tr', table, [
             _htmlElement('td', null, 'Parent function:'),
             td
         ])
         td = _htmlElement('td');
-        addLatexElement(td, '(-\\infty,\\infty)');
+        const domain = b > 0 ? `(${h},\\infty)` : b < 0 ? `(-\\infty,${h})` : `\\{${h}\\}`;
+        addLatexElement(td, domain);
         _htmlElement('tr', table, [
             _htmlElement('td', null, 'Domain:'),
             td
         ])
         td = _htmlElement('td');
-        const range = a > 0 ? `(${k},\\infty)` : a < 0 ? `(-\\infty,${k})` : `\\{${k}\\}`;
-        addLatexElement(td, range);
+        addLatexElement(td, '(-\\infty,\\infty)');
         _htmlElement('tr', table, [
             _htmlElement('td', null, 'Range:'),
             td
@@ -115,7 +115,7 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
         const calc = appendGraphingCalculator(div, { width });
         const ftermLatex = getEquation();
         calc.setExpression({ latex: ftermLatex });
-        calc.setExpression({ latex: `y = ${k}`, lineStyle: "DASHED", showLabel: true });
+        calc.setExpression({ latex: `x = ${h}`, lineStyle: "DASHED", showLabel: true, lineColor: 'orange' });
         if (keypointsMap) {
             keypointsMap.forEach(({ keypoint, transformedKeypoint }) => {
                 const tx = transformedKeypoint.x;
@@ -207,6 +207,7 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
         }
         outputElem.appendChild(table);
     }
+
     const _makeATable = sampleValues => {
         const table = _htmlElement('table', outputElem, null, "make-a-table");
         const xtr = _htmlElement('tr', table);
@@ -223,6 +224,11 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
         return { x: x / b + h, y: a * y + k };
     }
 
+    const logBase = (n, base) => Math.log(n) / Math.log(base);
+
+    const _applyParentFunction = x => logBase(x, baseNum);
+    const _applyInverseParentFunction = y => Math.pow(baseNum, y)
+
     const _applyFunction = x => {
         const _x = new Decimalx(x);
         const _a = new Decimalx(a);
@@ -230,34 +236,30 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
         const _h = new Decimalx(h);
         const _k = new Decimalx(k);
         const _base = new Decimalx(baseNum);
-        return (_base.pow(((_x.minus(_h)).times(_b))).times(_a)).plus(_k);
+        return ((((_x.minus(_h)).times(_b)).logarithm(_base)).times(_a)).plus(_k);
     }
 
     const _getSamplesValues = () => {
-        const numEntries = 10;
+        const numEntries = 5;
         const stepWidth = 1;
-        const step = stepWidth;
+        const step = stepWidth * Math.sign(b);
         const values = [];
-        const start = h - Math.trunc(numEntries/2);
-        const end = h + Math.trunc(numEntries/2);
-        for(let x = start; x <= end; x += step) {
+        for(let x = h; Math.abs(x-h) <= numEntries; x += step) {
             let y = _applyFunction(x).toPrecision(3);
             values.push({ x, y });
         }
-        return values;
+        return b < 0 ? values.reverse() : values;
     }
 
-    const inverseFunctionToLatex = logToLatex(base,_numToLatex(base))
-    const functionToLatex = expToLatex(base, _numToLatex(base))
-
-
-    const _applyParentFunction = x => Math.pow(baseNum, x);
+    const functionToLatex = logToLatex(base,_numToLatex(base))
+    const inverseFunctionToLatex = expToLatex(base, _numToLatex(base))
 
     try {
         const sampleValues = _getSamplesValues();
-        const xpoints = [-1, 0, 1];
-        const keypointsMap = xpoints.map(x => {
-            const y = _applyParentFunction(x);
+        console.log(`sample values: ${JSON.stringify(sampleValues, null, 2)}`);
+        const ypoints = [-1, 0, 1];
+        const keypointsMap = ypoints.map(y => {
+            const x = _applyInverseParentFunction(y);
             const keypoint = { x, y }
             const transformedKeypoint = _transformPoint(keypoint);
             return { keypoint, transformedKeypoint };
@@ -265,7 +267,6 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
         _addPropertiesTable(true);
         _addGraph(keypointsMap);
         _addTChart(keypointsMap);
-
         _htmlElement('h2', outputElem, '"Make a table"', 'bigSkip');
         _makeATable(sampleValues);
         _htmlElement('h2', outputElem, 'Graph with values from table');
@@ -273,13 +274,12 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
 
         calculateInverseSteps(outputElem, a, b, h, k, functionToLatex, inverseFunctionToLatex);
 
-
     } catch (err) {
         _addErrorElement(outputElem, err);
     }
 }
 
-function exponentialFunctionTransformationsFromEquation(latex) {
+function logarithmicFunctionTransformationsFromEquation(latex) {
     const outputElem = this;
     const url = '/api/extractParametersExponentialFunction';
     const data = { latex };
@@ -302,3 +302,112 @@ function exponentialFunctionTransformationsFromEquation(latex) {
     });
 }
 
+const logToLatex = (base, baseLatex) => (latexArg => {
+    if (base === 'e') {
+        return `ln(${latexArg})`;
+    }
+    return `log_{${baseLatex}}(${latexArg})`;
+})
+
+const expToLatex = (base, baseLatex) => (latexArg => {
+    return `${baseLatex}^{${latexArg}}`;
+})
+
+
+const calculateInverseSteps = (cont, a, b, h, k, applyParentFunction, applyInverseParentFunction) => {
+    const P = applyParentFunction;
+    const P_1 = applyInverseParentFunction;
+    const _descr = text => {
+        const div = _htmlElement('div', cont);
+        addLatexElement(div, text);
+    }
+    const _l = num => {
+        const { numerator, denominator } = findFraction(num);
+        if (denominator === 1) {
+            return num;
+        }
+        var latex = "";
+        if (num < 0) {
+            latex += "-";
+        }
+        latex += `\\frac{${Math.abs(numerator)}}{${Math.abs(denominator)}}`;
+        return latex;
+    }
+    const _f1 = a => {
+        var latex = a < 0 ? '-' : '';
+        const _a = Math.abs(a);
+        if (_a !== 1) {
+            latex += _l(_a) + " \\cdot ";
+        }
+        return latex;
+    }
+
+    const _s2 = n => {
+        if (n === 0) {
+            return '';
+        }
+        var latex = n < 0 ? '-' : '+';
+        latex += _l(Math.abs(n));
+        return latex;
+    }
+
+    const _swp = (x, n, noPars = false) => {
+        var latex = `${x}${_s2(n)}`;
+        if (n !== 0 && !noPars) {
+            return `(${latex})`
+        }
+        return latex;
+    }
+    
+    _htmlElement('h2', cont, 'Steps to calculate inverse function', 'bigSkip');
+    _descr('\\text{Replace "x" and "y"}');
+    var _tmp = `${_f1(b)}${_swp('y',-h)}`;
+    var latex = `x = ${_f1(a)} ${P(_tmp)}${_s2(k)}`;
+    addLatexElement(cont, latex);
+    var H = k;
+    if (k !== 0) {
+        let t = '\\text{' + (k < 0 ? 'add' : 'subtract') + "&nbsp;} " + _l(Math.abs(k))
+        _descr(t)
+        latex = `x${_s2(-H)} = ${_f1(a)} ${P(_tmp)}`
+        addLatexElement(cont, latex)
+    }
+    B = 1/a
+    var ipar = `${_f1(B)}${_swp('x',-H)}`
+    if (a !== 1) {
+        var f = _l(a);
+        var op = "divide by";
+        if (a < 1) {
+            f = _l(B);
+            op = "multiply with"
+        }
+        _descr(`\\text{${op}&nbsp;}${f}`)
+        latex = `${ipar} = ${P(_tmp)}`;
+        addLatexElement(cont, latex);
+    }
+    _descr('\\text{apply inverse function}');
+    latex = `${P_1(ipar)} = ${_tmp}`;
+    addLatexElement(cont, latex);
+    A = 1/b;
+    var inv = `${_f1(A)}${P_1(ipar)}`
+    if (b !== 1) {
+        var f = _l(b);
+        var op = "divide by";
+        if (b < 1) {
+            f = _l(A);
+            op = "multiply with";
+        }
+        _descr(`\\text{${op}&nbsp;}${f}`);
+        latex = `${inv} = ${_swp('y',-h,true)}`;
+        addLatexElement(cont, latex);
+    }
+    var K = h;
+    if (h !== 0) {
+        var mh = -h
+        let t = '\\text{' + (mh < 0 ? 'add' : 'subtract') + "&nbsp;} " + _l(Math.abs(h))
+        _descr(t)
+        latex = `${_swp(inv, h, true)} = y`
+        addLatexElement(cont, latex)
+    }
+    latex = `f^{-1}(x) = ${_swp(inv, h, true)}`
+    addLatexElement(cont, latex);
+}

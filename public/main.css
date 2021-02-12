@@ -33,6 +33,10 @@ option {
     width: 700px;
 }
 
+.bigSkip {
+    margin-top: 200px;
+}
+
 .formula-container {
     display: inline-block;
     margin: 5px;
@@ -244,9 +248,28 @@ div.exponential-function-properties {
 
 table.exponential-function-properties-table {
     border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 table.exponential-function-properties-table td {
     border: 1px solid black;
     padding: 5px;
+}
+
+table.make-a-table {
+    border-collapse: collapse;
+}
+
+table.make-a-table tr:first-child td {
+    border-bottom: 1px solid black;
+}
+
+table.make-a-table td:first-child {
+    border-right: 1px solid black;
+}
+
+table.make-a-table td {
+    padding: 8px;
+    text-align: center;
 }

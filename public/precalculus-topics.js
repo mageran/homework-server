@@ -221,8 +221,22 @@ const _exponentialFunctionTransformationsFromEquation = {
 
 }
 
+const _logarithmicFunctionTransformationsFromParameters = {
+    title: 'Logarithmitc Function Transformation from Parameters',
+    description: 'Enter transformation parameters a,b,h, and k, as well as the base of the parent function n for parent function log n x',
+    parameters: [
+        { name: 'a', value: 1, size: 4 },
+        { name: 'b', value: 1, size: 4 },
+        { name: 'h', value: 0, size: 4 },
+        { name: 'k', value: 0, size: 4 },
+        { name: 'parent function base (number or "e")', value: 1, size: 4 },
+    ],
+    func: logarithmicFunctionTransformationsFromParameters
+}
+
 const topicObjects = [
-    _exponentialFunctionTransformationsFromEquation,
+    _logarithmicFunctionTransformationsFromParameters,
+    //_exponentialFunctionTransformationsFromEquation,
     _exponentialFunctionTransformationsFromParameters,
     _sinusodialTransformationsFromEquation,
     _sinusodialTransformationsFromParameters,
