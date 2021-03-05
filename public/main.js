@@ -74,12 +74,15 @@ const populate = tobj => {
             addMathResult(inpElem, ({ mathField, textDiv }) => {
                 inpElem.mathField = mathField;
             }, { isInput: true, notext: true }, displayOptions);
-        } 
+        }
         else {
             inpElem = document.createElement('input');
             inpElem.value = param.value !== null ? param.value : "";
             if (typeof param.size === 'number') {
                 inpElem.setAttribute('size', param.size);
+            }
+            if (param.noEval) {
+                inpElem.noEval = true;
             }
             inpElem.addEventListener('focus', () => {
                 console.log('focus');
@@ -131,10 +134,12 @@ const populate = tobj => {
                     return inpElem.mathField.latex();
                 }
                 res = inpElem.value;
-                try {
-                    res = eval(inpElem.value);
-                } catch (err) {
-                    //console.error(err);
+                if (!inpElem.noEval) {
+                    try {
+                        res = eval(inpElem.value);
+                    } catch (err) {
+                        //console.error(err);
+                    }
                 }
                 return res;
             });
@@ -169,14 +174,14 @@ const populate = tobj => {
             });
         });
         inputs.appendChild(button);
-    
+
     }
     MathJax.typeset();
 };
 
 const addMathResult = (cont, callback, { notext, isInput } = {}, displayOptions) => {
     const formulaContainer = document.createElement('div');
-    var cssClassNames = 'formula-container' + (isInput?'-input':'');
+    var cssClassNames = 'formula-container' + (isInput ? '-input' : '');
     if (displayOptions && displayOptions.cssClass) {
         cssClassNames += ` ${displayOptions.cssClass}`;
     }
@@ -242,7 +247,7 @@ const createProgressIndicator = cont => {
     pdiv.appendChild(idiv);
     cont.appendChild(pdiv);
     pdiv.update = p => {
-        if (p > 1) p = p/100;
+        if (p > 1) p = p / 100;
         const iw = w * p;
         idiv.style.width = `${iw}px`;
     }

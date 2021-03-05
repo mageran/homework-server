@@ -1,3 +1,14 @@
-fac(1) => 1.
-fac(X#) => $gt(X#,1),product(X#,fac(sum(X#,-1))).
-fac(0) => false.
+fac(1,1).
+fac(X#,$eval(product(X#,Y#)))
+=> fac($eval(sum(X#,-1)),Y#).
+
+eq(difference(A,B), sum(A,product(-1,B))).
+eq(sum(A,product(-1,B)), difference(A,B)).
+eq(fraction(A,B), quotient(A,B)).
+eq(sum(A,B), sum(B,A)).
+eq(product(A,B), product(B,A)).
+//eq(X,Y) => eq(Y,X).
+
+compress(sum(log(B,M),log(B,N)), log(B,product(M,N))).
+compress(difference(log(B,M),log(B,N)),log(B,fraction(M,N))).
+compress(X,Y) => eq(X,Z), compress(Z,Y).

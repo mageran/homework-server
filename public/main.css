@@ -273,3 +273,7 @@ table.make-a-table td {
     padding: 8px;
     text-align: center;
 }
+
+.inverse-info {
+    background-color: lightgray;
+}

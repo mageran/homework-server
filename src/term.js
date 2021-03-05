@@ -9,6 +9,7 @@ class Term {
 
     constructor(operands) {
         this.operands = operands;
+        this._internalVariableId = 100;
     }
 
     get className() {
@@ -65,6 +66,9 @@ class Term {
             //console.log(`    no match: functor names mismatch "${this.className}" != "${term.className}"}`);
             return false;
         }
+        if (term.operands === null) {
+            return false;
+        }
         if (this.operands.length !== term.operands.length) {
             //console.log(`   no match: different number of operands: "${this.operands.length}" != "${term.operands.length}"}`);
             return false;
@@ -78,7 +82,7 @@ class Term {
             //console.log(`    => match failed at operand #${i}: ${this.toTermString()} ~ ${term.toTermString()}}`);
             return false;
         }
-        //console.log(`    => match succeeded: ${this.toTermString()} ~ ${term.toTermString()}!}`);
+        console.log.yellow(`    => match succeeded: ${this.toTermString()} ~ ${term.toTermString()}!}`);
         return true;
     }
 
@@ -157,6 +161,12 @@ class Term {
             matchTerm = matchTerm.substituteInstantiatedVariables();
             llog(level, `matchTerm: ${matchTerm.toTermString()}`);
             if (this.match(matchTerm)) {
+                matchTerm = matchTerm.substituteInstantiatedVariables();
+                {
+                    let mterm = matchTerm;
+                    console.log.blue(`matched term: ${mterm.toTermString()}`)
+
+                }
                 if (newTerms) {
                     const nterms = newTerms.map(t => t.substituteInstantiatedVariables());
                     for (let i = 0; i < nterms.length; i++) {
@@ -208,7 +218,8 @@ class Term {
 
     clone() {
         const ParseContext = require('./parse-context');
-        const ctxt = new ParseContext(100);
+        const ctxt = new ParseContext(this._internalVariableId);
+        this._internalVariableId += 50;
         return this._clone(ctxt);
     }
 
@@ -226,7 +237,7 @@ class Term {
         this._addVariableSubstitutions(substMap);
         if (asJson) {
             Object.keys(substMap).forEach(varname => {
-                const term = substMap[varname].$eval();
+                const term = substMap[varname].substituteInstantiatedVariables().$eval();
                 substMap[varname] = term.toJson();
             });
         }
@@ -263,10 +274,12 @@ class Term {
     }
 
     $eval() {
-        console.log(`$eval called on ${this.toTermString()}`);
+        //console.log(`$eval called on ${this.toTermString()}`);
         if (this.operands) {
             const evaledOperands = this.operands.map(t => t.$eval());
-            return this.$evalOp(evaledOperands);
+            const evaledTerm = this.$evalOp(evaledOperands);
+            console.log.grey(`$eval(${this.toTermString()}) = ${evaledTerm.toTermString()}`)
+            return evaledTerm;
         }
         return this;
     }
@@ -396,11 +409,56 @@ class Sum extends Term {
 
 }
 
+class Difference extends Term {
+    constructor(operands) {
+        super(operands);
+        assert.ok(operands.length > 1, 'Difference constructor called with fewer than 2 arguments')
+    }
+
+    $evalOp(operands) {
+        console.log.blue('quotient $evalOp...');
+        const [operand1, ...restOperands] = operands;
+        var num = new Num(new Decimal(0));
+        var hasNumOperands = false;
+        if (operand1.isNum()) {
+            hasNumOperands = true;
+            num = operand1;
+        }
+        for(let i = 0; i < restOperands.length; i++) {
+            let t = restOperands[i];
+            if (t.isNum()) {
+                num.value = num.value.minus(t.value);
+                hasNumOperands = true;
+            }
+        }
+        if (!hasNumOperands) {
+            return this;
+        }
+        const newOperands = [];
+        var numObjectAdded = false;
+        operands.forEach(t => {
+            if (t.isNum()) {
+                if (!numObjectAdded) {
+                    newOperands.push(num);
+                    numObjectAdded = true;
+                }
+            } else {
+                newOperands.push(t);
+            }
+        })
+        if (newOperands.length === 1) {
+            return newOperands[0];
+        }
+        return new Quotient(newOperands);
+    }
+
+}
+
 class Product extends Term {
 
     constructor(operands) {
         super(operands);
-        assert.ok(operands.length > 1, 'Product constructor called with fewer than 1 arguments');
+        assert.ok(operands.length > 1, 'Product constructor called with fewer than 2 arguments');
         this.operands = operands;
     }
 
@@ -428,7 +486,52 @@ class Product extends Term {
         }
         return new Product(newOperands);
     }
+}
 
+class Quotient extends Term {
+
+    constructor(operands) {
+        super(operands);
+        assert.ok(operands.length > 1, 'Product constructor called with fewer than 2 arguments');
+        this.operands = operands;
+    }
+
+    $evalOp(operands) {
+        console.log.blue('quotient $evalOp...');
+        const [operand1, ...restOperands] = operands;
+        var num = new Num(new Decimal(1));
+        var hasNumOperands = false;
+        if (operand1.isNum()) {
+            hasNumOperands = true;
+            num = operand1;
+        }
+        for(let i = 0; i < restOperands.length; i++) {
+            let t = restOperands[i];
+            if (t.isNum()) {
+                num.value = num.value.dividedBy(t.value);
+                hasNumOperands = true;
+            }
+        }
+        if (!hasNumOperands) {
+            return this;
+        }
+        const newOperands = [];
+        var numObjectAdded = false;
+        operands.forEach(t => {
+            if (t.isNum()) {
+                if (!numObjectAdded) {
+                    newOperands.push(num);
+                    numObjectAdded = true;
+                }
+            } else {
+                newOperands.push(t);
+            }
+        })
+        if (newOperands.length === 1) {
+            return newOperands[0];
+        }
+        return new Quotient(newOperands);
+    }
 
 }
 
@@ -694,12 +797,13 @@ class Variable extends Symbol {
 
     instantiate(term) {
         const iterm = term.getInstantiatedTerm();
-        console.log(`instantiating variable ${this.toTermString()} with ${iterm.toTermString()}...`);
+        console.log.magenta(`[instantiating variable ${this.toTermString()} with ${iterm.toTermString()}...]`);
         this.instantiatedTerm = iterm;
         return true;
     }
 
     match(term) {
+        console.log.magenta(`[matching variable ${this.toTermString()} with term ${term.toTermString()}...]`)
         if (this.instantiatedTerm) {
             console.log(`variable ${this.toTermString()} is instantiated with ${this.instantiatedTerm.toTermString()}`);
             console.log(`   matching it with ${term.toTermString()}...`);
@@ -749,10 +853,12 @@ class NumberVariable extends Variable {
     }
 
     instantiate(term) {
-        const iterm = term.getInstantiatedTerm();
-        if (!(term instanceof Num)) {
-            //console.log(`match failed: number variable ${this.name} cannot be instantiated with ${iterm.toTermString()}`);
-            return false;
+        if (this.isInstantiated()) {
+            const iterm = term.getInstantiatedTerm();
+            if (!(term instanceof Num)) {
+                console.log(`match failed: number variable ${this.name} cannot be instantiated with ${iterm.toTermString()}`);
+                return false;
+            }
         }
         return super.instantiate(term);
     }
@@ -873,7 +979,9 @@ module.exports = {
     Functor,
     Equation,
     Sum,
+    Difference,
     Product,
+    Quotient,
     UMinus,
     Power,
     Seq,

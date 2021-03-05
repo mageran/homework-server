@@ -201,3 +201,24 @@ const _htmlElement = (tag, parent, content, cssClass) => {
     }
     return elem;
 }
+
+const mo1 = () => {
+    const sol = [];
+    for(let x of allCombinations(0,9,7)) {
+        if (x[0]+x[1]+x[2]+x[3]+x[4]+x[5]+x[6] === 60) {
+            let f = 1;
+            let num = 0;
+            for(let i = 0; i<7;i++) {
+                num += x[i]*f;
+                f *= 10;
+            }
+            sol.push(num);
+            //console.log(num);
+        }
+    }
+    const s = sol.sort();
+    for(let i = 0; i < 8; i++) {
+        console.log(String(s[i]).split(/\s*/).join(' '));
+    }
+
+}

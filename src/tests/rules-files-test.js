@@ -1,5 +1,5 @@
 const { parseRulesFile, parseTerm } = require('../api');
-const { simplify } = require('../solver');
+const { processTerm } = require('../solver');
 
 const termString = () => {
     if (process.argv.length > 2) {
@@ -12,7 +12,7 @@ const termString = () => {
 try {
     const term = parseTerm(termString());
     parseRulesFile('rules/test.rules', rules => {
-        simplify(term, rules);
+        processTerm(term, rules);
     });
 } catch (e) {
     console.error(e);

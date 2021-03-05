@@ -1,4 +1,4 @@
-function logarithmicFunctionTransformationsFromParameters(a, b, h, k, base) {
+function logarithmicFunctionTransformationsFromParameters(a, b, h, k, base, skipInverse = false) {
     const outputElem = _htmlElement('div', this, null, 'exponential-function-properties');
 
     const baseNum = base === 'e' ? Math.E : base;
@@ -108,12 +108,12 @@ function logarithmicFunctionTransformationsFromParameters(a, b, h, k, base) {
         ])
     }
 
-    const _addGraph = (keypointsMap, sampleValues) => {
+    const _addGraph = (keypointsMap, sampleValues, equation = null) => {
         const div = document.createElement('div');
         outputElem.appendChild(div);
         const width = "1000px";
         const calc = appendGraphingCalculator(div, { width });
-        const ftermLatex = getEquation();
+        const ftermLatex = equation ? equation : getEquation();
         calc.setExpression({ latex: ftermLatex });
         calc.setExpression({ latex: `x = ${h}`, lineStyle: "DASHED", showLabel: true, lineColor: 'orange' });
         if (keypointsMap) {
@@ -253,6 +253,7 @@ function logarithmicFunctionTransformationsFromParameters(a, b, h, k, base) {
 
     const functionToLatex = logToLatex(base,_numToLatex(base))
     const inverseFunctionToLatex = expToLatex(base, _numToLatex(base))
+    const precalculusHelperFunctionForInverse = exponentialFunctionTransformationsFromParameters;
 
     try {
         const sampleValues = _getSamplesValues();
@@ -272,7 +273,17 @@ function logarithmicFunctionTransformationsFromParameters(a, b, h, k, base) {
         _htmlElement('h2', outputElem, 'Graph with values from table');
         _addGraph(null, sampleValues);
 
-        calculateInverseSteps(outputElem, a, b, h, k, functionToLatex, inverseFunctionToLatex);
+        if (!skipInverse) {
+            const { f_1, A, B, H, K } = calculateInverseSteps(outputElem, a, b, h, k, functionToLatex, inverseFunctionToLatex);
+            console.log(`A=${A}, B=${B}, H=${H}, K=${K}`);
+            const inverseSampleValues = sampleValues.map(p => ({ x: p.y, y : p.x }));
+            _htmlElement('h2', outputElem, '"Make a table" for inverse function', 'bigSkip');
+            _makeATable(inverseSampleValues);
+            _htmlElement('h2', outputElem, 'Graph for inverse function');
+            _addGraph(null, inverseSampleValues, f_1)
+            const inverseDiv = _htmlElement('div', outputElem, null, 'inverse-info');
+            precalculusHelperFunctionForInverse.call(inverseDiv, A, B, H, K, base, true);
+        }
 
     } catch (err) {
         _addErrorElement(outputElem, err);
@@ -410,4 +421,6 @@ const calculateInverseSteps = (cont, a, b, h, k, applyParentFunction, applyInver
     }
     latex = `f^{-1}(x) = ${_swp(inv, h, true)}`
     addLatexElement(cont, latex);
+    const f_1 = `g(x) = ${_swp(inv, h, true)}`;
+    return { f_1, A, B, H, K };
 }

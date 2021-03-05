@@ -101,3 +101,12 @@ const allCombinations = (checkCombination, ...colors) => {
         }
     }
 }
+
+
+const mo1 = () => {
+    for(let x of allCombinations(0,9,7)) {
+        if (x[0]+x[1]+x[2]+x[3]+x[4]+x[5]+x[6] ===60) {
+            console.log(x)
+        }
+    }
+}

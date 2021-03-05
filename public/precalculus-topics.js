@@ -1,3 +1,4 @@
+
 const _describeTransformations = {
     title: "Describe function transformations",
     description: `Describes the function transformation for a parent function f(x) for
@@ -221,6 +222,28 @@ const _exponentialFunctionTransformationsFromEquation = {
 
 }
 
+const _functionByValue = {
+    title: 'Function by value table; composition, inverse',
+    description: 'Enter values for f and g as list of point like [[1,3],[-2,4],[6,2]]',
+    parameters: [
+        { name: 'values for f', value: '', noEval: true },
+        { separator : true },
+        { name: 'values for g', value: '', noEval: true },
+        { separator : true },
+        { name: 'apply on value:', value: 0 },
+        { separator : true },
+        {
+            name: 'Include inverses',
+            type: 'select',
+            options: [
+                { label: 'yes', value: 1 },
+                { label: 'no', value: 0 },
+            ]
+        }
+    ],
+    func: functionByValue
+}
+
 const _logarithmicFunctionTransformationsFromParameters = {
     title: 'Logarithmitc Function Transformation from Parameters',
     description: 'Enter transformation parameters a,b,h, and k, as well as the base of the parent function n for parent function log n x',
@@ -234,10 +257,47 @@ const _logarithmicFunctionTransformationsFromParameters = {
     func: logarithmicFunctionTransformationsFromParameters
 }
 
+const _financialModelsFixedRate = {
+    title: 'Financial Models fixed rate',
+    description: 'Enter all the known fields, leave the one that is unknown (will be calculated) empty',
+    parameters: [
+        { name: 'A', value: '13918.09', size: 8 },
+        { name: 'P', value: '8540', size: 8 },
+        { name: 'r (decimal)', value: '0.0288', size: 8 },
+        { name: 'n', value: '6', size: 4 },
+        { name: 't', value: '', size: 6 }
+    ],
+    func: financialModelFixedRate
+}
+
+const _financialModelsContinuous = {
+    title: 'Financial Models continuous',
+    description: 'Enter all the known fields, leave the one that is unknown (will be calculated) empty',
+    parameters: [
+        { name: 'A', value: '9808.87', size: 8 },
+        { name: 'P', value: '6496', size: 8 },
+        { name: 'r (decimal)', value: '0.0317', size: 8 },
+        { name: 't', value: '13', size: 6 }
+    ],
+    func: financialModelContinuous
+}
+
+/*
+Adam invests $6,496 in a retirement
+account with a fixed annual interest rate of
+3.17% compounded continuously. How
+long will it take for the account balance to
+reach $9,808.87?
+13 years
+*/
+
 const topicObjects = [
+    _financialModelsContinuous,
+    _financialModelsFixedRate,
     _logarithmicFunctionTransformationsFromParameters,
     //_exponentialFunctionTransformationsFromEquation,
     _exponentialFunctionTransformationsFromParameters,
+    _functionByValue,
     _sinusodialTransformationsFromEquation,
     _sinusodialTransformationsFromParameters,
     _sinusodialTransformationsFromMaxMin,

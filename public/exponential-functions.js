@@ -1,4 +1,4 @@
-function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
+function exponentialFunctionTransformationsFromParameters(a, b, h, k, base, skipInverse = false) {
     const outputElem = _htmlElement('div', this, null, 'exponential-function-properties');
     const baseNum = base === 'e' ? Math.E : base;
 
@@ -108,12 +108,12 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
         ])
     }
 
-    const _addGraph = (keypointsMap, sampleValues) => {
+    const _addGraph = (keypointsMap, sampleValues, equation) => {
         const div = document.createElement('div');
         outputElem.appendChild(div);
         const width = "1000px";
         const calc = appendGraphingCalculator(div, { width });
-        const ftermLatex = getEquation();
+        const ftermLatex = equation ? equation : getEquation();
         calc.setExpression({ latex: ftermLatex });
         calc.setExpression({ latex: `y = ${k}`, lineStyle: "DASHED", showLabel: true });
         if (keypointsMap) {
@@ -126,7 +126,7 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
             });
         }
         if (sampleValues) {
-            sampleValues.forEach(({x, y}) => {
+            sampleValues.forEach(({ x, y }) => {
                 calc.setExpression({ latex: `(${x}, ${y})`, showLabel: true });
             })
         }
@@ -238,17 +238,19 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
         const stepWidth = 1;
         const step = stepWidth;
         const values = [];
-        const start = h - Math.trunc(numEntries/2);
-        const end = h + Math.trunc(numEntries/2);
-        for(let x = start; x <= end; x += step) {
+        const start = h - Math.trunc(numEntries / 2);
+        const end = h + Math.trunc(numEntries / 2);
+        for (let x = start; x <= end; x += step) {
             let y = _applyFunction(x).toPrecision(3);
             values.push({ x, y });
         }
         return values;
     }
 
-    const inverseFunctionToLatex = logToLatex(base,_numToLatex(base))
-    const functionToLatex = expToLatex(base, _numToLatex(base))
+    const inverseFunctionToLatex = logToLatex(base, _numToLatex(base));
+    const functionToLatex = expToLatex(base, _numToLatex(base));
+
+    const precalculusHelperFunctionForInverse = logarithmicFunctionTransformationsFromParameters;
 
 
     const _applyParentFunction = x => Math.pow(baseNum, x);
@@ -271,8 +273,17 @@ function exponentialFunctionTransformationsFromParameters(a, b, h, k, base) {
         _htmlElement('h2', outputElem, 'Graph with values from table');
         _addGraph(null, sampleValues);
 
-        calculateInverseSteps(outputElem, a, b, h, k, functionToLatex, inverseFunctionToLatex);
+        if (!skipInverse) {
+            const { f_1, A, B, H, K } = calculateInverseSteps(outputElem, a, b, h, k, functionToLatex, inverseFunctionToLatex);
 
+            const inverseSampleValues = sampleValues.map(p => ({ x: p.y, y: p.x }));
+            _htmlElement('h2', outputElem, '"Make a table" for inverse function', 'bigSkip');
+            _makeATable(inverseSampleValues);
+            _htmlElement('h2', outputElem, 'Graph for inverse function');
+            _addGraph(null, inverseSampleValues, f_1)
+            const inverseDiv = _htmlElement('div', outputElem, null, 'inverse-info');
+            precalculusHelperFunctionForInverse.call(inverseDiv, A, B, H, K, base, true);
+        }
 
     } catch (err) {
         _addErrorElement(outputElem, err);
