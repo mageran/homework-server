@@ -291,9 +291,65 @@ reach $9,808.87?
 13 years
 */
 
+const _findExponentialFunctionFromPoints = {
+    title: 'Find exponential function using 2 points',
+    description: '',
+    parameters: [
+        { name: 'point 1 x', value: 1 },
+        { name: 'point 1 y', value: 6 },
+        { separator: true },
+        { name: 'point 2 x', value: 4 },
+        { name: 'point 2 y', value: 48 },
+        { separator: true },
+        { name: 'apply function to value', value: -5 }
+    ],
+    func: findExponentialFunctionFromPoints
+}
+
+const _logarithmicGrowthDecay = {
+    title: 'Logarithmic growth and decay',
+    description: '',
+    parameters: [
+        { name: 'A', value: '9808.87', size: 8 },
+        { name: 'P (initial value)', value: '6496', size: 8 },
+        { name: 'r (decimal)', value: '0.0317', size: 8 },
+        { name: 't', value: '13', size: 6 },
+        {
+            name: 'time unit',
+            type: 'select',
+            options: [
+                { label: 'years', value: 'years' },
+                { label: 'months', value: 'months' },
+                { label: 'days', value: 'days' },
+                { label: 'hours', value: 'hours' },
+                { label: 'minutes', value: 'minutes' },
+            ]
+        }
+    ],
+    func: logarithmicGrowthDecay
+}
+
+const _halfLifeQuestions = {
+    title: 'Half-life questions (logarithmic decay)',
+    description: `Given the half-life of an element, either
+    <ul>
+    <li>given percentage of element left in the object, determine the age, or</li>
+    <li>given the age, determine how much of the element is left in the object</li>
+    </ul>`,
+    parameters: [
+        { name: 'half-live of element (in years)', value: 5730 },
+        { name: 'percentage of element left in object (decimal)', value: 0.08 },
+        { name: 'age (in years)', value: '' }
+    ],
+    func: halfLifeQuestions
+}
+
 const topicObjects = [
+    _halfLifeQuestions,
+    _logarithmicGrowthDecay,
     _financialModelsContinuous,
     _financialModelsFixedRate,
+    _findExponentialFunctionFromPoints,
     _logarithmicFunctionTransformationsFromParameters,
     //_exponentialFunctionTransformationsFromEquation,
     _exponentialFunctionTransformationsFromParameters,
