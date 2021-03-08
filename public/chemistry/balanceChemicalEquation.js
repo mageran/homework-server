@@ -1,7 +1,7 @@
 var MaxBalancingFactor = 20;
 const MaxTermsForSymbolInEquation = 4;
 
-function balanceChemicalEquation(maxBalancingFactor, formula) {
+function balanceChemicalEquation(maxBalancingFactor, formula, callback) {
     const outputElem = this;
     var lhs;
     var rhs;
@@ -160,7 +160,7 @@ function balanceChemicalEquation(maxBalancingFactor, formula) {
     try {
         if (typeof maxBalancingFactor === 'number' && maxBalancingFactor > 1) {
             MaxBalancingFactor = maxBalancingFactor;
-        } 
+        }
         console.log(`MaxBalancing Factor is ${MaxBalancingFactor}.`)
         _warnIfZeros(formula);
         const ast = parseChemicalFormula(formula);
@@ -183,6 +183,9 @@ function balanceChemicalEquation(maxBalancingFactor, formula) {
             pbar.style.display = 'none';
             if (!solveResult) {
                 _addErrorElement(outputElem, `Could not find a solution to balance the equation`);
+            }
+            if (typeof callback === 'function') {
+                callback(eq, solveResult);
             }
         }, 10);
         updateProgress(0);
@@ -460,6 +463,14 @@ class ChemicalEquationTerm {
         return Object.keys(this.getElementsMultiplier());
     }
 
+    getMolarMass(info) {
+        var mm = 0;
+        this.groups.forEach(group => {
+            mm += group.getMolarMass(info);
+        });
+        return mm;
+    }
+
     toString(includeBalancingFactor = false) {
         const bfstr = (includeBalancingFactor && this.balancingFactor > 1) ? String(this.balancingFactor) : '';
         return `${bfstr}${this.groups.map(g => g.toString()).join('')}`
@@ -487,6 +498,22 @@ class ChemicalEquationTermGroup {
         return mmap;
     }
 
+    getMolarMass(info) {
+        const { elements, multiplier } = this;
+        var mm = 0;
+        elements.forEach(element => {
+            let mmElem = element.getMolarMass();
+            mm += mmElem * multiplier;
+            if (Array.isArray(info)) {
+                let mult = multiplier * element.multiplier;
+                let symbol = element.symbol;
+                let elemMM = atomicMass(symbol)
+                info.push({ symbol, multiplier: mult, atomicMass: elemMM });
+            }
+        })
+        return mm;
+    }
+
     toString() {
         const needParenthesis = this.multiplier > 1;
         const [open, close] = needParenthesis ? ["(", ")"] : ["", ""];
@@ -501,6 +528,14 @@ class ChemicalEquationTermElement {
     constructor(symbol, multiplier = 1) {
         this.symbol = symbol;
         this.multiplier = (typeof multiplier === 'number') ? multiplier : 1;
+    }
+
+    getMolarMass() {
+        const mm = atomicMass(this.symbol);
+        if (typeof mm !== 'number') {
+            throw `can't determine the molar mass of ${this.symbol}`;
+        }
+        return mm * this.multiplier;
     }
 
     toString() {

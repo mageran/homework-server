@@ -1,5 +1,5 @@
 body {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    xfont-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: white;
 }
 
@@ -276,4 +276,9 @@ table.make-a-table td {
 
 .inverse-info {
     background-color: lightgray;
+}
+
+.highlight-div {
+    background-color: yellow;
+    display: inline-block;
 }

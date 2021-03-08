@@ -83,9 +83,21 @@ const _molarMass = {
     func: molarMassUi
 }
 
+const _stoichiometry = {
+    title: 'Stoichiometry',
+    description: '',
+    parameters: [
+        { name: 'Max balancing factor', value: 20, size: 4 },
+        { separator: true },
+        { name: 'Chemical Equation', type: 'formula', cssClass: 'width700' },
+    ],
+    func: stoichiometry
+}
+
 const topicObjects = [
     _unitConversion,
     _chemicalElementInfo,
     _molarMass,
-    _balanceChemicalEquation
+    _balanceChemicalEquation,
+    _stoichiometry
 ];
