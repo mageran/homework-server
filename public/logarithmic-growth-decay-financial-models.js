@@ -15,7 +15,7 @@ function financialModelFixedRate(A, P, r, n, t) {
         addLatexElement(outputElem, `A = ${P}\\cdot ${rn1pnt}`);
         const Avalue = _d(P).mul(rn1pnt);
         addLatexElement(outputElem, `A = ${Avalue} = ${Avalue.toFixed(2)}`);
-        _htmlElement('div', outputElem, 'Interest:');
+        _htmlElement('div', outputElem, 'Interest:', 'bigSkip');
         const interest = Avalue.sub(_d(P));
         addLatexElement(outputElem, `A - P = ${interest} = ${interest.toFixed(2)}`);
     }
@@ -45,8 +45,9 @@ function financialModelFixedRate(A, P, r, n, t) {
         addLatexElement(outputElem, `t = \\frac{${lny.toFixed(5)}}{${z.toFixed(5)}}`, 'solve for t');
         const tvalue = lny.div(z);
         addLatexElement(outputElem, `t = ${tvalue.toFixed(2)}`);
-        const { years, months } = yearDecimalToYearsAndMonths(tvalue);
-        _htmlElement('div', outputElem, `${years} years, ${months} months`);
+        toTimeUnits(outputElem, tvalue, 'years');//yearDecimalToYearsAndMonths(tvalue);
+        //_htmlElement('div', outputElem, `${years} years, ${months} months`);
+        //_htmlElement('div', outputElem, ss0);
     }
     const _solveForR = () => {
         addLatexElement(outputElem, `A = P(1+\\frac{r}{n})^{n\\cdot t}`);
@@ -111,14 +112,16 @@ function financialModelContinuous(A, P, r, t) {
     const nameOfRateVariable = "r";
     const timeUnit = 'years';
     const fixed = 5;
-    logarithmicGrowthDecayInternal({ outputElem, A, P, r, t, nameOfRateVariable, timeUnit, fixed });
+    const fillMissingInput = true;
+    logarithmicGrowthDecayInternal({ outputElem, A, P, r, t, nameOfRateVariable, timeUnit, fixed, fillMissingInput });
 }
 
 function logarithmicGrowthDecay(A, P, r, t, timeUnit) {
     const outputElem = this;
     const nameOfRateVariable = "k";
     const fixed = 10;
-    logarithmicGrowthDecayInternal({ outputElem, A, P, r, t, nameOfRateVariable, timeUnit, fixed });
+    const fillMissingInput = true;
+    logarithmicGrowthDecayInternal({ outputElem, A, P, r, t, nameOfRateVariable, timeUnit, fixed, fillMissingInput });
 }
 
 function halfLifeQuestions(halfLife, decay, age) {
@@ -163,7 +166,7 @@ function halfLifeQuestions(halfLife, decay, age) {
 }
 
 const logarithmicGrowthDecayInternal = params => {
-    var { outputElem, A, P, r, t, nameOfRateVariable, timeUnit, fixed } = params;
+    var { outputElem, A, P, r, t, nameOfRateVariable, timeUnit, fixed, fillMissingInput } = params;
     const _r = nameOfRateVariable ? nameOfRateVariable : 'k';
     timeUnit = timeUnit ? timeUnit : 'years';
     if (typeof fixed !== 'number') {
@@ -179,6 +182,17 @@ const logarithmicGrowthDecayInternal = params => {
         const stat = `${_r} is the exponential ${growthOrDecay}, because ${_r}${symbol}0`;
         _htmlElement('div', outputElem, stat);
     }
+    const _fillMissingInput = (fieldName, value) => {
+        //console.log(`fillMissingInput: ${fieldName}: ${value}`);
+        if (!fillMissingInput) return;
+        const indexMap = { A: 0, P: 1, r: 2, t: 3 };
+        const index = indexMap[fieldName];
+        const ilen = currentInputElements.length;
+        if (typeof index === 'number' && index >= 0 && index < ilen) {
+            currentInputElements[index].value = value.toNumber();
+            currentInputElements[index].style.background = "yellow";
+        }
+    }
     const _solveForA = () => {
         _htmlElement('div', outputElem, 'Solving for A:');
         addLatexElement(outputElem, `A = Pe^{${_r}\\cdot t}`);
@@ -187,6 +201,7 @@ const logarithmicGrowthDecayInternal = params => {
         addLatexElement(outputElem, `A = ${P}\\cdot e^{${x}}`);
         const avalue = _d(P).mul(e.pow(x));
         addLatexElement(outputElem, `A = ${avalue} = ${avalue.toFixed(2)}`);
+        _fillMissingInput('A', avalue);
         return avalue;
     }
     const _solveForP = () => {
@@ -199,6 +214,7 @@ const logarithmicGrowthDecayInternal = params => {
         addLatexElement(outputElem, `P = \\frac{${A}}{${ex}}`);
         const pvalue = _d(A).div(ex);
         addLatexElement(outputElem, `P = ${pvalue} = ${pvalue.toFixed(2)}`);
+        _fillMissingInput('P', pvalue);
         return pvalue;
     }
     const _solveForT = () => {
@@ -210,7 +226,9 @@ const logarithmicGrowthDecayInternal = params => {
         addLatexElement(outputElem, `\\ln ${x.toFixed(5)} = ${r}\\cdot t`, ' ln on both sides');
         const tvalue = x.ln().div(_d(r));
         addLatexElement(outputElem, `t = ${tvalue.toFixed(2)}`);
-        _htmlElement('div', outputElem, toTimeUnits(tvalue, timeUnit));
+        //_htmlElement('div', outputElem, toTimeUnits(tvalue, timeUnit));
+        toTimeUnits(outputElem, tvalue, timeUnit)
+        _fillMissingInput('t', tvalue);
         return tvalue;
     }
     const _solveForR = () => {
@@ -222,6 +240,7 @@ const logarithmicGrowthDecayInternal = params => {
         const rvalue = x.ln().div(_d(t));
         addLatexElement(outputElem, `${_r} = ${rvalue.toFixed(fixed)} = ${rvalue.mul(100).toFixed(2)}%`);
         _addGrowthOrDecayStatement(rvalue);
+        _fillMissingInput('r', rvalue);
         return rvalue;
     }
     try {
@@ -266,7 +285,7 @@ const logarithmicGrowthDecayInternal = params => {
     }
 }
 
-const toTimeUnits = (t0, timeUnit) => {
+const toTimeUnits = (outputElem, t0, timeUnit) => {
     const timeUnitMap = {
         years: {
             bigUnit: 'years',
@@ -297,8 +316,10 @@ const toTimeUnits = (t0, timeUnit) => {
     const { bigUnit, smallUnit, factor } = timeUnitMap[timeUnit];
     const t = t0.mul(100).round().div(100);
     const big = t.floor();
-    const small = t.sub(big).mul(factor).floor();
-    return `${big} ${bigUnit}, ${small} ${smallUnit}`;
+    const fraction = t.sub(big);
+    const small = t.sub(big).mul(factor).round();
+    addLatexElement(outputElem, `${fraction}\\cdot ${factor} = ${fraction.mul(factor).toFixed(5)} = ${small} \\text{&nbsp;(rounded)}`);
+    _htmlElement('div', outputElem, `${big} ${bigUnit}, ${small} ${smallUnit}`);
 }
 
 function findExponentialFunctionFromPoints(x0, y0, x1, y1, xval) {

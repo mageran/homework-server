@@ -216,7 +216,7 @@ const _exponentialFunctionTransformationsFromEquation = {
     title: 'Exponential Function Transformation from Equation',
     description: 'Enter equation of the form y = a(n)^(b(x-h)) +k ',
     parameters: [
-        { name: 'Equation', type: 'formula', cssClass: "width700" },
+        { name: 'Equation', type: 'formula', cssClass: "width700", value: "y = a\\cdot n^{b(x-h)} + k" },
     ],
     func: exponentialFunctionTransformationsFromEquation
 
@@ -350,6 +350,7 @@ const topicObjects = [
     _financialModelsContinuous,
     _financialModelsFixedRate,
     _findExponentialFunctionFromPoints,
+    '<b>---------------------</b>',
     _logarithmicFunctionTransformationsFromParameters,
     //_exponentialFunctionTransformationsFromEquation,
     _exponentialFunctionTransformationsFromParameters,

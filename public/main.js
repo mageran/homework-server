@@ -1,4 +1,4 @@
-
+var currentInputElements = [];
 
 const _imageOnly = (title, imageFile) => {
     const description = `<img src="${imageFile}"/>`;
@@ -11,10 +11,14 @@ const init = () => {
     var idCnt = 0;
     topicObjects.forEach(tobj => {
         const option = document.createElement('option');
-        const idstr = `id_${idCnt++}`;
-        idObjectMap[idstr] = tobj;
-        option.setAttribute('value', idstr);
-        option.innerHTML = tobj.title;
+        if (typeof tobj === 'string') {
+            option.innerHTML = tobj;
+        } else {
+            const idstr = `id_${idCnt++}`;
+            idObjectMap[idstr] = tobj;
+            option.setAttribute('value', idstr);
+            option.innerHTML = tobj.title;
+        }
         select.appendChild(option);
     });
     select.addEventListener('change', (event) => {
@@ -73,6 +77,9 @@ const populate = tobj => {
             inpElem = document.createElement('p');
             addMathResult(inpElem, ({ mathField, textDiv }) => {
                 inpElem.mathField = mathField;
+                if (typeof param.value === 'string') {
+                    mathField.latex(param.value);
+                }
             }, { isInput: true, notext: true }, displayOptions);
         }
         else {
@@ -141,11 +148,14 @@ const populate = tobj => {
                         //console.error(err);
                     }
                 }
+                inpElem.style.background = "white";
                 return res;
             });
             console.log(args);
+            console.log(`#input elements: ${inputElements.length}`);
             let output = "no output generated";
             try {
+                currentInputElements = inputElements;
                 output = tobj.func.call(outputElement, ...args);
             } catch (err) {
                 output = err;
@@ -171,6 +181,7 @@ const populate = tobj => {
                 else {
                     inpElem.value = '';
                 }
+                inpElem.style.background = "white";
             });
         });
         inputs.appendChild(button);
