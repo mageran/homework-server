@@ -246,6 +246,12 @@ function stoichiometryFindLimitingReactant(maxBalancingFactor, formula) {
 
 // ---------------------------------------------------------------------------------------------------
 
+const percentageYieldUI = (cdiv, quantity) => {
+    _htmlElement('h3', cdiv, "Percentage yield:", 'bigSkip');
+}
+
+// ---------------------------------------------------------------------------------------------------
+
 const MOLES = 0;
 const GRAMS = 1;
 const LITERS = 2;
@@ -412,9 +418,6 @@ function stoichiometryMissingQuantities(maxBalancingFactor, formula) {
                 }
                 convertToFromMoles(runit, rterm);
             }
-            // step 4: calculate the result
-            const resultQuantity = ctable.getResultQuantity();
-            console.log(`result quantity: ${resultQuantity.toString()}`);
             return ctable;
         }
         const constructConversionTable = (cdiv, ctable) => {
@@ -435,6 +438,10 @@ function stoichiometryMissingQuantities(maxBalancingFactor, formula) {
                     checkValues(values);
                     const ctable = constructConversionChain(values);
                     constructConversionTable(cdiv, ctable);
+                    const resultQuantity = ctable.getResultQuantity();
+                    if (resultQuantity.unit === GRAMS || resultQuantity.unit === LITERS) {
+                        percentageYieldUI(cdiv, resultQuantity);
+                    }
                 } catch (err) {
                     _addErrorElement(cdiv, err);
                     return;

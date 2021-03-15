@@ -15,14 +15,14 @@ function balanceChemicalEquation(maxBalancingFactor, formula, callback) {
     }
     const createEquationSide = term => {
         var elements;
-        if (Array.isArray(term)) {
+        if (Array.isArray(term.formulasList)) {
             elements = [term];
         }
         else if (term.op === '+') {
             elements = term.operands;
         }
         else {
-            throw `unsupported format of equation side: ${JSON.stringify(term)}`;
+            throw `[*] unsupported format of equation side: ${JSON.stringify(term)}`;
         }
         const cterms = elements.map(elem => {
             //assert(Array.isArray(elem), `unsupported format of term: ${JSON.stringify(elem)}`);
