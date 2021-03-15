@@ -282,3 +282,92 @@ table.make-a-table td {
     background-color: yellow;
     display: inline-block;
 }
+
+.select-outer-container {
+    position: relative;
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+    border: 1px dashed black;
+    width: 400px;
+    height: 24px;
+    font-size: 18pt;
+}
+
+.select-menu-button {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 24px;
+    height: 24px;
+}
+
+.select-menu-button:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+.select-option-label {
+    position: absolute;
+    left: 36px;
+    top: 3px;
+    visibility: hidden;
+}
+
+.select-option-label[selected=true] {
+    visibility: visible;
+}
+
+.select-menu-container {
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 5px;
+    width: 400px;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: aliceblue;
+    box-shadow: 3px 3px rgba(1, 1, 1, 0.3);
+    z-index: 999;
+}
+
+.select-menu-entry {
+    padding: 5px;
+}
+
+.select-menu-entry:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+.stoichiometry-question .constant-text {
+    vertical-align: top;
+    margin: 5px;
+    padding: 3px;
+    display: inline-block;
+}
+
+.stoichiometry-question .number-input {
+    vertical-align: top;
+    margin: 5px;
+    padding: 3px;
+    font-size: 16pt;
+}
+
+.unit-in-conversion-table .unit {
+    margin-left: 3px;
+}
+
+.unit-in-conversion-table .unit-canceled {
+    color: red;
+    text-decoration: line-through;
+}
+
+.unit-in-conversion-table .unit-text {
+    color: black;
+}
+
+.conversion-table-container {
+    margin: 20px;
+    font-size: 20pt;
+}

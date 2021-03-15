@@ -204,12 +204,12 @@ const _htmlElement = (tag, parent, content, cssClass) => {
 
 const mo1 = () => {
     const sol = [];
-    for(let x of allCombinations(0,9,7)) {
-        if (x[0]+x[1]+x[2]+x[3]+x[4]+x[5]+x[6] === 60) {
+    for (let x of allCombinations(0, 9, 7)) {
+        if (x[0] + x[1] + x[2] + x[3] + x[4] + x[5] + x[6] === 60) {
             let f = 1;
             let num = 0;
-            for(let i = 0; i<7;i++) {
-                num += x[i]*f;
+            for (let i = 0; i < 7; i++) {
+                num += x[i] * f;
                 f *= 10;
             }
             sol.push(num);
@@ -217,8 +217,76 @@ const mo1 = () => {
         }
     }
     const s = sol.sort();
-    for(let i = 0; i < 8; i++) {
+    for (let i = 0; i < 8; i++) {
         console.log(String(s[i]).split(/\s*/).join(' '));
     }
 
+}
+
+const createSelectElement = (cont, optionsIn, selectHook, deselectHook) => {
+    const options = optionsIn.map(({ label, value }) => ({ label, value }));
+    const selectObj = {
+        options: options
+    }
+    const outerContainer = _htmlElement('div', cont, null, 'select-outer-container');
+    const menuImage = _htmlElement('img', outerContainer, null, 'select-menu-button');
+    menuImage.src = "images/outline_menu_black_24dp.png";
+    const isSelectedFun = (typeof isInitiallySelectedCondition === 'function') ? isInitiallySelectedCondition : () => false;
+    var somethingIsSelected = false;
+
+    const hideAllOptionSpans = () => {
+        options.forEach(({ span }) => {
+            if (span) {
+                span.setAttribute("selected", "false");
+            }
+        })
+    }
+
+    const doSelect = option => {
+        hideAllOptionSpans();
+        option.span.setAttribute("selected", "true");
+        if (typeof selectObj.selected === 'object') {
+            if (typeof deselectHook === 'function') {
+                deselectHook(selectObj.selected);
+            }
+            console.log(`"${selectObj.selected.label}" deselected`);
+        }
+        selectObj.selected = option;
+        if (typeof selectHook === 'function') {
+            selectHook(option);
+        }
+        try {
+            outerContainer.style.width = `${option.span.offsetWidth + option.span.offsetLeft + 55}px`;
+        } catch (e) {
+            console.error(e);
+        }
+        console.log(`"${option.label}" selected`)
+    }
+
+    options.forEach((option) => {
+        const { label, value } = option;
+        const span = _htmlElement('span', outerContainer, label, 'select-option-label');
+        option.span = span;
+        if (!somethingIsSelected) {
+            span.setAttribute("selected", "true");
+            doSelect(option);
+            somethingIsSelected = true;
+        }
+    });
+    const menuContainer = _htmlElement('div', outerContainer, null, 'select-menu-container');
+    options.forEach(option => {
+        const { label, value, span } = option;
+        const menuEntryDiv = _htmlElement('div', menuContainer, label, 'select-menu-entry');
+        menuEntryDiv.addEventListener('click', event => {
+            //console.log(`selected: ${label}`);
+            doSelect(option);
+        });
+    });
+    menuImage.addEventListener('click', event => {
+        const toggleDisplayValue = (!menuContainer.style.display || menuContainer.style.display === 'none') ? 'block' : 'none';
+        menuContainer.style.display = toggleDisplayValue;
+        event.stopPropagation();
+        return true;
+    })
+    return selectObj;
 }

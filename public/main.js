@@ -27,6 +27,22 @@ const init = () => {
         if (!tobj) return;
         populate(tobj);
     });
+    const hideSelectMenus = () => {
+        const selectMenus = document.getElementsByClassName('select-menu-container');
+        for(let m of selectMenus) {
+            if (m.style.display !== 'none') {
+                //console.log('hideSelectMenu...');
+                m.style.display = 'none';
+            }
+        }
+    }
+    document.addEventListener("click", hideSelectMenus);
+    document.addEventListener("keydown", event => {
+        //console.log(`event keycode: ${event.key}`);
+        if (event.key === "Escape") {
+            hideSelectMenus();
+        }
+    })
 };
 
 const _clearHeader = () => {

@@ -156,7 +156,16 @@ Term
   */ 
 
 ChemicalTerm
-  = factors:Factor+ { return factors; }
+  = coefficient:Coefficient? factors:Factor+ {
+    return {
+      coefficient: (typeof coefficient === 'number') ? coefficient : 1,
+      formulasList: factors
+    }; 
+  }
+
+Coefficient
+  = Integer
+  / Float
 
 Factor
   = formulas:ChemicalElementWithMultiplier+ { return { formulas, multiplier: 1 }; }

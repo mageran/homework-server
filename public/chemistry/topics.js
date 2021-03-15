@@ -84,14 +84,25 @@ const _molarMass = {
 }
 
 const _stoichiometry = {
-    title: 'Stoichiometry',
+    title: 'Stoichiometry - Find limiting/excess reactant',
     description: '',
     parameters: [
         { name: 'Max balancing factor', value: 20, size: 4 },
         { separator: true },
         { name: 'Chemical Equation', type: 'formula', cssClass: 'width700' },
     ],
-    func: stoichiometry
+    func: stoichiometryFindLimitingReactant
+}
+
+const _stoichiometryMissingQuantity = {
+    title: 'Stoichiometry - Missing quantities questions',
+    description: 'Starting from a (balanced) equation, find missing reactant or product terms',
+    parameters: [
+        { name: 'Max balancing factor', value: 20, size: 4 },
+        { separator: true },
+        { name: 'Chemical Equation', type: 'formula', cssClass: 'width700' },
+    ],
+    func: stoichiometryMissingQuantities
 }
 
 const topicObjects = [
@@ -99,5 +110,6 @@ const topicObjects = [
     _chemicalElementInfo,
     _molarMass,
     _balanceChemicalEquation,
-    _stoichiometry
+    _stoichiometry,
+    _stoichiometryMissingQuantity
 ];

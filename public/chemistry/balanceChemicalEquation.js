@@ -11,7 +11,7 @@ function balanceChemicalEquation(maxBalancingFactor, formula, callback) {
         lhs = createEquationSide(ast.operands[0]);
         rhs = createEquationSide(ast.operands[1]);
         eq = new ChemicalEquation(lhs, rhs);
-        console.log(eq.toString())
+        console.log(eq.toString(true))
     }
     const createEquationSide = term => {
         var elements;
@@ -25,13 +25,13 @@ function balanceChemicalEquation(maxBalancingFactor, formula, callback) {
             throw `unsupported format of equation side: ${JSON.stringify(term)}`;
         }
         const cterms = elements.map(elem => {
-            assert(Array.isArray(elem), `unsupported format of term: ${JSON.stringify(elem)}`);
+            //assert(Array.isArray(elem), `unsupported format of term: ${JSON.stringify(elem)}`);
             return new ChemicalEquationTerm(elem);
         });
         //cterms.forEach(cterm => console.log(cterm.toString()));
         return new ChemicalEquationSide(cterms);
     }
-    const addTable = () => {
+    const addTable = (skipTable = false) => {
         const _htmlElement = (tag, parent, content, cssClass) => {
             const elem = document.createElement(tag);
             parent.appendChild(elem);
@@ -109,7 +109,7 @@ function balanceChemicalEquation(maxBalancingFactor, formula, callback) {
                     const mmap = term.getElementsMultiplier(false);
                     const mmapTotals = term.getElementsMultiplier(true);
                     const bfactor = term.balancingFactor;
-                    console.log(`symbol: ${symbol}, ${JSON.stringify(mmap)}`);
+                    //console.log(`symbol: ${symbol}, ${JSON.stringify(mmap)}`);
                     td = document.createElement('td');
                     const multiplier = mmap[symbol];
                     const multiplierTotal = mmapTotals[symbol];
@@ -136,7 +136,9 @@ function balanceChemicalEquation(maxBalancingFactor, formula, callback) {
             });
             table.appendChild(tr);
         })
-        outputElem.appendChild(table);
+        if (!skipTable) {
+            outputElem.appendChild(table);
+        }
 
         const equationString = eq.toString(true);
         const eqIsBalanced = eq.isBalanced();
@@ -167,22 +169,30 @@ function balanceChemicalEquation(maxBalancingFactor, formula, callback) {
         //console.log(JSON.stringify(ast, null, 2));
         //addJsonAsPreElement(outputElem, ast);
         processEquation(ast);
-        console.log(`lhs symbols: ${lhs.getElementSymbols()}`);
-        console.log(`rhs symbols: ${rhs.getElementSymbols()}`);
-        console.log(`equation symbols: ${eq.getElementSymbols()}`)
+        //console.log(`lhs symbols: ${lhs.getElementSymbols()}`);
+        //console.log(`rhs symbols: ${rhs.getElementSymbols()}`);
+        //console.log(`equation symbols: ${eq.getElementSymbols()}`)
         const pbar = createProgressIndicator(outputElem);
         const updateProgress = p => {
-            console.log(`%cprogress ${p}`, 'font-size: 20pt')
+            //console.log(`%cprogress ${p}`, 'font-size: 20pt')
             pbar.style.display = 'none';
             pbar.update(p)
             pbar.style.display = 'block';
         }
         setTimeout(() => {
-            const solveResult = eq.solve(updateProgress);
-            addTable();
-            pbar.style.display = 'none';
-            if (!solveResult) {
-                _addErrorElement(outputElem, `Could not find a solution to balance the equation`);
+            //console.log(`equation ${eq.toString(true)} is balanced: ${eq.isBalanced()}`)
+            var solveResult = true;
+            if (eq.isBalanced()) {
+                _htmlElement('div', outputElem, 'Equation is already balanced.');
+                addTable(true);
+                pbar.style.display = 'none';
+            } else {
+                solveResult = eq.solve(updateProgress);
+                addTable();
+                pbar.style.display = 'none';
+                if (!solveResult) {
+                    _addErrorElement(outputElem, `Could not find a solution to balance the equation`);
+                }
             }
             if (typeof callback === 'function') {
                 callback(eq, solveResult);
@@ -289,8 +299,8 @@ class ChemicalEquation {
                 return combination.every(n => n !== 0);
             }
             const nonNulls = coeffs.filter(n => n !== 0);
-            console.log(coeffs);
-            console.log(nonNulls);
+            //console.log(coeffs);
+            //console.log(nonNulls);
             const len = nonNulls.length;
             const newSolutions = [];
             for (let combination of allCombinations(1, MaxBalancingFactor, len)) {
@@ -308,7 +318,7 @@ class ChemicalEquation {
                             let sol = solutions[i];
                             let combined = _combineSolutions(sol, comb);
                             if (combined) {
-                                console.log(`solutions ${sol} and ${comb} could be combined to ${combined}!`);
+                                //console.log(`solutions ${sol} and ${comb} could be combined to ${combined}!`);
                                 if (isLast) {
                                     if (_checkComplete(combined)) {
                                         console.log(`found complete solution: ${combined}`);
@@ -327,8 +337,8 @@ class ChemicalEquation {
         const symbols = this.getElementSymbols();
         const lmatrix = this.lhs.getFactorMatrix(symbols);
         const rmatrix = this.rhs.getFactorMatrix(symbols);
-        console.log(`lmatrix: ${JSON.stringify(lmatrix, null, 2)}`);
-        console.log(`rmatrix: ${JSON.stringify(rmatrix, null, 2)}`);
+        //console.log(`lmatrix: ${JSON.stringify(lmatrix, null, 2)}`);
+        //console.log(`rmatrix: ${JSON.stringify(rmatrix, null, 2)}`);
         assert(lmatrix.length === rmatrix.length, `internal error: different #rows for lmatrix and rmatrix`);
         var solutions = [];
         updateProgress(0);
@@ -429,7 +439,7 @@ class ChemicalEquationSide {
 
 class ChemicalEquationTerm {
 
-    constructor(formulasList) {
+    constructor({ coefficient, formulasList }) {
         this.groups = formulasList.map(({ formulas, multiplier }) => {
             const elements = formulas.map(({ chemicalElement, multiplier }) => {
                 const { symbol } = chemicalElement;
@@ -437,8 +447,9 @@ class ChemicalEquationTerm {
             });
             return new ChemicalEquationTermGroup(elements, multiplier);
         });
-        this.balancingFactor = 1;
-        this.balancingFactor = Math.trunc(Math.random() * 3) + 1;
+        this.balancingFactor = coefficient;
+        //this.balancingFactor = 1;
+        //this.balancingFactor = Math.trunc(Math.random() * 3) + 1;
     }
 
     getElementsMultiplier(multiplyWithBalancingFactor = true) {

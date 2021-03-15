@@ -206,7 +206,12 @@
               }
               return { op, operands }
             },
-        peg$c13 = function(factors) { return factors; },
+        peg$c13 = function(coefficient, factors) {
+            return {
+              coefficient: (typeof coefficient === 'number') ? coefficient : 1,
+              formulasList: factors
+            }; 
+          },
         peg$c14 = function(formulas) { return { formulas, multiplier: 1 }; },
         peg$c15 = "(",
         peg$c16 = peg$literalExpectation("(", false),
@@ -699,24 +704,47 @@
     }
 
     function peg$parseChemicalTerm() {
-      var s0, s1, s2;
+      var s0, s1, s2, s3;
 
       s0 = peg$currPos;
-      s1 = [];
-      s2 = peg$parseFactor();
-      if (s2 !== peg$FAILED) {
-        while (s2 !== peg$FAILED) {
-          s1.push(s2);
-          s2 = peg$parseFactor();
-        }
-      } else {
-        s1 = peg$FAILED;
+      s1 = peg$parseCoefficient();
+      if (s1 === peg$FAILED) {
+        s1 = null;
       }
       if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c13(s1);
+        s2 = [];
+        s3 = peg$parseFactor();
+        if (s3 !== peg$FAILED) {
+          while (s3 !== peg$FAILED) {
+            s2.push(s3);
+            s3 = peg$parseFactor();
+          }
+        } else {
+          s2 = peg$FAILED;
+        }
+        if (s2 !== peg$FAILED) {
+          peg$savedPos = s0;
+          s1 = peg$c13(s1, s2);
+          s0 = s1;
+        } else {
+          peg$currPos = s0;
+          s0 = peg$FAILED;
+        }
+      } else {
+        peg$currPos = s0;
+        s0 = peg$FAILED;
       }
-      s0 = s1;
+
+      return s0;
+    }
+
+    function peg$parseCoefficient() {
+      var s0;
+
+      s0 = peg$parseInteger();
+      if (s0 === peg$FAILED) {
+        s0 = peg$parseFloat();
+      }
 
       return s0;
     }

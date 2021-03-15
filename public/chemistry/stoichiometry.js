@@ -1,4 +1,4 @@
-function stoichiometry(maxBalancingFactor, formula) {
+function stoichiometryFindLimitingReactant(maxBalancingFactor, formula) {
     const o = this;
     o.style.fontSize = '18pt';
     const _d = n => new Decimal(n);
@@ -242,4 +242,436 @@ function stoichiometry(maxBalancingFactor, formula) {
         }
     }
     balanceChemicalEquation.call(o, maxBalancingFactor, formula, callback);
+}
+
+// ---------------------------------------------------------------------------------------------------
+
+const MOLES = 0;
+const GRAMS = 1;
+const LITERS = 2;
+const MOLECULES = 3;
+
+const PRODUCED_FROM = 4;
+const NEEDED_TO_REACT_WITH = 5;
+const NEEDED_TO_PRODUCE = 6;
+
+const questionUnitOptions = [
+    { label: 'moles', value: { unit: MOLES } },
+    { label: 'grams', value: { unit: GRAMS } },
+    { label: 'liters', value: { unit: LITERS } },
+    { label: 'molecules', value: { unit: MOLECULES } }
+]
+
+const questionStartUnitOptions = [
+    { label: 'How many moles', value: { unit: MOLES, verb: 'are' } },
+    { label: 'How many grams', value: { unit: GRAMS, verb: 'are' } },
+    { label: 'What mass', value: { unit: GRAMS, verb: 'is' } },
+    { label: 'How many liters', value: { unit: LITERS, verb: 'are' } },
+    { label: 'What volume', value: { unit: LITERS, verb: 'is' } },
+    { label: 'How many molecules', value: { unit: MOLECULES, verb: 'are' } }
+];
+
+const questionVerbOptions = [
+    { label: 'produced from', value: PRODUCED_FROM },
+    { label: 'needed to react with', value: NEEDED_TO_REACT_WITH },
+    { label: 'needed to produce', value: NEEDED_TO_PRODUCE }
+]
+
+function stoichiometryMissingQuantities(maxBalancingFactor, formula) {
+    const o = this;
+    o.style.fontSize = '18pt';
+    const _d = n => new Decimal(n);
+    const callback = (eq, solveResult) => {
+        const reactantsOptions = eq.lhs.terms.map(t => {
+            const label = `${t.toString()} (reactant)`;
+            const value = { isReactant: true, isProduct: false, term: t };
+            return { label, value };
+        });
+        const productsOptions = eq.rhs.terms.map(t => {
+            const label = `${t.toString()} (product)`;
+            const value = { isReactant: false, isProduct: true, term: t };
+            return { label, value };
+        });
+        const allTermsOptions = [...reactantsOptions, ...productsOptions];
+        const buildQuestionUi = () => {
+            _htmlElement('h2', o, 'Construct question:');
+            var verbSpan;
+            const given = {};
+            const requested = {};
+            const qdiv = _htmlElement('div', o, null, 'stoichiometry-question');
+            const selectQuestionStartHook = ({ value }) => {
+                if (!verbSpan) return;
+                verbSpan.innerHTML = value.verb;
+            };
+            requested.unitSelect = createSelectElement(qdiv, questionStartUnitOptions, selectQuestionStartHook);
+            _htmlElement('span', qdiv, 'of', 'constant-text');
+            requested.termSelect = createSelectElement(qdiv, allTermsOptions);
+            const verb0 = questionStartUnitOptions[0].value.verb;
+            verbSpan = _htmlElement('span', qdiv, verb0, 'constant-text');
+            const questionSelect = createSelectElement(qdiv, questionVerbOptions);
+            const numberInput = _htmlElement('input', qdiv, null, 'number-input');
+            numberInput.setAttribute('size', 8);
+            numberInput.setAttribute('placeholder', 'quantity');
+            given.numberInput = numberInput;
+            given.unitSelect = createSelectElement(qdiv, questionUnitOptions);
+            _htmlElement('span', qdiv, 'of', 'constant-text');
+            given.termSelect = createSelectElement(qdiv, allTermsOptions);
+            _htmlElement('span', qdiv, '?', 'constant-text');
+            return { given, requested, questionSelect };
+        }
+        const getValuesFromInputs = inputs => {
+            const given = {
+                unit: inputs.given.unitSelect.selected.value.unit,
+                quantity: inputs.given.numberInput.value,
+                term: inputs.given.termSelect.selected.value.term,
+                termIsReactant: inputs.given.termSelect.selected.value.isReactant
+            };
+            const requested = {
+                unit: inputs.requested.unitSelect.selected.value.unit,
+                term: inputs.requested.termSelect.selected.value.term,
+                termIsReactant: inputs.requested.termSelect.selected.value.isReactant
+            };
+            const question = inputs.questionSelect.selected;
+            return { given, requested, question };
+
+        }
+        const checkValues = ({ given, requested, question }) => {
+            if (given.term === requested.term) {
+                throw "the two terms cannot be identical"
+            }
+            try {
+                _d(given.quantity);
+            } catch (err) {
+                throw `quantity must be given as a number`;
+            }
+            switch (question.value) {
+                case PRODUCED_FROM:
+                    if (!given.termIsReactant) {
+                        throw `"${question.label}" requires the given (second) term to be a reactant`
+                    }
+                    if (requested.termIsReactant) {
+                        throw `"${question.label}" requires the requested (first) term to be a product`
+                    }
+                    break;
+                case NEEDED_TO_REACT_WITH:
+                    if (!given.termIsReactant) {
+                        throw `"${question.label}" requires the given (second) term to be a reactant`
+                    }
+                    if (!requested.termIsReactant) {
+                        throw `"${question.label}" requires the requested (first) term to be a reactant`
+                    }
+                    break;
+                case NEEDED_TO_PRODUCE:
+                    if (given.termIsReactant) {
+                        throw `"${question.label}" requires the given (second) term to be a product`
+                    }
+                    if (!requested.termIsReactant) {
+                        throw `"${question.label}" requires the requested (first) term to be a reactant`
+                    }
+                    break;
+            }
+        }
+        var cdiv;
+        const constructConversionChain = ({ given, requested, question }) => {
+            const givenQuantity = new Quantity(given.quantity, given.unit, given.term);
+            //console.log(`given quantity: ${givenQuantity.toString()}`);
+            const ctable = new ConversionTile(givenQuantity);
+            const convertToFromMoles = (unit, term) => {
+                switch (unit) {
+                    case GRAMS:
+                        ctable.attach(new ConversionTileAtomicMass(term));
+                        break;
+                    case LITERS:
+                        ctable.attach(new ConversionTileLiters(term));
+                        break;
+                    case MOLECULES:
+                        ctable.attach(new ConversionTileMolecules(term));
+                        break;
+                    default:
+                        throw `not yet implemented: unit ${Quantity.unitToString(unit)}`;
+                }
+            }
+            // step 1 convert given to moles
+            for (; ;) {
+                let lunit = ctable.getLastUnit();
+                if (lunit === MOLES) break;
+                let lterm = ctable.getLastTerm();
+                convertToFromMoles(lunit, lterm);
+            }
+            // setp 2: mole-to-mole conversion using the balancing coefficients of the terms
+            ctable.attach(new ConversionTileMoles(given.term, requested.term));
+            // step 3: convert moles to requested unit
+            const runit = requested.unit;
+            const rterm = requested.term;
+            for (; ;) {
+                let lunit = ctable.getLastUnit();
+                if (lunit === runit) break;
+                if (lunit !== MOLES) {
+                    // should not happen
+                    throw `conversion from ${Quantity.unitToString(lunit)} to ${Quantity.unitToString(runit)} not supported.`
+                }
+                convertToFromMoles(runit, rterm);
+            }
+            // step 4: calculate the result
+            const resultQuantity = ctable.getResultQuantity();
+            console.log(`result quantity: ${resultQuantity.toString()}`);
+            return ctable;
+        }
+        const constructConversionTable = (cdiv, ctable) => {
+            const table = _htmlElement('table', cdiv, null, 'conversion-table');
+            const tr1 = _htmlElement('tr', table);
+            const tr2 = _htmlElement('tr', table);
+            ctable.toHTMLTableCells(tr1, tr2);
+        };
+        const addCalculateButton = inputs => {
+            const b = _htmlElement('input', o);
+            b.type = "button";
+            b.value = "Calculate";
+            b.addEventListener('click', () => {
+                cdiv.innerHTML = "";
+                const values = getValuesFromInputs(inputs);
+                console.log(values);
+                try {
+                    checkValues(values);
+                    const ctable = constructConversionChain(values);
+                    constructConversionTable(cdiv, ctable);
+                } catch (err) {
+                    _addErrorElement(cdiv, err);
+                    return;
+                }
+            });
+        }
+        const inputs = buildQuestionUi();
+        addCalculateButton(inputs);
+        cdiv = _htmlElement('div', o, null, 'conversion-table-container');
+    }
+    balanceChemicalEquation.call(o, maxBalancingFactor, formula, callback);
+}
+
+/**
+ * Class representing a quantity of a term in the given unit (e.g. 15 g CO2).
+ * Units are given using the constants introduced above.
+ */
+class Quantity {
+
+    constructor(number, unit, term) {
+        this.number = new Decimal(number);
+        this.unit = unit;
+        this.term = term;
+    }
+
+    static unitToString(unitId) {
+        switch (unitId) {
+            case MOLES:
+                return 'mol';
+            case LITERS:
+                return 'L';
+            case GRAMS:
+                return 'g';
+            case MOLECULES:
+                return 'molec';
+            default:
+                return 'unknown unit'
+        }
+    }
+
+    /**
+     * checks whether this unit/term matches with the given ones
+     * @param {Quantity} quantity 
+     */
+    compareUnits(quantity) {
+        if (this.unit !== quantity.unit) {
+            return false;
+        }
+        if (this.term !== quantity.term) {
+            return false;
+        }
+        return true;
+    }
+
+    cancel() {
+        this.isCanceled = true;
+    }
+
+    numberToString() {
+        const s0 = this.number + "";
+        const s1 = this.number.toNumber().toFixed(4);
+        return s0.length < s1.length ? s0 : s1;
+    }
+
+    unitToString() {
+        return `${Quantity.unitToString(this.unit)} ${this.term.toString()}`;
+    }
+
+    toString() {
+        const nstr = this.numberToString();
+        return `${nstr} ${this.unitToString()}`
+    }
+
+    toHTML(cont) {
+        const span0 = _htmlElement('span', cont, null, 'unit-in-conversion-table');
+        const span1 = _htmlElement('span', span0, this.numberToString());
+        const span2a = _htmlElement('span', span0, null, this.isCanceled ? "unit-canceled unit" : "unit");
+        const span2b = _htmlElement('span', span2a, this.unitToString(), "unit-text");
+    }
+}
+
+class ConversionTile {
+
+    constructor(quantity1, quantity2) {
+        this.quantity1 = quantity1;
+        this.quantity2 = quantity2;
+        this.next = null;
+        this.previous = null;
+    }
+
+    flip() {
+        const q1 = this.quantity1;
+        this.quantity1 = this.quantity2;
+        this.quantity2 = q1;
+    }
+
+    getLast() {
+        if (!this.next) {
+            return this;
+        }
+        return this.next.getLast();
+    }
+
+    getFirst() {
+        if (!this.previous) {
+            return this;
+        }
+        return this.previous.getFirst();
+    }
+
+    getLastUnit() {
+        return this.getLast().quantity1.unit;
+    }
+
+    getLastTerm() {
+        return this.getLast().quantity1.term;
+    }
+
+    /**
+     * attaches another conversion tile to this one.
+     * @param {ConversionTile} conversionTile 
+     */
+    attach(conversionTile) {
+        var ctile = this.getLast();
+        var attachOk = false;
+        if (ctile.quantity1.compareUnits(conversionTile.quantity2)) {
+            attachOk = true;
+        }
+        else if (ctile.quantity1.compareUnits(conversionTile.quantity1)) {
+            conversionTile.flip();
+            attachOk = true;
+        }
+        if (attachOk) {
+            ctile.quantity1.cancel();
+            conversionTile.quantity2.cancel();
+            ctile.next = conversionTile;
+            conversionTile.previous = ctile;
+            return conversionTile;
+        }
+        throw `error in conversion chain: ${ctile.toStringPair()} and ${conversionTile.toStringPair()} cannot be linked together`;
+    }
+
+    getResultQuantity(resultNumberSoFar) {
+        if (!resultNumberSoFar) {
+            resultNumberSoFar = new Decimal(1);
+        }
+        var newResult = resultNumberSoFar;
+        if (this.quantity1) {
+            newResult = newResult.mul(this.quantity1.number);
+        }
+        if (this.quantity2) {
+            newResult = newResult.div(this.quantity2.number);
+        }
+        if (!this.next) {
+            if (!this.quantity2.isCanceled) {
+                throw `the bottom quantity of the last entry is not canceled; something went wrong`;
+            }
+            if (this.quantity1.isCanceled) {
+                throw `the top quantity of the last entry is marked canceled; something went wrong`;
+            }
+            const unit = this.quantity1.unit;
+            const term = this.quantity1.term;
+            const number = newResult;
+            return new Quantity(number, unit, term);
+        } else {
+            if (!this.quantity1.isCanceled || (this.quantity2 && !this.quantity2.isCanceled)) {
+                throw `unit in intermediate terms must cancel out; something went wrong`;
+            }
+            return this.next.getResultQuantity(newResult);
+        }
+    }
+
+    toStringPair() {
+        return [this.quantity1 ? this.quantity1.toString() : '', this.quantity2 ? this.quantity2.toString() : ''];
+    }
+
+    toHTMLTableCells(tr1, tr2) {
+        const td1 = _htmlElement('td', tr1);
+        const td2 = _htmlElement('td', tr2);
+        if (this.quantity1) {
+            this.quantity1.toHTML(td1);
+        }
+        if (this.quantity2) {
+            this.quantity2.toHTML(td2);
+        }
+        if (this.next) {
+            this.next.toHTMLTableCells(tr1, tr2);
+        } else {
+            const q = this.getFirst().getResultQuantity();
+            const td = _htmlElement('td', tr1);
+            td.style.borderWidth = "0px";
+            td.setAttribute("rowspan", 2);
+            td.setAttribute("valign", "middle");
+            const eqspan = _htmlElement('span', td, "=");
+            eqspan.style.margin = "5px";
+            const rspan = _htmlElement('span', td);
+            q.toHTML(rspan);
+        }
+    }
+}
+
+class ConversionTileAtomicMass extends ConversionTile {
+
+    constructor(term) {
+        const q1 = new Quantity(1, MOLES, term);
+        const q2 = new Quantity(term.getMolarMass(), GRAMS, term);
+        super(q1, q2);
+    }
+
+}
+
+class ConversionTileLiters extends ConversionTile {
+
+    constructor(term) {
+        const q1 = new Quantity(1, MOLES, term);
+        const q2 = new Quantity(22.4, LITERS, term);
+        super(q1, q2);
+    }
+
+}
+
+class ConversionTileMolecules extends ConversionTile {
+
+    constructor(term) {
+        const q1 = new Quantity(1, MOLES, term);
+        const q2 = new Quantity("6.022E23", MOLECULES, term);
+        super(q1, q2);
+    }
+
+}
+
+class ConversionTileMoles extends ConversionTile {
+
+    constructor(term1, term2) {
+        const q1 = new Quantity(term1.balancingFactor, MOLES, term1);
+        const q2 = new Quantity(term2.balancingFactor, MOLES, term2);
+        super(q1, q2);
+    }
+
 }
