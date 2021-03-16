@@ -156,7 +156,7 @@ Term
   */ 
 
 ChemicalTerm
-  = coefficient:Coefficient? factors:Factor+ {
+  = coefficient:Coefficient? _ factors:Factor+ {
     return {
       coefficient: (typeof coefficient === 'number') ? coefficient : 1,
       formulasList: factors

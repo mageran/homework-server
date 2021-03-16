@@ -246,8 +246,28 @@ function stoichiometryFindLimitingReactant(maxBalancingFactor, formula) {
 
 // ---------------------------------------------------------------------------------------------------
 
-const percentageYieldUI = (cdiv, quantity) => {
-    _htmlElement('h3', cdiv, "Percentage yield:", 'bigSkip');
+const percentYieldUI = (cdiv, quantity) => {
+    _htmlElement('h3', cdiv, "Percent yield:", 'bigSkip');
+    const numberInput = _htmlElement('input', cdiv, null, 'number-input');
+    numberInput.setAttribute('size', 18);
+    numberInput.setAttribute('placeholder', `actual yield [${quantity.unitToString()}]`);
+    const b = _htmlElement('input', cdiv);
+    b.type = "button";
+    b.value = "calculate Percent yield";
+    const ydiv = _htmlElement('div', cdiv);
+    b.addEventListener('click', () => {
+        ydiv.innerHTML = '';
+        try {
+            const actual = new Decimal(numberInput.value);
+            const eyield = new Decimal(quantity.numberToString())
+            const pyield = actual.div(eyield).mul(100);
+            const pyieldStr = pyield.toPrecision(3);
+            var latex = `\\text{percent yield} = \\frac{${actual}}{${quantity.numberToString()}} = ${pyieldStr} \\text{%}`;
+            addLatexElement(ydiv, latex);
+        } catch (err) {
+            _addErrorElement(cdiv, err);
+        }
+    });
 }
 
 // ---------------------------------------------------------------------------------------------------
@@ -440,7 +460,7 @@ function stoichiometryMissingQuantities(maxBalancingFactor, formula) {
                     constructConversionTable(cdiv, ctable);
                     const resultQuantity = ctable.getResultQuantity();
                     if (resultQuantity.unit === GRAMS || resultQuantity.unit === LITERS) {
-                        percentageYieldUI(cdiv, resultQuantity);
+                        percentYieldUI(cdiv, resultQuantity);
                     }
                 } catch (err) {
                     _addErrorElement(cdiv, err);
@@ -461,8 +481,11 @@ function stoichiometryMissingQuantities(maxBalancingFactor, formula) {
  */
 class Quantity {
 
-    constructor(number, unit, term) {
+    constructor(number, unit, term, precision) {
         this.number = new Decimal(number);
+        if (unit === GRAMS || unit === LITERS) {
+            this.precision = typeof precision === 'number' ? precision : Quantity.getSignificantFigures(String(number));
+        }
         this.unit = unit;
         this.term = term;
     }
@@ -480,6 +503,22 @@ class Quantity {
             default:
                 return 'unknown unit'
         }
+    }
+
+    static getSignificantFigures(numberString) {
+        const chars = numberString.split('');
+        var cnt = 0;
+        for (let i = 0; i < chars.length; i++) {
+            let c = chars[i];
+            if (c === '.') continue;
+            if (!isNaN(Number(c))) {
+                cnt++;
+            }
+            if (c === 'e' || c === 'E') {
+                break;
+            }
+        }
+        return cnt;
     }
 
     /**
@@ -501,6 +540,9 @@ class Quantity {
     }
 
     numberToString() {
+        if (typeof this.precision === 'number') {
+            return this.number.toPrecision(this.precision);
+        }
         const s0 = this.number + "";
         const s1 = this.number.toNumber().toFixed(4);
         return s0.length < s1.length ? s0 : s1;
@@ -513,6 +555,11 @@ class Quantity {
     toString() {
         const nstr = this.numberToString();
         return `${nstr} ${this.unitToString()}`
+    }
+
+    toLatex() {
+        const nstr = this.numberToString();
+        return `${nstr} \\text{${this.unitToString()}}`;
     }
 
     toHTML(cont) {
@@ -550,6 +597,14 @@ class ConversionTile {
             return this;
         }
         return this.previous.getFirst();
+    }
+
+    getInitialQuantity() {
+        return this.getFirst().quantity1;
+    }
+
+    getInitialPrecision() {
+        return this.getInitialQuantity().precision;
     }
 
     getLastUnit() {
@@ -605,7 +660,9 @@ class ConversionTile {
             const unit = this.quantity1.unit;
             const term = this.quantity1.term;
             const number = newResult;
-            return new Quantity(number, unit, term);
+            const initialPrecision = this.getInitialPrecision();
+            console.log(`initial precision: ${initialPrecision}`)
+            return new Quantity(number, unit, term, initialPrecision);
         } else {
             if (!this.quantity1.isCanceled || (this.quantity2 && !this.quantity2.isCanceled)) {
                 throw `unit in intermediate terms must cancel out; something went wrong`;

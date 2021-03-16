@@ -18,6 +18,7 @@
  const parseChemicalFormula = formulaLatex => {
   console.log(`formula: ${formulaLatex}`);
   formulaLatex = formulaLatex
+    .replace(/→/g,'=')
     .replace(/\\ /g, ' ')
     .replace(/\\rightarrow/g,'=')
     .replace(/\\left/g,'')
