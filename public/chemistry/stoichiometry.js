@@ -704,7 +704,7 @@ class ConversionTileAtomicMass extends ConversionTile {
 
     constructor(term) {
         const q1 = new Quantity(1, MOLES, term);
-        const q2 = new Quantity(term.getMolarMass(), GRAMS, term);
+        const q2 = new Quantity(term.getMolarMass().toFixed(2), GRAMS, term);
         super(q1, q2);
     }
 

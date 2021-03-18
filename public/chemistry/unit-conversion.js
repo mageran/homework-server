@@ -114,9 +114,10 @@ function molarMassUi(formula) {
     const outputElem = this;
     try {
         const ast = parseChemicalFormula(formula);
-        //console.log(JSON.stringify(ast, null, 2));
+        console.log(JSON.stringify(ast, null, 2));
+        const { coefficient, formulasList } = ast;
         var totalMass = 0;
-        ast.forEach(astElem => {
+        formulasList.forEach(astElem => {
             const m = _processChemicalFormulas(outputElem, astElem);
             totalMass += m;
         });
@@ -125,8 +126,9 @@ function molarMassUi(formula) {
         outputElem.appendChild(div);
 
         const hr = document.createElement('hr');
+        _htmlElement('h3', outputElem, "with percentages:");
         outputElem.appendChild(hr);
-        ast.forEach(astElem => {
+        formulasList.forEach(astElem => {
             _processChemicalFormulas(outputElem, astElem, totalMass);
         });
         div = document.createElement('div');
