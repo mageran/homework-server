@@ -344,7 +344,31 @@ const _halfLifeQuestions = {
     func: halfLifeQuestions
 }
 
+const _inverseTrigonomicFunctions = {
+    title: 'Inverse Trigonomic Functions',
+    description: '',
+    parameters: [{
+        name: 'Function',
+        type: 'select',
+        options: [
+            { label: 'cos-1', value: 'arccos' },
+            { label: 'sin-1', value: 'arccos' },
+            { label: 'tan-1', value: 'arccos' },
+        ]
+    }],
+    func: inverseTrigonomicFunctions
+}
+
+const _configurableUnitCircle = {
+    title: 'Unit circle',
+    description: '',
+    parameters: [],
+    func: configurableUnitCircle
+}
+
 const topicObjects = [
+    _configurableUnitCircle,
+    '<b>---------------------</b>',
     _halfLifeQuestions,
     _logarithmicGrowthDecay,
     _financialModelsContinuous,
@@ -359,8 +383,10 @@ const topicObjects = [
     _sinusodialTransformationsFromParameters,
     _sinusodialTransformationsFromMaxMin,
     _trigFunctions,
+    '<b>---------------------</b>',
     _angleInfo,
     _circleSectorAndArea,
+    '<b>---------------------</b>',
     _abcFormula,
     //_pqFormula,
     _describeFunctionBasedOnParentFunctions,

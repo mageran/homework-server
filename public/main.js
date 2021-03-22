@@ -212,7 +212,7 @@ const addMathResult = (cont, callback, { notext, isInput } = {}, displayOptions)
     if (displayOptions && displayOptions.cssClass) {
         cssClassNames += ` ${displayOptions.cssClass}`;
     }
-    console.log(displayOptions);
+    //console.log(displayOptions);
     formulaContainer.className = cssClassNames;
     const span = document.createElement('span');
     span.className = 'formula-content';

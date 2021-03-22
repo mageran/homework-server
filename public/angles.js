@@ -208,9 +208,11 @@ function angleInfo(degree, piFactor, radians) {
             const { evenodd, period } = trigFunctionsMap[trigFunction];
             var dstr = angle.toLatex(mode);
             var latex = `${trigFunction}(${dstr})`;
-            const sign = evenodd === 'odd' ? '-' : '';
+            //var sign = evenodd === 'odd' ? '-' : '';
+            var sign = '';
             dstr = aangle.toLatex(mode);
             if (angle.degree !== aangle.degree) {
+                sign = evenodd === 'odd' ? '-' : '';
                 latex += ` = ${sign}${trigFunction}(${dstr})`;
             }
             const pinfo = aangle._modulo(period);
@@ -258,4 +260,300 @@ function circleSectorAndArea() {
     addLatexElement(outputElem, `r = \\sqrt{\\frac{A\\cdot 2}{\\theta}}`);
     addLatexElement(outputElem, `\\theta = \\frac{A\\cdot 2}{r^2}`);
 
-} 
+}
+
+function configurableUnitCircle() {
+    const outputElem = this;
+    try {
+        const options = { showAngleLabels: { keys: ['radians', 'cos'], k: 0 } }
+        const configDiv = _htmlElement('div', outputElem);
+        configDiv.style.fontSize = '18pt';
+        var kInput;
+        const _sh = (cname, doShow) => {
+            console.log(`${doShow ? 'showing' : 'hiding'} ${cname}`);
+            var elems = document.getElementsByClassName(cname);
+            for (let i = 0; i < elems.length; i++) {
+                let elem = elems[i];
+                elem.style.visibility = doShow ? 'visible' : 'hidden';
+            }
+        }
+        const labelDisplayCheckboxes = {};
+        const table = _htmlElement('table', configDiv, null, 'unit-circle-config-table');
+        const tableRows = [];
+        ['Radians labels', 'Degree labels', 'Trig function values', '&nbsp;'].forEach(label => {
+            let tr = _htmlElement('tr', table);
+            _htmlElement('td', tr, label);
+            let td = _htmlElement('td', tr);
+            let table0 = _htmlElement('table', td);
+            let tr0 = _htmlElement('tr', table0);
+            tableRows.push(tr0);
+        });
+        //tr = _htmlElement('tr', table);
+        //_htmlElement('td', tr, 'Degrees labels:');
+        //tableRows.push(tr);
+        //tr = _htmlElement('tr', table);
+        //_htmlElement('td', tr, 'Trig function values:');
+        //tableRows.push(tr);
+        Object.keys(AngleLabelKeys).forEach(key => {
+            const { name, mutuallyExclusiveGroup, group } = AngleLabelKeys[key];
+            const index = (typeof group === 'number')
+                ? group : (typeof mutuallyExclusiveGroup === 'number') ? mutuallyExclusiveGroup : 0;
+            const tr = tableRows[index];
+            console.log(tr);
+            const isChecked = options.showAngleLabels.keys.includes(key);
+            var td = _htmlElement('td', tr);
+            td.setAttribute('valign', 'middle');
+            const cb = _htmlElement('input', td, null, 'big-checkbox');
+            cb.type = 'checkbox';
+            cb.checked = isChecked;
+            td = _htmlElement('td', tr);
+            td.setAttribute('valign', 'middle');
+            const lb = _htmlElement('span', td, name);
+            lb.style.marginRight = "20px";
+            cb.addEventListener('change', event => {
+                const doShow = cb.checked;
+                const cssClass = getUnitCircleLabelCssClass(key, kInput.value);
+                _sh(cssClass, doShow);
+                if (doShow) {
+                    const mekeys = Object.keys(AngleLabelKeys).filter(otherKey =>
+                        key != otherKey &&
+                        AngleLabelKeys[otherKey].mutuallyExclusiveGroup === mutuallyExclusiveGroup
+                    );
+                    console.log(`other mutually exclusive keys: ${mekeys}`);
+                    mekeys.forEach(k => {
+                        const otherCheckbox = labelDisplayCheckboxes[k];
+                        otherCheckbox.checked = false;
+                        otherCheckbox.dispatchEvent(new Event('change'));
+                    })
+                }
+            })
+            labelDisplayCheckboxes[key] = cb
+        })
+        tr = _htmlElement('tr', table);
+        _htmlElement('td', tr, 'Multiplier (k):')
+        var td = _htmlElement('td', tr);
+        td.setAttribute('valign', 'middle');
+        kInput = _htmlElement('input', td, null, 'big-input');
+        kInput.setAttribute('type', 'number');
+        kInput.setAttribute('min', '0');
+        kInput.setAttribute('max', '5');
+        kInput.value = 0
+        kInput.addEventListener('change', event => {
+            const k = event.target.value;
+            if (k < 0) {
+                event.target.value = 0;
+                k = 0;
+            }
+            if (k > 5) {
+                event.target.value = 5;
+                k = 5;
+            }
+            Object.keys(labelDisplayCheckboxes).forEach(key => {
+                const isShown = labelDisplayCheckboxes[key].checked;
+                if (!isShown) return;
+                const cssClassAll = getUnitCircleLabelCssClass(key);
+                _sh(cssClassAll, false);
+                const cssClass = getUnitCircleLabelCssClass(key, k);
+                _sh(cssClass, true);
+            })
+        });
+        drawUnitCircle(outputElem, options);
+    } catch (err) {
+        _addErrorElement(outputElem, err);
+    }
+}
+
+function inverseTrigonomicFunctions() {
+
+}
+
+const AngleLabelKeys = {
+    radians: {
+        name: 'radians',
+        relativePosition: 0.85,
+        createLabel: aobj => aobj.toLatex('radians'),
+        mutuallyExclusiveGroup: 0
+    },
+    degrees: {
+        name: 'degrees',
+        relativePosition: 0.5,
+        createLabel: aobj => aobj.toLatex(),
+        mutuallyExclusiveGroup: 1
+    },
+    negativeRadians: {
+        name: 'negative radians',
+        relativePosition: 0.85,
+        createLabel: aobj => aobj.asNegativeAngle.toLatex('radians'),
+        mutuallyExclusiveGroup: 0
+    },
+    negativeDegrees: {
+        name: 'negative degrees',
+        relativePosition: 0.5,
+        createLabel: aobj => aobj.asNegativeAngle.toLatex(),
+        mutuallyExclusiveGroup: 1
+    },
+    radiansTopNegativeBottom: {
+        name: 'positive/negative radians',
+        relativePosition: 0.85,
+        createLabel: aobj => {
+            const ndegree = aobj.normalize().degree;
+            return ndegree <= 180 ? aobj.toLatex('radians') : aobj.asNegativeAngle.toLatex('radians');
+        },
+        mutuallyExclusiveGroup: 0
+    },
+    cos: {
+        name: 'cos',
+        relativePosition: 1.15,
+        createLabel: aobj => numericToLatex(aobj.getCosSinTan().cos),
+        mutuallyExclusiveGroup: 2,
+        group: 2
+    },
+    sin: {
+        name: 'sin',
+        relativePosition: 1.15,
+        createLabel: aobj => numericToLatex(aobj.getCosSinTan().sin),
+        mutuallyExclusiveGroup: 2,
+        group: 2
+    },
+    tan: {
+        name: 'tan',
+        relativePosition: 1.15,
+        createLabel: aobj => numericToLatex(aobj.getCosSinTan().tan),
+        mutuallyExclusiveGroup: 2,
+        group: 2
+    },
+    sec: {
+        name: 'sec',
+        relativePosition: 1.15,
+        createLabel: aobj => numericToLatex(aobj.getCosSinTan().sec),
+        mutuallyExclusiveGroup: 2,
+        group: 3
+    },
+    csc: {
+        name: 'csc',
+        relativePosition: 1.15,
+        createLabel: aobj => numericToLatex(aobj.getCosSinTan().csc),
+        mutuallyExclusiveGroup: 2,
+        group: 3
+    },
+    cot: {
+        name: 'cot',
+        relativePosition: 1.15,
+        createLabel: aobj => numericToLatex(aobj.getCosSinTan().cot),
+        mutuallyExclusiveGroup: 2,
+        group: 3
+    },
+    coordinates: {
+        name: '(cos x, sin x)',
+        relativePosition: 1.15,
+        createLabel: aobj => {
+            const cos = numericToLatex(aobj.getCosSinTan().cos);
+            const sin = numericToLatex(aobj.getCosSinTan().sin);
+            return `\\left(${cos},${sin}\\right)`;
+        },
+        mutuallyExclusiveGroup: 2,
+        group: 2,
+    }
+}
+
+const TrigValuesKeys = {
+}
+
+const getUnitCircleLabelCssClass = (angleLabelKey, k = null) => {
+    return k === null ? `unit-circle-angle-${angleLabelKey}` : `unit-circle-angle-${angleLabelKey}-${k}`;
+};
+
+// ---------------------------------------------------------------
+const drawUnitCircle = (cont, optionsIn) => {
+    const _d = x => new Decimalx(x);
+    const w = 1000;
+    const options = {
+        width: w,
+        containerWidth: w * 1.2,
+        showAngleLabels: { keys: ['radians'], k: 0 }
+    }
+    mergeWith(options, optionsIn);
+    const { width, containerWidth } = options;
+    const contWidth = _d(containerWidth);
+    const contMarginWidth = (contWidth.sub(width)).div(2);
+    const ccenter = _d(contWidth).div(2);
+    const radius = _d(width).div(2);
+    const udivCont = _htmlElement('div', cont, null, 'unit-circle-container');
+    const udiv = _htmlElement('div', udivCont, null, 'unit-circle');
+    mergeWith(udivCont.style, {
+        position: "relative",
+        width: `${containerWidth}px`,
+        height: `${containerWidth}px`,
+        backgroundColor: 'white'
+    });
+    mergeWith(udiv.style, {
+        position: 'absolute',
+        left: `${contMarginWidth}px`,
+        top: `${contMarginWidth}px`,
+        width: `${width}px`,
+        height: `${width}px`,
+        border: '2px solid black',
+        borderRadius: `${radius}px`,
+        backgroundColor: 'transparent'
+    });
+    const getPositionAtAngle = (angle, radiusFraction) => {
+        if (!(angle instanceof Angle)) {
+            throw "internal error: angle must be an Angle object"
+        }
+        const iobj = angle.inverseAngle;
+        const r = radius.mul(_d(radiusFraction));
+        const x = r.mul(iobj.cosDecimal);
+        const y = r.mul(iobj.sinDecimal);
+        const top = ccenter.add(y);
+        const left = ccenter.add(x);
+        return {
+            top: `${top}px`,
+            left: `${left}px`
+        };
+    }
+    const angleLine = (angle, k = 0) => {
+        const aobj = Angle.fromDegree(angle + k * 360);//.normalize();
+        const iobj = aobj.inverseAngle;
+        const line = _htmlElement('span', udivCont, null, 'unit-circle-angle-line');
+        mergeWith(line.style, {
+            position: 'absolute',
+            left: `${ccenter}px`,
+            top: `${ccenter}px`,
+            width: `${radius}px`,
+            height: '1px',
+            backgroundColor: '#888',
+            transform: `rotate(${iobj.degree}deg)`,
+            transformOrigin: '0% 0%'
+        });
+        const createAngleLabel = (angleLabelKey, hash = AngleLabelKeys) => {
+            const { relativePosition, createLabel } = hash[angleLabelKey];
+            const cssClassname = `${getUnitCircleLabelCssClass(angleLabelKey, k)} ${getUnitCircleLabelCssClass(angleLabelKey)} unit-circle-angle-label`;
+            const angleLabelDiv = _htmlElement('span', udivCont, null, cssClassname);
+            const translateX = radius.div(-10);
+            const translateY = translateX;
+            mergeWith(angleLabelDiv.style, {
+                position: 'absolute',
+                transform: `translate(${translateX}px,${translateY}px)`
+            });
+            if (k === options.showAngleLabels.k && options.showAngleLabels.keys.includes(angleLabelKey)) {
+                angleLabelDiv.style.visibility = 'visible';
+            }
+            mergeWith(angleLabelDiv.style, getPositionAtAngle(aobj, relativePosition));
+            addLatexElement(angleLabelDiv, createLabel(aobj));
+        }
+        Object.keys(AngleLabelKeys).forEach(key => {
+            createAngleLabel(key);
+        })
+        Object.keys(TrigValuesKeys).forEach(key => {
+            createAngleLabel(key, TrigValuesKeys);
+        })
+    }
+    for (let k = 0; k <= 5; k++) {
+        for (let i = 0; i < 360; i += 90) {
+            angleLine(i, k);
+            angleLine(i + 30, k);
+            angleLine(i + 45, k);
+            angleLine(i + 60, k);
+        }
+    }
+}

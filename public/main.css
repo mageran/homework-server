@@ -371,3 +371,44 @@ table.make-a-table td {
     margin: 20px;
     font-size: 20pt;
 }
+
+.unit-circle-angle-label {
+    visibility: hidden;
+}
+
+.unit-circle-angle-cos {
+    color: blue;
+}
+
+.unit-circle-angle-sin {
+    color: red;
+}
+
+.unit-circle-angle-tan {
+    color: green;
+}
+
+.unit-circle-angle-sec {
+    color: blueviolet;
+}
+
+.unit-circle-angle-csc {
+    color: crimson;
+}
+
+.unit-circle-angle-cot {
+    color: darkolivegreen;
+}
+
+.unit-circle-angle-coordinates {
+    color: brown;
+}
+
+.big-checkbox, .big-input {
+    width: 40px;
+    height: 40px;
+}
+
+.big-input {
+    font-size: 18pt;
+}

@@ -23,8 +23,23 @@ class Angle {
         return new Angle(degree);
     }
 
+    get inverseAngle() {
+        return Angle.fromDegree(-this.degree);
+    }
+
+    get asNegativeAngle() {
+        if (this.degree <= 0) return this;
+        const k = Math.trunc(this.degree/360) + 1;
+        const ndegree = this.normalize().degree;
+        return Angle.fromDegree(ndegree - k * 360);
+    }
+
     get radians() {
         return this.degree * pi / 180;
+    }
+
+    get radiansDecimal() {
+        return _d(this.degree).mul(_d(pi)).div(_d(180));
     }
 
     get piFactor() {
@@ -134,6 +149,18 @@ class Angle {
         return { cos, sin, tan, sec, csc, cot };
     }
 
+    get sinDecimal() {
+        return this.radiansDecimal.sin();
+    }
+
+    get cosDecimal() {
+        return this.radiansDecimal.cos();
+    }
+
+    get tanDecimal() {
+        return this.radiansDecimal.tan();
+    }
+
     normalize(inPlace = false) {
         const { degree } = this;
         var ndegree = degree % 360;
@@ -203,9 +230,26 @@ class Angle {
 
     toLatex(mode = 'degree') {
         if (mode === 'degree') {
-            return '' + this.degree;
+            return '' + this.degree + "{^\\circle}";
         }
-        return this.piFactor.toLatex(true) + "\\pi";
+        if (this.degree === 0) {
+            return "0";
+        }
+        const { numerator, denominator } = this.piFactor;
+        const sign = Math.sign(numerator)/Math.sign(denominator);
+        const signSymbol = sign < 0 ? '-' : ''
+        if (numerator === 0) {
+            return "0";
+        }
+        if (Math.abs(denominator) === 1) {
+            if (Math.abs(numerator) === 1) {
+                return `${signSymbol}\\pi`;
+            }
+            return `${signSymbol}${Math.abs(numerator)}\\pi`
+        } else {
+            var nstr = Math.abs(numerator) === 1 ? `\\pi` : `${Math.abs(numerator)}\\pi`;
+            return `${signSymbol}\\frac{${nstr}}{${Math.abs(denominator)}}`;
+        }
     }
 
 }

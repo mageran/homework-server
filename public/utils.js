@@ -1,3 +1,11 @@
+const mergeWith = (obj, values) => {
+    Object.keys(values).forEach(key => {
+        const val = values[key];
+        obj[key] = val;
+    })
+    return obj;
+}
+
 const productToString = (a, b) => {
     if ((typeof a === 'number') && (typeof b === 'number')) {
         return a * b;
@@ -202,6 +210,13 @@ const _htmlElement = (tag, parent, content, cssClass) => {
     return elem;
 }
 
+const _d = x => {
+    if (typeof Decimalx !== 'undefined') {
+        return new Decimalx(x);
+    }
+    return new Decimal(x);
+}
+
 const mo1 = () => {
     const sol = [];
     for (let x of allCombinations(0, 9, 7)) {
@@ -265,7 +280,15 @@ const createSelectElement = (cont, optionsIn, selectHook, deselectHook) => {
 
     options.forEach((option) => {
         const { label, value } = option;
-        const span = _htmlElement('span', outerContainer, label, 'select-option-label');
+        var labelText = label;
+        const labelIsFunction = typeof label === 'function';
+        if (labelIsFunction) {
+            labelText = null;
+        }
+        const span = _htmlElement('span', outerContainer, labelText, 'select-option-label');
+        if (labelIsFunction) {
+            labelIsFunction.call(this, span);
+        }
         option.span = span;
         if (!somethingIsSelected) {
             span.setAttribute("selected", "true");
