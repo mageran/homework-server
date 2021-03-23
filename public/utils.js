@@ -244,6 +244,7 @@ const createSelectElement = (cont, optionsIn, selectHook, deselectHook) => {
         options: options
     }
     const outerContainer = _htmlElement('div', cont, null, 'select-outer-container');
+    selectObj.outerContainer = outerContainer;
     const menuImage = _htmlElement('img', outerContainer, null, 'select-menu-button');
     menuImage.src = "images/outline_menu_black_24dp.png";
     const isSelectedFun = (typeof isInitiallySelectedCondition === 'function') ? isInitiallySelectedCondition : () => false;
@@ -287,7 +288,7 @@ const createSelectElement = (cont, optionsIn, selectHook, deselectHook) => {
         }
         const span = _htmlElement('span', outerContainer, labelText, 'select-option-label');
         if (labelIsFunction) {
-            labelIsFunction.call(this, span);
+            label.call(this, span);
         }
         option.span = span;
         if (!somethingIsSelected) {
@@ -299,7 +300,15 @@ const createSelectElement = (cont, optionsIn, selectHook, deselectHook) => {
     const menuContainer = _htmlElement('div', outerContainer, null, 'select-menu-container');
     options.forEach(option => {
         const { label, value, span } = option;
-        const menuEntryDiv = _htmlElement('div', menuContainer, label, 'select-menu-entry');
+        var menuEntryDiv;
+        var labelText = label;
+        if (typeof label === 'function') {
+            labelText = null;
+        }
+        menuEntryDiv = _htmlElement('div', menuContainer, labelText, 'select-menu-entry');
+        if (typeof label === 'function') {
+            label.call(this, menuEntryDiv);
+        }
         menuEntryDiv.addEventListener('click', event => {
             //console.log(`selected: ${label}`);
             doSelect(option);

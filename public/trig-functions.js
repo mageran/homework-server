@@ -758,6 +758,10 @@ class FactorOfPi {
             return `${num}${piString}`;
         }
         if (typeof numeric === 'number') {
+            const { numerator, denominator } = findFraction(numeric);
+            if (Math.abs(denominator) !== 1) {
+                return `\\frac{${_numStr(numerator)}}{${denominator}}`;
+            }
             return _numStr(numeric);
         }
         if (numeric instanceof Fraction) {

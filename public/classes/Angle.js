@@ -122,7 +122,7 @@ class Angle {
         else if (rangle.degree === 60) {
             xcoord = fraction(xsign, 2);
             ycoord = fraction(sqrt(3, ysign), 2);
-            tan = fraction(tanSign * 1,2);
+            tan = sqrt(3, tanSign);
             cot = fraction(sqrt(3, tanSign), 3);
             sec = xsign * 2;
             csc = fraction(sqrt(3, 2 * ysign), 3);
@@ -148,6 +148,13 @@ class Angle {
         const sin = ycoord;
         return { cos, sin, tan, sec, csc, cot };
     }
+
+    get cos() { return this.getCosSinTan().cos; }
+    get sin() { return this.getCosSinTan().sin; }
+    get tan() { return this.getCosSinTan().tan; }
+    get sec() { return this.getCosSinTan().sec; }
+    get csc() { return this.getCosSinTan().csc; }
+    get cot() { return this.getCosSinTan().cot; }
 
     get sinDecimal() {
         return this.radiansDecimal.sin();

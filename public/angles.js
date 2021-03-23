@@ -270,7 +270,7 @@ function configurableUnitCircle() {
         configDiv.style.fontSize = '18pt';
         var kInput;
         const _sh = (cname, doShow) => {
-            console.log(`${doShow ? 'showing' : 'hiding'} ${cname}`);
+            //console.log(`${doShow ? 'showing' : 'hiding'} ${cname}`);
             var elems = document.getElementsByClassName(cname);
             for (let i = 0; i < elems.length; i++) {
                 let elem = elems[i];
@@ -299,7 +299,6 @@ function configurableUnitCircle() {
             const index = (typeof group === 'number')
                 ? group : (typeof mutuallyExclusiveGroup === 'number') ? mutuallyExclusiveGroup : 0;
             const tr = tableRows[index];
-            console.log(tr);
             const isChecked = options.showAngleLabels.keys.includes(key);
             var td = _htmlElement('td', tr);
             td.setAttribute('valign', 'middle');
@@ -357,15 +356,17 @@ function configurableUnitCircle() {
                 _sh(cssClass, true);
             })
         });
-        drawUnitCircle(outputElem, options);
+        const loadingDiv = _htmlElement('img', outputElem);
+        loadingDiv.src = 'images/loading.webp';
+        setTimeout(() => {
+            drawUnitCircle(outputElem, options);
+            loadingDiv.style.display = 'none';
+        }, 100);
     } catch (err) {
         _addErrorElement(outputElem, err);
     }
 }
 
-function inverseTrigonomicFunctions() {
-
-}
 
 const AngleLabelKeys = {
     radians: {
@@ -464,7 +465,7 @@ const getUnitCircleLabelCssClass = (angleLabelKey, k = null) => {
 };
 
 // ---------------------------------------------------------------
-const drawUnitCircle = (cont, optionsIn) => {
+const drawUnitCircle = (cont, optionsIn = {}) => {
     const _d = x => new Decimalx(x);
     const w = 1000;
     const options = {

@@ -347,15 +347,7 @@ const _halfLifeQuestions = {
 const _inverseTrigonomicFunctions = {
     title: 'Inverse Trigonomic Functions',
     description: '',
-    parameters: [{
-        name: 'Function',
-        type: 'select',
-        options: [
-            { label: 'cos-1', value: 'arccos' },
-            { label: 'sin-1', value: 'arccos' },
-            { label: 'tan-1', value: 'arccos' },
-        ]
-    }],
+    parameters: [],
     func: inverseTrigonomicFunctions
 }
 
@@ -367,6 +359,8 @@ const _configurableUnitCircle = {
 }
 
 const topicObjects = [
+    _inverseTrigonomicFunctions,
+    '<b>---------------------</b>',
     _configurableUnitCircle,
     '<b>---------------------</b>',
     _halfLifeQuestions,

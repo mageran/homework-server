@@ -326,7 +326,7 @@ table.make-a-table td {
     width: 400px;
     border: 1px solid black;
     border-radius: 8px;
-    background-color: aliceblue;
+    background-color: white;
     box-shadow: 3px 3px rgba(1, 1, 1, 0.3);
     z-index: 999;
 }

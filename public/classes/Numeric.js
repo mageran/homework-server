@@ -499,6 +499,9 @@ const numericToString = (obj, latex = false) => {
     if (obj instanceof Numeric) {
         return obj.toString(latex);
     }
+    if (latex && (obj instanceof FactorOfPi)) {
+        return obj.toLatex();
+    }
     return String(obj);
 }
 

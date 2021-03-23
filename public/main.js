@@ -120,7 +120,9 @@ const populate = tobj => {
     document.getElementById('topic-description').innerHTML = tobj.description;
     const inputs = document.getElementById('topic-inputs');
     const inputElements = [];
+    var parametersExist = false;
     if (tobj.parameters && tobj.parameters.length > 0) {
+        parametersExist = true;
         tobj.parameters.forEach(param => {
             const cont = document.createElement('div');
             if (param.separator) {
@@ -139,6 +141,45 @@ const populate = tobj => {
             inputs.appendChild(cont);
         });
     }
+    const doExecute = () => {
+        if (typeof tobj.func !== 'function') {
+            return;
+        }
+        if (tobj.hideHeader) {
+            _clearHeader();
+        }
+        const outputElement = document.getElementById('topic-output');
+        outputElement.innerHTML = "";
+        let args = inputElements.map(inpElem => {
+            let res;
+            if (inpElem.mathField) {
+                return inpElem.mathField.latex();
+            }
+            res = inpElem.value;
+            if (!inpElem.noEval) {
+                try {
+                    res = eval(inpElem.value);
+                } catch (err) {
+                    //console.error(err);
+                }
+            }
+            inpElem.style.background = "white";
+            return res;
+        });
+        console.log(args);
+        //console.log(`#input elements: ${inputElements.length}`);
+        let output = "no output generated";
+        try {
+            currentInputElements = inputElements;
+            output = tobj.func.call(outputElement, ...args);
+        } catch (err) {
+            output = err;
+            console.error(err);
+        }
+        if (typeof output === 'string') {
+            outputElement.innerHTML = output;
+        }
+    }
     if (typeof (tobj.func) === 'function') {
         let button = document.createElement('input');
         button.type = 'button';
@@ -146,44 +187,13 @@ const populate = tobj => {
         button.style.backgroundColor = "lightgreen";
         button.style.padding = "10px";
         button.addEventListener('click', () => {
-            if (tobj.hideHeader) {
-                _clearHeader();
-            }
-            const outputElement = document.getElementById('topic-output');
-            outputElement.innerHTML = "";
-            let args = inputElements.map(inpElem => {
-                let res;
-                if (inpElem.mathField) {
-                    return inpElem.mathField.latex();
-                }
-                res = inpElem.value;
-                if (!inpElem.noEval) {
-                    try {
-                        res = eval(inpElem.value);
-                    } catch (err) {
-                        //console.error(err);
-                    }
-                }
-                inpElem.style.background = "white";
-                return res;
-            });
-            console.log(args);
-            console.log(`#input elements: ${inputElements.length}`);
-            let output = "no output generated";
-            try {
-                currentInputElements = inputElements;
-                output = tobj.func.call(outputElement, ...args);
-            } catch (err) {
-                output = err;
-                console.error(err);
-            }
-            if (typeof output === 'string') {
-                outputElement.innerHTML = output;
-            }
+            doExecute();
         });
-        inputs.appendChild(button);
+        if (parametersExist) {
+            inputs.appendChild(button);
+        }
     }
-    const addClearButton = true;
+    const addClearButton = parametersExist;
     if (addClearButton) {
         let button = document.createElement('input');
         button.type = 'button';
@@ -201,9 +211,11 @@ const populate = tobj => {
             });
         });
         inputs.appendChild(button);
-
     }
     MathJax.typeset();
+    if (!parametersExist) {
+        doExecute();
+    }
 };
 
 const addMathResult = (cont, callback, { notext, isInput } = {}, displayOptions) => {
