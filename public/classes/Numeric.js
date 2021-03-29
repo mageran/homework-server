@@ -62,6 +62,10 @@ class Decimal extends Numeric {
         this.number = number;
     }
 
+    inverse() {
+        return fraction(1, this.number);
+    }
+
     decimalxValue() {
         return _d(this.number);
     }
@@ -407,7 +411,7 @@ class Fraction2 extends Numeric {
     simplify() {
         this.hasBeenSimplified = false;
         if (this.fractionObject) {
-            return this;
+            //return this;
         }
         this.numerator = simplifyNumeric(this.numerator);
         this.denominator = simplifyNumeric(this.denominator);
@@ -488,6 +492,9 @@ class Fraction2 extends Numeric {
 const ensureNumeric = obj => {
     if (obj instanceof Numeric) {
         return obj;
+    }
+    if (obj instanceof Decimalx) {
+        return new Decimal(obj.toNumber());
     }
     if (obj instanceof Fraction) {
         return new Fraction2(obj.numerator, obj.denominator);

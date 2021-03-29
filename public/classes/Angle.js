@@ -256,6 +256,10 @@ class Angle {
         return this._modulo(360);
     }
 
+    equals(angle) {
+        return this.degree === angle.degree;
+    }
+
     clone() {
         return new Angle(this.degree);
     }
@@ -304,6 +308,38 @@ class Angle {
             }
         }
         return trigFunctions;
+    }
+
+    getAngleWithSameTrigValueInRangeOfInverseTrig(trigFunction) {
+        const tvalue = this.getTrigFunctionValuesAsDecimals()[trigFunction];
+        //console.log(`tvalue: ${tvalue}`);
+        if (tvalue === null) {
+            return null;
+        }
+        const invTrigFunction = `arc${trigFunction}`;
+        const ttEntry = TrigTable[invTrigFunction];
+        //console.log(ttEntry);
+        if (!ttEntry) {
+            return null;
+        }
+        const checkValue = ttEntry.angleIsInRange;
+        if (checkValue(this)) {
+            return this;
+        }
+        const trigFunctionValues = Angle.reverseLookupTrigFunctions(tvalue, true);
+        //console.log(trigFunctionValues);
+        const angles = trigFunctionValues[trigFunction];
+        //console.log(`angles: ${angles.map(a => a.radiansDecimal)}`);
+        if (!Array.isArray(angles)) {
+            return null;
+        }
+        for(let i = 0; i < angles.length; i++) {
+            let angle = angles[i];
+            if (checkValue(angle)) {
+                return angle;
+            }
+        }
+        return null;
     }
 
     /**

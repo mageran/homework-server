@@ -70,66 +70,6 @@ function inverseTrigonomicFunctions() {
     }
 }
 
-const initializeInverseTrigTable = () => {
-    const trigTable = {
-        arccos: {
-            base: 'cos',
-            latex: 'cos^{-1}',
-            domainLatex: '[-1,1]', rangeLatex: '[0,\\pi]',
-            angleIsInRange: angle => angle.degree >= 0 && angle.degree <= 180,
-            angles: [0, 30, 45, 60, 90, 120, 135, 150, 180]
-        },
-        arcsin: {
-            base: 'sin',
-            latex: 'sin^{-1}',
-            domainLatex: '[-1,1]', rangeLatex: '[-\\frac{\\pi}{2},\\frac{\\pi}{2}]',
-            angleIsInRange: angle => angle.degree >= -90 && angle.degree <= 90,
-            angles: [-90, -60, -45, -30, 0, 30, 45, 60, 90]
-        },
-        arctan: {
-            base: 'tan',
-            latex: 'tan^{-1}',
-            domainLatex: '(-\\infinity, \\infinity)', rangeLatex: '(-\\frac{\\pi}{2},\\frac{\\pi}{2})',
-            angleIsInRange: angle => angle.degree > -90 && angle.degree < 90,
-            angles: [-60, -45, -30, 0, 30, 45, 60]
-        },
-        arccot: {
-            base: 'cot',
-            latex: 'cot^{-1}',
-            domainLatex: '(-\\infinity, \\infinity)', rangeLatex: '(0,\\pi)',
-            angleIsInRange: angle => angle.degree > 0 && angle.degree < 180,
-            angles: [30, 45, 60, 90, 120, 135, 150]
-        },
-        arcsec: {
-            base: 'sec',
-            latex: 'sec^{-1}',
-            domainLatex: '(-\\infinity, -1] \\cup [1,\\infinity)',
-            rangeLatex: '[0,\\frac{\\pi}{2})\\cup(\\frac{\\pi}{2},\\pi]',
-            angleIsInRange: angle => angle.degree >= 0 && angle.degree <= 180 && angle.degree !== 90,
-            angles: [0, 30, 45, 60, 120, 135, 150, 180]
-        },
-        arccsc: {
-            base: 'csc',
-            latex: 'csc^{-1}',
-            domainLatex: '(-\\infinity, -1] \\cup [1,\\infinity)',
-            rangeLatex: '[-\\frac{\\pi}{2},0)\\cup(0,\\frac{\\pi}{2}]',
-            angleIsInRange: angle => angle.degree >= -90 && angle.degree <= 90 && angle.degree !== 0,
-            angles: [-90, -60, -45, -30, 30, 45, 60, 90]
-        }
-    }
-    Object.keys(trigTable).forEach(fn => {
-        const { base, angles } = trigTable[fn];
-        trigTable[fn].values = [];
-        angles.forEach(degree => {
-            const angle = Angle.fromDegree(degree);
-            const value = angle[base];
-            trigTable[fn].values.push({ value, angle });
-        })
-    })
-    console.log(trigTable);
-    return trigTable;
-}
-
 function reverseUnitCircleLookup(formulaLatex) {
     const o = this;
     o.style.fontSize = '18pt';
@@ -269,7 +209,7 @@ const _checkTrigFunctionDomain = (trigFunction, value, forInverse = false) => {
 const _createOnlyUnitCircleAngle = radians => {
     const angle = Angle.reverseLookupRadiansToUnitCircleAngle(radians);
     if (!angle) {
-        throw 'this value is not supported; it doesn\'t correspond to a unit circle angle';
+        throw `[NotOnUnitCircle] ${radians} is not supported; it doesn\'t correspond to a unit circle angle`;
     }
     return angle;
 }
@@ -290,7 +230,7 @@ const _createOnlyAngleInRangeOfTrigFunction = (invTrigFunction, value, numericOu
             }
         }
     }
-    throw `${value} is not supported for ${invTrigFunction}: it doesn't map to a unit circle angle`;
+    throw `[NotOnUnitCircle] ${value} is not supported for ${invTrigFunction}: it doesn't map to a unit circle angle`;
 }
 
 const _trigInvTrigToLatex = trigFunction => {
@@ -323,7 +263,31 @@ const _getReciprocalTrigFunction = trigFunction => {
     throw `internal error: no such trigFunction ${trigFunction}`;
 }
 
-const _deriveTrigFunctionValue = (trigFunction, value) => {
+const _getInverseTrigFunction = trigFunction => {
+    switch (trigFunction) {
+        case 'cos': return 'arccos';
+        case 'sin': return 'arcsin';
+        case 'tan': return 'arctan';
+        case 'sec': return 'arcsec';
+        case 'csc': return 'arccsc';
+        case 'cot': return 'arccot';
+        case 'arccos': return 'cos';
+        case 'arcsin': return 'sin';
+        case 'arctan': return 'tan';
+        case 'arcsec': return 'sec';
+        case 'arccsc': return 'csc';
+        case 'arccot': return 'cot';
+    }
+    throw `internal error: no such trigFunction ${trigFunction}`;
+}
+
+const _convertAngleToBeInRangeOfInverse = (trigFunction, angle) => {
+    if (trigFunction.indexOf('arc') === 0) {
+        return null;
+    }
+}
+
+const _deriveTrigFunctionValue = (trigFunction, value, ensureAngleInRangeOfInverse = true) => {
     const entries = [];
     var specialCot = false;
     // special case 'cot' on angle that is undefined for 'tan'
@@ -335,6 +299,16 @@ const _deriveTrigFunctionValue = (trigFunction, value) => {
     if (['cos', 'sin', 'tan'].includes(trigFunction) || specialCot) {
         let angle = _createOnlyUnitCircleAngle(value);
         entries.push({ trigFunction, angle });
+        if (ensureAngleInRangeOfInverse) {
+            let angle0 = angle.normalize();
+            if (angle0 instanceof Angle && !angle.equals(angle0)) {
+                entries.push({ trigFunction, angle: angle0 });
+            }
+            let angle1 = angle.getAngleWithSameTrigValueInRangeOfInverseTrig(trigFunction);
+            if (angle1 instanceof Angle && !angle1.equals(angle0)) {
+                entries.push({ trigFunction, angle: angle1 });
+            }
+        }
         let numeric = angle[trigFunction];
         entries.push({ numeric });
     }
@@ -350,7 +324,8 @@ const _deriveTrigFunctionValue = (trigFunction, value) => {
         } else {
             numeric = ensureNumeric(numeric).inverse();
             entries.push({ numeric: numeric.clone() });
-            let simplified = ensureNumeric(numeric).simplify();
+            console.log(numeric);
+            let simplified = numeric.simplify();
             if (numeric.hasBeenSimplified) {
                 entries.push({ numeric: simplified });
             }
@@ -361,7 +336,7 @@ const _deriveTrigFunctionValue = (trigFunction, value) => {
         let angle = _createOnlyAngleInRangeOfTrigFunction(trigFunction, value, storedValueHolder);
         let { numeric } = storedValueHolder;
         entries.push({ trigFunction, numeric });
-        entries.push( { angle });
+        entries.push({ angle });
     }
     else if (['arcsec', 'arccsc', 'arccot'].includes(trigFunction)) {
         let storedValueHolder = {};
@@ -375,8 +350,8 @@ const _deriveTrigFunctionValue = (trigFunction, value) => {
         if (inum.hasBeenSimplified) {
             entries.push({ trigFunction: trigFunction0, numeric: snum });
         }
-        let angle1 = _createOnlyAngleInRangeOfTrigFunction(trigFunction0, snum.decimalxValue());
-        entries.push( { angle });
+        let angle1 = _createOnlyAngleInRangeOfTrigFunction(trigFunction0, _d(snum));
+        entries.push({ angle });
         //entries.push( { angle: angle1 });
     }
     return entries;
@@ -407,11 +382,13 @@ const _deriveStepsToLatex = entries => {
         }
         latexEntries.push(latex);
     });
-    return latexEntries.join('=');
+    return latexEntries;
 }
 
 const _addInverseTrigFunctionRangeSketch = (o, trigFunction) => {
     if (trigFunction.indexOf("arc") === 0) {
+        let span = _htmlElement('span', o, "Range sketch:");
+        span.style.verticalAlign = "top";
         let imgsrc = `images/${trigFunction}-range.png`;
         let img = _htmlElement('img', o, null, 'trigfunction-range-sketch');
         img.setAttribute("src", imgsrc);
@@ -419,7 +396,11 @@ const _addInverseTrigFunctionRangeSketch = (o, trigFunction) => {
 }
 
 const _singleTrigFunctionInternal = (o, trigFunction, latexValue, options = {}) => {
-    const { throwErrorOnDomainCheckFail, includeRangeSketch } = options;
+    const {
+        throwErrorOnDomainCheckFail,
+        includeRangeSketch,
+        continueWithResult
+    } = options;
     const { value } = evalLatexFormula(latexValue);
     //console.log(value);
     const entries = _deriveTrigFunctionValue(trigFunction, value);
@@ -433,31 +414,74 @@ const _singleTrigFunctionInternal = (o, trigFunction, latexValue, options = {}) 
         dcdiv2.style.display = "inline-block";
         dcdiv2.style.marginLeft = "50px";
         dcdiv2.style.verticalAlign = "top";
-        let span = _htmlElement('span', dcdiv2, "Range sketch:");
-        span.style.verticalAlign = "top";
         _addInverseTrigFunctionRangeSketch(dcdiv2, trigFunction);
+        if (entries.length > 0) {
+            const lastEntry = entries[entries.length - 1];
+            const resultAngle = lastEntry.angle;
+            if (resultAngle instanceof Angle) {
+                console.log(`result angle: ${resultAngle.degree}`);
+                const angleHtml = new AngleHtml(resultAngle);
+                const dcdiv3 = _htmlElement('div', dcdiv);
+                dcdiv3.style.display = "inline-block";
+                dcdiv3.style.marginLeft = "50px";
+                dcdiv3.style.verticalAlign = "top";
+                angleHtml.addCanvas(dcdiv3);
+            }
+        }
     }
     dcdiv1.style.color = domainCheckInfo.result ? 'green' : 'red';
     addLatexElement(dcdiv1, domainCheckInfo.latex, 'Domain check:');
     if (domainCheckInfo.result) {
-        addLatexElement(o, _deriveStepsToLatex(entries), "Calculation:");
-        return entries;
+        const latexEntries = _deriveStepsToLatex(entries);
+        const resultEntry = latexEntries[latexEntries.length - 1];
+        addLatexElement(o, latexEntries.join('='), "Calculation:");
+        if (continueWithResult) {
+            const table = _htmlElement('table', o);
+            const tr = _htmlElement('tr', table);
+            const td1 = _htmlElement('td', tr);
+            td1.setAttribute("valign", "top");
+            const td2 = _htmlElement('td', tr);
+            td2.setAttribute("valign", "top");
+            let selectObj = createSelectElement(td1, _trigInverseTrigOptions);
+            let button = _htmlElement('input', td2);
+            button.style.fontSize = '14pt';
+            button.style.margin = "10px";
+            button.value = "Apply Result";
+            button.type = "button";
+            const o2 = _htmlElement('div', o);
+            button.addEventListener('click', () => {
+                const trigFunction2 = selectObj.selected.value;
+                console.log(`applying result to ${trigFunction2}`);
+                let options = {
+                    includeRangeSketch: true
+                };
+                o2.innerHTML = "";
+                _singleTrigFunctionInternal(o2, trigFunction2, resultEntry, options);
+            });
+        }
+        return { latexEntries, entries };
     }
     if (throwErrorOnDomainCheckFail) {
         throw "Domain check failed";
     }
 }
 
-function singleTrigFunction(trigFunction, latexValue) {
+function singleTrigFunction(trigFunction2, trigFunction, latexValue) {
     const o = this;
     o.style.fontSize = '18pt';
     try {
         const includeRangeSketch = true;
-        _singleTrigFunctionInternal(o, trigFunction, latexValue, { includeRangeSketch });
+        const continueWithResult = false;
+        const { latexEntries } = _singleTrigFunctionInternal(o, trigFunction, latexValue, { includeRangeSketch, continueWithResult });
+        if (typeof trigFunction2 === 'string') {
+            const resultEntry = latexEntries[latexEntries.length - 1];
+            console.log(`resultEntry: ${resultEntry}`);
+            _htmlElement('div', o, "Applying outer function:");
+            _singleTrigFunctionInternal(o, trigFunction2, resultEntry, { includeRangeSketch });
+        }
     } catch (err) {
         _addErrorElement(o, err);
         //throw err
     }
 }
 
-const TrigTable = initializeInverseTrigTable();

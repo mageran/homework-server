@@ -387,6 +387,11 @@ const _singleTrigFunctionOnUnitCircleAngle = {
     description: 'Derive value of (inverse) trig function applied on unit circle angle',
     parameters: [
         {
+            name: 'Outer Trig/InvTrig Function',
+            type: 'select',
+            options: [{ label: 'None', value: null }].concat(_trigInverseTrigOptions)
+        },
+        {
             name: 'Trig/InvTrig Function',
             type: 'select',
             options: _trigInverseTrigOptions
