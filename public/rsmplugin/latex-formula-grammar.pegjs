@@ -97,7 +97,7 @@ Equation
 Expression
   = head:Term? tail:(_ ("+" / "-") _ Term)* {
       var operands = head?[head]:[0];
-      console.log(`head: ${head} ${typeof head}`);
+      //console.log(`head: ${head} ${typeof head}`);
       const op = "+";
       tail.forEach(elements => {
       	const d = elements[1] === '+' ? 1 : -1;
@@ -126,19 +126,22 @@ Expression
 
 Term
   = head:Factor tail:(_ ("*" / "/" / "") _ Factor)* {
-  	  var operands = [head];
+      var operands = [head];
       const op = "*";
       tail.forEach(elements => {
       	const isMult = elements[1] === '*' || elements[1] === '';
         const t = elements[3];
-        if (typeof t === 'number') {
-        	operands.push(isMult?t:new Fraction(1,t));
+        if (options.evaluate) {
         } else {
-        	if (!isMult) {
-	      		operands.push({ op: 'reciprocal', operands: [t]});
-        	} else {
-        		operands.push(t);
-        	}
+          if (typeof t === 'number') {
+          	operands.push(isMult?t:new Fraction(1,t));
+          } else {
+          	if (!isMult) {
+	        		operands.push({ op: 'reciprocal', operands: [t]});
+          	} else {
+          		operands.push(t);
+          	}
+          }
         }
       });
       if (op === '*') {
@@ -158,16 +161,22 @@ Term
 Factor
   = head:PTerm tail:(_ '^' _ PTerm)* {
       return tail.reduce(function(result, element) {
-		return { op: element[1], operands: [result, element[3]] };
+		    return { op: element[1], operands: [result, element[3]] };
       }, head);
     }
 
 PTerm
   = "(" _ expr:Expression _ ")" { return expr; }
+  / "{" _ expr:Expression _ "}" { return expr; }
   / wholeNumber:(Integer)? _ "\\frac{" _ expr1:Expression _ "}{" _ expr2:Expression _ "}" {
         const fractionObj = { wholeNumber: wholeNumber, op: 'fraction', numerator: expr1, denominator: expr2 };
         return fractionObj;
      }
+  / "\\sqrt" degreePart:("[" degree:Expression "]")? "{" radicand:Expression "}" {
+    console.log(degreePart)
+    const degree = degreePart ? degreePart[1] : 2;
+    return degree === 2 ? { op: 'sqrt', radicand } : { op: 'nthroot', degree, radicand };
+  }
   / p:Prim { return p; }
   
   

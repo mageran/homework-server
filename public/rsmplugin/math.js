@@ -98,3 +98,4 @@ const findFraction = num => {
     }
     return { numerator, denominator };
 }
+

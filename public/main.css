@@ -412,3 +412,35 @@ table.make-a-table td {
 .big-input {
     font-size: 18pt;
 }
+
+table.reverse-lookup-table {
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table.reverse-lookup-table th {
+    border-bottom: 1px solid black;
+}
+
+table.reverse-lookup-table th:first-child,
+table.reverse-lookup-table td:first-child {
+    border-right: 1px solid black;
+    padding-right: 10px;
+}
+
+table.reverse-lookup-table td {
+    border-bottom: 1px dashed grey;
+}
+
+table.reverse-lookup-table tr:last-child td {
+    border-bottom-width: 0;
+}
+
+table.reverse-lookup-table td:first-child {
+    text-align: right;
+}
+
+.trigfunction-range-sketch {
+    width: 200px;
+    margin-left: 50px;
+}

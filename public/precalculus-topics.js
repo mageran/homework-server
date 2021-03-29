@@ -36,13 +36,13 @@ const _polynomial = {
         { name: 'a<sub>2</sub>', value: 0, size: 3 },
         { name: 'a<sub>1</sub>', value: 0, size: 3 },
         { name: 'a<sub>0</sub>', value: 0, size: 3 },
-        { separator : true },
+        { separator: true },
         //{ name: 'divided by (enter a number)', value: '', size: 3 },
     ],
     func: polynomialGraph
 }
 
-const _factorQuadratic ={
+const _factorQuadratic = {
     title: 'Factor quadratic equation',
     description: `Try to factor the quadratic polynomial ax^2 + bx + c.
     You can either enter the coefficients a, b, c as numbers or enter the quadratic term directly.
@@ -61,8 +61,8 @@ const _describeFunctionBasedOnParentFunctions = {
     title: 'Describe function based on parent functions 1/x and 1/x^2',
     description: 'Identify parent function and describes transformations',
     parameters: [
-        { name: 'function', type: 'formula'},
-        { separator: true}
+        { name: 'function', type: 'formula' },
+        { separator: true }
     ],
     func: describeFunctionBasedOnParentFunction
 }
@@ -109,7 +109,7 @@ const _trigFunctions = {
         { name: 'y', value: '' },
         { name: 'r', value: '' },
         { separator: true },
-        { 
+        {
             name: 'missing parameter (x or y) is...',
             type: 'select',
             options: [
@@ -117,7 +117,7 @@ const _trigFunctions = {
                 { label: ' < 0', value: -1 }
             ]
         }
-     ],
+    ],
     func: trigFunctions
 }
 
@@ -170,7 +170,7 @@ const _sinusodialTransformationsFromParameters = {
         { separator: true },
         { name: 'k (vertical shift, midline)', type: 'formula' },
         { separator: true },
-        { name: 'Trig function', type: 'select', options: [{ label: 'sin', value: 0 }, { label: 'cos', value: 1 }]}
+        { name: 'Trig function', type: 'select', options: [{ label: 'sin', value: 0 }, { label: 'cos', value: 1 }] }
     ],
     func: sinusodialTransformationsFromParameters
 }
@@ -227,11 +227,11 @@ const _functionByValue = {
     description: 'Enter values for f and g as list of point like [[1,3],[-2,4],[6,2]]',
     parameters: [
         { name: 'values for f', value: '', noEval: true },
-        { separator : true },
+        { separator: true },
         { name: 'values for g', value: '', noEval: true },
-        { separator : true },
+        { separator: true },
         { name: 'apply on value:', value: 0 },
-        { separator : true },
+        { separator: true },
         {
             name: 'Include inverses',
             type: 'select',
@@ -358,7 +358,47 @@ const _configurableUnitCircle = {
     func: configurableUnitCircle
 }
 
+const _reverseUnitCircleLookup = {
+    title: 'Reverse Unit Circle Value Lookup',
+    description: 'Shows which value of a unit circle trig-function is equal to the given value/formula',
+    parameters: [
+        { name: 'Enter value/expression', type: 'formula', cssClass: 'width700' }
+    ],
+    func: reverseUnitCircleLookup
+}
+
+const _trigInverseTrigOptions = [
+    { label: 'cos', value: 'cos' },
+    { label: 'sin', value: 'sin' },
+    { label: 'tan', value: 'tan' },
+    { label: 'sec', value: 'sec' },
+    { label: 'csc', value: 'csc' },
+    { label: 'cot', value: 'cot' },
+    { label: 'cos-1', value: 'arccos' },
+    { label: 'sin-1', value: 'arcsin' },
+    { label: 'tan-1', value: 'arctan' },
+    { label: 'sec-1', value: 'arcsec' },
+    { label: 'csc-1', value: 'arccsc' },
+    { label: 'cot-1', value: 'arccot' },
+];
+
+const _singleTrigFunctionOnUnitCircleAngle = {
+    title: 'Apply Trig/InvTrig function',
+    description: 'Derive value of (inverse) trig function applied on unit circle angle',
+    parameters: [
+        {
+            name: 'Trig/InvTrig Function',
+            type: 'select',
+            options: _trigInverseTrigOptions
+        },
+        { name: 'Value: (Angle for trig, numeric for inverse trig)', type: 'formula' }
+    ],
+    func: singleTrigFunction
+}
+
 const topicObjects = [
+    _singleTrigFunctionOnUnitCircleAngle,
+    _reverseUnitCircleLookup,
     _inverseTrigonomicFunctions,
     '<b>---------------------</b>',
     _configurableUnitCircle,

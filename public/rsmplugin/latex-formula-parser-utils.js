@@ -2,36 +2,116 @@
  * Functions on latex formula parser structures, see latex-formula-parser.pegjs
  */
 
- const parseLatexFormula = formulaLatex => {
-    console.log(`formula: ${formulaLatex}`);
-    formulaLatex = formulaLatex
-      .replace(/\\ /g, ' ')
-      .replace(/\\left/g,'')
-      .replace(/\\right/g,'');
-    console.log(`formula: ${formulaLatex}`);
-    const ast = latexFormulaParser.parse(formulaLatex, { createFractionObjects: true });
-    console.log(`parsed: ${JSON.stringify(ast, null, 2)}`);
-    return ast;
- }
+const _preprocessLatex = formulaLatex => {
+  return formulaLatex
+    .replace(/\\ /g, ' ')
+    .replace(/\\left/g, '')
+    .replace(/\\right/g, '')
+    .replace(/\\cdot/g, '*')
+    ;
+}
+
+const parseLatexFormula = formulaLatex => {
+  console.log(`formula: ${formulaLatex}`);
+  formulaLatex = _preprocessLatex(formulaLatex);
+  console.log(`formula: ${formulaLatex}`);
+  const ast = latexFormulaParser.parse(formulaLatex, { createFractionObjects: true });
+  console.log(`parsed: ${JSON.stringify(ast, null, 2)}`);
+  return ast;
+}
+
+const evalLatexFormula = formulaLatex => {
+  const ast = parseLatexFormula(formulaLatex);
+  const value = evalAst(ast);
+  return { ast, value };
+}
 
 
- const parseChemicalFormula = formulaLatex => {
+const parseChemicalFormula = formulaLatex => {
   console.log(`formula: ${formulaLatex}`);
   formulaLatex = formulaLatex
-    .replace(/→/g,'=')
+    .replace(/→/g, '=')
     .replace(/\\ /g, ' ')
-    .replace(/\\rightarrow/g,'=')
-    .replace(/\\left/g,'')
-    .replace(/\\right/g,'')
-    .replace(/\\[a-z]+/g,'')
-    .replace(/\{/g,'')
-    .replace(/\}/g,'')
-    .replace(/_/g,'')
-    .replace(/\\\$/g,'')
-    .replace(/$/g,'')
+    .replace(/\\rightarrow/g, '=')
+    .replace(/\\left/g, '')
+    .replace(/\\right/g, '')
+    .replace(/\\[a-z]+/g, '')
+    .replace(/\{/g, '')
+    .replace(/\}/g, '')
+    .replace(/_/g, '')
+    .replace(/\\\$/g, '')
+    .replace(/$/g, '')
     ;
   console.log(`formula: ${formulaLatex}`);
   const ast = chemicalFormulaParser.parse(formulaLatex);
   console.log(`parsed: ${JSON.stringify(ast, null, 2)}`);
   return ast;
+}
+
+const evalAst = ast => {
+  const _e = evalAst;
+  if (ast === "\\pi") {
+    return _d(Math.PI);
+  }
+  if (typeof ast === 'number') {
+    return _d(ast);
+  }
+  if (ast.op === '+') {
+    return ast.operands.reduce((res, operand) => res.add(_e(operand)), _d(0));
+  }
+  if (ast.op === '*') {
+    return ast.operands.reduce((res, operand) => res.mul(_e(operand)), _d(1));
+  }
+  if (ast.op === 'fraction') {
+    let { wholeNumber, numerator, denominator } = ast;
+    let res = _e(numerator).div(_e(denominator));
+    if (typeof wholeNumber === 'number') {
+      res = res.add(_d(wholeNumber));
+    }
+    return res;
+  }
+  if (ast.op === 'sqrt') {
+    return _e(ast.radicand).sqrt();
+  }
+  if (ast.op === 'nthroot') {
+    let dg = _e(ast.degree);
+    let rd = _e(ast.radicand);
+    if (dg === 3) {
+      return rd.cubeRoot();
+    }
+    let exp = _d(1).div(dg);
+    return rd.pow(exp);
+  }
+  if (ast.op === 'uminus') {
+    return _e(ast.operands[0]).negated();
+  }
+  if (ast.isTrigFunction) {
+    let [operand] = ast.operands;
+    let trigFunction = ast.op;
+    let eop = _e(operand);
+    var method;
+    var useReciprocal = false;
+    switch (trigFunction) {
+      case 'sec':
+        useReciprocal = true;
+      case 'cos':
+        method = eop.cos;
+        break;
+      case 'csc':
+        useReciprocal = true;
+      case 'sin':
+        method = eop.sin;
+        break;
+      case 'cot':
+        useReciprocal = true;
+      case 'tan':
+        method = eop.tan;
+        break;
+    }
+    var res = method.call(eop);
+    if (useReciprocal) {
+      res = _d(1).div(res);
+    }
+    return res;
+  }
 }

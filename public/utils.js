@@ -212,6 +212,12 @@ const _htmlElement = (tag, parent, content, cssClass) => {
 
 const _d = x => {
     if (typeof Decimalx !== 'undefined') {
+        if (x instanceof Numeric) {
+            return x.decimalxValue();
+        }
+        if (x instanceof Decimalx) {
+            return x;
+        }
         return new Decimalx(x);
     }
     return new Decimal(x);

@@ -16,7 +16,11 @@ class Angle {
     }
 
     static fromRadians(radians) {
-        return new Angle(radians * 180 / pi);
+        var angle = Angle.reverseLookupRadiansToUnitCircleAngle(radians);
+        if (!angle) {
+            angle = new Angle(radians * 180 / pi);
+        }
+        return angle;
     }
 
     static fromDegree(degree) {
@@ -29,7 +33,7 @@ class Angle {
 
     get asNegativeAngle() {
         if (this.degree <= 0) return this;
-        const k = Math.trunc(this.degree/360) + 1;
+        const k = Math.trunc(this.degree / 360) + 1;
         const ndegree = this.normalize().degree;
         return Angle.fromDegree(ndegree - k * 360);
     }
@@ -61,7 +65,7 @@ class Angle {
         }
         return this.normalize().referenceAngle;
     }
-    
+
     get quadrant() {
         var quadrant, xsign, ysign;
         if (this.degree >= 0 && this.degree <= 90) {
@@ -93,7 +97,7 @@ class Angle {
     getXY() {
         const rangle = this.referenceAngle;
         const { xsign, ysign } = this.quadrant;
-        const tanSign = ysign/xsign;
+        const tanSign = ysign / xsign;
         var xcoord, ycoord, tan, sec, csc, cot;
         if (rangle.degree === 0) {
             xcoord = 1 * xsign;
@@ -149,6 +153,27 @@ class Angle {
         return { cos, sin, tan, sec, csc, cot };
     }
 
+    getTrigFunctionValuesAsDecimals() {
+        const _dx = val => {
+            if (typeof val === 'number') {
+                return _d(val);
+            }
+            if (val instanceof Numeric) {
+                return val.decimalxValue();
+            }
+            return val;
+        }
+        const { cos, sin, tan, sec, csc, cot } = this.getCosSinTan();
+        return {
+            cos: _dx(cos),
+            sin: _dx(sin),
+            tan: _dx(tan),
+            sec: _dx(sec),
+            csc: _dx(csc),
+            cot: _dx(cot)
+        };
+    }
+
     get cos() { return this.getCosSinTan().cos; }
     get sin() { return this.getCosSinTan().sin; }
     get tan() { return this.getCosSinTan().tan; }
@@ -202,16 +227,16 @@ class Angle {
 
     _modulo(deg) {
         if (this.degree < deg) {
-            return { angle: this, k: 0};
+            return { angle: this, k: 0 };
         }
-        var k = Math.trunc(this.degree/deg);
+        var k = Math.trunc(this.degree / deg);
         var d = this.degree % deg;
         if (d === 0) {
             d = deg;
             k--;
         }
         const angle = new Angle(d);
-        return { angle, k};
+        return { angle, k };
 
     }
 
@@ -243,7 +268,7 @@ class Angle {
             return "0";
         }
         const { numerator, denominator } = this.piFactor;
-        const sign = Math.sign(numerator)/Math.sign(denominator);
+        const sign = Math.sign(numerator) / Math.sign(denominator);
         const signSymbol = sign < 0 ? '-' : ''
         if (numerator === 0) {
             return "0";
@@ -259,12 +284,83 @@ class Angle {
         }
     }
 
+    /**
+     * given a decimal checks whether it matches the value of one of the 6 trig functions applied to this angle.
+     * @param {*} decimalValue 
+     * @returns [trigFunction] list of trigFunctions which results in the given value for this angle
+     */
+    reverseLookupTrigFunctions(decimalValue, precision = 5) {
+        const { cos, sin, tan, sec, csc, cot } = this.getTrigFunctionValuesAsDecimals();
+        const trigValues = [cos, sin, tan, sec, csc, cot];
+        const trigNames = ['cos', 'sin', 'tan', 'sec', 'csc', 'cot'];
+        const valx = _d(decimalValue).toPrecision(precision);
+        const trigFunctions = [];
+        for (let i = 0; i < trigValues.length; i++) {
+            let tval = trigValues[i];
+            if (tval instanceof Decimalx) {
+                if (tval.toPrecision(precision) == valx) {
+                    trigFunctions.push(trigNames[i]);
+                }
+            }
+        }
+        return trigFunctions;
+    }
+
+    /**
+     * checks for the angles of the unit circle (0, 30, 45, 60, 90, ...) the trig-function
+     * values and returns all those that match the given decimal value to the result list
+     * @param {*} decimalValue 
+     * @param {*} precision 
+     * @returns [{ trigFunction:('cos'|'sin'|...), angle:{Angle} }]
+     */
+    static reverseLookupTrigFunctions(decimalValue, addNegativeAngles = false, precision = 5) {
+        const res = {};
+        for (let angle of unitCircleAngles()) {
+            let trigFunctions = angle.reverseLookupTrigFunctions(decimalValue, precision);
+            trigFunctions.forEach(trigFunction => {
+                if (!res[trigFunction]) {
+                    res[trigFunction] = [];
+                }
+                res[trigFunction].push(angle);
+                if (addNegativeAngles) {
+                    res[trigFunction].push(angle.asNegativeAngle);
+                }
+            });
+        }
+        return res;
+    }
+
+    static reverseLookupRadiansToUnitCircleAngle = (radians, precision = 10) => {
+        const radiansGiven = _d(radians).toPrecision(precision);
+        for (let k = -5; k <= 5; k++) {
+            for (let angle of unitCircleAngles(k)) {
+                let radx = angle.radiansDecimal.toPrecision(precision);
+                if (radx === radiansGiven) {
+                    return angle;
+                }
+            }
+        }
+        return null;
+    }
+
+}
+
+function* unitCircleAngles(k = 0) {
+    const qangles = [0, 30, 45, 60];
+    for (let quadrant = 0; quadrant <= 4; quadrant++) {
+        for (let i = 0; i < qangles.length; i++) {
+            let d = qangles[i];
+            let degree = quadrant * 90 + d;
+            let angle = Angle.fromDegree(degree + k * 360);
+            yield angle;
+        }
+    }
 }
 
 const pi = Math.PI;
 
 class CircleSector {
-    
+
     constructor() {
 
     }
@@ -297,14 +393,14 @@ class CircleSector {
         const obj = new CircleSector()
         obj.S = S;
         obj.r = r;
-        obj.theta = Angle.fromRadians(S/r);
+        obj.theta = Angle.fromRadians(S / r);
         return obj;
     }
 
 }
 
 class CircleArea {
-    
+
     constructor() {
 
     }
@@ -314,7 +410,7 @@ class CircleArea {
             const obj = new CircleArea()
             obj.theta = theta;
             obj.r = r
-            obj.A = theta.radians * Math.pow(r,2) * 0.5;
+            obj.A = theta.radians * Math.pow(r, 2) * 0.5;
             return obj;
         } else {
             throw "angle must be an Angle object"
@@ -326,7 +422,7 @@ class CircleArea {
             const obj = new CircleArea()
             obj.theta = theta;
             obj.A = A;
-            obj.r = Math.sqrt((A * 2)/theta.radians);
+            obj.r = Math.sqrt((A * 2) / theta.radians);
             return obj;
         } else {
             throw "angle must be an Angle object"
@@ -337,7 +433,7 @@ class CircleArea {
         const obj = new CircleArea()
         obj.A = A;
         obj.r = r;
-        obj.theta = Angle.fromRadians((A*2)/Math.pow(r,2));
+        obj.theta = Angle.fromRadians((A * 2) / Math.pow(r, 2));
         return obj;
     }
 

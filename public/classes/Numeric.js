@@ -8,11 +8,23 @@ class Numeric {
     }
 
     decimalValue() {
+        if (this.decimalxValue()) {
+            return this.decimalxValue().toNumber();
+        }
+    }
+
+    decimalxValue() {
+        return _d(0);
     }
 
     simplify() {
         return this;
     }
+
+    inverse() {
+        return fraction(1, this);
+    }
+
 
     negate() {
         return this.multiply(-1);
@@ -50,8 +62,12 @@ class Decimal extends Numeric {
         this.number = number;
     }
 
+    decimalxValue() {
+        return _d(this.number);
+    }
+
     decimalValue() {
-        return this.number;
+        return this.decimalxValue().toNumber();
     }
 
     multiply(factor) {
@@ -85,7 +101,7 @@ class Variable extends Numeric {
         this.identifier = identifier;
     }
 
-    decimalValue() {
+    decimalxValue() {
         throw `decimal value for identifier ${this.identifier} not set`;
     }
 
@@ -108,8 +124,8 @@ class Constant extends Variable {
         this.value = value;
     }
 
-    decimalValue() {
-        return this.value;
+    decimalxValue() {
+        return _d(this.value);
     }
 
     toString() {
@@ -142,8 +158,8 @@ class Sum extends Numeric {
         this.operands.push(...operands);
     }
 
-    decimalValue() {
-        return this.operands.map(operand => operand.decimalValue()).reduce((aggr, v) => aggr + v, 0);
+    decimalxValue() {
+        return this.operands.map(operand => operand.decimalxValue()).reduce((aggr, v) => aggr.add(v), _d(0));
     }
 
     _summarizeDecimals() {
@@ -198,11 +214,11 @@ class Product extends Numeric {
         this.operands.push(...operands);
     }
 
-    decimalValue() {
+    decimalxValue() {
         if (this.operands.length === 0) {
             throw `product with no operands`;
         }
-        return this.operands.map(operand => operand.decimalValue()).reduce((aggr, v) => aggr * v, 1);
+        return this.operands.map(operand => operand.decimalxValue()).reduce((aggr, v) => aggr.mul(v), _d(1));
     }
 
     _summarizeDecimals() {
@@ -263,17 +279,21 @@ class NthRoot extends Numeric {
         return new NthRoot(this.radicand, this.exponent, this.factor);
     }
 
-    decimalValue() {
+    decimalxValue() {
         var value;
-        if (exponent === 2) {
-            value = Math.sqrt(radicand);
-        } else if (exponent === 0) {
-            value = 1;
+        if (this.exponent === 2) {
+            value = _d(this.radicand).sqrt();
+        } else if (this.exponent === 1) {
+            value = _d(this.radicand);
+        } else if (this.exponent === 0) {
+            value = _d(1);
         } else {
-            value = Math.pow(radicand, 1 / exponent);
+            let exp = _d(1).div(_d(this.exponent));
+            value = _d(this.radicand).pow(exp);
+            //value = Math.pow(radicand, 1 / exponent);
         }
-        value *= this.factor;
-        return value;
+        //value *= this.factor;
+        return value.mul(_d(this.factor));
     }
 
     simplify() {
@@ -362,6 +382,15 @@ class Fraction2 extends Numeric {
         }
     }
 
+    decimalxValue() {
+        const { numerator, denominator } = this;
+        return _d(numerator).div(_d(denominator));
+    }
+
+    inverse() {
+        return fraction(this.denominator, this.numerator);
+    }
+
     expand(factor) {
         if (this.fractionObject) {
             return;
@@ -376,6 +405,7 @@ class Fraction2 extends Numeric {
     }
 
     simplify() {
+        this.hasBeenSimplified = false;
         if (this.fractionObject) {
             return this;
         }
@@ -385,14 +415,17 @@ class Fraction2 extends Numeric {
             const { radicand, factor } = this.denominator;
             this.numerator = sqrt(radicand, multiplyNumeric(this.numerator, Math.sign(factor)));
             this.denominator = Math.abs(factor) * radicand;
+            this.hasBeenSimplified = true;
         }
         if ((this.denominator instanceof SquareRoot) && (this.numerator instanceof SquareRoot)) {
             console.log(`numerator and denominator are square roots`);
             const { radicand, factor } = this.denominator;
             this.numerator = sqrt(radicand * this.numerator.radicand, multiplyNumeric(this.numerator.factor, Math.sign(factor)));
             this.denominator = Math.abs(factor) * radicand;
+            this.hasBeenSimplified = true;
         }
         if (typeof this.denominator === 'number' && Math.abs(this.denominator) === 1) {
+            this.hasBeenSimplified = true;
             if (Math.sign(this.denominator) < 0) {
                 return multiplyNumeric(this.numerator, -1);
             } else {
