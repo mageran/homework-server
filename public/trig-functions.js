@@ -1,4 +1,4 @@
-function trigFunctions(x0, y0, r0, signOfMissing) {
+function trigFunctions(x0, y0, r0, signOfMissing, addTrigFunctionValues = true) {
     const outputElem = this;
     //const signOfMissing = 1;
     //outputElem.innerHTML = `x=${x}, y=${y}, r=${r}`;
@@ -11,12 +11,14 @@ function trigFunctions(x0, y0, r0, signOfMissing) {
             const cstr = noChange ? '' : ` = ${l2}`;
             addLatexElement(outputElem, `${fname}\\theta = ${formulaLatex} = ${l1}${cstr}`);
         }
-        _addTrig('cos', '\\frac{x}{r}', fraction(x, r));
-        _addTrig('sec', '\\frac{r}{x}', fraction(r, x));
-        _addTrig('sin', '\\frac{y}{r}', fraction(y, r));
-        _addTrig('csc', '\\frac{r}{y}', fraction(r, y));
-        _addTrig('tan', '\\frac{y}{x}', fraction(y, x));
-        _addTrig('cot', '\\frac{x}{y}', fraction(x, y));
+        if (addTrigFunctionValues) {
+            _addTrig('cos', '\\frac{x}{r}', fraction(x, r));
+            _addTrig('sec', '\\frac{r}{x}', fraction(r, x));
+            _addTrig('sin', '\\frac{y}{r}', fraction(y, r));
+            _addTrig('csc', '\\frac{r}{y}', fraction(r, y));
+            _addTrig('tan', '\\frac{y}{x}', fraction(y, x));
+            _addTrig('cot', '\\frac{x}{y}', fraction(x, y));
+        }
     } catch (e) {
         _addErrorElement(outputElem, e);
     }
@@ -66,7 +68,7 @@ const _mayUsePythagoras = (outputElem, signOfMissing, ...params) => {
         const y2 = powerNumeric(y, 2);
         const r2 = powerNumeric(r, 2);
         addLatexElement(outputElem, `x^2 + ${y2} = ${r2}`);
-        const rhs = r2 - y2;
+        const rhs = ensureNumeric(r2).decimalValue() - ensureNumeric(y2).decimalValue();
         addLatexElement(outputElem, `x^2 = ${rhs}`);
         const sq = sqrt(rhs, signOfMissing).simplify();
         addLatexElement(outputElem, `x = ${numericToLatex(sq)}`);
@@ -77,7 +79,7 @@ const _mayUsePythagoras = (outputElem, signOfMissing, ...params) => {
         const x2 = powerNumeric(x, 2);
         const r2 = powerNumeric(r, 2);
         addLatexElement(outputElem, `${numericToLatex(x2)} + y^2 = ${numericToLatex(r2)}`);
-        const rhs = r2 - x2;
+        const rhs = ensureNumeric(r2).decimalValue() -  ensureNumeric(x2).decimalValue();
         addLatexElement(outputElem, `y^2 = ${numericToLatex(rhs)}`);
         const sq = sqrt(rhs, signOfMissing).simplify();
         addLatexElement(outputElem, `y = ${numericToLatex(sq)}`);
@@ -88,7 +90,7 @@ const _mayUsePythagoras = (outputElem, signOfMissing, ...params) => {
         const x2 = powerNumeric(x, 2);
         const y2 = powerNumeric(y, 2);
         addLatexElement(outputElem, `${numericToLatex(x2)} + ${numericToLatex(y2)} = r^2`);
-        const rhs = x2 + y2;
+        const rhs = ensureNumeric(x2).decimalValue() + ensureNumeric(y2).decimalValue();
         addLatexElement(outputElem, `r^2 = ${numericToLatex(rhs)}`);
         const sq = sqrt(rhs).simplify();
         addLatexElement(outputElem, `r = ${numericToLatex(sq)}`);

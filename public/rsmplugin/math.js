@@ -88,14 +88,35 @@ const precision = (num, p = 2) => {
 const findFraction = num => {
     var numerator = num;
     var denominator = 1;
+    var isRealFraction = false;
     for(let i = 1; i < 1000; i++) {
         let p = num * i;
         if (Math.trunc(p) === p) {
             numerator = p;
             denominator = i;
+            isRealFraction = true;
             break;
         }
     }
-    return { numerator, denominator };
+    return { numerator, denominator, isRealFraction };
+}
+
+const findFractionWithSquareRoot = num => {
+    var numx = _d(num);
+    var numeratorRadicand = numx.pow(_d(2));
+    var denominator = _d(1);
+    var isRealFraction = false;
+    for(let i = 1; i < 1000; i++) {
+        let p = numx.mul(_d(i));
+        let pSquare = _d(p.pow(2).toPrecision(10));
+        console.log(`pSquare: ${pSquare}`);
+        if (pSquare.eq(pSquare.trunc())) {
+            numeratorRadicand = pSquare.toNumber();
+            denominator = i;
+            isRealFraction = true;
+            break;
+        }
+    }
+    return { numeratorRadicand, denominator, isRealFraction };
 }
 

@@ -206,10 +206,12 @@ const _checkTrigFunctionDomain = (trigFunction, value, forInverse = false) => {
     return { result, latex };
 }
 
+const NotOnUnitCircleErrorPrefix = '[NotOnUnitCircle]';
+
 const _createOnlyUnitCircleAngle = radians => {
     const angle = Angle.reverseLookupRadiansToUnitCircleAngle(radians);
     if (!angle) {
-        throw `[NotOnUnitCircle] ${radians} is not supported; it doesn\'t correspond to a unit circle angle`;
+        throw `${NotOnUnitCircleErrorPrefix} ${radians} is not supported; it doesn\'t correspond to a unit circle angle`;
     }
     return angle;
 }
@@ -230,7 +232,7 @@ const _createOnlyAngleInRangeOfTrigFunction = (invTrigFunction, value, numericOu
             }
         }
     }
-    throw `[NotOnUnitCircle] ${value} is not supported for ${invTrigFunction}: it doesn't map to a unit circle angle`;
+    throw `${NotOnUnitCircleErrorPrefix} ${value} is not supported for ${invTrigFunction}: it doesn't map to a unit circle angle`;
 }
 
 const _trigInvTrigToLatex = trigFunction => {
@@ -281,10 +283,12 @@ const _getInverseTrigFunction = trigFunction => {
     throw `internal error: no such trigFunction ${trigFunction}`;
 }
 
-const _convertAngleToBeInRangeOfInverse = (trigFunction, angle) => {
-    if (trigFunction.indexOf('arc') === 0) {
-        return null;
-    }
+const _isRegularTrigFunction = trigFunction => {
+    return ['cos', 'sin', 'tan', 'sec', 'csc', 'cot'].includes(trigFunction);
+}
+
+const _isInverseTrigFunction = trigFunction => {
+    return ['arccos', 'arcsin', 'arctan', 'arcsec', 'arccsc', 'arccot'].includes(trigFunction);
 }
 
 const _deriveTrigFunctionValue = (trigFunction, value, ensureAngleInRangeOfInverse = true) => {
@@ -395,15 +399,9 @@ const _addInverseTrigFunctionRangeSketch = (o, trigFunction) => {
     }
 }
 
-const _singleTrigFunctionInternal = (o, trigFunction, latexValue, options = {}) => {
-    const {
-        throwErrorOnDomainCheckFail,
-        includeRangeSketch,
-        continueWithResult
-    } = options;
-    const { value } = evalLatexFormula(latexValue);
-    //console.log(value);
-    const entries = _deriveTrigFunctionValue(trigFunction, value);
+
+const _addDomainCheck = (o, trigFunction, value, entries = [], options) => {
+    const { includeRangeSketch } = options;
     const domainCheckInfo = _checkTrigFunctionDomain(trigFunction, value);
     const dcdiv = _htmlElement('div', o);
     const dcdiv1 = _htmlElement('div', dcdiv);
@@ -431,6 +429,48 @@ const _singleTrigFunctionInternal = (o, trigFunction, latexValue, options = {}) 
     }
     dcdiv1.style.color = domainCheckInfo.result ? 'green' : 'red';
     addLatexElement(dcdiv1, domainCheckInfo.latex, 'Domain check:');
+    return domainCheckInfo;
+}
+
+const _singleTrigFunctionInternal = (o, trigFunction, latexValue, options = {}) => {
+    const {
+        throwErrorOnDomainCheckFail,
+        includeRangeSketch,
+        continueWithResult
+    } = options;
+    const { value } = evalLatexFormula(latexValue);
+    //console.log(value);
+    const entries = _deriveTrigFunctionValue(trigFunction, value);
+    const domainCheckInfo = _addDomainCheck(o, trigFunction, value, entries, options);
+    /*
+    const domainCheckInfo = _checkTrigFunctionDomain(trigFunction, value);
+    const dcdiv = _htmlElement('div', o);
+    const dcdiv1 = _htmlElement('div', dcdiv);
+    if (includeRangeSketch) {
+        dcdiv1.style.display = "inline-block";
+        dcdiv1.style.verticalAlign = "top";
+        const dcdiv2 = _htmlElement('div', dcdiv);
+        dcdiv2.style.display = "inline-block";
+        dcdiv2.style.marginLeft = "50px";
+        dcdiv2.style.verticalAlign = "top";
+        _addInverseTrigFunctionRangeSketch(dcdiv2, trigFunction);
+        if (entries.length > 0) {
+            const lastEntry = entries[entries.length - 1];
+            const resultAngle = lastEntry.angle;
+            if (resultAngle instanceof Angle) {
+                console.log(`result angle: ${resultAngle.degree}`);
+                const angleHtml = new AngleHtml(resultAngle);
+                const dcdiv3 = _htmlElement('div', dcdiv);
+                dcdiv3.style.display = "inline-block";
+                dcdiv3.style.marginLeft = "50px";
+                dcdiv3.style.verticalAlign = "top";
+                angleHtml.addCanvas(dcdiv3);
+            }
+        }
+    }
+    dcdiv1.style.color = domainCheckInfo.result ? 'green' : 'red';
+    addLatexElement(dcdiv1, domainCheckInfo.latex, 'Domain check:');
+    */
     if (domainCheckInfo.result) {
         const latexEntries = _deriveStepsToLatex(entries);
         const resultEntry = latexEntries[latexEntries.length - 1];
@@ -466,18 +506,145 @@ const _singleTrigFunctionInternal = (o, trigFunction, latexValue, options = {}) 
     }
 }
 
+const _getFractionMaybeUsingLatex = (value, latexValue) => {
+    const { numerator, denominator, isRealFraction } = findFraction(_d(value).toNumber());
+    if (isRealFraction) {
+
+    }
+}
+
+const _getXYRLatexForTrigFunction = trigFunction => {
+    switch(trigFunction) {
+        case 'cos': return '\\frac{x}{r}';
+        case 'sin': return '\\frac{y}{r}';
+        case 'tan': return '\\frac{y}{x}';
+        case 'sec': return '\\frac{r}{x}';
+        case 'csc': return '\\frac{r}{y}';
+        case 'cot': return '\\frac{x}{y}';
+    }
+}
+
+const _getXYRNumericObjects = (trigFunction, value) => {
+    var fractionObject = Numeric.createFromValue(value, true);
+    if (trigFunction === 'cot') {
+        fractionObject = fractionObject.flipSign();
+    }
+    const { numerator, denominator } = fractionObject;
+    var x, y, r;
+    if (trigFunction === 'cos') {
+        x = numerator, r = denominator;
+    }
+    if (trigFunction === 'sin') {
+        y = numerator, r = denominator;
+    }
+    if (trigFunction === 'tan') {
+        y = numerator, x = denominator;
+    }
+    if (trigFunction === 'sec') {
+        r = numerator, x = denominator;
+    }
+    if (trigFunction === 'csc') {
+        r = numerator, y = denominator;
+    }
+    if (trigFunction === 'cot') {
+        x = numerator, y = denominator;
+    }
+    return { x, y, r };
+}
+
+const _getXYRLatexForTrigFunctionWithValues = (trigFunction, xnumeric, ynumeric, rnumeric) => {
+    const x = ensureNumeric(xnumeric).toLatex();
+    const y = ensureNumeric(ynumeric).toLatex();
+    const r = ensureNumeric(rnumeric).toLatex();
+    switch(trigFunction) {
+        case 'cos': return `\\frac{${x}}{${r}}`;
+        case 'sin': return `\\frac{${y}}{${r}}`;
+        case 'tan': return `\\frac{${y}}{${x}}`;
+        case 'sec': return `\\frac{${r}}{${x}}`;
+        case 'csc': return `\\frac{${r}}{${y}}`;
+        case 'cot': return `\\frac{${x}}{${y}}`;
+    }
+}
+
+const _getTrigFunctionValueFromXYR = (trigFunction, x0, y0, r0) => {
+    const x = _d(x0);
+    const y = _d(y0);
+    const r = _d(r0);
+    switch(trigFunction) {
+        case 'cos': return x.div(r);
+        case 'sin': return y.div(r);
+        case 'tan': return y.div(x);
+        case 'sec': return r.div(x);
+        case 'csc': return r.div(y);
+        case 'cot': return x.div(y);
+    }
+}
+
+const _solveTrigInvTrig = (o, trigFunction2, trigFunction, latexValue) => {
+    const { value } = evalLatexFormula(latexValue);
+    const domainCheckInfo = _addDomainCheck(o, trigFunction, value, [], { includeRangeSketch: true });
+    const trigLatex = _trigInvTrigToLatex(trigFunction);
+    const trig2Latex = _trigInvTrigToLatex(trigFunction2);
+    if (!domainCheckInfo.result) {
+        _htmlElement('div', o, 'domain check failed, formula is undefined');
+        return;
+    }
+    if (trigFunction2 === _getInverseTrigFunction(trigFunction)) {
+        addLatexElement(o, `${trig2Latex} and ${trigLatex}\\text{&nbsp;cancel out:}`);
+        let latex = `${trig2Latex}\\left(${trigLatex}\\left(${latexValue}\\right)\\right) = ${latexValue}`;
+        addLatexElement(o, latex);
+        return;
+    }
+    // reverse the inner formula:
+    const invTrigFunction = _getInverseTrigFunction(trigFunction);
+    const invTrigLatex = _trigInvTrigToLatex(invTrigFunction);
+    var latex = `${trigLatex}\\left(${latexValue}\\right) = \\theta \\text{&nbsp;}\\Rightarrow\\text{&nbsp;}${invTrigLatex}\\theta = ${latexValue}`;
+    latex += `= ${_getXYRLatexForTrigFunction(invTrigFunction)}`;
+    addLatexElement(o, latex);
+    const { x, y, r } = _getXYRNumericObjects(invTrigFunction, value);
+    console.log('in:');
+    console.log(`x = ${x ? x.toString() : '?'}`);
+    console.log(`y = ${y ? y.toString() : '?'}`);
+    console.log(`r = ${r ? r.toString() : '?'}`);
+    const signOfMissing = 1;
+    const [x0, y0, r0] = _mayUsePythagoras(o, signOfMissing, x, y, r);
+    console.log('out:');
+    console.log(`x = ${x0 ? x0.toString() : '?'}`);
+    console.log(`y = ${y0 ? y0.toString() : '?'}`);
+    console.log(`r = ${r0 ? r0.toString() : '?'}`);
+    const resultValue = _getTrigFunctionValueFromXYR(trigFunction2, x0, y0, r0);
+    console.log(`result = ${resultValue}`);
+    const resultNumeric = Numeric.createFromValue(resultValue);
+    latex = `${trig2Latex}\\theta = ${_getXYRLatexForTrigFunction(trigFunction2)}`;
+    latex += ` = ${_getXYRLatexForTrigFunctionWithValues(trigFunction2, x0, y0, r0)}`;
+    latex += ` = ${resultNumeric.toLatex()}`;
+    addLatexElement(o, latex);
+}
+
 function singleTrigFunction(trigFunction2, trigFunction, latexValue) {
     const o = this;
     o.style.fontSize = '18pt';
     try {
+        // flag whether this is a sin(cos-1(x)) etc pattern:
+        const trigInvTrigPattern = _isInverseTrigFunction(trigFunction) && _isRegularTrigFunction(trigFunction2);
         const includeRangeSketch = true;
         const continueWithResult = false;
-        const { latexEntries } = _singleTrigFunctionInternal(o, trigFunction, latexValue, { includeRangeSketch, continueWithResult });
-        if (typeof trigFunction2 === 'string') {
-            const resultEntry = latexEntries[latexEntries.length - 1];
-            console.log(`resultEntry: ${resultEntry}`);
-            _htmlElement('div', o, "Applying outer function:");
-            _singleTrigFunctionInternal(o, trigFunction2, resultEntry, { includeRangeSketch });
+        try {
+            const { latexEntries } = _singleTrigFunctionInternal(o, trigFunction, latexValue, { includeRangeSketch, continueWithResult });
+            if (typeof trigFunction2 === 'string') {
+                const resultEntry = latexEntries[latexEntries.length - 1];
+                console.log(`resultEntry: ${resultEntry}`);
+                _htmlElement('div', o, "Applying outer function:");
+                _singleTrigFunctionInternal(o, trigFunction2, resultEntry, { includeRangeSketch });
+            }
+        } catch (err) {
+            if (trigInvTrigPattern && (String(err).indexOf(NotOnUnitCircleErrorPrefix) === 0)) {
+                console.log(`trying to solve using x, y, r...`);
+                addLatexElement(o, `${latexValue} \\text{&nbsp;is not on the unit circle}`);
+                _solveTrigInvTrig(o, trigFunction2, trigFunction, latexValue);
+            } else {
+                throw err;
+            }
         }
     } catch (err) {
         _addErrorElement(o, err);

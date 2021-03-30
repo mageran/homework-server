@@ -54,6 +54,85 @@ class Numeric {
     clone() {
         return new Numeric();
     }
+
+    static get precision() {
+        return 10;
+    }
+
+    static _p(value) {
+        return _d(_d(value).toPrecision(Numeric.precision));
+    }
+
+    static findFraction(num) {
+        var numerator = num;
+        var denominator = 1;
+        var isRealFraction = false;
+        for(let i = 1; i < 1000; i++) {
+            let p = num * i;
+            if (Math.trunc(p) === p) {
+                numerator = p;
+                denominator = i;
+                isRealFraction = true;
+                break;
+            }
+        }
+        return { numerator, denominator, isRealFraction };
+    }
+
+    static findFractionWithSquareRoot(num) {
+        var numx = _d(num);
+        var sign = Math.sign(num);
+        var numeratorRadicand = numx.pow(_d(2));
+        var denominator = _d(1);
+        var isRealFraction = false;
+        for(let i = 1; i < 1000; i++) {
+            let p = numx.mul(_d(i));
+            let pSquare = _d(p.pow(2).toPrecision(Numeric.precision));
+            if (pSquare.eq(pSquare.trunc())) {
+                numeratorRadicand = pSquare.toNumber();
+                denominator = i;
+                isRealFraction = true;
+                break;
+            }
+        }
+        return { sign, numeratorRadicand, denominator, isRealFraction };
+    }
+
+    static createFromValue(value, forceFraction = false) {
+        if (value instanceof Numeric) {
+            return value;
+        }
+        const precision = Numeric.precision;
+        const retValue = val => {
+            if (forceFraction && !(val instanceof Fraction2)) {
+                return fraction(val, 1);
+            } else {
+                return val;
+            }
+        }
+        const valx = Numeric._p(value);
+        if (valx.eq(Math.trunc(valx))) {
+            return retValue(new Decimal(valx));
+        }
+        {
+            let { numerator, denominator, isRealFraction } = Numeric.findFraction(valx);
+            if (isRealFraction) {
+                return retValue(fraction(numerator, denominator));
+            }
+        }
+        {
+            let { numeratorRadicand, denominator, sign, isRealFraction } = Numeric.findFractionWithSquareRoot(valx);
+            if (isRealFraction) {
+                let numerator = sqrt(numeratorRadicand, sign);
+                if (denominator == 1) {
+                    return retValue(numerator);
+                }
+                return retValue(fraction(numerator, denominator).simplify());
+            }
+        }
+        return retValue(new Decimal(value));
+    }
+
 }
 
 class Decimal extends Numeric {
@@ -83,7 +162,7 @@ class Decimal extends Numeric {
     power(exponent) {
         const res = this.clone();
         res.number = Math.pow(res.number, exponent);
-        return this;
+        return res;
     }
 
     toString() {
@@ -361,6 +440,18 @@ class NthRoot extends Numeric {
         return s;
     }
 
+    static findNthRoot(value, n) {
+        const xvalue = _d(value);
+        const num = xvalue.pow(n).toNumber();
+        if (Math.trunc(num) === num) {
+            if (n === 2) {
+                return new SquareRoot(num);
+            }
+            return new NthRoot(num, n);
+        }
+        return null;
+    }
+
     toLatex() {
         return this.toString(true);
     }
@@ -374,6 +465,11 @@ class SquareRoot extends NthRoot {
     clone() {
         return new SquareRoot(this.radicand, this.factor, this.plusMinus);
     }
+
+    static findSquareRoot(value, precision = 10) {
+        return NthRoot.findNthRoot(value, 2);
+    }
+
 }
 
 class Fraction2 extends Numeric {
@@ -408,6 +504,37 @@ class Fraction2 extends Numeric {
 
     }
 
+    flipSign() {
+        const { numerator, denominator } = this;
+        if (this.decimalValue() < 0) {
+            if (typeof numerator === 'number') {
+                this.numerator = Math.abs(numerator);
+            }
+            else if (numerator instanceof NthRoot) {
+                this.numerator = numerator.clone();
+                this.numerator.factor = Math.abs(this.numerator.factor);
+            }
+            if (typeof denominator === 'number') {
+                this.denominator = -Math.abs(denominator);
+            }
+            else if (denominator instanceof NthRoot) {
+                this.denominator = denominator.clone();
+                this.denominator.factor = -Math.abs(this.denominator.factor);
+            }
+        }
+        return this;
+    }
+
+    _simplifyFactors() {
+        if ((typeof this.denominator === 'number') && (this.numerator instanceof NthRoot)) {
+            let numeratorFactor = this.numerator.factor;
+            let fraction = new Fraction(numeratorFactor, this.denominator);
+            this.denominator = fraction.denominator;
+            this.numerator = this.numerator.clone();
+            this.numerator.factor = fraction.numerator;
+        }
+    }
+
     simplify() {
         this.hasBeenSimplified = false;
         if (this.fractionObject) {
@@ -428,6 +555,7 @@ class Fraction2 extends Numeric {
             this.denominator = Math.abs(factor) * radicand;
             this.hasBeenSimplified = true;
         }
+        this._simplifyFactors();
         if (typeof this.denominator === 'number' && Math.abs(this.denominator) === 1) {
             this.hasBeenSimplified = true;
             if (Math.sign(this.denominator) < 0) {
@@ -479,10 +607,10 @@ class Fraction2 extends Numeric {
         return `\\frac{${numericToLatex(this.numerator)}}{${numericToLatex(this.denominator)}}`;
     }
 
-
     clone() {
         return new Fraction2(this.numerator, this.denominator);
     }
+
 }
 
 // -----------------------------------------------------------------------------------------
