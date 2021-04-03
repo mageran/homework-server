@@ -1,13 +1,52 @@
 function unitConversion(value, fromUnit, fromUnitExponent, fromQuotientUnit, fromQuotientExponent, toUnit, toUnitExponent, toQuotientUnit, toQuotientExponent) {
     const outputElem = this;
-    assert(fromUnitExponent === toUnitExponent, "exponents don't match");
-    const convInfo = convertUnit(fromUnit, toUnit, value, fromUnitExponent);
-    const convInfoQuotient = fromQuotientUnit ? convertUnit(fromQuotientUnit, toQuotientUnit, 1, fromQuotientExponent) : null;
-    convInfo.exponent = fromUnitExponent;
-    if (convInfoQuotient) {
-        convInfoQuotient.exponent = fromQuotientExponent;
+    var convInfo0 = null;
+    var newFromUnit = fromUnit;
+    var newFromUnitExponent = fromUnitExponent;
+    var newFromQuotientUnit = fromQuotientUnit;
+    var newFromQuotientExponent = fromQuotientExponent;
+    var newValue = value;
+    var steps0 = [];
+
+    var convInfo1 = null;
+    var newToUnit = toUnit;
+    var newToUnitExponent = toUnitExponent;
+    var newToQuotientUnit = toQuotientUnit;
+    var newToQuotientExponent = toQuotientExponent; 
+    var convertLbin2ToResultUnit = false;
+    if (_specialCasePressure(fromUnit, fromUnitExponent, fromQuotientUnit, fromQuotientExponent, toUnit, toUnitExponent, toQuotientUnit, toQuotientExponent)) {
+        convInfo0 = convertUnit(fromUnit, 'lbin2', value, fromUnitExponent);
+        convInfo0.exponent = 1;
+        console.log(convInfo0);
+        newFromUnit = 'lb';
+        newFromUnitExponent = 1;
+        newFromQuotientUnit = 'in';
+        newFromQuotientExponent = 2;
+        newValue = convInfo0.result;
     }
-    _addConversionTable(outputElem, convInfo, convInfoQuotient);
+    else if (_specialCasePressure(toUnit, toUnitExponent, toQuotientUnit, toQuotientExponent, fromUnit, fromUnitExponent, fromQuotientUnit, fromQuotientExponent)) {
+        newToUnit = 'lb';
+        newToUnitExponent = 1;
+        newToQuotientUnit = 'in';
+        newToQuotientExponent = 2;
+        convertLbin2ToResultUnit = true;
+    }
+    assert(newFromUnitExponent === newToUnitExponent, "exponents don't match");
+    const convInfo = convertUnit(newFromUnit, newToUnit, newValue, newFromUnitExponent);
+    const convInfoQuotient = newFromQuotientUnit ? convertUnit(newFromQuotientUnit, newToQuotientUnit, 1, newFromQuotientExponent) : null;
+    convInfo.exponent = newFromUnitExponent;
+    if (convInfoQuotient) {
+        convInfoQuotient.exponent = newFromQuotientExponent;
+    }
+    if (convertLbin2ToResultUnit) {
+        // special case: toUnit is a pressure, fromUnit: weight/length2
+        // the conversion is already done into lb/in2
+        // the conversion from lbin2 to the final toUnit needs to be added:
+        convInfo1 = convertUnit('lbin2', toUnit, convInfo.result, 1);
+    }
+    var totalConvInfo = convInfo0 ? concatConvInfo(convInfo0, convInfo) : convInfo;
+    totalConvInfo = convInfo1 ? concatConvInfo(totalConvInfo, convInfo1) : totalConvInfo;
+    _addConversionTable(outputElem, totalConvInfo, convInfoQuotient);
 }
 
 const P = 5;
@@ -49,11 +88,11 @@ const _addConversionTable = (outputElem, convInfo, convInfoQuotient) => {
         td1 = document.createElement('td');
         td2 = document.createElement('td');
         if (exponent === 1) {
-            addLatexElement(td1, `1 ${toUnit}`);
-            addLatexElement(td2, `${quotient.toPrecision(P)} ${fromUnit}`);
+            addLatexElement(td1, `1 \\text{${toUnit}}`);
+            addLatexElement(td2, `${quotient.toPrecision(P)} \\text{${fromUnit}}`);
         } else {
-            addLatexElement(td1, `(1 ${toUnit})^${exponent}`);
-            addLatexElement(td2, `(${quotient.toPrecision(P)} ${fromUnit})^${exponent}`);
+            addLatexElement(td1, `(1 \\text{${toUnit}})^${exponent}`);
+            addLatexElement(td2, `(${quotient.toPrecision(P)} \\text{${fromUnit}})^${exponent}`);
         }
         tr1.appendChild(td1);
         tr2.appendChild(td2);
@@ -66,11 +105,11 @@ const _addConversionTable = (outputElem, convInfo, convInfoQuotient) => {
             td1 = document.createElement('td');
             td2 = document.createElement('td');
             if (exponent === 1) {
-                addLatexElement(td1, `1 ${toUnit}`);
-                addLatexElement(td2, `${quotient.toPrecision(P)} ${fromUnit}`);
+                addLatexElement(td1, `1 \\text{${toUnit}}`);
+                addLatexElement(td2, `${quotient.toPrecision(P)} \\text{${fromUnit}}`);
             } else {
-                addLatexElement(td1, `(1 ${toUnit})^${exponent}`);
-                addLatexElement(td2, `(${quotient.toPrecision(P)} ${fromUnit})^${exponent}`);
+                addLatexElement(td1, `(1 \\text{${toUnit}})^${exponent}`);
+                addLatexElement(td2, `(${quotient.toPrecision(P)} \\text{${fromUnit}})^${exponent}`);
             }
             tr2.appendChild(td1);
             tr1.appendChild(td2);

@@ -1,0 +1,600 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='14'
+    datatypes='AtomicLine,Chemical,Element,Isotope'
+    timedout=''
+    timedoutpods=''
+    timing='6.333'
+    parsetiming='0.149'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP63122hde4if5g5ic99c00000ib8h963ggf35gdd'
+    host='https://www4f.wolframalpha.com'
+    server='28'
+    related='https://www4f.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa63222hde4if5g5ic99c000058gicg9b8915g5ce7931354083698071672'
+    version='2.6'
+    inputstring='palladium'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP63322hde4if5g5ic99c00005824i7e284d0fbfg?MSPStoreType=image/gif&amp;s=28'
+       alt='palladium (chemical element)'
+       title='palladium (chemical element)'
+       width='198'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>palladium (chemical element)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Current commodity price'
+     scanner='Data'
+     id='PricePod:ElementData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+    <microsource>FinancialData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>Morningstar</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP63422hde4if5g5ic99c000054ha174cg5771058?MSPStoreType=image/gif&amp;s=28'
+       alt='$2640.00 per troy ounce'
+       title='$2640.00 per troy ounce'
+       width='159'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>$2640.00 per troy ounce</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Periodic table location'
+     scanner='Data'
+     id='PeriodicTableLocation:ElementData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP63522hde4if5g5ic99c00002eeb50b68faf1155?MSPStoreType=image/gif&amp;s=28'
+       alt='Periodic table location'
+       title=''
+       width='320'
+       height='240'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Larger'
+       input='PeriodicTableLocation:ElementData__Larger' />
+  </states>
+ </pod>
+ <pod title='Image'
+     scanner='Data'
+     id='Image:ElementData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <imagesource>http://periodictable.com/Items/046.10/index.html</imagesource>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP63622hde4if5g5ic99c000053e4i93eif40ai5c?MSPStoreType=image/gif&amp;s=28'
+       alt='Image'
+       title=''
+       width='150'
+       height='150'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Basic elemental properties'
+     scanner='Data'
+     id='Elemental2:ElementData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+    <datasource>NISTAtomicWeights</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP63722hde4if5g5ic99c00003gh91016c67455c0?MSPStoreType=image/gif&amp;s=28'
+       alt='atomic symbol | Pd
+atomic number | 46
+atomic mass | 106.42 u (unified atomic mass units)'
+       title='atomic symbol | Pd
+atomic number | 46
+atomic mass | 106.42 u (unified atomic mass units)'
+       width='387'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>atomic symbol | Pd
+atomic number | 46
+atomic mass | 106.42 u (unified atomic mass units)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Elemental2:ElementData__More' />
+  </states>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='Thermodynamics:ElementData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP63822hde4if5g5ic99c0000263a30146fc5i5bi?MSPStoreType=image/gif&amp;s=28'
+       alt='phase at STP | solid
+melting point | 1554.9 °C (rank: 23rd)
+boiling point | 2963 °C (rank: 34th)
+(properties at standard conditions)'
+       title='phase at STP | solid
+melting point | 1554.9 °C (rank: 23rd)
+boiling point | 2963 °C (rank: 34th)
+(properties at standard conditions)'
+       width='271'
+       height='129'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>phase at STP | solid
+melting point | 1554.9 °C (rank: 23rd)
+boiling point | 2963 °C (rank: 34th)
+(properties at standard conditions)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Thermodynamics:ElementData__More' />
+  </states>
+ </pod>
+ <pod title='Material properties'
+     scanner='Data'
+     id='Material:ElementData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP63922hde4if5g5ic99c00004gffd06aa5bh09b1?MSPStoreType=image/gif&amp;s=28'
+       alt='density | 12.023 g/cm^3 (rank: 34th)
+Mohs hardness | 4.75 (between apatite and fluorite)
+Young&apos;s modulus | 121 GPa (rank: 18th)
+sound speed | 3070 m/s (rank: 33rd)
+thermal expansion | 1.18×10^-5 K^(-1) (rank: 30th)
+thermal conductivity | 72 W/(m K) (rank: 26th)
+(properties at standard conditions)'
+       title='density | 12.023 g/cm^3 (rank: 34th)
+Mohs hardness | 4.75 (between apatite and fluorite)
+Young&apos;s modulus | 121 GPa (rank: 18th)
+sound speed | 3070 m/s (rank: 33rd)
+thermal expansion | 1.18×10^-5 K^(-1) (rank: 30th)
+thermal conductivity | 72 W/(m K) (rank: 26th)
+(properties at standard conditions)'
+       width='388'
+       height='229'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>density | 12.023 g/cm^3 (rank: 34th)
+Mohs hardness | 4.75 (between apatite and fluorite)
+Young&apos;s modulus | 121 GPa (rank: 18th)
+sound speed | 3070 m/s (rank: 33rd)
+thermal expansion | 1.18×10^-5 K^(-1) (rank: 30th)
+thermal conductivity | 72 W/(m K) (rank: 26th)
+(properties at standard conditions)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Material:ElementData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='5'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='GPa'
+         long='gigapascals' />
+     <unit short='K^(-1)'
+         long='reciprocal kelvins difference' />
+     <unit short='m/s'
+         long='meters per second' />
+     <unit short='W/(m K)'
+         long='watts per meter kelvin difference' />
+     <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP64022hde4if5g5ic99c00005bgcafa8a5ii74f1?MSPStoreType=image/gif&amp;s=28'
+         width='272'
+         height='117' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Electromagnetic properties'
+     scanner='Data'
+     id='Electromagnetic:ElementData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>EnvironmentalChemistry</datasource>
+    <datasource>WebElements</datasource>
+    <datasource>MaterialsHandbook</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP64122hde4if5g5ic99c00002383f501a6a02e5c?MSPStoreType=image/gif&amp;s=28'
+       alt='electrical type | conductor
+resistivity | 1×10^-7 Ω m (ohm meters)
+magnetic type | paramagnetic
+color | (silver)'
+       title='electrical type | conductor
+resistivity | 1×10^-7 Ω m (ohm meters)
+magnetic type | paramagnetic
+color | (silver)'
+       width='313'
+       height='137'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>electrical type | conductor
+resistivity | 1×10^-7 Ω m (ohm meters)
+magnetic type | paramagnetic
+color | (silver)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Electromagnetic:ElementData__More' />
+  </states>
+ </pod>
+ <pod title='Reactivity'
+     scanner='Data'
+     id='Chemical:ElementData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+    <datasource>TheWikimediaFoundationIncWikipedia</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP64222hde4if5g5ic99c00003d2b46h40e3174a2?MSPStoreType=image/gif&amp;s=28'
+       alt='valence | 4
+electronegativity | 2.2
+electron affinity | 0.557 eV (molar electronvolts)
+first ionization energy | 8.337 eV (molar electronvolts)'
+       title='valence | 4
+electronegativity | 2.2
+electron affinity | 0.557 eV (molar electronvolts)
+first ionization energy | 8.337 eV (molar electronvolts)'
+       width='391'
+       height='136'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>valence | 4
+electronegativity | 2.2
+electron affinity | 0.557 eV (molar electronvolts)
+first ionization energy | 8.337 eV (molar electronvolts)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='3'>
+   <state name='Show energy plot'
+       input='Chemical:ElementData__Show energy plot' />
+   <state name='Show metric'
+       input='Chemical:ElementData__Show metric' />
+   <state name='More'
+       input='Chemical:ElementData__More' />
+  </states>
+ </pod>
+ <pod title='Atomic properties'
+     scanner='Data'
+     id='Atomic:ElementData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>AtomicLineData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP64322hde4if5g5ic99c0000343c7gi1i02c15bf?MSPStoreType=image/gif&amp;s=28'
+       alt='term symbol | ^1S_0
+atomic radius | 140 pm
+(electronic ground state properties)'
+       title='term symbol | ^1S_0
+atomic radius | 140 pm
+(electronic ground state properties)'
+       width='201'
+       height='91'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>term symbol | ^1S_0
+atomic radius | 140 pm
+(electronic ground state properties)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='More'
+       input='Atomic:ElementData__More' />
+   <state name='Spectrum'
+       input='Atomic:ElementData__Spectrum' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short='pm'
+         long='picometers' />
+     <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP64422hde4if5g5ic99c000031c28d5iaei5e377?MSPStoreType=image/gif&amp;s=28'
+         width='124'
+         height='27' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Abundances'
+     scanner='Data'
+     id='Abundance:ElementData'
+     position='1100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP64522hde4if5g5ic99c0000614128ea46ebc8hc?MSPStoreType=image/gif&amp;s=28'
+       alt='universe abundance | 2×10^-7 mass% (rank: 51st)
+crust abundance | 6.3×10^-7 mass% (rank: 72nd)'
+       title='universe abundance | 2×10^-7 mass% (rank: 51st)
+crust abundance | 6.3×10^-7 mass% (rank: 72nd)'
+       width='372'
+       height='72'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>universe abundance | 2×10^-7 mass% (rank: 51st)
+crust abundance | 6.3×10^-7 mass% (rank: 72nd)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Show atomic abundances'
+       input='Abundance:ElementData__Show atomic abundances' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short=' mass%'
+         long='mass percent' />
+     <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP64622hde4if5g5ic99c00001c39397b79a6bbia?MSPStoreType=image/gif&amp;s=28'
+         width='160'
+         height='27' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Nuclear properties'
+     scanner='Data'
+     id='Nuclear:ElementData'
+     position='1200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+    <microsource>IsotopeData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>NISTAtomicWeights</datasource>
+    <datasource>NationalNuclearDataCenter</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP64722hde4if5g5ic99c00003fhhc100ahfggf6a?MSPStoreType=image/gif&amp;s=28'
+       alt='half-life | (stable)
+stable isotopes | Pd-106 (27.33%) | ...
+unstable isotopes | Pd-107 (6.5 Myr) | ...'
+       title='half-life | (stable)
+stable isotopes | Pd-106 (27.33%) | ...
+unstable isotopes | Pd-107 (6.5 Myr) | ...'
+       width='301'
+       height='105'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>half-life | (stable)
+stable isotopes | Pd-106 (27.33%) | ...
+unstable isotopes | Pd-107 (6.5 Myr) | ...</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='More'
+       input='Nuclear:ElementData__More' />
+   <state name='All isotopes'
+       input='Nuclear:ElementData__All isotopes' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='7'>
+     <unit short='h'
+         long='hours' />
+     <unit short='min'
+         long='minutes' />
+     <unit short='ms'
+         long='milliseconds' />
+     <unit short='μs'
+         long='microseconds' />
+     <unit short='Myr'
+         long='megayears' />
+     <unit short='ns'
+         long='nanoseconds' />
+     <unit short='s'
+         long='seconds' />
+     <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP64822hde4if5g5ic99c00005gdhd3336211ggi2?MSPStoreType=image/gif&amp;s=28'
+         width='143'
+         height='159' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Identifiers'
+     scanner='Data'
+     id='Identifier:ElementData'
+     position='1300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP64922hde4if5g5ic99c0000214g5d215g000ga9?MSPStoreType=image/gif&amp;s=28'
+       alt='CAS number | 7440-05-3
+PubChem CID number | 23938'
+       title='CAS number | 7440-05-3
+PubChem CID number | 23938'
+       width='270'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 7440-05-3
+PubChem CID number | 23938</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Wikipedia page hits history'
+     scanner='Data'
+     id='PopularityPod:WikipediaStatsData'
+     position='1400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP65022hde4if5g5ic99c000040ih1ac7i0ddag90?MSPStoreType=image/gif&amp;s=28'
+       alt='Wikipedia page hits history'
+       title=''
+       width='546'
+       height='169'
+       type='TimeSeriesPlot_1'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='TimeSeriesPlot' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Log scale'
+       input='PopularityPod:WikipediaStatsData__Log scale' />
+  </states>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='palladium'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='3'>
+   <value name='Element'
+       desc='a chemical element'
+       input='*C.palladium-_*Element-' />
+   <value name='Building'
+       desc='a structure'
+       input='*C.palladium-_*Building-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.palladium-_*Word-' />
+  </assumption>
+ </assumptions>
+ <sources count='4'>
+  <source url='https://www4f.wolframalpha.com/sources/AtomicLineDataSourceInformationNotes.html'
+      text='Atomic line data' />
+  <source url='https://www4f.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+  <source url='https://www4f.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+  <source url='https://www4f.wolframalpha.com/sources/IsotopeDataSourceInformationNotes.html'
+      text='Isotope data' />
+ </sources>
+</queryresult>

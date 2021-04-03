@@ -130,6 +130,12 @@ function reverseUnitCircleLookup(formulaLatex) {
                     if (highlight) {
                         td.style.backgroundColor = "yellow";
                     }
+                    if (Math.abs(angle.degree) > 360) {
+                        td.style.color = "#ddd";
+                    }
+                    if (angle.degree >= 0 && angle.degree < 360) {
+                        td.style.fontWeight = "bold";
+                    }
                     addLatexElement(td, angle.toLatex('radians'));
                 })
             })
@@ -506,15 +512,8 @@ const _singleTrigFunctionInternal = (o, trigFunction, latexValue, options = {}) 
     }
 }
 
-const _getFractionMaybeUsingLatex = (value, latexValue) => {
-    const { numerator, denominator, isRealFraction } = findFraction(_d(value).toNumber());
-    if (isRealFraction) {
-
-    }
-}
-
 const _getXYRLatexForTrigFunction = trigFunction => {
-    switch(trigFunction) {
+    switch (trigFunction) {
         case 'cos': return '\\frac{x}{r}';
         case 'sin': return '\\frac{y}{r}';
         case 'tan': return '\\frac{y}{x}';
@@ -526,7 +525,7 @@ const _getXYRLatexForTrigFunction = trigFunction => {
 
 const _getXYRNumericObjects = (trigFunction, value) => {
     var fractionObject = Numeric.createFromValue(value, true);
-    if (trigFunction === 'cot') {
+    if (['sec', 'csc'].includes(trigFunction)) {
         fractionObject = fractionObject.flipSign();
     }
     const { numerator, denominator } = fractionObject;
@@ -556,7 +555,7 @@ const _getXYRLatexForTrigFunctionWithValues = (trigFunction, xnumeric, ynumeric,
     const x = ensureNumeric(xnumeric).toLatex();
     const y = ensureNumeric(ynumeric).toLatex();
     const r = ensureNumeric(rnumeric).toLatex();
-    switch(trigFunction) {
+    switch (trigFunction) {
         case 'cos': return `\\frac{${x}}{${r}}`;
         case 'sin': return `\\frac{${y}}{${r}}`;
         case 'tan': return `\\frac{${y}}{${x}}`;
@@ -570,7 +569,7 @@ const _getTrigFunctionValueFromXYR = (trigFunction, x0, y0, r0) => {
     const x = _d(x0);
     const y = _d(y0);
     const r = _d(r0);
-    switch(trigFunction) {
+    switch (trigFunction) {
         case 'cos': return x.div(r);
         case 'sin': return y.div(r);
         case 'tan': return y.div(x);
@@ -578,6 +577,35 @@ const _getTrigFunctionValueFromXYR = (trigFunction, x0, y0, r0) => {
         case 'csc': return r.div(y);
         case 'cot': return x.div(y);
     }
+}
+
+const _addQuadrantTriangeFromTrigFunctionAndValue = (o, trigFunction, value) => {
+    var quadrant = 0;
+    switch (trigFunction) {
+        case 'arccos':
+            quadrant = value < 0 ? 2 : 1;
+            break;
+        case 'arcsin':
+            quadrant = value < 0 ? 4 : 1;
+            break;
+        case 'arctan':
+            quadrant = value < 0 ? 4 : 1;
+            break;
+        case 'arcsec':
+            quadrant = value < 0 ? 2 : 1;
+            break;
+        case 'arccsc':
+            quadrant = value < 0 ? 4 : 1;
+            break;
+        case 'arccot':
+            quadrant = value < 0 ? 2 : 1;
+            break;
+    }
+    console.log(`trigFunction: ${trigFunction}, quadrant: ${quadrant}, value<0: ${value<0}`)
+    if (quadrant === 0) return;
+    const imgsrc = `images/q${quadrant}-triangle.png`;
+    const img = _htmlElement('img', o, null, 'trigfunction-range-sketch');
+    img.setAttribute("src", imgsrc);
 }
 
 const _solveTrigInvTrig = (o, trigFunction2, trigFunction, latexValue) => {
@@ -606,6 +634,12 @@ const _solveTrigInvTrig = (o, trigFunction2, trigFunction, latexValue) => {
     console.log(`x = ${x ? x.toString() : '?'}`);
     console.log(`y = ${y ? y.toString() : '?'}`);
     console.log(`r = ${r ? r.toString() : '?'}`);
+    const latexList = [];
+    if (x) latexList.push(`x=${ensureNumeric(x).toLatex()}`);
+    if (y) latexList.push(`y=${ensureNumeric(y).toLatex()}`);
+    if (r) latexList.push(`r=${ensureNumeric(r).toLatex()}`);
+    addLatexElement(o, latexList.join(';\\text{&nbsp;&nbsp;}'));
+    _addQuadrantTriangeFromTrigFunctionAndValue(o, trigFunction, value);
     const signOfMissing = 1;
     const [x0, y0, r0] = _mayUsePythagoras(o, signOfMissing, x, y, r);
     console.log('out:');

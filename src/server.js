@@ -6,6 +6,8 @@ const services = [...require('./services/precalculus')];
 const api = require('./api');
 const { processTerm } = require('./solver');
 
+const { chemicalQuery } = require('./chemistry');
+
 app.use(express.static('public'));
 
 const bodyParser = require('body-parser');
@@ -55,6 +57,22 @@ services.forEach(({ service, rules, functor, resultVariable }) => {
     }
   });
   console.log(`registered service: uri: ${uri}, rules: ${rules}, functor: ${functor}`);
+});
+
+app.get('/api/chemicalquery', (req, res) => {
+  const query = req.query.query;
+  var status = 200;
+  var sendObj = {};
+  (query ? chemicalQuery(query) : Promise.reject("parameter \"query\" missing from request"))
+  .then(resultObj => {
+    console.log(resultObj);
+    res.status(200);
+    res.send(JSON.stringify(resultObj));
+  })
+  .catch(err => {
+    res.status(404);
+    res.send({ error: { message: err } });
+  })
 });
 
 // Listen to the App Engine-specified port, or 8090 otherwise

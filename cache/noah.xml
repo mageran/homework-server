@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='3'
+    datatypes='Financial'
+    timedout=''
+    timedoutpods=''
+    timing='1.078'
+    parsetiming='0.159'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP7451h9dgd82b200f4ia000044553667e22ceg99'
+    host='https://www5b.wolframalpha.com'
+    server='41'
+    related='https://www5b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa7461h9dgd82b200f4ia00004eba7fca2i04be19131905016584963001'
+    version='2.6'
+    inputstring='Noah'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7471h9dgd82b200f4ia00005heg344fdc53e8hb?MSPStoreType=image/gif&amp;s=41'
+       alt='NYSE:NOAH (NOAH)'
+       title='NYSE:NOAH (NOAH)'
+       width='144'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>NYSE:NOAH (NOAH)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Latest trade'
+     scanner='FinancialData'
+     id='Quote'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>FinancialData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7481h9dgd82b200f4ia00005addab81459gh1gf?MSPStoreType=image/gif&amp;s=41'
+       alt='(no data available)'
+       title='(no data available)'
+       width='122'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>(no data available)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Quote__More' />
+  </states>
+ </pod>
+ <pod title='Company management'
+     scanner='FinancialData'
+     id='CompanyManagement'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>FinancialData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7491h9dgd82b200f4ia000018f38h0c50e8g8d6?MSPStoreType=image/gif&amp;s=41'
+       alt='Jingbo Wang (Chairwoman of the Board and Chief Executive Officer)
+(as of February 5, 2021)'
+       title='Jingbo Wang (Chairwoman of the Board and Chief Executive Officer)
+(as of February 5, 2021)'
+       width='411'
+       height='42'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Jingbo Wang (Chairwoman of the Board and Chief Executive Officer)
+(as of February 5, 2021)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show officers'
+       input='CompanyManagement__Show officers' />
+   <state name='Show directors'
+       input='CompanyManagement__Show directors' />
+  </states>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='Noah'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='3'>
+   <value name='Financial'
+       desc='a financial entity'
+       input='*C.Noah-_*Financial-' />
+   <value name='Company'
+       desc='a company'
+       input='*C.Noah-_*Company-' />
+   <value name='GivenName'
+       desc='a given name'
+       input='*C.Noah-_*GivenName-' />
+  </assumption>
+ </assumptions>
+ <sources count='1'>
+  <source url='https://www5b.wolframalpha.com/sources/FinancialDataSourceInformationNotes.html'
+      text='Financial data' />
+ </sources>
+</queryresult>

@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='4'
+    datatypes='ChemicalIntermediate'
+    timedout=''
+    timedoutpods=''
+    timing='1.537'
+    parsetiming='0.274'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP6286200gfdcff7828f6e00001g21a992778d7hah'
+    host='https://www4c.wolframalpha.com'
+    server='14'
+    related='https://www4c.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa6287200gfdcff7828f6e000028f2ad55e4273bih6539953701893298433'
+    version='2.6'
+    inputstring='Sodium nitride'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP6288200gfdcff7828f6e00001gbbif577ie34f4a?MSPStoreType=image/gif&amp;s=14'
+       alt='sodium cation | nitride anion'
+       title='sodium cation | nitride anion'
+       width='203'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>sodium cation | nitride anion</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Structure diagrams'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalIntermediateData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP6289200gfdcff7828f6e00004b5i97693g98b761?MSPStoreType=image/gif&amp;s=14'
+       alt='Structure diagrams'
+       title=''
+       width='648'
+       height='89'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='General properties'
+     scanner='Data'
+     id='GeneralProperties:ChemicalIntermediateData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP6290200gfdcff7828f6e00000d3a433h5f5db267?MSPStoreType=image/gif&amp;s=14'
+       alt=' | sodium cation | nitride anion
+formula | Na^+ | N^(3-)
+net ionic charge | +1 | -3
+alternate names | sodium ion | sodium(I) | sodium(1+) | nitride | nitride(3-)'
+       title=' | sodium cation | nitride anion
+formula | Na^+ | N^(3-)
+net ionic charge | +1 | -3
+alternate names | sodium ion | sodium(I) | sodium(1+) | nitride | nitride(3-)'
+       width='546'
+       height='154'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | sodium cation | nitride anion
+formula | Na^+ | N^(3-)
+net ionic charge | +1 | -3
+alternate names | sodium ion | sodium(I) | sodium(1+) | nitride | nitride(3-)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Ionic radii'
+     scanner='Data'
+     id='IonicRadiusPod:ChemicalIntermediateData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP6291200gfdcff7828f6e000047e96i0eg226011e?MSPStoreType=image/gif&amp;s=14'
+       alt=' | sodium cation
+4-coordinate ionic radius | 99 pm
+6-coordinate ionic radius | 102 pm
+8-coordinate ionic radius | 118 pm
+9-coordinate ionic radius | 124 pm
+12-coordinate ionic radius | 139 pm'
+       title=' | sodium cation
+4-coordinate ionic radius | 99 pm
+6-coordinate ionic radius | 102 pm
+8-coordinate ionic radius | 118 pm
+9-coordinate ionic radius | 124 pm
+12-coordinate ionic radius | 139 pm'
+       width='313'
+       height='202'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | sodium cation
+4-coordinate ionic radius | 99 pm
+6-coordinate ionic radius | 102 pm
+8-coordinate ionic radius | 118 pm
+9-coordinate ionic radius | 124 pm
+12-coordinate ionic radius | 139 pm</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <sources count='1'>
+  <source url='https://www4c.wolframalpha.com/sources/ChemicalIntermediateDataSourceInformationNotes.html'
+      text='Chemical intermediate data' />
+ </sources>
+</queryresult>

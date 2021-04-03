@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='4'
+    datatypes='VideoGame,VideoGameRelease'
+    timedout=''
+    timedoutpods=''
+    timing='1.536'
+    parsetiming='0.117'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP34024g3ibd68i1h4ghf00002hg60g451bi9341h'
+    host='https://www4d.wolframalpha.com'
+    server='31'
+    related='https://www4d.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa34124g3ibd68i1h4ghf000026h4g9fe60ad7bg26128341348572469259'
+    version='2.6'
+    inputstring='Mnecraft'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP34224g3ibd68i1h4ghf00000e565fch89hi24hc?MSPStoreType=image/gif&amp;s=31'
+       alt='Minecraft (video game)'
+       title='Minecraft (video game)'
+       width='157'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Minecraft (video game)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Basic information'
+     scanner='Data'
+     id='NewVideoGame:VideoGameReleaseData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>VideoGameReleaseData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>EntertainmentSoftwareRatingBoardRatings</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP34324g3ibd68i1h4ghf000054ea07gae8039h62?MSPStoreType=image/gif&amp;s=31'
+       alt='release date | November 17, 2011 (iOS) | November 18, 2011 (Browser, Linux, Mac OS X, Windows) | October 8, 2011 (Android) | May 9, 2012 (Xbox 360) | February 11, 2013 (Raspberry Pi) | December 17, 2013 (PS3) | August 16, 2011 (Android)
+platform | iOS | Mac OS X | Android | Linux | Microsoft Windows | Microsoft Xbox 360 | Raspberry Pi | Sony PlayStation 3 | Sony PlayStation 4 | Sony PlayStation Vita | Android | Web Browser | Microsoft Xbox One
+genre | sandbox | survival
+media type | digital download
+developer | Mojang (Android, Browser, iOS, Linux, Mac OS X, PS3, PS4, PS Vita, Raspberry Pi, Windows, Xbox 360, Xbox One) | 4J (PS3, Xbox 360, Xbox One) | Microsoft Studios (Xbox 360, Xbox One)
+publisher | Mojang (Android, Browser, iOS, Raspberry Pi) | Microsoft Game Studios (Xbox 360, Xbox One) | Sony (PS3, PS4, PS Vita)'
+       title='release date | November 17, 2011 (iOS) | November 18, 2011 (Browser, Linux, Mac OS X, Windows) | October 8, 2011 (Android) | May 9, 2012 (Xbox 360) | February 11, 2013 (Raspberry Pi) | December 17, 2013 (PS3) | August 16, 2011 (Android)
+platform | iOS | Mac OS X | Android | Linux | Microsoft Windows | Microsoft Xbox 360 | Raspberry Pi | Sony PlayStation 3 | Sony PlayStation 4 | Sony PlayStation Vita | Android | Web Browser | Microsoft Xbox One
+genre | sandbox | survival
+media type | digital download
+developer | Mojang (Android, Browser, iOS, Linux, Mac OS X, PS3, PS4, PS Vita, Raspberry Pi, Windows, Xbox 360, Xbox One) | 4J (PS3, Xbox 360, Xbox One) | Microsoft Studios (Xbox 360, Xbox One)
+publisher | Mojang (Android, Browser, iOS, Raspberry Pi) | Microsoft Game Studios (Xbox 360, Xbox One) | Sony (PS3, PS4, PS Vita)'
+       width='546'
+       height='364'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>release date | November 17, 2011 (iOS) | November 18, 2011 (Browser, Linux, Mac OS X, Windows) | October 8, 2011 (Android) | May 9, 2012 (Xbox 360) | February 11, 2013 (Raspberry Pi) | December 17, 2013 (PS3) | August 16, 2011 (Android)
+platform | iOS | Mac OS X | Android | Linux | Microsoft Windows | Microsoft Xbox 360 | Raspberry Pi | Sony PlayStation 3 | Sony PlayStation 4 | Sony PlayStation Vita | Android | Web Browser | Microsoft Xbox One
+genre | sandbox | survival
+media type | digital download
+developer | Mojang (Android, Browser, iOS, Linux, Mac OS X, PS3, PS4, PS Vita, Raspberry Pi, Windows, Xbox 360, Xbox One) | 4J (PS3, Xbox 360, Xbox One) | Microsoft Studios (Xbox 360, Xbox One)
+publisher | Mojang (Android, Browser, iOS, Raspberry Pi) | Microsoft Game Studios (Xbox 360, Xbox One) | Sony (PS3, PS4, PS Vita)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Image'
+     scanner='Data'
+     id='Image:VideoGameData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <imagesource>http://thegamershub.net/2013/03/xbox-360-minecraft-coming-to-retail/2d-boxshot-wizard-v1-1-4/</imagesource>
+   <microsources>
+    <microsource>VideoGameData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP34424g3ibd68i1h4ghf00005hd975a117a7ciih?MSPStoreType=image/gif&amp;s=31'
+       alt='Image'
+       title=''
+       width='108'
+       height='150'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='ESRB rating information'
+     scanner='Data'
+     id='ESRBRatingInformation:VideoGameReleaseData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>VideoGameReleaseData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>EntertainmentSoftwareRatingBoardRatings</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP34524g3ibd68i1h4ghf00004fdg50aac7c9431a?MSPStoreType=image/gif&amp;s=31'
+       alt='rating category | 4+ (iOS) | 10+ (PS3, Xbox 360) | 7+ (Xbox 360)
+content descriptors | fantasy violence (PS3, Xbox 360)'
+       title='rating category | 4+ (iOS) | 10+ (PS3, Xbox 360) | 7+ (Xbox 360)
+content descriptors | fantasy violence (PS3, Xbox 360)'
+       width='501'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>rating category | 4+ (iOS) | 10+ (PS3, Xbox 360) | 7+ (Xbox 360)
+content descriptors | fantasy violence (PS3, Xbox 360)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Show rating summary'
+       input='ESRBRatingInformation:VideoGameReleaseData__Show rating summary' />
+  </states>
+  <definitions count='1'>
+   <definition word='10+'
+       desc='Titles rated E10+ (Everyone 10 and older) have content that may be suitable for ages 10 and older. Titles in this category may contain more cartoon, fantasy or mild violence, mild language and/or minimal suggestive themes.' />
+  </definitions>
+ </pod>
+ <warnings count='1'>
+  <spellcheck word='Mnecraft'
+      suggestion='minecraft'
+      text='Interpreting &quot;Mnecraft&quot; as &quot;minecraft&quot;' />
+ </warnings>
+ <sources count='2'>
+  <source url='https://www4d.wolframalpha.com/sources/VideoGameDataSourceInformationNotes.html'
+      text='Video game data' />
+  <source url='https://www4d.wolframalpha.com/sources/VideoGameReleaseDataSourceInformationNotes.html'
+      text='Video game release data' />
+ </sources>
+</queryresult>

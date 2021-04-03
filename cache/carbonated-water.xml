@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='7'
+    datatypes='Invention,Person'
+    timedout=''
+    timedoutpods=''
+    timing='2.395'
+    parsetiming='0.248'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP7661b9384c2e4824fig0000430c913b0gdhh6cc'
+    host='https://www5b.wolframalpha.com'
+    server='40'
+    related='https://www5b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa7671b9384c2e4824fig00004fba7e9h983da4273354538778751843049'
+    version='2.6'
+    inputstring='carbonated water'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7681b9384c2e4824fig00003b01gi7b7ch53gef?MSPStoreType=image/gif&amp;s=40'
+       alt='carbonated water (invention)'
+       title='carbonated water (invention)'
+       width='197'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>carbonated water (invention)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Basic information'
+     scanner='Data'
+     id='BasicInformation:InventionData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>InventionData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7691b9384c2e4824fig00000g0d3bh7a4idd4a1?MSPStoreType=image/gif&amp;s=40'
+       alt='inventor | Joseph Priestley
+date of invention | 1767 (254 years ago)'
+       title='inventor | Joseph Priestley
+date of invention | 1767 (254 years ago)'
+       width='283'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>inventor | Joseph Priestley
+date of invention | 1767 (254 years ago)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Image'
+     scanner='Data'
+     id='Image:InventionData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <imagesource>http://www.freebase.com/m/02c907g</imagesource>
+   <microsources>
+    <microsource>InventionData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7701b9384c2e4824fig00002cc57daaf15eg899?MSPStoreType=image/gif&amp;s=40'
+       alt='Image'
+       title=''
+       width='150'
+       height='100'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Inventor'
+     scanner='Data'
+     id='BasicInformation:PeopleData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>PeopleData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7711b9384c2e4824fig000029c13d16g3bgh1bi?MSPStoreType=image/gif&amp;s=40'
+       alt='full name | Joseph Priestley
+date of birth | Friday, March 13, 1733 (288 years ago)
+date of death | Monday, February 6, 1804 (age: 70 years) 
+ (217 years ago)
+place of death | Northumberland'
+       title='full name | Joseph Priestley
+date of birth | Friday, March 13, 1733 (288 years ago)
+date of death | Monday, February 6, 1804 (age: 70 years) 
+ (217 years ago)
+place of death | Northumberland'
+       width='419'
+       height='154'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>full name | Joseph Priestley
+date of birth | Friday, March 13, 1733 (288 years ago)
+date of death | Monday, February 6, 1804 (age: 70 years) 
+ (217 years ago)
+place of death | Northumberland</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Timeline'
+     scanner='Data'
+     id='Timeline:InventionData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>InventionData</microsource>
+    <microsource>PeopleData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7721b9384c2e4824fig000053dhd5he5ag805d0?MSPStoreType=image/gif&amp;s=40'
+       alt='Timeline'
+       title=''
+       width='550'
+       height='38'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Wikipedia summary'
+     scanner='Character'
+     id='WikipediaSummary:InventionData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7731b9384c2e4824fig00003a8ehg573a62i83f?MSPStoreType=image/gif&amp;s=40'
+       alt='Carbonated water (also known as soda water, sparkling water, fizzy water, water with gas or (especially in the U.S.) as seltzer or seltzer water) is water containing dissolved carbon dioxide gas, either artificially injected under pressure or occurring due to natural geological processes. Carbonation causes small bubbles to form, giving the water an effervescent quality. Common forms include sparkling natural mineral water, club soda, and commercially-produced sparkling water.'
+       title='Carbonated water (also known as soda water, sparkling water, fizzy water, water with gas or (especially in the U.S.) as seltzer or seltzer water) is water containing dissolved carbon dioxide gas, either artificially injected under pressure or occurring due to natural geological processes. Carbonation causes small bubbles to form, giving the water an effervescent quality. Common forms include sparkling natural mineral water, club soda, and commercially-produced sparkling water.'
+       width='542'
+       height='120'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Carbonated water (also known as soda water, sparkling water, fizzy water, water with gas or (especially in the U.S.) as seltzer or seltzer water) is water containing dissolved carbon dioxide gas, either artificially injected under pressure or occurring due to natural geological processes. Carbonation causes small bubbles to form, giving the water an effervescent quality. Common forms include sparkling natural mineral water, club soda, and commercially-produced sparkling water.</plaintext>
+   <infos count='1'>
+    <info>
+     <link url='http://en.wikipedia.org/wiki?curid=240561'
+         text='Full entry' />
+    </info>
+   </infos>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Wikipedia page hits history'
+     scanner='Data'
+     id='PopularityPod:WikipediaStatsData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7741b9384c2e4824fig00005e3fi34772c45019?MSPStoreType=image/gif&amp;s=40'
+       alt='Wikipedia page hits history'
+       title=''
+       width='546'
+       height='169'
+       type='TimeSeriesPlot_1'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='TimeSeriesPlot' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Log scale'
+       input='PopularityPod:WikipediaStatsData__Log scale' />
+  </states>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='carbonated water'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='Invention'
+       desc='an invention'
+       input='*C.carbonated+water-_*Invention-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.carbonated+water-_*Word-' />
+  </assumption>
+ </assumptions>
+ <sources count='2'>
+  <source url='https://www5b.wolframalpha.com/sources/InventionDataSourceInformationNotes.html'
+      text='Invention data' />
+  <source url='https://www5b.wolframalpha.com/sources/PeopleDataSourceInformationNotes.html'
+      text='People data' />
+ </sources>
+</queryresult>

@@ -1,0 +1,347 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='10'
+    datatypes='DogBreed'
+    timedout=''
+    timedoutpods=''
+    timing='2.611'
+    parsetiming='0.14200000000000002'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP34201aed6ge48bbib9bh00003icbh9hbce1iid3f'
+    host='https://www4f.wolframalpha.com'
+    server='33'
+    related='https://www4f.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa34211aed6ge48bbib9bh000016fia1hid9ei16761425433651303739860'
+    version='2.6'
+    inputstring='chihuahua'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP34221aed6ge48bbib9bh000026hhf8c192fac0bh?MSPStoreType=image/gif&amp;s=33'
+       alt='Chihuahua (dog breed)'
+       title='Chihuahua (dog breed)'
+       width='153'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Chihuahua (dog breed)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Alternate names'
+     scanner='Data'
+     id='AlternateNames:DogBreedData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>DogBreedData</microsource>
+   </microsources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP34231aed6ge48bbib9bh00003gd0724d304e1909?MSPStoreType=image/gif&amp;s=33'
+       alt='Chihuahueno | Chihuahueño | New Yorker'
+       title='Chihuahueno | Chihuahueño | New Yorker'
+       width='303'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Chihuahueno | Chihuahueño | New Yorker</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Image'
+     scanner='Data'
+     id='Image:DogBreedData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <imagesource>http://www.terrificpets.com/dog_breeds/chihuahua.asp</imagesource>
+   <microsources>
+    <microsource>DogBreedData</microsource>
+   </microsources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP34241aed6ge48bbib9bh00003dgi8c849a6i8455?MSPStoreType=image/gif&amp;s=33'
+       alt='Image'
+       title=''
+       width='150'
+       height='91'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Properties'
+     scanner='Data'
+     id='Properties:DogBreedData'
+     position='400'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>DogBreedData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>AmericanKennelClub</datasource>
+    <datasource>UnitedKennelClub</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP34251aed6ge48bbib9bh000022016ca2df3e84dg?MSPStoreType=image/gif&amp;s=33'
+       alt='female height | (5.99 to 9.02) inches
+male height | (5.99 to 9.02) inches
+female weight | (3 to 6.01) lb (pounds)
+male weight | (3 to 6.01) lb (pounds)
+size | toy | small
+life span | (14 to 18) years
+litter size | (1 to 4)
+hair length | long | short
+shedding | moderate
+AKC recognition year | 1904 (117 years ago)
+origin | Mexico'
+       title='female height | (5.99 to 9.02) inches
+male height | (5.99 to 9.02) inches
+female weight | (3 to 6.01) lb (pounds)
+male weight | (3 to 6.01) lb (pounds)
+size | toy | small
+life span | (14 to 18) years
+litter size | (1 to 4)
+hair length | long | short
+shedding | moderate
+AKC recognition year | 1904 (117 years ago)
+origin | Mexico'
+       width='336'
+       height='367'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>female height | (5.99 to 9.02) inches
+male height | (5.99 to 9.02) inches
+female weight | (3 to 6.01) lb (pounds)
+male weight | (3 to 6.01) lb (pounds)
+size | toy | small
+life span | (14 to 18) years
+litter size | (1 to 4)
+hair length | long | short
+shedding | moderate
+AKC recognition year | 1904 (117 years ago)
+origin | Mexico</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Show metric'
+       input='Properties:DogBreedData__Show metric' />
+  </states>
+ </pod>
+ <pod title='Description'
+     scanner='Data'
+     id='Description:DogBreedData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>DogBreedData</microsource>
+   </microsources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP34261aed6ge48bbib9bh0000381gi938a3dff226?MSPStoreType=image/gif&amp;s=33'
+       alt='Very small member of the toy breed family
+Head is very round
+Muzzle is proportionally very small
+Ears are large and held up, hanging to the sides when the dog is relaxed
+Coat can be either short or long, and wavy or flat when long
+Eyes are large and round'
+       title='Very small member of the toy breed family
+Head is very round
+Muzzle is proportionally very small
+Ears are large and held up, hanging to the sides when the dog is relaxed
+Coat can be either short or long, and wavy or flat when long
+Eyes are large and round'
+       width='469'
+       height='152'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Very small member of the toy breed family
+Head is very round
+Muzzle is proportionally very small
+Ears are large and held up, hanging to the sides when the dog is relaxed
+Coat can be either short or long, and wavy or flat when long
+Eyes are large and round</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Temperament'
+     scanner='Data'
+     id='Temperament:DogBreedData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>DogBreedData</microsource>
+   </microsources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP34271aed6ge48bbib9bh000044d83bhca8314i43?MSPStoreType=image/gif&amp;s=33'
+       alt='affectionate | aggressive | alert | courageous | gentle | intelligent | loyal'
+       title='affectionate | aggressive | alert | courageous | gentle | intelligent | loyal'
+       width='538'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>affectionate | aggressive | alert | courageous | gentle | intelligent | loyal</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='History'
+     scanner='Data'
+     id='History:DogBreedData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>DogBreedData</microsource>
+   </microsources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP34281aed6ge48bbib9bh00001290gch91ib431a7?MSPStoreType=image/gif&amp;s=33'
+       alt='Breed originating in Mexico, probably descended from the Techichi, companion dogs in the Toltec civilization
+Remains found from the time of the Aztecs in the modern-day Chihuahua region of Mexico
+Regarded as sacred by members of the Aztec nobility
+Rediscovered centuries after the fall of the Aztec empire in 1850 and introduced to the United States
+One of several theories suggests this breed originated in Europe, based on a dog in a 1480 fresco by Sandro Botticelli'
+       title='Breed originating in Mexico, probably descended from the Techichi, companion dogs in the Toltec civilization
+Remains found from the time of the Aztecs in the modern-day Chihuahua region of Mexico
+Regarded as sacred by members of the Aztec nobility
+Rediscovered centuries after the fall of the Aztec empire in 1850 and introduced to the United States
+One of several theories suggests this breed originated in Europe, based on a dog in a 1480 fresco by Sandro Botticelli'
+       width='543'
+       height='221'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Breed originating in Mexico, probably descended from the Techichi, companion dogs in the Toltec civilization
+Remains found from the time of the Aztecs in the modern-day Chihuahua region of Mexico
+Regarded as sacred by members of the Aztec nobility
+Rediscovered centuries after the fall of the Aztec empire in 1850 and introduced to the United States
+One of several theories suggests this breed originated in Europe, based on a dog in a 1480 fresco by Sandro Botticelli</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Recognized by'
+     scanner='Data'
+     id='RecognizedBy:DogBreedData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>DogBreedData</microsource>
+   </microsources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP34291aed6ge48bbib9bh0000131i0ib18hee074b?MSPStoreType=image/gif&amp;s=33'
+       alt='Continental Kennel Club (CKC) | Fédération Cynologique Internationale (FCI) | American Kennel Club (AKC) | United Kennel Club (UKC) | Australian National Kennel Council (ANKC) | National Kennel Club (NKC) | New Zealand Kennel Club (NZKC) | America&apos;s Pet Registry Inc. (APRI) | American Canine Registry (ACR)'
+       title='Continental Kennel Club (CKC) | Fédération Cynologique Internationale (FCI) | American Kennel Club (AKC) | United Kennel Club (UKC) | Australian National Kennel Council (ANKC) | National Kennel Club (NKC) | New Zealand Kennel Club (NZKC) | America&apos;s Pet Registry Inc. (APRI) | American Canine Registry (ACR)'
+       width='538'
+       height='100'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Continental Kennel Club (CKC) | Fédération Cynologique Internationale (FCI) | American Kennel Club (AKC) | United Kennel Club (UKC) | Australian National Kennel Council (ANKC) | National Kennel Club (NKC) | New Zealand Kennel Club (NZKC) | America&apos;s Pet Registry Inc. (APRI) | American Canine Registry (ACR)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Wikipedia summary'
+     scanner='Character'
+     id='WikipediaSummary:DogBreedData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP34301aed6ge48bbib9bh000055big53fe2f7g579?MSPStoreType=image/gif&amp;s=33'
+       alt='The Chihuahua is the smallest breed of dog, and is named after the Mexican state of Chihuahua.'
+       title='The Chihuahua is the smallest breed of dog, and is named after the Mexican state of Chihuahua.'
+       width='535'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>The Chihuahua is the smallest breed of dog, and is named after the Mexican state of Chihuahua.</plaintext>
+   <infos count='1'>
+    <info>
+     <link url='http://en.wikipedia.org/wiki?curid=26998504'
+         text='Full entry' />
+    </info>
+   </infos>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Wikipedia page hits history'
+     scanner='Data'
+     id='PopularityPod:WikipediaStatsData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP34311aed6ge48bbib9bh0000446a6f26if5feg25?MSPStoreType=image/gif&amp;s=33'
+       alt='Wikipedia page hits history'
+       title=''
+       width='546'
+       height='169'
+       type='TimeSeriesPlot_1'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='TimeSeriesPlot' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Log scale'
+       input='PopularityPod:WikipediaStatsData__Log scale' />
+  </states>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='chihuahua'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='3'>
+   <value name='DogBreed'
+       desc=' referring to dog breeds'
+       input='*C.chihuahua-_*DogBreed-' />
+   <value name='City'
+       desc='a city'
+       input='*C.chihuahua-_*City-' />
+   <value name='AdministrativeDivision'
+       desc='an administrative division'
+       input='*C.chihuahua-_*AdministrativeDivision-' />
+  </assumption>
+ </assumptions>
+ <sources count='1'>
+  <source url='https://www4f.wolframalpha.com/sources/DogBreedDataSourceInformationNotes.html'
+      text='Dog breed data' />
+ </sources>
+</queryresult>

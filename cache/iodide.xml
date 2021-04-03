@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='6'
+    datatypes='ChemicalIntermediate'
+    timedout=''
+    timedoutpods=''
+    timing='2.548'
+    parsetiming='0.994'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP107121ic1hhcfdcd105g0000206656f8d5baibe8'
+    host='https://www5a.wolframalpha.com'
+    server='51'
+    related='https://www5a.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa107221ic1hhcfdcd105g00003c13273f645d0bf37297982070693509567'
+    version='2.6'
+    inputstring='Iodide'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP107321ic1hhcfdcd105g00004c906g40i2eh410f?MSPStoreType=image/gif&amp;s=51'
+       alt='iodide anion'
+       title='iodide anion'
+       width='81'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>iodide anion</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalIntermediateData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP107421ic1hhcfdcd105g00003fe7hb8age863g4e?MSPStoreType=image/gif&amp;s=51'
+       alt='Structure diagram'
+       title=''
+       width='400'
+       height='58'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='General properties'
+     scanner='Data'
+     id='GeneralProperties:ChemicalIntermediateData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP107521ic1hhcfdcd105g0000622bdad2193aeh10?MSPStoreType=image/gif&amp;s=51'
+       alt='formula | I^-
+net ionic charge | -1
+alternate names | iodide | iodide(1-)'
+       title='formula | I^-
+net ionic charge | -1
+alternate names | iodide | iodide(1-)'
+       width='285'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | I^-
+net ionic charge | -1
+alternate names | iodide | iodide(1-)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Ionic radius'
+     scanner='Data'
+     id='IonicRadiusPod:ChemicalIntermediateData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP107621ic1hhcfdcd105g0000662affd0a48bf3e1?MSPStoreType=image/gif&amp;s=51'
+       alt='iodide anion state | radius
+6-coordinate | 220 pm'
+       title='iodide anion state | radius
+6-coordinate | 220 pm'
+       width='212'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>iodide anion state | radius
+6-coordinate | 220 pm</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Other properties'
+     scanner='Data'
+     id='Other:ChemicalIntermediateData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP107721ic1hhcfdcd105g000061c7e6i36b5biacf?MSPStoreType=image/gif&amp;s=51'
+       alt='ion class | anions | biomolecule ions | group 17 ions | halide ions | monatomic anions | p block ions
+common sources of ion | trimethyloxosulfonium iodide (1 eq) | trimethylsulfonium iodide (1 eq) | tridodecylmethylammonium iodide (1 eq) | tetrapropylammonium iodide (1 eq) | tetraphenylphosphonium iodide (1 eq) | tetramethylammonium iodide (1 eq) | tetraethylammonium iodide (1 eq) | tetra-N-butylammonium iodide (1 eq) | tantalum(V) iodide (5 eq) | strontium iodide (2 eq)'
+       title='ion class | anions | biomolecule ions | group 17 ions | halide ions | monatomic anions | p block ions
+common sources of ion | trimethyloxosulfonium iodide (1 eq) | trimethylsulfonium iodide (1 eq) | tridodecylmethylammonium iodide (1 eq) | tetrapropylammonium iodide (1 eq) | tetraphenylphosphonium iodide (1 eq) | tetramethylammonium iodide (1 eq) | tetraethylammonium iodide (1 eq) | tetra-N-butylammonium iodide (1 eq) | tantalum(V) iodide (5 eq) | strontium iodide (2 eq)'
+       width='546'
+       height='250'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>ion class | anions | biomolecule ions | group 17 ions | halide ions | monatomic anions | p block ions
+common sources of ion | trimethyloxosulfonium iodide (1 eq) | trimethylsulfonium iodide (1 eq) | tridodecylmethylammonium iodide (1 eq) | tetrapropylammonium iodide (1 eq) | tetraphenylphosphonium iodide (1 eq) | tetramethylammonium iodide (1 eq) | tetraethylammonium iodide (1 eq) | tetra-N-butylammonium iodide (1 eq) | tantalum(V) iodide (5 eq) | strontium iodide (2 eq)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='ThermodynamicProperties:ChemicalIntermediateData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP107821ic1hhcfdcd105g00001g713g0276bh4gf9?MSPStoreType=image/gif&amp;s=51'
+       alt='molar heat capacity c_p | aqueous | -142.3 J/(mol K) (joules per mole kelvin difference)
+molar free energy of formation Δ_fG° | aqueous | -51.6 kJ/mol (kilojoules per mole)
+molar heat of formation Δ_fH° | aqueous | -55.2 kJ/mol (kilojoules per mole)
+molar entropy S° | aqueous | 111.3 J/(mol K) (joules per mole kelvin)'
+       title='molar heat capacity c_p | aqueous | -142.3 J/(mol K) (joules per mole kelvin difference)
+molar free energy of formation Δ_fG° | aqueous | -51.6 kJ/mol (kilojoules per mole)
+molar heat of formation Δ_fH° | aqueous | -55.2 kJ/mol (kilojoules per mole)
+molar entropy S° | aqueous | 111.3 J/(mol K) (joules per mole kelvin)'
+       width='546'
+       height='209'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar heat capacity c_p | aqueous | -142.3 J/(mol K) (joules per mole kelvin difference)
+molar free energy of formation Δ_fG° | aqueous | -51.6 kJ/mol (kilojoules per mole)
+molar heat of formation Δ_fH° | aqueous | -55.2 kJ/mol (kilojoules per mole)
+molar entropy S° | aqueous | 111.3 J/(mol K) (joules per mole kelvin)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='Iodide'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='3'>
+   <value name='ChemicalIntermediate'
+       desc='an ion'
+       input='*C.Iodide-_*ChemicalIntermediate-' />
+   <value name='DietaryReference'
+       desc='a dietary reference'
+       input='*C.Iodide-_*DietaryReference-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.Iodide-_*Word-' />
+  </assumption>
+ </assumptions>
+ <sources count='1'>
+  <source url='https://www5a.wolframalpha.com/sources/ChemicalIntermediateDataSourceInformationNotes.html'
+      text='Chemical intermediate data' />
+ </sources>
+</queryresult>

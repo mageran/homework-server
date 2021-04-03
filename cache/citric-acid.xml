@@ -1,0 +1,519 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='13'
+    datatypes='Chemical,Element'
+    timedout=''
+    timedoutpods=''
+    timing='3.454'
+    parsetiming='0.12'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP1926153fa06gachfc1hh00004a31e41c15a918ba'
+    host='https://www4d.wolframalpha.com'
+    server='25'
+    related='https://www4d.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa1927153fa06gachfc1hh000040056dif57g149753121044613458118784'
+    version='2.6'
+    inputstring='Citric acid'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1928153fa06gachfc1hh00000gh6967df938a6a8?MSPStoreType=image/gif&amp;s=25'
+       alt='citric acid'
+       title='citric acid'
+       width='64'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>citric acid</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1929153fa06gachfc1hh000013e346192c55cg6a?MSPStoreType=image/gif&amp;s=25'
+       alt='formula | HOC(COOH)(CH_2COOH)_2
+Hill formula | C_6H_8O_7
+name | citric acid'
+       title='formula | HOC(COOH)(CH_2COOH)_2
+Hill formula | C_6H_8O_7
+name | citric acid'
+       width='297'
+       height='106'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | HOC(COOH)(CH_2COOH)_2
+Hill formula | C_6H_8O_7
+name | citric acid</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1930153fa06gachfc1hh00003f9ebh3i2ihbcgee?MSPStoreType=image/gif&amp;s=25'
+       alt='Structure diagram'
+       title=''
+       width='169'
+       height='163'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='4'>
+   <statelist count='3'
+       value='Skeletal structure'
+       delimiters=''>
+    <state name='Skeletal structure'
+        input='StructureDiagramPod:ChemicalData__Skeletal structure' />
+    <state name='All atoms'
+        input='StructureDiagramPod:ChemicalData__All atoms' />
+    <state name='Lewis structure'
+        input='StructureDiagramPod:ChemicalData__Lewis structure' />
+   </statelist>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalData__Show graph properties' />
+   <state name='Step-by-step'
+       input='StructureDiagramPod:ChemicalData__Step-by-step'
+       stepbystep='true' />
+  </states>
+ </pod>
+ <pod title='3D structure'
+     scanner='Data'
+     id='3DStructure:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1931153fa06gachfc1hh00002a5901811eb0de17?MSPStoreType=image/gif&amp;s=25'
+       alt='3D structure'
+       title=''
+       width='400'
+       height='251'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show bonds only'
+       input='3DStructure:ChemicalData__Show bonds only' />
+   <state name='Show space filling model'
+       input='3DStructure:ChemicalData__Show space filling model' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1932153fa06gachfc1hh00003564h16c52i11hb7?MSPStoreType=image/gif&amp;s=25'
+       alt='molar mass | 192.12 g/mol
+phase | solid (at STP)
+melting point | 156 °C
+boiling point | 310 °C
+density | 1.665 g/cm^3'
+       title='molar mass | 192.12 g/mol
+phase | solid (at STP)
+melting point | 156 °C
+boiling point | 310 °C
+density | 1.665 g/cm^3'
+       width='220'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 192.12 g/mol
+phase | solid (at STP)
+melting point | 156 °C
+boiling point | 310 °C
+density | 1.665 g/cm^3</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1933153fa06gachfc1hh00001cgc2aii0fdg3ci5?MSPStoreType=image/gif&amp;s=25'
+         width='234'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Hydrophobicity and permeability properties'
+     scanner='Data'
+     id='HydrophobicityPermeabilityProperties:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1934153fa06gachfc1hh00004hhi0h28id9ceg6h?MSPStoreType=image/gif&amp;s=25'
+       alt='predicted LogP hydrophobicity | -1.33
+experimental LogS | 0.51
+predicted LogS | -0.26'
+       title='predicted LogP hydrophobicity | -1.33
+experimental LogS | 0.51
+predicted LogS | -0.26'
+       width='284'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>predicted LogP hydrophobicity | -1.33
+experimental LogS | 0.51
+predicted LogS | -0.26</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Basic drug properties'
+     scanner='Data'
+     id='DrugNamesProperties:ChemicalData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1935153fa06gachfc1hh00001f4de655gdaccf65?MSPStoreType=image/gif&amp;s=25'
+       alt='approval status | experimental | small molecule
+drug categories | anticoagulant | chelating agent'
+       title='approval status | experimental | small molecule
+drug categories | anticoagulant | chelating agent'
+       width='367'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>approval status | experimental | small molecule
+drug categories | anticoagulant | chelating agent</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Solid properties (at STP)'
+     scanner='Data'
+     id='SolidProperties:ChemicalData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1936153fa06gachfc1hh00005c7cb5587fi9hi1c?MSPStoreType=image/gif&amp;s=25'
+       alt='density | 1.665 g/cm^3
+vapor pressure | 6×10^-5 mmHg (at 25 °C)
+refractive index | 1.44'
+       title='density | 1.665 g/cm^3
+vapor pressure | 6×10^-5 mmHg (at 25 °C)
+refractive index | 1.44'
+       width='308'
+       height='104'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>density | 1.665 g/cm^3
+vapor pressure | 6×10^-5 mmHg (at 25 °C)
+refractive index | 1.44</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='Thermodynamics:ChemicalData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1937153fa06gachfc1hh00001aei2i012898ie1g?MSPStoreType=image/gif&amp;s=25'
+       alt='specific heat of formation Δ_fH° | solid | -8.035 kJ/g
+specific heat of vaporization | 0.332 kJ/g | 
+specific heat of combustion | 10.32 kJ/g | 
+(at STP)'
+       title='specific heat of formation Δ_fH° | solid | -8.035 kJ/g
+specific heat of vaporization | 0.332 kJ/g | 
+specific heat of combustion | 10.32 kJ/g | 
+(at STP)'
+       width='379'
+       height='131'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>specific heat of formation Δ_fH° | solid | -8.035 kJ/g
+specific heat of vaporization | 0.332 kJ/g | 
+specific heat of combustion | 10.32 kJ/g | 
+(at STP)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Thermodynamics:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short='kJ/g'
+         long='kilojoules per gram' />
+     <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1938153fa06gachfc1hh000012g83h78ci01gheh?MSPStoreType=image/gif&amp;s=25'
+         width='172'
+         height='27' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1939153fa06gachfc1hh00003d6036c3hb4fd71f?MSPStoreType=image/gif&amp;s=25'
+       alt='CAS number | 77-92-9
+Beilstein number | 782061
+PubChem CID number | 311
+PubChem SID number | 24854425
+SMILES identifier | C(C(=O)O)C(CC(=O)O)(C(=O)O)O'
+       title='CAS number | 77-92-9
+Beilstein number | 782061
+PubChem CID number | 311
+PubChem SID number | 24854425
+SMILES identifier | C(C(=O)O)C(CC(=O)O)(C(=O)O)O'
+       width='415'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 77-92-9
+Beilstein number | 782061
+PubChem CID number | 311
+PubChem SID number | 24854425
+SMILES identifier | C(C(=O)O)C(CC(=O)O)(C(=O)O)O</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='NFPA label'
+     scanner='Data'
+     id='NFPALabel:ChemicalData'
+     position='1100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1940153fa06gachfc1hh000041a6054hee8igigi?MSPStoreType=image/gif&amp;s=25'
+       alt='NFPA label'
+       title=''
+       width='40'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Table'
+       input='NFPALabel:ChemicalData__Table' />
+  </states>
+ </pod>
+ <pod title='Safety properties'
+     scanner='Data'
+     id='SafetyProperties:ChemicalData'
+     position='1200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1941153fa06gachfc1hh00003652aagge45a9d4g?MSPStoreType=image/gif&amp;s=25'
+       alt='flash point | 155 °C
+autoignition point | 345 °C
+lower explosive limit | 1.8% (concentration in air)
+upper explosive limit | 4.8% (concentration in air)'
+       title='flash point | 155 °C
+autoignition point | 345 °C
+lower explosive limit | 1.8% (concentration in air)
+upper explosive limit | 4.8% (concentration in air)'
+       width='341'
+       height='136'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>flash point | 155 °C
+autoignition point | 345 °C
+lower explosive limit | 1.8% (concentration in air)
+upper explosive limit | 4.8% (concentration in air)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='SafetyProperties:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Toxicity properties'
+     scanner='Data'
+     id='ToxicityProperties:ChemicalData'
+     position='1300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>MacmillansChemicalAndPhysicalData</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1942153fa06gachfc1hh000011i296c01b3b6g88?MSPStoreType=image/gif&amp;s=25'
+       alt='RTECS classes | agricultural chemical and pesticide | drug | primary irritant'
+       title='RTECS classes | agricultural chemical and pesticide | drug | primary irritant'
+       width='546'
+       height='55'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>RTECS classes | agricultural chemical and pesticide | drug | primary irritant</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='2'>
+  <assumption type='Clash'
+      word='Citric acid'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='Chemical'
+       desc='a chemical compound'
+       input='*C.Citric+acid-_*Chemical-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.Citric+acid-_*Word-' />
+  </assumption>
+  <assumption type='SubCategory'
+      word='Citric acid'
+      template='Assuming ${desc1}. Use ${desc2} instead'
+      count='2'>
+   <value name='CitricAcid'
+       desc='citric acid'
+       input='*DPClash.ChemicalE.Citric+acid-_*CitricAcid-' />
+   <value name='CitricAcidMonohydrate'
+       desc='citric acid monohydrate'
+       input='*DPClash.ChemicalE.Citric+acid-_*CitricAcidMonohydrate-' />
+  </assumption>
+ </assumptions>
+ <sources count='2'>
+  <source url='https://www4d.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+  <source url='https://www4d.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>

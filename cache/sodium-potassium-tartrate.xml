@@ -1,0 +1,244 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='6'
+    datatypes='Chemical'
+    timedout=''
+    timedoutpods=''
+    timing='3.0420000000000003'
+    parsetiming='0.358'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP91421c2a77af7gb175000004fbg2i1ab3ddebb4'
+    host='https://www5b.wolframalpha.com'
+    server='42'
+    related='https://www5b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa91521c2a77af7gb175000004ah166358g4490721974172802644588749'
+    version='2.6'
+    inputstring='Sodium potassium tartrate'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP91621c2a77af7gb175000003d0cecfgdeefifa4?MSPStoreType=image/gif&amp;s=42'
+       alt='potassium sodium tartrate'
+       title='potassium sodium tartrate'
+       width='173'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>potassium sodium tartrate</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP91721c2a77af7gb1750000062cia23i648e1f7d?MSPStoreType=image/gif&amp;s=42'
+       alt='formula | C_4H_4KNaO_6
+name | potassium sodium tartrate
+IUPAC name | potassium sodium (2R, 3R)-2, 3-dihydroxybutanedioate'
+       title='formula | C_4H_4KNaO_6
+name | potassium sodium tartrate
+IUPAC name | potassium sodium (2R, 3R)-2, 3-dihydroxybutanedioate'
+       width='494'
+       height='105'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | C_4H_4KNaO_6
+name | potassium sodium tartrate
+IUPAC name | potassium sodium (2R, 3R)-2, 3-dihydroxybutanedioate</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP91821c2a77af7gb175000002547adb05dg2edie?MSPStoreType=image/gif&amp;s=42'
+       alt='Structure diagram'
+       title=''
+       width='229'
+       height='124'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='3'>
+   <statelist count='2'
+       value='Skeletal structure'
+       delimiters=''>
+    <state name='Skeletal structure'
+        input='StructureDiagramPod:ChemicalData__Skeletal structure' />
+    <state name='All atoms'
+        input='StructureDiagramPod:ChemicalData__All atoms' />
+   </statelist>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalData__Show graph properties' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP91921c2a77af7gb175000003h2439hc707715ae?MSPStoreType=image/gif&amp;s=42'
+       alt='molar mass | 210.16 g/mol
+phase | solid (at STP)
+melting point | 95 °C
+density | 1.79 g/cm^3
+solubility in water | soluble'
+       title='molar mass | 210.16 g/mol
+phase | solid (at STP)
+melting point | 95 °C
+density | 1.79 g/cm^3
+solubility in water | soluble'
+       width='252'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 210.16 g/mol
+phase | solid (at STP)
+melting point | 95 °C
+density | 1.79 g/cm^3
+solubility in water | soluble</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP92021c2a77af7gb175000005i8b925fb59bd6c7?MSPStoreType=image/gif&amp;s=42'
+         width='234'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Solid properties (at STP)'
+     scanner='Data'
+     id='SolidProperties:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP92121c2a77af7gb175000004i79fe8fh50f0211?MSPStoreType=image/gif&amp;s=42'
+       alt='density | 1.79 g/cm^3'
+       title='density | 1.79 g/cm^3'
+       width='165'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>density | 1.79 g/cm^3</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP92221c2a77af7gb175000000gei157h15idacea?MSPStoreType=image/gif&amp;s=42'
+       alt='CAS number | 304-59-6
+Beilstein number | 4630025
+PubChem CID number | 9855836
+SMILES identifier | C(C(C(=O)[O-])O)(C(=O)[O-])O.[Na+].[K+]'
+       title='CAS number | 304-59-6
+Beilstein number | 4630025
+PubChem CID number | 9855836
+SMILES identifier | C(C(C(=O)[O-])O)(C(=O)[O-])O.[Na+].[K+]'
+       width='483'
+       height='136'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 304-59-6
+Beilstein number | 4630025
+PubChem CID number | 9855836
+SMILES identifier | C(C(C(=O)[O-])O)(C(=O)[O-])O.[Na+].[K+]</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <sources count='1'>
+  <source url='https://www5b.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+ </sources>
+</queryresult>

@@ -1,0 +1,500 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='13'
+    datatypes='Chemical,Element'
+    timedout=''
+    timedoutpods=''
+    timing='3.4290000000000003'
+    parsetiming='0.091'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP2069207684a4bh2f28a700003f077a23h9d41g6b'
+    host='https://www4d.wolframalpha.com'
+    server='22'
+    related='https://www4d.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa2070207684a4bh2f28a700002121820i73g75h815179438809786073608'
+    version='2.6'
+    inputstring='Fructose'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP2071207684a4bh2f28a700003ag678gddb95913f?MSPStoreType=image/gif&amp;s=22'
+       alt='D-(-)-fructose'
+       title='D-(-)-fructose'
+       width='103'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>D-(-)-fructose</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP2072207684a4bh2f28a7000046g6c4d4dii3ed2g?MSPStoreType=image/gif&amp;s=22'
+       alt='formula | C_6H_12O_6
+name | D-(-)-fructose
+IUPAC name | (2R, 3S, 4R, 5R)-2-(hydroxymethyl)oxane-2, 3, 4, 5-tetrol'
+       title='formula | C_6H_12O_6
+name | D-(-)-fructose
+IUPAC name | (2R, 3S, 4R, 5R)-2-(hydroxymethyl)oxane-2, 3, 4, 5-tetrol'
+       width='498'
+       height='104'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | C_6H_12O_6
+name | D-(-)-fructose
+IUPAC name | (2R, 3S, 4R, 5R)-2-(hydroxymethyl)oxane-2, 3, 4, 5-tetrol</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP2073207684a4bh2f28a700002bb818bi9e4c4e5h?MSPStoreType=image/gif&amp;s=22'
+       alt='Structure diagram'
+       title=''
+       width='176'
+       height='157'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='4'>
+   <statelist count='3'
+       value='Skeletal structure'
+       delimiters=''>
+    <state name='Skeletal structure'
+        input='StructureDiagramPod:ChemicalData__Skeletal structure' />
+    <state name='All atoms'
+        input='StructureDiagramPod:ChemicalData__All atoms' />
+    <state name='Lewis structure'
+        input='StructureDiagramPod:ChemicalData__Lewis structure' />
+   </statelist>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalData__Show graph properties' />
+   <state name='Step-by-step'
+       input='StructureDiagramPod:ChemicalData__Step-by-step'
+       stepbystep='true' />
+  </states>
+ </pod>
+ <pod title='3D structure'
+     scanner='Data'
+     id='3DStructure:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP2074207684a4bh2f28a700001hc7ebd8dcg5ihff?MSPStoreType=image/gif&amp;s=22'
+       alt='3D structure'
+       title=''
+       width='400'
+       height='243'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show bonds only'
+       input='3DStructure:ChemicalData__Show bonds only' />
+   <state name='Show space filling model'
+       input='3DStructure:ChemicalData__Show space filling model' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP2075207684a4bh2f28a700002ff38dfa3c9d34he?MSPStoreType=image/gif&amp;s=22'
+       alt='molar mass | 180.16 g/mol
+phase | solid (at STP)
+melting point | 105 °C
+boiling point | 552 °C
+density | 1.459 g/cm^3'
+       title='molar mass | 180.16 g/mol
+phase | solid (at STP)
+melting point | 105 °C
+boiling point | 552 °C
+density | 1.459 g/cm^3'
+       width='220'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 180.16 g/mol
+phase | solid (at STP)
+melting point | 105 °C
+boiling point | 552 °C
+density | 1.459 g/cm^3</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP2076207684a4bh2f28a70000268ed864g2be96h1?MSPStoreType=image/gif&amp;s=22'
+         width='234'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Hydrophobicity and permeability properties'
+     scanner='Data'
+     id='HydrophobicityPermeabilityProperties:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP2077207684a4bh2f28a700003ch1459a86557204?MSPStoreType=image/gif&amp;s=22'
+       alt='predicted LogP hydrophobicity | -2.44
+predicted LogS | 0.79'
+       title='predicted LogP hydrophobicity | -2.44
+predicted LogS | 0.79'
+       width='285'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>predicted LogP hydrophobicity | -2.44
+predicted LogS | 0.79</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Basic drug properties'
+     scanner='Data'
+     id='DrugNamesProperties:ChemicalData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP2078207684a4bh2f28a7000067c0h2a0i8312283?MSPStoreType=image/gif&amp;s=22'
+       alt='approval status | experimental | small molecule'
+       title='approval status | experimental | small molecule'
+       width='357'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>approval status | experimental | small molecule</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Solid properties (at STP)'
+     scanner='Data'
+     id='SolidProperties:ChemicalData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP2079207684a4bh2f28a70000222b973602dffi5f?MSPStoreType=image/gif&amp;s=22'
+       alt='density | 1.459 g/cm^3
+vapor pressure | 2×10^-14 mmHg (at 25 °C)
+refractive index | 1.5101'
+       title='density | 1.459 g/cm^3
+vapor pressure | 2×10^-14 mmHg (at 25 °C)
+refractive index | 1.5101'
+       width='314'
+       height='104'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>density | 1.459 g/cm^3
+vapor pressure | 2×10^-14 mmHg (at 25 °C)
+refractive index | 1.5101</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='Thermodynamics:ChemicalData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP2080207684a4bh2f28a7000020h95dfcd3bg0a13?MSPStoreType=image/gif&amp;s=22'
+       alt='specific heat of vaporization | 0.531 kJ/g
+specific heat of combustion | 15.61 kJ/g
+(at STP)'
+       title='specific heat of vaporization | 0.531 kJ/g
+specific heat of combustion | 15.61 kJ/g
+(at STP)'
+       width='296'
+       height='95'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>specific heat of vaporization | 0.531 kJ/g
+specific heat of combustion | 15.61 kJ/g
+(at STP)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Thermodynamics:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short='kJ/g'
+         long='kilojoules per gram' />
+     <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP2081207684a4bh2f28a70000575d22g8h6d117b9?MSPStoreType=image/gif&amp;s=22'
+         width='172'
+         height='27' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP2082207684a4bh2f28a7000023fi19h8b60fef8e?MSPStoreType=image/gif&amp;s=22'
+       alt='CAS number | 57-48-7
+Beilstein number | 1239004
+PubChem CID number | 3426
+PubChem SID number | 7887582
+SMILES identifier | C1C(C(C(C(O1)(CO)O)O)O)O'
+       title='CAS number | 57-48-7
+Beilstein number | 1239004
+PubChem CID number | 3426
+PubChem SID number | 7887582
+SMILES identifier | C1C(C(C(C(O1)(CO)O)O)O)O'
+       width='380'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 57-48-7
+Beilstein number | 1239004
+PubChem CID number | 3426
+PubChem SID number | 7887582
+SMILES identifier | C1C(C(C(C(O1)(CO)O)O)O)O</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='NFPA label'
+     scanner='Data'
+     id='NFPALabel:ChemicalData'
+     position='1100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP2083207684a4bh2f28a70000116f6he28c7e6175?MSPStoreType=image/gif&amp;s=22'
+       alt='NFPA label'
+       title=''
+       width='40'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Table'
+       input='NFPALabel:ChemicalData__Table' />
+  </states>
+ </pod>
+ <pod title='Safety properties'
+     scanner='Data'
+     id='SafetyProperties:ChemicalData'
+     position='1200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP2084207684a4bh2f28a700002f31c0feef4ga5b3?MSPStoreType=image/gif&amp;s=22'
+       alt='flash point | 301 °C'
+       title='flash point | 301 °C'
+       width='159'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>flash point | 301 °C</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Toxicity properties'
+     scanner='Data'
+     id='ToxicityProperties:ChemicalData'
+     position='1300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>MacmillansChemicalAndPhysicalData</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP2085207684a4bh2f28a700001dd406ab1380i2b9?MSPStoreType=image/gif&amp;s=22'
+       alt='RTECS classes | other'
+       title='RTECS classes | other'
+       width='175'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>RTECS classes | other</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='2'>
+  <assumption type='Clash'
+      word='Fructose'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='Chemical'
+       desc='a chemical compound'
+       input='*C.Fructose-_*Chemical-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.Fructose-_*Word-' />
+  </assumption>
+  <assumption type='SubCategory'
+      word='Fructose'
+      template='Assuming ${desc1}. Use ${desc2} instead'
+      count='3'>
+   <value name='DFructose'
+       desc='D-(-)-fructose'
+       input='*DPClash.ChemicalE.Fructose-_*DFructose-' />
+   <value name='BetaDFructose'
+       desc='beta-D-fructose'
+       input='*DPClash.ChemicalE.Fructose-_*BetaDFructose-' />
+   <value name='Frutabs'
+       desc='β-D-fructopyranose'
+       input='*DPClash.ChemicalE.Fructose-_*Frutabs-' />
+  </assumption>
+ </assumptions>
+ <sources count='2'>
+  <source url='https://www4d.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+  <source url='https://www4d.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>

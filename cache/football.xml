@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='5'
+    datatypes=''
+    timedout=''
+    timedoutpods=''
+    timing='1.532'
+    parsetiming='0.20400000000000001'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP46481f58f2bf3hgb2if800001c2ied3fd51i4g83'
+    host='https://www4f.wolframalpha.com'
+    server='45'
+    related='https://www4f.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa46491f58f2bf3hgb2if80000293hh603i0h62edd2786472444649748222'
+    version='2.6'
+    inputstring='Football'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP46501f58f2bf3hgb2if800004h4a519387b30g32?MSPStoreType=image/gif&amp;s=45'
+       alt='NFL football'
+       title='NFL football'
+       width='81'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>NFL football</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Alternate name'
+     scanner='Data'
+     id='AlternateNamesPod:SportObject'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <datasources>
+    <datasource>AmericanFootballSize</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP46511f58f2bf3hgb2if80000257ceehcff2e030b?MSPStoreType=image/gif&amp;s=45'
+       alt='pigskin'
+       title='pigskin'
+       width='47'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>pigskin</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Associated sport'
+     scanner='Data'
+     id='AssociatedSportPod:SportObject'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <datasources>
+    <datasource>AmericanFootballSize</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP46521f58f2bf3hgb2if80000671f8b301fhf1gb5?MSPStoreType=image/gif&amp;s=45'
+       alt='American football'
+       title='American football'
+       width='119'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>American football</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Object properties'
+     scanner='Data'
+     id='ObjectPropertiesPod:SportObject'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <datasources>
+    <datasource>AmericanFootballSize</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP46531f58f2bf3hgb2if8000027065ai365hh083g?MSPStoreType=image/gif&amp;s=45'
+       alt='shape | prolate spheroid (hollow)
+long circumference | (28 to 28.5) inches
+short circumference | (21 to 21.25) inches
+length | (11 to 11.25) inches
+mass | (14 to 15) oz (ounces)
+(according to NFL standard)'
+       title='shape | prolate spheroid (hollow)
+long circumference | (28 to 28.5) inches
+short circumference | (21 to 21.25) inches
+length | (11 to 11.25) inches
+mass | (14 to 15) oz (ounces)
+(according to NFL standard)'
+       width='342'
+       height='191'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>shape | prolate spheroid (hollow)
+long circumference | (28 to 28.5) inches
+short circumference | (21 to 21.25) inches
+length | (11 to 11.25) inches
+mass | (14 to 15) oz (ounces)
+(according to NFL standard)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ObjectPropertiesPod:SportObject__More' />
+  </states>
+ </pod>
+ <pod title='Image'
+     scanner='Data'
+     id='Image:SportObject'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <imagesource>http://www.nflshop.com/product/index.jsp?productId=2478811</imagesource>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP46541f58f2bf3hgb2if800001b72cad2c55c78hb?MSPStoreType=image/gif&amp;s=45'
+       alt='Image'
+       title=''
+       width='150'
+       height='150'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='2'>
+  <assumption type='Clash'
+      word='Football'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='6'>
+   <value name='SportObject'
+       desc='a sport object'
+       input='*C.Football-_*SportObject-' />
+   <value name='PhysicalActivity'
+       desc='a physical activity'
+       input='*C.Football-_*PhysicalActivity-' />
+   <value name='Sport'
+       desc='a sport'
+       input='*C.Football-_*Sport-' />
+   <value name='ExamplePage'
+       desc='a general topic'
+       input='*C.Football-_*ExamplePage-' />
+   <value name='MathWorld'
+       desc=' referring to a mathematical definition'
+       input='*C.Football-_*MathWorld-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.Football-_*Word-' />
+  </assumption>
+  <assumption type='SubCategory'
+      word='Football'
+      template='Assuming ${desc1}. Use ${desc2} instead'
+      count='9'>
+   <value name='AmericanFootballNFL'
+       desc='NFL football'
+       input='*DPClash.SportObjectE.Football-_*AmericanFootballNFL-' />
+   <value name='AmericanFootballNCAA'
+       desc='NCAA football'
+       input='*DPClash.SportObjectE.Football-_*AmericanFootballNCAA-' />
+   <value name='AustralianFootball'
+       desc='Australian football (AFL)'
+       input='*DPClash.SportObjectE.Football-_*AustralianFootball-' />
+   <value name='CanadianFootball'
+       desc='Canadian football (CFL)'
+       input='*DPClash.SportObjectE.Football-_*CanadianFootball-' />
+   <value name='GaelicFootball'
+       desc='Gaelic football (GAA)'
+       input='*DPClash.SportObjectE.Football-_*GaelicFootball-' />
+   <value name='ArenaFootball'
+       desc='arena football (AFL)'
+       input='*DPClash.SportObjectE.Football-_*ArenaFootball-' />
+   <value name='SoccerBallFIFA'
+       desc='FIFA soccer ball'
+       input='*DPClash.SportObjectE.Football-_*SoccerBallFIFA-' />
+   <value name='SoccerBallNCAAMens'
+       desc='NCAA men&apos;s soccer ball'
+       input='*DPClash.SportObjectE.Football-_*SoccerBallNCAAMens-' />
+   <value name='SoccerBallNCAAWomens'
+       desc='NCAA women&apos;s soccer ball'
+       input='*DPClash.SportObjectE.Football-_*SoccerBallNCAAWomens-' />
+  </assumption>
+ </assumptions>
+</queryresult>

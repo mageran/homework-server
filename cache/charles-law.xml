@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='6'
+    datatypes=''
+    timedout=''
+    timedoutpods=''
+    timing='1.046'
+    parsetiming='0.271'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP6531gfc67206567f7ce000024a8gffh05b1h32i'
+    host='https://www5b.wolframalpha.com'
+    server='35'
+    related='https://www5b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa6541gfc67206567f7ce000029ig0cggce1a85g51117243612443725456'
+    version='2.6'
+    inputstring='charles law'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP6551gfc67206567f7ce000030dbif06aid6i969?MSPStoreType=image/gif&amp;s=35'
+       alt='Charles&apos;s law (chemical principle)'
+       title='Charles&apos;s law (chemical principle)'
+       width='218'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Charles&apos;s law (chemical principle)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Description'
+     scanner='Data'
+     id='StatementPod:FamousChemistryProblem'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP6561gfc67206567f7ce00002i036dc47a823480?MSPStoreType=image/gif&amp;s=35'
+       alt='Charles&apos;s law states that at constant pressure, the volume of a given amount of an ideal gas is directly proportional to its absolute temperature.'
+       title='Charles&apos;s law states that at constant pressure, the volume of a given amount of an ideal gas is directly proportional to its absolute temperature.'
+       width='536'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Charles&apos;s law states that at constant pressure, the volume of a given amount of an ideal gas is directly proportional to its absolute temperature.</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Alternate name'
+     scanner='Data'
+     id='AlternateNamesPod:FamousChemistryProblem'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP6571gfc67206567f7ce00000e6928a6e948ea5f?MSPStoreType=image/gif&amp;s=35'
+       alt='law of Charles and Gay-Lussac'
+       title='law of Charles and Gay-Lussac'
+       width='202'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>law of Charles and Gay-Lussac</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Classes'
+     scanner='Data'
+     id='PropertiesPod:FamousChemistryProblem'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP6581gfc67206567f7ce0000328i0f78hc912h7d?MSPStoreType=image/gif&amp;s=35'
+       alt='gas laws | laws of chemistry'
+       title='gas laws | laws of chemistry'
+       width='197'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>gas laws | laws of chemistry</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='History'
+     scanner='Data'
+     id='HistoryPod:FamousChemistryProblem'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP6591gfc67206567f7ce00002731fd3gh4217eed?MSPStoreType=image/gif&amp;s=35'
+       alt='discovery date | 1780 (241 years ago)
+discoverer | Jacques Charles
+additional people involved | Joseph Louis Gay-Lussac | Guillaume Amontons | John Dalton | Francis Hauksbee'
+       title='discovery date | 1780 (241 years ago)
+discoverer | Jacques Charles
+additional people involved | Joseph Louis Gay-Lussac | Guillaume Amontons | John Dalton | Francis Hauksbee'
+       width='546'
+       height='121'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>discovery date | 1780 (241 years ago)
+discoverer | Jacques Charles
+additional people involved | Joseph Louis Gay-Lussac | Guillaume Amontons | John Dalton | Francis Hauksbee</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='HistoryPod:FamousChemistryProblem__More' />
+  </states>
+ </pod>
+ <pod title='Associated equation'
+     scanner='Data'
+     id='FormulasPod:FamousChemistryProblem'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP6601gfc67206567f7ce000039dc25972951ihh3?MSPStoreType=image/gif&amp;s=35'
+       alt='V∝T'
+       title='V∝T'
+       width='30'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>V∝T</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='charles law'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='4'>
+   <value name='FamousChemistryProblem'
+       desc=' referring to a chemical principle'
+       input='*C.charles+law-_*FamousChemistryProblem-' />
+   <value name='Formula'
+       desc='a formula'
+       input='*C.charles+law-_*Formula-' />
+   <value name='Person'
+       desc='a person'
+       input='*C.charles+law-_*Person-' />
+   <value name='PhysicalEffect'
+       desc=' referring to physical effect'
+       input='*C.charles+law-_*PhysicalEffect-' />
+  </assumption>
+ </assumptions>
+</queryresult>

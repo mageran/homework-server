@@ -1,0 +1,404 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='10'
+    datatypes='Chemical,Element'
+    timedout='Data,Character'
+    timedoutpods=''
+    timing='4.682'
+    parsetiming='0.47100000000000003'
+    parsetimedout='false'
+    recalculate='https://www4d.wolframalpha.com/api/v1/recalc.jsp?id=MSPa1359160df5ai49hgb8e0000069eabh6647c3cffh1789363727025355278'
+    id='MSP1360160df5ai49hgb8e0000024d9d37d95a73gg5'
+    host='https://www4d.wolframalpha.com'
+    server='18'
+    related='https://www4d.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa1361160df5ai49hgb8e0000048gf3420i84ifeci1789363727025355278'
+    version='2.6'
+    inputstring='BaBr2   H2SO4'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1362160df5ai49hgb8e000005b1f384h2704i2ca?MSPStoreType=image/gif&amp;s=18'
+       alt='barium bromide | sulfuric acid'
+       title='barium bromide | sulfuric acid'
+       width='212'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>barium bromide | sulfuric acid</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1363160df5ai49hgb8e0000036ehd394gcebf498?MSPStoreType=image/gif&amp;s=18'
+       alt=' | barium bromide | sulfuric acid
+formula | BaBr_2 | H_2SO_4
+Hill formula | BaBr_2 | H_2O_4S
+name | barium bromide | sulfuric acid
+IUPAC name | barium(+2) cation dibromide | sulfuric acid'
+       title=' | barium bromide | sulfuric acid
+formula | BaBr_2 | H_2SO_4
+Hill formula | BaBr_2 | H_2O_4S
+name | barium bromide | sulfuric acid
+IUPAC name | barium(+2) cation dibromide | sulfuric acid'
+       width='424'
+       height='173'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | barium bromide | sulfuric acid
+formula | BaBr_2 | H_2SO_4
+Hill formula | BaBr_2 | H_2O_4S
+name | barium bromide | sulfuric acid
+IUPAC name | barium(+2) cation dibromide | sulfuric acid</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagrams'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1364160df5ai49hgb8e000002h7ch4ehc9a3bd26?MSPStoreType=image/gif&amp;s=18'
+       alt='Structure diagrams'
+       title=''
+       width='258'
+       height='124'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <statelist count='2'
+       value='Skeletal structure'
+       delimiters=''>
+    <state name='Skeletal structure'
+        input='StructureDiagramPod:ChemicalData__Skeletal structure' />
+    <state name='Lewis structure'
+        input='StructureDiagramPod:ChemicalData__Lewis structure' />
+   </statelist>
+  </states>
+ </pod>
+ <pod title='3D structure'
+     scanner='Data'
+     id='3DStructure:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1365160df5ai49hgb8e000003f51e8e6dga9177c?MSPStoreType=image/gif&amp;s=18'
+       alt='3D structure'
+       title=''
+       width='227'
+       height='172'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show bonds only'
+       input='3DStructure:ChemicalData__Show bonds only' />
+   <state name='Show space filling model'
+       input='3DStructure:ChemicalData__Show space filling model' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1366160df5ai49hgb8e000006ahhe369cdbdg92i?MSPStoreType=image/gif&amp;s=18'
+       alt=' | barium bromide | sulfuric acid
+molar mass | 297.13 g/mol | 98.07 g/mol
+phase | solid (at STP) | liquid (at STP)
+melting point | 860 °C | 10.371 °C
+boiling point | 1835 °C | 279.6 °C
+density | 4.78 g/cm^3 | 1.8305 g/cm^3
+solubility in water | | very soluble'
+       title=' | barium bromide | sulfuric acid
+molar mass | 297.13 g/mol | 98.07 g/mol
+phase | solid (at STP) | liquid (at STP)
+melting point | 860 °C | 10.371 °C
+boiling point | 1835 °C | 279.6 °C
+density | 4.78 g/cm^3 | 1.8305 g/cm^3
+solubility in water | | very soluble'
+       width='385'
+       height='235'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | barium bromide | sulfuric acid
+molar mass | 297.13 g/mol | 98.07 g/mol
+phase | solid (at STP) | liquid (at STP)
+melting point | 860 °C | 10.371 °C
+boiling point | 1835 °C | 279.6 °C
+density | 4.78 g/cm^3 | 1.8305 g/cm^3
+solubility in water | | very soluble</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1367160df5ai49hgb8e000001h980ec2007ci39a?MSPStoreType=image/gif&amp;s=18'
+         width='234'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Liquid properties'
+     scanner='Data'
+     id='LiquidProperties:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1368160df5ai49hgb8e000005hicbi8f5a929e3c?MSPStoreType=image/gif&amp;s=18'
+       alt=' | sulfuric acid
+density | 1.8305 g/cm^3
+vapor pressure | 6×10^-5 mmHg
+dynamic viscosity | 0.021 Pa s
+surface tension | 0.0735 N/m
+refractive index | 1.41827'
+       title=' | sulfuric acid
+density | 1.8305 g/cm^3
+vapor pressure | 6×10^-5 mmHg
+dynamic viscosity | 0.021 Pa s
+surface tension | 0.0735 N/m
+refractive index | 1.41827'
+       width='263'
+       height='203'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | sulfuric acid
+density | 1.8305 g/cm^3
+vapor pressure | 6×10^-5 mmHg
+dynamic viscosity | 0.021 Pa s
+surface tension | 0.0735 N/m
+refractive index | 1.41827</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='MultiThermodynamics:ChemicalData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1369160df5ai49hgb8e0000016if0067c0dgf28c?MSPStoreType=image/gif&amp;s=18'
+       alt=' | barium bromide | sulfuric acid
+specific heat of vaporization | | 0.57 kJ/g (kilojoules per gram)
+specific heat of fusion | 0.108 kJ/g (kilojoules per gram) | 0.1092 kJ/g (kilojoules per gram)'
+       title=' | barium bromide | sulfuric acid
+specific heat of vaporization | | 0.57 kJ/g (kilojoules per gram)
+specific heat of fusion | 0.108 kJ/g (kilojoules per gram) | 0.1092 kJ/g (kilojoules per gram)'
+       width='546'
+       height='139'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | barium bromide | sulfuric acid
+specific heat of vaporization | | 0.57 kJ/g (kilojoules per gram)
+specific heat of fusion | 0.108 kJ/g (kilojoules per gram) | 0.1092 kJ/g (kilojoules per gram)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='MultiThermodynamics:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Solid properties'
+     scanner='Data'
+     id='SolidProperties:ChemicalData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1370160df5ai49hgb8e00000541ef217398b77c6?MSPStoreType=image/gif&amp;s=18'
+       alt=' | barium bromide
+density | 4.78 g/cm^3'
+       title=' | barium bromide
+density | 4.78 g/cm^3'
+       width='201'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | barium bromide
+density | 4.78 g/cm^3</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1371160df5ai49hgb8e000004i01153084e18d5d?MSPStoreType=image/gif&amp;s=18'
+       alt=' | barium bromide | sulfuric acid
+CAS number | 10553-31-8 | 7664-93-9
+Beilstein number | | 2037554
+PubChem CID number | 66350 | 1118
+PubChem SID number | 24865871 | 24859176
+SMILES identifier | [Br-].[Br-].[Ba+2] | OS(=O)(=O)O'
+       title=' | barium bromide | sulfuric acid
+CAS number | 10553-31-8 | 7664-93-9
+Beilstein number | | 2037554
+PubChem CID number | 66350 | 1118
+PubChem SID number | 24865871 | 24859176
+SMILES identifier | [Br-].[Br-].[Ba+2] | OS(=O)(=O)O'
+       width='430'
+       height='202'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | barium bromide | sulfuric acid
+CAS number | 10553-31-8 | 7664-93-9
+Beilstein number | | 2037554
+PubChem CID number | 66350 | 1118
+PubChem SID number | 24865871 | 24859176
+SMILES identifier | [Br-].[Br-].[Ba+2] | OS(=O)(=O)O</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='NFPA label'
+     scanner='Data'
+     id='NFPALabel:ChemicalData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1372160df5ai49hgb8e0000018b2f6if3d8ib644?MSPStoreType=image/gif&amp;s=18'
+       alt='NFPA label'
+       title=''
+       width='108'
+       height='91'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Table'
+       input='NFPALabel:ChemicalData__Table' />
+  </states>
+ </pod>
+ <sources count='2'>
+  <source url='https://www4d.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+  <source url='https://www4d.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>

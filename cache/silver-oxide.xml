@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='5'
+    datatypes='Chemical'
+    timedout=''
+    timedoutpods=''
+    timing='2.6390000000000002'
+    parsetiming='0.28700000000000003'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP38118d9e3i5i7f6g4ea00004930eg481853d404'
+    host='https://www4d.wolframalpha.com'
+    server='4'
+    related='https://www4d.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa38218d9e3i5i7f6g4ea000061e419593i4124821211865314647295825'
+    version='2.6'
+    inputstring='Silver oxide'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38318d9e3i5i7f6g4ea00002844f9e6ac550iii?MSPStoreType=image/gif&amp;s=4'
+       alt='silver oxide'
+       title='silver oxide'
+       width='73'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>silver oxide</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38418d9e3i5i7f6g4ea00003g796gaf14c5a27f?MSPStoreType=image/gif&amp;s=4'
+       alt='formula | AgO
+name | silver oxide
+IUPAC name | oxosilver'
+       title='formula | AgO
+name | silver oxide
+IUPAC name | oxosilver'
+       width='204'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | AgO
+name | silver oxide
+IUPAC name | oxosilver</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38518d9e3i5i7f6g4ea00002ec04701aa70356a?MSPStoreType=image/gif&amp;s=4'
+       alt='Structure diagram'
+       title=''
+       width='79'
+       height='33'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalData__Show graph properties' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38618d9e3i5i7f6g4ea0000351i3h9e52ac0d96?MSPStoreType=image/gif&amp;s=4'
+       alt='molar mass | 123.867 g/mol
+density | 7.483 g/cm^3'
+       title='molar mass | 123.867 g/mol
+density | 7.483 g/cm^3'
+       width='216'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 123.867 g/mol
+density | 7.483 g/cm^3</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38718d9e3i5i7f6g4ea0000364hici935h4dfea?MSPStoreType=image/gif&amp;s=4'
+         width='234'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38818d9e3i5i7f6g4ea00003b66e17ec4fbi0ah?MSPStoreType=image/gif&amp;s=4'
+       alt='CAS number | 11113-88-5
+PubChem CID number | 92152
+PubChem SID number | 24853392
+SMILES identifier | O=[Ag]'
+       title='CAS number | 11113-88-5
+PubChem CID number | 92152
+PubChem SID number | 24853392
+SMILES identifier | O=[Ag]'
+       width='278'
+       height='136'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 11113-88-5
+PubChem CID number | 92152
+PubChem SID number | 24853392
+SMILES identifier | O=[Ag]</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <assumptions count='2'>
+  <assumption type='MultiClash'
+      word=''
+      template='Assuming ${word1} is referring to ${desc1}. Use as ${desc2} instead. Use &quot;${word3}&quot; as ${desc3}.'
+      count='3'>
+   <value name='Chemical'
+       word='the input'
+       desc='a chemical compound'
+       input='*MC.%7E-_*Chemical-' />
+   <value name='BatteryClass'
+       word='the input'
+       desc='a class of batteries'
+       input='*MC.%7E-_*BatteryClass-' />
+   <value name='Element'
+       word='Silver'
+       desc='a chemical element'
+       input='*MC.%7E-_*Element-' />
+  </assumption>
+  <assumption type='SubCategory'
+      word='Silver oxide'
+      template='Assuming ${desc1}. Use ${desc2} instead'
+      count='3'>
+   <value name='SilverOxide'
+       desc='silver oxide'
+       input='*DPClash.ChemicalE.Silver+oxide-_*SilverOxide-' />
+   <value name='SilverIOxide'
+       desc='silver(I) oxide'
+       input='*DPClash.ChemicalE.Silver+oxide-_*SilverIOxide-' />
+   <value name='SilverIIOxide'
+       desc='silver(II) oxide'
+       input='*DPClash.ChemicalE.Silver+oxide-_*SilverIIOxide-' />
+  </assumption>
+ </assumptions>
+ <sources count='1'>
+  <source url='https://www4d.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+ </sources>
+</queryresult>

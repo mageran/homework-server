@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='6'
+    datatypes='Person'
+    timedout=''
+    timedoutpods=''
+    timing='2.553'
+    parsetiming='0.112'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP13441i7c18g1253ea29e00004fb2ddai6ad5ifc1'
+    host='https://www4c.wolframalpha.com'
+    server='3'
+    related='https://www4c.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa13451i7c18g1253ea29e000039g1b9a19faf8bbb7575115139948579748'
+    version='2.6'
+    inputstring='Matthias'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP13461i7c18g1253ea29e00001c6hb54f9e522e51?MSPStoreType=image/gif&amp;s=3'
+       alt='Matthias (royalty)'
+       title='Matthias (royalty)'
+       width='121'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Matthias (royalty)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Basic information'
+     scanner='Data'
+     id='BasicInformation:PeopleData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>PeopleData</microsource>
+   </microsources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP13471i7c18g1253ea29e000028804h767g2ef5ia?MSPStoreType=image/gif&amp;s=3'
+       alt='full name | Matthias
+date of birth | Wednesday, February 24, 1557 (Julian calendar) (464 years ago)
+place of birth | Vienna, Vienna, Austria
+date of death | Wednesday, March 20, 1619 (Gregorian calendar) (age: 62 years) 
+ (402 years ago)
+place of death | Vienna, Vienna, Austria'
+       title='full name | Matthias
+date of birth | Wednesday, February 24, 1557 (Julian calendar) (464 years ago)
+place of birth | Vienna, Vienna, Austria
+date of death | Wednesday, March 20, 1619 (Gregorian calendar) (age: 62 years) 
+ (402 years ago)
+place of death | Vienna, Vienna, Austria'
+       width='546'
+       height='223'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>full name | Matthias
+date of birth | Wednesday, February 24, 1557 (Julian calendar) (464 years ago)
+place of birth | Vienna, Vienna, Austria
+date of death | Wednesday, March 20, 1619 (Gregorian calendar) (age: 62 years) 
+ (402 years ago)
+place of death | Vienna, Vienna, Austria</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <statelist count='3'
+       value='Local historical calendar'
+       delimiters=''>
+    <state name='Local historical calendar'
+        input='BasicInformation:PeopleData__Local historical calendar' />
+    <state name='Gregorian calendar'
+        input='BasicInformation:PeopleData__Gregorian calendar' />
+    <state name='Julian calendar'
+        input='BasicInformation:PeopleData__Julian calendar' />
+   </statelist>
+  </states>
+ </pod>
+ <pod title='Image'
+     scanner='Data'
+     id='Image:PeopleData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <imagesource>http://en.wikipedia.org/wiki/File:Lucas_van_Valckenborch_003.jpg</imagesource>
+   <microsources>
+    <microsource>PeopleData</microsource>
+   </microsources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP13481i7c18g1253ea29e000048e682e5f468f3b3?MSPStoreType=image/gif&amp;s=3'
+       alt='Image'
+       title=''
+       width='105'
+       height='150'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Timeline'
+     scanner='Data'
+     id='Timeline:PeopleData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>PeopleData</microsource>
+   </microsources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP13491i7c18g1253ea29e0000509647d4cb1a7h73?MSPStoreType=image/gif&amp;s=3'
+       alt='Timeline'
+       title=''
+       width='550'
+       height='38'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='TimelinePlot' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Include today'
+       input='Timeline:PeopleData__Include today' />
+  </states>
+ </pod>
+ <pod title='Wikipedia summary'
+     scanner='Character'
+     id='WikipediaSummary:PeopleData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP13501i7c18g1253ea29e000045d2ebb28ii29egi?MSPStoreType=image/gif&amp;s=3'
+       alt='Matthias of Austria, a member of the House of Habsburg (* February 24, 1557 in Vienna, † March 20, 1619 ibid) was Holy Roman Emperor and Archduke of Austria (1612 - 1619), king of Hungary (as Mátyás II) and Croatia (as Matija II) since 1608 and king of Bohemia (also as Matyáš II) since 1611. His personal motto was Concordia lumine maior (&quot;Unity is stronger than light&quot;).'
+       title='Matthias of Austria, a member of the House of Habsburg (* February 24, 1557 in Vienna, † March 20, 1619 ibid) was Holy Roman Emperor and Archduke of Austria (1612 - 1619), king of Hungary (as Mátyás II) and Croatia (as Matija II) since 1608 and king of Bohemia (also as Matyáš II) since 1611. His personal motto was Concordia lumine maior (&quot;Unity is stronger than light&quot;).'
+       width='529'
+       height='100'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Matthias of Austria, a member of the House of Habsburg (* February 24, 1557 in Vienna, † March 20, 1619 ibid) was Holy Roman Emperor and Archduke of Austria (1612 - 1619), king of Hungary (as Mátyás II) and Croatia (as Matija II) since 1608 and king of Bohemia (also as Matyáš II) since 1611. His personal motto was Concordia lumine maior (&quot;Unity is stronger than light&quot;).</plaintext>
+   <infos count='1'>
+    <info>
+     <link url='http://en.wikipedia.org/wiki?curid=151080'
+         text='Full entry' />
+    </info>
+   </infos>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Wikipedia page hits history'
+     scanner='Data'
+     id='PopularityPod:WikipediaStatsData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP13511i7c18g1253ea29e00004ihd6a4chhbi7i6c?MSPStoreType=image/gif&amp;s=3'
+       alt='Wikipedia page hits history'
+       title=''
+       width='546'
+       height='170'
+       type='TimeSeriesPlot_1'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='TimeSeriesPlot' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Log scale'
+       input='PopularityPod:WikipediaStatsData__Log scale' />
+  </states>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='Matthias'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='Person'
+       desc='a person'
+       input='*C.Matthias-_*Person-' />
+   <value name='GivenName'
+       desc='a given name'
+       input='*C.Matthias-_*GivenName-' />
+  </assumption>
+ </assumptions>
+ <sources count='1'>
+  <source url='https://www4c.wolframalpha.com/sources/PeopleDataSourceInformationNotes.html'
+      text='People data' />
+ </sources>
+</queryresult>

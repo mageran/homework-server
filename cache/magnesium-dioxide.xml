@@ -1,0 +1,291 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='8'
+    datatypes='Chemical,ChemicalIntermediate'
+    timedout=''
+    timedoutpods=''
+    timing='3.5700000000000003'
+    parsetiming='0.201'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP71171432721edh85g2g600003d2g0i06ahgehdhc'
+    host='https://www5b.wolframalpha.com'
+    server='51'
+    related='https://www5b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa71181432721edh85g2g600002ch3g23c8g58b71a5606516680789693320'
+    version='2.6'
+    inputstring='Magnesium dioxide'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP71191432721edh85g2g600002eb2agdc0d0h60i3?MSPStoreType=image/gif&amp;s=51'
+       alt='magnesium peroxide'
+       title='magnesium peroxide'
+       width='137'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>magnesium peroxide</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP71201432721edh85g2g60000664g67d6aff0a335?MSPStoreType=image/gif&amp;s=51'
+       alt='formula | MgO_2
+name | magnesium peroxide'
+       title='formula | MgO_2
+name | magnesium peroxide'
+       width='238'
+       height='71'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | MgO_2
+name | magnesium peroxide</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP71211432721edh85g2g600001c8dd93a99efde3d?MSPStoreType=image/gif&amp;s=51'
+       alt='Structure diagram'
+       title=''
+       width='79'
+       height='64'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalData__Show graph properties' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP71221432721edh85g2g600002cc06365fh6h309g?MSPStoreType=image/gif&amp;s=51'
+       alt='molar mass | 56.303 g/mol
+phase | solid (at STP)
+melting point | 223 °C
+density | 3 g/cm^3
+solubility in water | insoluble'
+       title='molar mass | 56.303 g/mol
+phase | solid (at STP)
+melting point | 223 °C
+density | 3 g/cm^3
+solubility in water | insoluble'
+       width='252'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 56.303 g/mol
+phase | solid (at STP)
+melting point | 223 °C
+density | 3 g/cm^3
+solubility in water | insoluble</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP71231432721edh85g2g600000dab30189947498d?MSPStoreType=image/gif&amp;s=51'
+         width='234'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Solid properties (at STP)'
+     scanner='Data'
+     id='SolidProperties:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP71241432721edh85g2g60000289f9i8f59d90749?MSPStoreType=image/gif&amp;s=51'
+       alt='density | 3 g/cm^3'
+       title='density | 3 g/cm^3'
+       width='145'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>density | 3 g/cm^3</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP71251432721edh85g2g600002f540a1fi413h49f?MSPStoreType=image/gif&amp;s=51'
+       alt='CAS number | 1335-26-8
+PubChem CID number | 159386
+PubChem SID number | 24867150
+SMILES identifier | [O-][O-].[Mg+2]'
+       title='CAS number | 1335-26-8
+PubChem CID number | 159386
+PubChem SID number | 24867150
+SMILES identifier | [O-][O-].[Mg+2]'
+       width='309'
+       height='136'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 1335-26-8
+PubChem CID number | 159386
+PubChem SID number | 24867150
+SMILES identifier | [O-][O-].[Mg+2]</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='NFPA label'
+     scanner='Data'
+     id='NFPALabel:ChemicalData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP71261432721edh85g2g60000555g2ib3bdg90cg0?MSPStoreType=image/gif&amp;s=51'
+       alt='NFPA label'
+       title=''
+       width='40'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Table'
+       input='NFPALabel:ChemicalData__Table' />
+  </states>
+ </pod>
+ <pod title='Ion equivalents'
+     scanner='Data'
+     id='IonProperties:ChemicalData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP71271432721edh85g2g600004989hcgee27eh9h0?MSPStoreType=image/gif&amp;s=51'
+       alt='Mg^(2+) (magnesium cation) | 1
+(O_2)^(2-) (peroxide anion) | 1'
+       title='Mg^(2+) (magnesium cation) | 1
+(O_2)^(2-) (peroxide anion) | 1'
+       width='227'
+       height='71'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Mg^(2+) (magnesium cation) | 1
+(O_2)^(2-) (peroxide anion) | 1</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <sources count='2'>
+  <source url='https://www5b.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+  <source url='https://www5b.wolframalpha.com/sources/ChemicalIntermediateDataSourceInformationNotes.html'
+      text='Chemical intermediate data' />
+ </sources>
+</queryresult>

@@ -444,3 +444,16 @@ table.reverse-lookup-table td:first-child {
     width: 200px;
     margin-left: 50px;
 }
+
+table.chemical-properties-table {
+    border-collapse: true;
+}
+
+table.chemical-properties-table td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+table.chemical-properties-table td:first-child {
+    background-color: bisque;
+}

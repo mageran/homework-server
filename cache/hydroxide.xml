@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='6'
+    datatypes='ChemicalIntermediate,Element'
+    timedout=''
+    timedoutpods=''
+    timing='1.2750000000000001'
+    parsetiming='0.085'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP1230192028c183985d6a000035beb95506f4gb25'
+    host='https://www4d.wolframalpha.com'
+    server='17'
+    related='https://www4d.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa1231192028c183985d6a00003f3g9ehg8ahhef2e3925411110939949639'
+    version='2.6'
+    inputstring='Hydroxide'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1232192028c183985d6a0000301bchdb2ehah9df?MSPStoreType=image/gif&amp;s=17'
+       alt='hydroxide anion'
+       title='hydroxide anion'
+       width='106'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>hydroxide anion</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalIntermediateData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1233192028c183985d6a00001cg4d7194f8h7025?MSPStoreType=image/gif&amp;s=17'
+       alt='Structure diagram'
+       title=''
+       width='400'
+       height='67'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='4'>
+   <statelist count='2'
+       value='Skeletal structure'
+       delimiters=''>
+    <state name='Skeletal structure'
+        input='StructureDiagramPod:ChemicalIntermediateData__Skeletal structure' />
+    <state name='Lewis structure'
+        input='StructureDiagramPod:ChemicalIntermediateData__Lewis structure' />
+   </statelist>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalIntermediateData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalIntermediateData__Show graph properties' />
+   <state name='Step-by-step'
+       input='StructureDiagramPod:ChemicalIntermediateData__Step-by-step'
+       stepbystep='true' />
+  </states>
+ </pod>
+ <pod title='General properties'
+     scanner='Data'
+     id='GeneralProperties:ChemicalIntermediateData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1234192028c183985d6a000028d024bfebdbcga7?MSPStoreType=image/gif&amp;s=17'
+       alt='formula | (OH)^-
+net ionic charge | -1
+alternate names | hydroxide | hydroxide(1-)'
+       title='formula | (OH)^-
+net ionic charge | -1
+alternate names | hydroxide | hydroxide(1-)'
+       width='335'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | (OH)^-
+net ionic charge | -1
+alternate names | hydroxide | hydroxide(1-)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Ionic radii'
+     scanner='Data'
+     id='IonicRadiusPod:ChemicalIntermediateData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1235192028c183985d6a00004ia5eaiee1hhbb2g?MSPStoreType=image/gif&amp;s=17'
+       alt='4-coordinate | 135 pm
+6-coordinate | 137 pm
+thermochemical radius | 133 pm'
+       title='4-coordinate | 135 pm
+6-coordinate | 137 pm
+thermochemical radius | 133 pm'
+       width='246'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>4-coordinate | 135 pm
+6-coordinate | 137 pm
+thermochemical radius | 133 pm</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Other properties'
+     scanner='Data'
+     id='Other:ChemicalIntermediateData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1236192028c183985d6a000030hbfb4adf1a5632?MSPStoreType=image/gif&amp;s=17'
+       alt='ion class | anions | biomolecule ions | oxoanions | polyatomic ions | ionic strong bases
+common sources of ion | strontium lanthanum aluminate (2 eq) | strontium hydroxide octahydrate (2 eq) | strontium hydroxide (2 eq) | sodium phosphomolybdate hydrate (1 eq) | rubidium hydroxide hydrate (1 eq) | potassium hexahydroxyantimonate (6 eq) | magnesium hydroxide (2 eq)'
+       title='ion class | anions | biomolecule ions | oxoanions | polyatomic ions | ionic strong bases
+common sources of ion | strontium lanthanum aluminate (2 eq) | strontium hydroxide octahydrate (2 eq) | strontium hydroxide (2 eq) | sodium phosphomolybdate hydrate (1 eq) | rubidium hydroxide hydrate (1 eq) | potassium hexahydroxyantimonate (6 eq) | magnesium hydroxide (2 eq)'
+       width='546'
+       height='196'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>ion class | anions | biomolecule ions | oxoanions | polyatomic ions | ionic strong bases
+common sources of ion | strontium lanthanum aluminate (2 eq) | strontium hydroxide octahydrate (2 eq) | strontium hydroxide (2 eq) | sodium phosphomolybdate hydrate (1 eq) | rubidium hydroxide hydrate (1 eq) | potassium hexahydroxyantimonate (6 eq) | magnesium hydroxide (2 eq)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='ThermodynamicProperties:ChemicalIntermediateData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1237192028c183985d6a00003gagf079h2e24779?MSPStoreType=image/gif&amp;s=17'
+       alt='molar heat capacity c_p | aqueous | -148.5 J/(mol K) (joules per mole kelvin difference)
+molar free energy of formation Δ_fG° | aqueous | -157.2 kJ/mol (kilojoules per mole)
+molar heat of formation Δ_fH° | aqueous | -230 kJ/mol (kilojoules per mole)
+ | gas | -143 kJ/mol (kilojoules per mole)
+molar entropy S° | aqueous | -10.8 J/(mol K) (joules per mole kelvin)'
+       title='molar heat capacity c_p | aqueous | -148.5 J/(mol K) (joules per mole kelvin difference)
+molar free energy of formation Δ_fG° | aqueous | -157.2 kJ/mol (kilojoules per mole)
+molar heat of formation Δ_fH° | aqueous | -230 kJ/mol (kilojoules per mole)
+ | gas | -143 kJ/mol (kilojoules per mole)
+molar entropy S° | aqueous | -10.8 J/(mol K) (joules per mole kelvin)'
+       width='546'
+       height='260'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar heat capacity c_p | aqueous | -148.5 J/(mol K) (joules per mole kelvin difference)
+molar free energy of formation Δ_fG° | aqueous | -157.2 kJ/mol (kilojoules per mole)
+molar heat of formation Δ_fH° | aqueous | -230 kJ/mol (kilojoules per mole)
+ | gas | -143 kJ/mol (kilojoules per mole)
+molar entropy S° | aqueous | -10.8 J/(mol K) (joules per mole kelvin)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='Hydroxide'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='ChemicalIntermediate'
+       desc='an ion'
+       input='*C.Hydroxide-_*ChemicalIntermediate-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.Hydroxide-_*Word-' />
+  </assumption>
+ </assumptions>
+ <sources count='2'>
+  <source url='https://www4d.wolframalpha.com/sources/ChemicalIntermediateDataSourceInformationNotes.html'
+      text='Chemical intermediate data' />
+  <source url='https://www4d.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>

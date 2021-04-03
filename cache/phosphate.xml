@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='6'
+    datatypes='ChemicalIntermediate,Element'
+    timedout=''
+    timedoutpods=''
+    timing='1.441'
+    parsetiming='0.117'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP3582170e2155009cc9ac00000i986h9a3ih6a20g'
+    host='https://www5a.wolframalpha.com'
+    server='9'
+    related='https://www5a.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa3583170e2155009cc9ac000017830agdf5h9dha73341244972829514463'
+    version='2.6'
+    inputstring='Phosphate'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP3584170e2155009cc9ac00002i1d4c8022b5i13i?MSPStoreType=image/gif&amp;s=9'
+       alt='phosphate anion'
+       title='phosphate anion'
+       width='108'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>phosphate anion</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalIntermediateData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP3585170e2155009cc9ac00004b8dgh27f7abihf3?MSPStoreType=image/gif&amp;s=9'
+       alt='Structure diagram'
+       title=''
+       width='400'
+       height='78'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='4'>
+   <statelist count='2'
+       value='Skeletal structure'
+       delimiters=''>
+    <state name='Skeletal structure'
+        input='StructureDiagramPod:ChemicalIntermediateData__Skeletal structure' />
+    <state name='Lewis structure'
+        input='StructureDiagramPod:ChemicalIntermediateData__Lewis structure' />
+   </statelist>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalIntermediateData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalIntermediateData__Show graph properties' />
+   <state name='Step-by-step'
+       input='StructureDiagramPod:ChemicalIntermediateData__Step-by-step'
+       stepbystep='true' />
+  </states>
+ </pod>
+ <pod title='General properties'
+     scanner='Data'
+     id='GeneralProperties:ChemicalIntermediateData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP3586170e2155009cc9ac000054db3g4790g09483?MSPStoreType=image/gif&amp;s=9'
+       alt='formula | (PO_4)^(3-)
+net ionic charge | -3
+alternate names | orthophosphate | tetraoxophosphate | tetraoxidophosphate | phosphate | phosphate(3-)'
+       title='formula | (PO_4)^(3-)
+net ionic charge | -3
+alternate names | orthophosphate | tetraoxophosphate | tetraoxidophosphate | phosphate | phosphate(3-)'
+       width='546'
+       height='123'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | (PO_4)^(3-)
+net ionic charge | -3
+alternate names | orthophosphate | tetraoxophosphate | tetraoxidophosphate | phosphate | phosphate(3-)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Ionic radius'
+     scanner='Data'
+     id='IonicRadiusPod:ChemicalIntermediateData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP3587170e2155009cc9ac000029e7f05c613eahfb?MSPStoreType=image/gif&amp;s=9'
+       alt='thermochemical radius | 238 pm'
+       title='thermochemical radius | 238 pm'
+       width='246'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>thermochemical radius | 238 pm</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Other properties'
+     scanner='Data'
+     id='Other:ChemicalIntermediateData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP3588170e2155009cc9ac00003baahchg2f87fa2c?MSPStoreType=image/gif&amp;s=9'
+       alt='ion class | anions | biomolecule ions | ionic conjugate bases | oxoanions | polyatomic ions
+common sources of ion | zinc phosphate (2 eq) | yttrium(III) phosphate (1 eq) | sodium phosphate dodecahydrate (1 eq) | trisodium phosphate (1 eq) | silver phosphate (1 eq) | samarium(III) phosphate hydrate (1 eq) | praseodymium(III) phosphate (1 eq) | neodymium(III) phosphate hydrate (1 eq) | magnesium phosphate hydrate (2 eq) | lithium phosphate (1 eq)'
+       title='ion class | anions | biomolecule ions | ionic conjugate bases | oxoanions | polyatomic ions
+common sources of ion | zinc phosphate (2 eq) | yttrium(III) phosphate (1 eq) | sodium phosphate dodecahydrate (1 eq) | trisodium phosphate (1 eq) | silver phosphate (1 eq) | samarium(III) phosphate hydrate (1 eq) | praseodymium(III) phosphate (1 eq) | neodymium(III) phosphate hydrate (1 eq) | magnesium phosphate hydrate (2 eq) | lithium phosphate (1 eq)'
+       width='546'
+       height='214'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>ion class | anions | biomolecule ions | ionic conjugate bases | oxoanions | polyatomic ions
+common sources of ion | zinc phosphate (2 eq) | yttrium(III) phosphate (1 eq) | sodium phosphate dodecahydrate (1 eq) | trisodium phosphate (1 eq) | silver phosphate (1 eq) | samarium(III) phosphate hydrate (1 eq) | praseodymium(III) phosphate (1 eq) | neodymium(III) phosphate hydrate (1 eq) | magnesium phosphate hydrate (2 eq) | lithium phosphate (1 eq)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='ThermodynamicProperties:ChemicalIntermediateData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP3589170e2155009cc9ac00005b9bg0df3eb76b13?MSPStoreType=image/gif&amp;s=9'
+       alt='molar free energy of formation Δ_fG° | aqueous | -1019 kJ/mol (kilojoules per mole)
+molar heat of formation Δ_fH° | aqueous | -1277 kJ/mol (kilojoules per mole)
+molar entropy S° | aqueous | -220.5 J/(mol K) (joules per mole kelvin)'
+       title='molar free energy of formation Δ_fG° | aqueous | -1019 kJ/mol (kilojoules per mole)
+molar heat of formation Δ_fH° | aqueous | -1277 kJ/mol (kilojoules per mole)
+molar entropy S° | aqueous | -220.5 J/(mol K) (joules per mole kelvin)'
+       width='546'
+       height='158'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar free energy of formation Δ_fG° | aqueous | -1019 kJ/mol (kilojoules per mole)
+molar heat of formation Δ_fH° | aqueous | -1277 kJ/mol (kilojoules per mole)
+molar entropy S° | aqueous | -220.5 J/(mol K) (joules per mole kelvin)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='Phosphate'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='5'>
+   <value name='ChemicalIntermediate'
+       desc='an ion'
+       input='*C.Phosphate-_*ChemicalIntermediate-' />
+   <value name='DietaryReference'
+       desc='a dietary reference'
+       input='*C.Phosphate-_*DietaryReference-' />
+   <value name='MineralClass'
+       desc='a class of minerals'
+       input='*C.Phosphate-_*MineralClass-' />
+   <value name='ChemicalReactionEntity'
+       desc=' referring to chemical reactions'
+       input='*C.Phosphate-_*ChemicalReactionEntity-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.Phosphate-_*Word-' />
+  </assumption>
+ </assumptions>
+ <sources count='2'>
+  <source url='https://www5a.wolframalpha.com/sources/ChemicalIntermediateDataSourceInformationNotes.html'
+      text='Chemical intermediate data' />
+  <source url='https://www5a.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>

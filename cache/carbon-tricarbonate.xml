@@ -1,0 +1,343 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='8'
+    datatypes='Chemical,Element'
+    timedout=''
+    timedoutpods=''
+    timing='2.652'
+    parsetiming='0.227'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP9432488bf3i5fb61gdf00000hceaef2c7ad60hd'
+    host='https://www5a.wolframalpha.com'
+    server='41'
+    related='https://www5a.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa9442488bf3i5fb61gdf000067410431a26f93g95166983618844085816'
+    version='2.6'
+    inputstring='carbon tricarbonate'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP9452488bf3i5fb61gdf0000268h5h0bfg0b9297?MSPStoreType=image/gif&amp;s=41'
+       alt='carbon tricarbonate'
+       title='carbon tricarbonate'
+       width='131'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>carbon tricarbonate</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='ChemicalStructureIdentifiers:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>OPSINLibrary</datasource>
+    <datasource>CDKToolkit</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP9462488bf3i5fb61gdf000054f11g608433ca2f?MSPStoreType=image/gif&amp;s=41'
+       alt='molar mass | 308.1 g/mol
+formula | C_7O_14'
+       title='molar mass | 308.1 g/mol
+formula | C_7O_14'
+       width='200'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 308.1 g/mol
+formula | C_7O_14</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalStructureIdentifiers:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP9472488bf3i5fb61gdf000047b9926h47i41f8g?MSPStoreType=image/gif&amp;s=41'
+         width='164'
+         height='27' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>OPSINLibrary</datasource>
+    <datasource>CDKToolkit</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP9482488bf3i5fb61gdf0000295f5a9efb99f0cf?MSPStoreType=image/gif&amp;s=41'
+       alt='Structure diagram'
+       title=''
+       width='260'
+       height='82'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Quantitative molecular descriptors'
+     scanner='Data'
+     id='MolecularDescriptorsPod:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>OPSINLibrary</datasource>
+    <datasource>CDKToolkit</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP9492488bf3i5fb61gdf00000f2c08ae88434f83?MSPStoreType=image/gif&amp;s=41'
+       alt='longest chain length | 7 atoms
+longest straight chain length | 7 atoms
+longest aliphatic chain length | 0 atoms
+aromatic atom count | 0 atoms
+H-bond acceptor count | 14 atoms
+H-bond donor count | 0 atoms'
+       title='longest chain length | 7 atoms
+longest straight chain length | 7 atoms
+longest aliphatic chain length | 0 atoms
+aromatic atom count | 0 atoms
+H-bond acceptor count | 14 atoms
+H-bond donor count | 0 atoms'
+       width='302'
+       height='202'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>longest chain length | 7 atoms
+longest straight chain length | 7 atoms
+longest aliphatic chain length | 0 atoms
+aromatic atom count | 0 atoms
+H-bond acceptor count | 14 atoms
+H-bond donor count | 0 atoms</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <definitions count='6'>
+   <definition word='longest chain length'
+       desc='the number of atoms in the longest overall chain, defined as the longest minimal path between any two non-hydrogen atoms' />
+   <definition word='longest straight chain length'
+       desc='the number of atoms in the largest chain, excluding any rings' />
+   <definition word='aromatic atom count'
+       desc='the number of atoms participating in aromatic bonds' />
+   <definition word='H-bond acceptor count'
+       desc='the number of atoms with a lone pair capable of forming a hydrogen bond' />
+   <definition word='H-bond donor count'
+       desc='the number of atoms bonded capable of donating a hydrogen to a hydrogen bond' />
+   <definition word='longest aliphatic chain length'
+       desc='the number of atoms in the longest straight chain of non-aromatic carbon atoms' />
+  </definitions>
+ </pod>
+ <pod title='Elemental composition'
+     scanner='Data'
+     id='CompositionPod:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>OPSINLibrary</datasource>
+    <datasource>CDKToolkit</datasource>
+    <datasource>NISTAtomicWeights</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP9502488bf3i5fb61gdf000032agb1e19bb9e7e4?MSPStoreType=image/gif&amp;s=41'
+       alt=' | number
+of atoms | atom
+percent | mass
+percent
+ C (carbon) | 7 | 33.3% | 27.29%
+ O (oxygen) | 14 | 66.7% | 72.71%'
+       title=' | number
+of atoms | atom
+percent | mass
+percent
+ C (carbon) | 7 | 33.3% | 27.29%
+ O (oxygen) | 14 | 66.7% | 72.71%'
+       width='332'
+       height='112'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | number
+of atoms | atom
+percent | mass
+percent
+ C (carbon) | 7 | 33.3% | 27.29%
+ O (oxygen) | 14 | 66.7% | 72.71%</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Step-by-step'
+       input='CompositionPod:ChemicalData__Step-by-step'
+       stepbystep='true' />
+  </states>
+ </pod>
+ <pod title='Elemental oxidation states'
+     scanner='Data'
+     id='OxidationStatePod:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>OPSINLibrary</datasource>
+    <datasource>CDKToolkit</datasource>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP9512488bf3i5fb61gdf00001a504f378c2dc034?MSPStoreType=image/gif&amp;s=41'
+       alt='Elemental oxidation states'
+       title=''
+       width='339'
+       height='100'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show tabulated results'
+       input='OxidationStatePod:ChemicalData__Show tabulated results' />
+   <state name='Step-by-step'
+       input='OxidationStatePod:ChemicalData__Step-by-step'
+       stepbystep='true' />
+  </states>
+ </pod>
+ <pod title='Orbital hybridization'
+     scanner='Data'
+     id='HybridizationPod:ChemicalData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>OPSINLibrary</datasource>
+    <datasource>CDKToolkit</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP9522488bf3i5fb61gdf00000d726bb003i3fcf5?MSPStoreType=image/gif&amp;s=41'
+       alt='Orbital hybridization'
+       title=''
+       width='354'
+       height='99'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Show tabulated results'
+       input='HybridizationPod:ChemicalData__Show tabulated results' />
+  </states>
+ </pod>
+ <pod title='Topological indices'
+     scanner='Data'
+     id='TopologicalIndices:ChemicalData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>OPSINLibrary</datasource>
+    <datasource>CDKToolkit</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP9532488bf3i5fb61gdf00002ibfh2f4412c539g?MSPStoreType=image/gif&amp;s=41'
+       alt='vertex count | 21
+edge count | 18
+Schultz index | 
+Wiener index | 
+Hosoya index | 
+Balaban index | '
+       title='vertex count | 21
+edge count | 18
+Schultz index | 
+Wiener index | 
+Hosoya index | 
+Balaban index | '
+       width='158'
+       height='202'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>vertex count | 21
+edge count | 18
+Schultz index | 
+Wiener index | 
+Hosoya index | 
+Balaban index | </plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Include all atoms'
+       input='TopologicalIndices:ChemicalData__Include all atoms' />
+  </states>
+ </pod>
+ <sources count='2'>
+  <source url='https://www5a.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+  <source url='https://www5a.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='false'
+    error='false'
+    xml:space='preserve'
+    numpods='0'
+    datatypes=''
+    timedout=''
+    timedoutpods=''
+    timing='0.432'
+    parsetiming='0.14'
+    parsetimedout='false'
+    recalculate=''
+    id=''
+    parseidserver='7'
+    host='https://www4f.wolframalpha.com'
+    server='7'
+    related=''
+    version='2.6'
+    inputstring='netherite'>
+ <didyoumeans count='1'>
+  <didyoumean score='0.456619' level='medium'>nether</didyoumean>
+ </didyoumeans>
+</queryresult>

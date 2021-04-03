@@ -1,0 +1,457 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='11'
+    datatypes='Species'
+    timedout=''
+    timedoutpods=''
+    timing='2.9210000000000003'
+    parsetiming='0.114'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP38251e052a7e0h8bage500004aa1abcfc899ic1d'
+    host='https://www4d.wolframalpha.com'
+    server='15'
+    related='https://www4d.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa38261e052a7e0h8bage5000060i86cfcia4ci4eb3827527191664667052'
+    version='2.6'
+    inputstring='Monkey'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38271e052a7e0h8bage500004dig422a86770g3c?MSPStoreType=image/gif&amp;s=15'
+       alt='macaques, mangabeys, baboons, guenons and monkeys (animals)'
+       title='macaques, mangabeys, baboons, guenons and monkeys (animals)'
+       width='436'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>macaques, mangabeys, baboons, guenons and monkeys (animals)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Scientific name'
+     scanner='Data'
+     id='ScientificName:SpeciesData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>SpeciesData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CatalogueOfLife</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38281e052a7e0h8bage500002fig5dgg3d23g5fh?MSPStoreType=image/gif&amp;s=15'
+       alt='Cercopithecidae'
+       title='Cercopithecidae'
+       width='103'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Cercopithecidae</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Alternate common names'
+     scanner='Data'
+     id='AlternateCommonNames:SpeciesData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>SpeciesData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CatalogueOfLife</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38291e052a7e0h8bage500002b93g15224a2d5a8?MSPStoreType=image/gif&amp;s=15'
+       alt='monkey | monkeys | old world monkey'
+       title='monkey | monkeys | old world monkey'
+       width='281'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>monkey | monkeys | old world monkey</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Taxonomy'
+     scanner='Data'
+     id='Taxonomy:SpeciesData'
+     position='500'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>SpeciesData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CatalogueOfLife</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38301e052a7e0h8bage500001a4h960f25cgdeh9?MSPStoreType=image/gif&amp;s=15'
+       alt='kingdom | Animalia (animals)
+phylum | Chordata (chordates)
+class | Mammalia (mammals)
+order | Primates (primates)
+family | Cercopithecidae (macaques, mangabeys, baboons, guenons and monkeys)'
+       title='kingdom | Animalia (animals)
+phylum | Chordata (chordates)
+class | Mammalia (mammals)
+order | Primates (primates)
+family | Cercopithecidae (macaques, mangabeys, baboons, guenons and monkeys)'
+       width='546'
+       height='187'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>kingdom | Animalia (animals)
+phylum | Chordata (chordates)
+class | Mammalia (mammals)
+order | Primates (primates)
+family | Cercopithecidae (macaques, mangabeys, baboons, guenons and monkeys)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Biological properties'
+     scanner='Character'
+     id='SpeciesDataPhysicalProperties'
+     position='600'
+     error='false'
+     numsubpods='4'>
+  <subpod title='Basic properties'>
+   <microsources>
+    <microsource>SpeciesData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CatalogueOfLife</datasource>
+    <datasource>AmazingNumbers</datasource>
+    <datasource>TheWikimediaFoundationIncWikipedia</datasource>
+    <datasource>WAZAVirtualZoo</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38311e052a7e0h8bage500005hf22c57d5ga8h5i?MSPStoreType=image/gif&amp;s=15'
+       alt='maximum recorded lifespan | 50 years
+length | (13 to 28) inches
+weight | (1.5 to 110) lb (pounds)'
+       title='maximum recorded lifespan | 50 years
+length | (13 to 28) inches
+weight | (1.5 to 110) lb (pounds)'
+       width='387'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>maximum recorded lifespan | 50 years
+length | (13 to 28) inches
+weight | (1.5 to 110) lb (pounds)</plaintext>
+  </subpod>
+  <subpod title='Physical dimensions'>
+   <microsources>
+    <microsource>SpeciesData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CatalogueOfLife</datasource>
+    <datasource>AmazingNumbers</datasource>
+    <datasource>TheWikimediaFoundationIncWikipedia</datasource>
+    <datasource>WAZAVirtualZoo</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38321e052a7e0h8bage50000686d49beh8164200?MSPStoreType=image/gif&amp;s=15'
+       alt='maximum recorded weight | 120 lb (pounds) (human: 1400 lb)'
+       title='maximum recorded weight | 120 lb (pounds) (human: 1400 lb)'
+       width='428'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>maximum recorded weight | 120 lb (pounds) (human: 1400 lb)</plaintext>
+  </subpod>
+  <subpod title='Dentition'>
+   <microsources>
+    <microsource>SpeciesData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CatalogueOfLife</datasource>
+    <datasource>AmazingNumbers</datasource>
+    <datasource>TheWikimediaFoundationIncWikipedia</datasource>
+    <datasource>WAZAVirtualZoo</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38331e052a7e0h8bage500001fid70i6ififd093?MSPStoreType=image/gif&amp;s=15'
+       alt='total number of teeth | 32 teeth (human: 32 teeth)
+number of incisors | 8 teeth (4 upper, 4 lower)
+number of canines | 4 teeth (2 upper, 2 lower)
+number of premolars | 8 teeth (4 upper, 4 lower)
+number of molars | 12 teeth (6 upper, 6 lower)'
+       title='total number of teeth | 32 teeth (human: 32 teeth)
+number of incisors | 8 teeth (4 upper, 4 lower)
+number of canines | 4 teeth (2 upper, 2 lower)
+number of premolars | 8 teeth (4 upper, 4 lower)
+number of molars | 12 teeth (6 upper, 6 lower)'
+       width='367'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>total number of teeth | 32 teeth (human: 32 teeth)
+number of incisors | 8 teeth (4 upper, 4 lower)
+number of canines | 4 teeth (2 upper, 2 lower)
+number of premolars | 8 teeth (4 upper, 4 lower)
+number of molars | 12 teeth (6 upper, 6 lower)</plaintext>
+   <infos count='1'>
+    <info>
+     <units count='1'>
+      <unit short='lb'
+          long='pounds' />
+      <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38341e052a7e0h8bage500000i1053hg3h908h91?MSPStoreType=image/gif&amp;s=15'
+          width='95'
+          height='27' />
+     </units>
+    </info>
+   </infos>
+  </subpod>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38351e052a7e0h8bage500004de77iaa92hf85cd?MSPStoreType=image/gif&amp;s=15'
+       alt='(typical values, except where otherwise noted)'
+       title='(typical values, except where otherwise noted)'
+       width='268'
+       height='21'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>(typical values, except where otherwise noted)</plaintext>
+  </subpod>
+  <expressiontypes count='3'>
+   <expressiontype name='Grid' />
+   <expressiontype name='Grid' />
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show metric'
+       input='SpeciesDataPhysicalProperties__Show metric' />
+   <state name='More'
+       input='SpeciesDataPhysicalProperties__More' />
+  </states>
+ </pod>
+ <pod title='Image'
+     scanner='Data'
+     id='Image:SpeciesData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <imagesource>http://en.wikipedia.org/wiki/File:Semnopithecus_hypoleucos.JPG</imagesource>
+   <microsources>
+    <microsource>SpeciesData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38361e052a7e0h8bage500000e4ch8599bbhi91d?MSPStoreType=image/gif&amp;s=15'
+       alt='Image'
+       title=''
+       width='104'
+       height='150'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Other members of order Primates'
+     scanner='Character'
+     id='SpeciesScannerOtherMembersOfSpecies'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>SpeciesData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CatalogueOfLife</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38371e052a7e0h8bage500004fe637f53i721bgf?MSPStoreType=image/gif&amp;s=15'
+       alt='Callitrichidae (marmosets, tamarins) | Cebidae (marmosets, tamarins, capuchins and squirrel monkeys) | Cheirogaleidae (dwarf lemurs) | ... | (total: 14)'
+       title='Callitrichidae (marmosets, tamarins) | Cebidae (marmosets, tamarins, capuchins and squirrel monkeys) | Cheirogaleidae (dwarf lemurs) | ... | (total: 14)'
+       width='546'
+       height='61'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Callitrichidae (marmosets, tamarins) | Cebidae (marmosets, tamarins, capuchins and squirrel monkeys) | Cheirogaleidae (dwarf lemurs) | ... | (total: 14)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='SpeciesScannerOtherMembersOfSpecies__More' />
+  </states>
+ </pod>
+ <pod title='Members of family Cercopithecidae'
+     scanner='Character'
+     id='SpeciesScannerMembersOfSpecies'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>SpeciesData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CatalogueOfLife</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38381e052a7e0h8bage500006afha729ae3hb1gg?MSPStoreType=image/gif&amp;s=15'
+       alt='Allenopithecus (allen&apos;s swamp monkeys) | Cercocebus (white-eyelid mangabey) | Cercopithecus (guenons) | ... | (total: 17)'
+       title='Allenopithecus (allen&apos;s swamp monkeys) | Cercocebus (white-eyelid mangabey) | Cercopithecus (guenons) | ... | (total: 17)'
+       width='546'
+       height='61'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Allenopithecus (allen&apos;s swamp monkeys) | Cercocebus (white-eyelid mangabey) | Cercopithecus (guenons) | ... | (total: 17)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='SpeciesScannerMembersOfSpecies__More' />
+  </states>
+ </pod>
+ <pod title='Taxonomic network'
+     scanner='Data'
+     id='TaxonomyGraph:SpeciesData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>SpeciesData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CatalogueOfLife</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38391e052a7e0h8bage50000665gd1788id89ibh?MSPStoreType=image/gif&amp;s=15'
+       alt='Taxonomic network'
+       title=''
+       width='546'
+       height='336'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Show as network'
+       input='TaxonomyGraph:SpeciesData__Show as network' />
+  </states>
+ </pod>
+ <pod title='Wikipedia summary'
+     scanner='Character'
+     id='WikipediaSummary:SpeciesData'
+     position='1100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38401e052a7e0h8bage5000014e0eb2b2b728i86?MSPStoreType=image/gif&amp;s=15'
+       alt='Old World monkey is the common English name for a family of primates known taxonomically as the Cercopithecidae. Twenty-four genera and 138 species are recognized, making it the largest primate family. Old World monkey genera include baboons (genus Papio) and macaques (genus Macaca). Common names for other Old World monkeys include the talapoin, guenon, colobus, douc (douc langur, genus Pygathrix), ...'
+       title='Old World monkey is the common English name for a family of primates known taxonomically as the Cercopithecidae. Twenty-four genera and 138 species are recognized, making it the largest primate family. Old World monkey genera include baboons (genus Papio) and macaques (genus Macaca). Common names for other Old World monkeys include the talapoin, guenon, colobus, douc (douc langur, genus Pygathrix), ...'
+       width='541'
+       height='120'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Old World monkey is the common English name for a family of primates known taxonomically as the Cercopithecidae. Twenty-four genera and 138 species are recognized, making it the largest primate family. Old World monkey genera include baboons (genus Papio) and macaques (genus Macaca). Common names for other Old World monkeys include the talapoin, guenon, colobus, douc (douc langur, genus Pygathrix), ...</plaintext>
+   <infos count='1'>
+    <info>
+     <link url='http://en.wikipedia.org/wiki?curid=356259'
+         text='Full entry' />
+    </info>
+   </infos>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='WikipediaSummary:SpeciesData__More' />
+  </states>
+ </pod>
+ <pod title='Wikipedia page hits history'
+     scanner='Data'
+     id='PopularityPod:WikipediaStatsData'
+     position='1200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP38411e052a7e0h8bage500001h7c5g827cgh9d5a?MSPStoreType=image/gif&amp;s=15'
+       alt='Wikipedia page hits history'
+       title=''
+       width='546'
+       height='194'
+       type='TimeSeriesPlot_1'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='TimeSeriesPlot' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Log scale'
+       input='PopularityPod:WikipediaStatsData__Log scale' />
+  </states>
+ </pod>
+ <assumptions count='2'>
+  <assumption type='Clash'
+      word='Monkey'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='3'>
+   <value name='Species'
+       desc='a species specification'
+       input='*C.Monkey-_*Species-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.Monkey-_*Word-' />
+   <value name='Book'
+       desc='a book'
+       input='*C.Monkey-_*Book-' />
+  </assumption>
+  <assumption type='SubCategory'
+      word='Monkey'
+      template='Assuming ${desc1}. Use ${desc2} instead'
+      count='2'>
+   <value name='Family:Cercopithecidae'
+       desc='macaques, mangabeys, baboons, guenons and monkeys'
+       input='*DPClash.SpeciesE.Monkey-_*Family%3ACercopithecidae-' />
+   <value name='Order:Primates'
+       desc='primates'
+       input='*DPClash.SpeciesE.Monkey-_*Order%3APrimates-' />
+  </assumption>
+ </assumptions>
+ <sources count='1'>
+  <source url='https://www4d.wolframalpha.com/sources/SpeciesDataSourceInformationNotes.html'
+      text='Species data' />
+ </sources>
+</queryresult>

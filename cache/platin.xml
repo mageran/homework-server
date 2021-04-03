@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='false'
+    error='false'
+    xml:space='preserve'
+    numpods='0'
+    datatypes=''
+    timedout=''
+    timedoutpods=''
+    timing='0.487'
+    parsetiming='0.074'
+    parsetimedout='false'
+    recalculate=''
+    id=''
+    parseidserver='18'
+    host='https://www4d.wolframalpha.com'
+    server='18'
+    related=''
+    version='2.6'
+    inputstring='platin'>
+ <didyoumeans count='1'>
+  <didyoumean score='0.456619' level='medium'>platinum</didyoumean>
+ </didyoumeans>
+</queryresult>

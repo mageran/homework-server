@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='false'
+    error='false'
+    xml:space='preserve'
+    numpods='0'
+    datatypes=''
+    timedout=''
+    timedoutpods=''
+    timing='1.592'
+    parsetiming='0.266'
+    parsetimedout='false'
+    recalculate=''
+    id=''
+    parseidserver='39'
+    host='https://www4f.wolframalpha.com'
+    server='39'
+    related=''
+    version='2.6'
+    inputstring='Noah Anlauff'>
+ <tips count='1'>
+  <tip text='Check your spelling, and use English' />
+ </tips>
+</queryresult>

@@ -1,0 +1,280 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='7'
+    datatypes='Chemical'
+    timedout=''
+    timedoutpods=''
+    timing='3.073'
+    parsetiming='0.297'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP680120c5bcc6ii69g94000031886hd4804b4b4b'
+    host='https://www5a.wolframalpha.com'
+    server='53'
+    related='https://www5a.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa681120c5bcc6ii69g94000021f2609b49abdcha4970140347629816757'
+    version='2.6'
+    inputstring='gold oxide'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP682120c5bcc6ii69g9400000ffgfidg2a565g10?MSPStoreType=image/gif&amp;s=53'
+       alt='gold(III) oxide'
+       title='gold(III) oxide'
+       width='92'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>gold(III) oxide</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP683120c5bcc6ii69g94000039h9di2238e73g48?MSPStoreType=image/gif&amp;s=53'
+       alt='formula | Au_2O_3·xH_2O
+Hill formula | Au_2O_3
+name | gold(III) oxide
+IUPAC name | oxo-(oxoauriooxy)gold'
+       title='formula | Au_2O_3·xH_2O
+Hill formula | Au_2O_3
+name | gold(III) oxide
+IUPAC name | oxo-(oxoauriooxy)gold'
+       width='286'
+       height='138'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | Au_2O_3·xH_2O
+Hill formula | Au_2O_3
+name | gold(III) oxide
+IUPAC name | oxo-(oxoauriooxy)gold</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP684120c5bcc6ii69g9400005f10db70i007dh04?MSPStoreType=image/gif&amp;s=53'
+       alt='Structure diagram'
+       title=''
+       width='145'
+       height='41'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalData__Show graph properties' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP685120c5bcc6ii69g9400001a39caba15a673g1?MSPStoreType=image/gif&amp;s=53'
+       alt='molar mass | 441.93 g/mol
+phase | solid (at STP)
+melting point | 150 °C
+density | 3.6 g/cm^3
+solubility in water | insoluble'
+       title='molar mass | 441.93 g/mol
+phase | solid (at STP)
+melting point | 150 °C
+density | 3.6 g/cm^3
+solubility in water | insoluble'
+       width='252'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 441.93 g/mol
+phase | solid (at STP)
+melting point | 150 °C
+density | 3.6 g/cm^3
+solubility in water | insoluble</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP686120c5bcc6ii69g940000477i6gc004daeahi?MSPStoreType=image/gif&amp;s=53'
+         width='234'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Solid properties (at STP)'
+     scanner='Data'
+     id='SolidProperties:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP687120c5bcc6ii69g9400000hf4f616ae98a886?MSPStoreType=image/gif&amp;s=53'
+       alt='density | 3.6 g/cm^3'
+       title='density | 3.6 g/cm^3'
+       width='157'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>density | 3.6 g/cm^3</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP688120c5bcc6ii69g9400001c8gdhc3f43a2b9a?MSPStoreType=image/gif&amp;s=53'
+       alt='CAS number | 1303-58-8
+PubChem CID number | 4111362
+PubChem SID number | 24860215
+SMILES identifier | O=[Au]O[Au]=O'
+       title='CAS number | 1303-58-8
+PubChem CID number | 4111362
+PubChem SID number | 24860215
+SMILES identifier | O=[Au]O[Au]=O'
+       width='307'
+       height='136'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 1303-58-8
+PubChem CID number | 4111362
+PubChem SID number | 24860215
+SMILES identifier | O=[Au]O[Au]=O</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='NFPA label'
+     scanner='Data'
+     id='NFPALabel:ChemicalData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP689120c5bcc6ii69g9400005ia03cec39832gc1?MSPStoreType=image/gif&amp;s=53'
+       alt='NFPA label'
+       title=''
+       width='40'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Table'
+       input='NFPALabel:ChemicalData__Table' />
+  </states>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='gold oxide'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='Chemical'
+       desc='a chemical compound'
+       input='*C.gold+oxide-_*Chemical-' />
+   <value name='Material'
+       desc='a material'
+       input='*C.gold+oxide-_*Material-' />
+  </assumption>
+ </assumptions>
+ <sources count='1'>
+  <source url='https://www5a.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+ </sources>
+</queryresult>

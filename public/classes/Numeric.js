@@ -34,6 +34,10 @@ class Numeric {
         return this;
     }
 
+    abs() {
+        return this;
+    }
+
     needParenthesis(context) {
         return false;
     }
@@ -53,6 +57,10 @@ class Numeric {
 
     clone() {
         return new Numeric();
+    }
+
+    toNumber() {
+        return this.decimalValue();
     }
 
     static get precision() {
@@ -163,6 +171,10 @@ class Decimal extends Numeric {
         const res = this.clone();
         res.number = Math.pow(res.number, exponent);
         return res;
+    }
+
+    abs() {
+        return new Decimal(Math.abs(this.number));
     }
 
     toString() {
@@ -507,8 +519,12 @@ class Fraction2 extends Numeric {
     flipSign() {
         const { numerator, denominator } = this;
         if (this.decimalValue() < 0) {
+            console.log(`flipSign of ${this.toString()}...`);
             if (typeof numerator === 'number') {
                 this.numerator = Math.abs(numerator);
+            }
+            else if (numerator instanceof Decimal) {
+                this.numerator = numerator.abs();
             }
             else if (numerator instanceof NthRoot) {
                 this.numerator = numerator.clone();

@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='6'
+    datatypes='Language'
+    timedout=''
+    timedoutpods=''
+    timing='1.719'
+    parsetiming='0.07200000000000001'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP4042076acc4837e3hid00002g9agchg883010f8'
+    host='https://www4d.wolframalpha.com'
+    server='22'
+    related='https://www4d.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa4052076acc4837e3hid000028fbgd2099f2127b5179438809786073608'
+    version='2.6'
+    inputstring='Banu'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP4062076acc4837e3hid000064ddgdb673bfgdd5?MSPStoreType=image/gif&amp;s=22'
+       alt='Gbanu (language)'
+       title='Gbanu (language)'
+       width='123'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Gbanu (language)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Properties:LanguageData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>LanguageData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>Ethnologue</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP4072076acc4837e3hid00004a64e41c64f6a947?MSPStoreType=image/gif&amp;s=22'
+       alt='total number of speakers | 95000 people (1996 estimate)
+total number of native speakers | 95000 people (1996 estimate)
+place with most speakers | Central African Republic (1996 estimate)
+original location | Central African Republic
+language code | gbv'
+       title='total number of speakers | 95000 people (1996 estimate)
+total number of native speakers | 95000 people (1996 estimate)
+place with most speakers | Central African Republic (1996 estimate)
+original location | Central African Republic
+language code | gbv'
+       width='516'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>total number of speakers | 95000 people (1996 estimate)
+total number of native speakers | 95000 people (1996 estimate)
+place with most speakers | Central African Republic (1996 estimate)
+original location | Central African Republic
+language code | gbv</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Speakers per country'
+     scanner='Data'
+     id='Speakers:LanguageData'
+     position='300'
+     error='false'
+     numsubpods='3'>
+  <subpod title=''>
+   <microsources>
+    <microsource>LanguageData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>Ethnologue</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP4082076acc4837e3hid000064064174e6ih8eg0?MSPStoreType=image/gif&amp;s=22'
+       alt='Central African Republic | 95000 people (100%) (1996 estimate)'
+       title='Central African Republic | 95000 people (100%) (1996 estimate)'
+       width='436'
+       height='33'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Central African Republic | 95000 people (100%) (1996 estimate)</plaintext>
+  </subpod>
+  <subpod title=''>
+   <microsources>
+    <microsource>LanguageData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>Ethnologue</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP4092076acc4837e3hid00002ecdf1a107bg3cb7?MSPStoreType=image/gif&amp;s=22'
+       alt='(percent indicates fraction of total speakers)'
+       title='(percent indicates fraction of total speakers)'
+       width='253'
+       height='14'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>(percent indicates fraction of total speakers)</plaintext>
+  </subpod>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP4102076acc4837e3hid000066fc2b91gi982g91?MSPStoreType=image/gif&amp;s=22'
+       alt='(1996 estimate)'
+       title='(1996 estimate)'
+       width='90'
+       height='21'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>(1996 estimate)</plaintext>
+  </subpod>
+  <expressiontypes count='2'>
+   <expressiontype name='Grid' />
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='2'>
+   <statelist count='2'
+       value='Total speakers'
+       delimiters=''>
+    <state name='Total speakers'
+        input='Speakers:LanguageData__Total speakers' />
+    <state name='Native speakers'
+        input='Speakers:LanguageData__Native speakers' />
+   </statelist>
+   <statelist count='2'
+       value='Totals'
+       delimiters=''>
+    <state name='Totals'
+        input='Speakers:LanguageData__Totals' />
+    <state name='Per capita'
+        input='Speakers:LanguageData__Per capita' />
+   </statelist>
+  </states>
+ </pod>
+ <pod title='Language classification'
+     scanner='Data'
+     id='Classification:LanguageData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>LanguageData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>Ethnologue</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP4112076acc4837e3hid00003fi75ig3bdcai117?MSPStoreType=image/gif&amp;s=22'
+       alt='Congo Niger 〉 Atlantic Congo 〉 Volta Congo 〉 North 〉 Adamawa Ubangi 〉 Ubangi 〉 Manza Ngbaka Gbaya 〉 Central 〉 Gbanu'
+       title='Congo Niger 〉 Atlantic Congo 〉 Volta Congo 〉 North 〉 Adamawa Ubangi 〉 Ubangi 〉 Manza Ngbaka Gbaya 〉 Central 〉 Gbanu'
+       width='501'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Congo Niger 〉 Atlantic Congo 〉 Volta Congo 〉 North 〉 Adamawa Ubangi 〉 Ubangi 〉 Manza Ngbaka Gbaya 〉 Central 〉 Gbanu</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Wikipedia summary'
+     scanner='Character'
+     id='WikipediaSummary:LanguageData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP4122076acc4837e3hid00004a63bh1959ibih43?MSPStoreType=image/gif&amp;s=22'
+       alt='Gbanu (Gbànù, Banu, Gbanou) is a Gbaya language of the Central African Republic. The people do not consider themselves to be ethnically Gbaya.'
+       title='Gbanu (Gbànù, Banu, Gbanou) is a Gbaya language of the Central African Republic. The people do not consider themselves to be ethnically Gbaya.'
+       width='540'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Gbanu (Gbànù, Banu, Gbanou) is a Gbaya language of the Central African Republic. The people do not consider themselves to be ethnically Gbaya.</plaintext>
+   <infos count='1'>
+    <info>
+     <link url='http://en.wikipedia.org/wiki?curid=33490454'
+         text='Full entry' />
+    </info>
+   </infos>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Wikipedia page hits history'
+     scanner='Data'
+     id='PopularityPod:WikipediaStatsData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP4132076acc4837e3hid000036b91165aadd000a?MSPStoreType=image/gif&amp;s=22'
+       alt='Wikipedia page hits history'
+       title=''
+       width='546'
+       height='171'
+       type='TimeSeriesPlot_1'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='TimeSeriesPlot' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Log scale'
+       input='PopularityPod:WikipediaStatsData__Log scale' />
+  </states>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='Banu'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='Language'
+       desc='a language'
+       input='*C.Banu-_*Language-' />
+   <value name='GivenName'
+       desc='a given name'
+       input='*C.Banu-_*GivenName-' />
+  </assumption>
+ </assumptions>
+ <sources count='1'>
+  <source url='https://www4d.wolframalpha.com/sources/LanguageDataSourceInformationNotes.html'
+      text='Language data' />
+ </sources>
+</queryresult>

@@ -18,6 +18,7 @@ const _describeTransformations = {
 const unitOptions = (umap => {
     const options = [];
     Object.keys(umap).forEach(cat => {
+        options.push({ label: `--- ${cat} ---`, value: null });
         const map = umap[cat];
         Object.keys(map).forEach(u => {
             const label = u;
@@ -105,11 +106,22 @@ const _stoichiometryMissingQuantity = {
     func: stoichiometryMissingQuantities
 }
 
+const _chemicalQuery = {
+    title: 'Lookup Chemical Compound/Element',
+    description: 'Enter name of chemical compound or element to lookup formula and other properties',
+    parameters: [
+        { name: 'Element or compound', value: '', size: 50 },
+        { separator: true }
+    ],
+    func: chemicalQuery
+}
+
 const topicObjects = [
     _unitConversion,
     _chemicalElementInfo,
     _molarMass,
     _balanceChemicalEquation,
     _stoichiometry,
-    _stoichiometryMissingQuantity
+    _stoichiometryMissingQuantity,
+    _chemicalQuery
 ];

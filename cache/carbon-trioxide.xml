@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='false'
+    error='false'
+    xml:space='preserve'
+    numpods='0'
+    datatypes=''
+    timedout=''
+    timedoutpods=''
+    timing='0.62'
+    parsetiming='0.227'
+    parsetimedout='false'
+    recalculate=''
+    id=''
+    parseidserver='55'
+    host='https://www4f.wolframalpha.com'
+    server='55'
+    related=''
+    version='2.6'
+    inputstring='carbon trioxide'>
+ <didyoumeans count='2'>
+  <didyoumean score='0.4' level='medium'>carbon</didyoumean>
+  <didyoumean score='0.399667' level='medium'>trioxide</didyoumean>
+ </didyoumeans>
+</queryresult>

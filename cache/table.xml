@@ -1,0 +1,842 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='21'
+    datatypes='AdministrativeDivision,Book,Bridge,Building,City,Company,Country,GivenName,HistoricalPeriod,Internet,Lake,Mountain,Movie,Ocean,River,Surname,Word'
+    timedout='Data,Character'
+    timedoutpods=''
+    timing='7.929'
+    parsetiming='0.132'
+    parsetimedout='false'
+    recalculate='https://www4b.wolframalpha.com/api/v1/recalc.jsp?id=MSPa104015i119b274chh2090000294fa80aa0hf1c5e5186426821976139686'
+    id='MSP104115i119b274chh209000029e65b3a9f8bb6ha'
+    host='https://www4b.wolframalpha.com'
+    server='30'
+    related='https://www4b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa104215i119b274chh20900002b757fc96c67d6d15186426821976139686'
+    version='2.6'
+    inputstring='table'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP104315i119b274chh20900004h08abebhd689e28?MSPStoreType=image/gif&amp;s=30'
+       alt='table (English word)'
+       title='table (English word)'
+       width='138'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>table (English word)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Definitions'
+     scanner='Data'
+     id='Definition:WordData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP104415i119b274chh20900006375bf18g839bbf5?MSPStoreType=image/gif&amp;s=30'
+       alt='1 | noun | a set of data arranged in rows and columns
+2 | noun | a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs
+3 | noun | a piece of furniture with tableware for a meal laid out on it
+4 | noun | flat tableland with steep edges
+5 | noun | a company of people assembled at a table for a meal or game
+6 | noun | food or meals in general
+7 | verb | hold back to a later time
+8 | verb | arrange or enter in tabular form
+(8 meanings)'
+       title='1 | noun | a set of data arranged in rows and columns
+2 | noun | a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs
+3 | noun | a piece of furniture with tableware for a meal laid out on it
+4 | noun | flat tableland with steep edges
+5 | noun | a company of people assembled at a table for a meal or game
+6 | noun | food or meals in general
+7 | verb | hold back to a later time
+8 | verb | arrange or enter in tabular form
+(8 meanings)'
+       width='546'
+       height='267'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>1 | noun | a set of data arranged in rows and columns
+2 | noun | a piece of furniture having a smooth flat top that is usually supported by one or more vertical legs
+3 | noun | a piece of furniture with tableware for a meal laid out on it
+4 | noun | flat tableland with steep edges
+5 | noun | a company of people assembled at a table for a meal or game
+6 | noun | food or meals in general
+7 | verb | hold back to a later time
+8 | verb | arrange or enter in tabular form
+(8 meanings)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Pronunciation'
+     scanner='Data'
+     id='Pronunciation:WordData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP104515i119b274chh20900004dga7i807c073iba?MSPStoreType=image/gif&amp;s=30'
+       alt='t&apos;eybuhl (IPA: tˈeɪbəl)'
+       title='t&apos;eybuhl (IPA: tˈeɪbəl)'
+       width='126'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>t&apos;eybuhl (IPA: tˈeɪbəl)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Hyphenation'
+     scanner='Data'
+     id='Hyphenation:WordData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP104615i119b274chh20900005cb64ighabi7e0f9?MSPStoreType=image/gif&amp;s=30'
+       alt='ta-ble (5 letters | 2 syllables)'
+       title='ta-ble (5 letters | 2 syllables)'
+       width='196'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>ta-ble (5 letters | 2 syllables)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Image'
+     scanner='Data'
+     id='Image:WordData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <imagesource>http://www.faqs.org/photo-dict/phrase/121/table.html</imagesource>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP104715i119b274chh209000055ec12dc41b3hbg0?MSPStoreType=image/gif&amp;s=30'
+       alt='Image'
+       title=''
+       width='150'
+       height='103'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='First known use in English'
+     scanner='Data'
+     id='FirstRecordYear:WordData'
+     position='600'
+     error='false'
+     numsubpods='2'>
+  <subpod title='Noun'>
+   <microsources>
+    <microsource>HistoricalPeriodData</microsource>
+    <microsource>WordData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>TheWikimediaFoundationIncWikipedia</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP104815i119b274chh2090000622h367h3cfgaa3i?MSPStoreType=image/gif&amp;s=30'
+       alt='1175 AD (High Middle ages) (846 years ago)'
+       title='1175 AD (High Middle ages) (846 years ago)'
+       width='275'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>1175 AD (High Middle ages) (846 years ago)</plaintext>
+  </subpod>
+  <subpod title='Verb'>
+   <microsources>
+    <microsource>HistoricalPeriodData</microsource>
+    <microsource>WordData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>TheWikimediaFoundationIncWikipedia</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP104915i119b274chh20900003eg50gb8id3i0e6c?MSPStoreType=image/gif&amp;s=30'
+       alt='1718 (Georgian era) (303 years ago)'
+       title='1718 (Georgian era) (303 years ago)'
+       width='222'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>1718 (Georgian era) (303 years ago)</plaintext>
+  </subpod>
+  <expressiontypes count='2'>
+   <expressiontype name='Grid' />
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Word origins'
+     scanner='Data'
+     id='LanguageOrigin:WordData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP105015i119b274chh2090000421e3bhd368be2i5?MSPStoreType=image/gif&amp;s=30'
+       alt='Old English | Old French | Latin'
+       title='Old English | Old French | Latin'
+       width='233'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Old English | Old French | Latin</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Overall typical frequency'
+     scanner='Data'
+     id='Frequency:WordData'
+     position='800'
+     error='false'
+     numsubpods='3'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP105115i119b274chh20900006428dbe48239g762?MSPStoreType=image/gif&amp;s=30'
+       alt='written: 430th most common (1 in 4808 words) ( &gt; 99% noun | 0% verb)'
+       title='written: 430th most common (1 in 4808 words) ( &gt; 99% noun | 0% verb)'
+       width='439'
+       height='22'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>written: 430th most common (1 in 4808 words) ( &gt; 99% noun | 0% verb)</plaintext>
+  </subpod>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP105215i119b274chh2090000207efda717h5919h?MSPStoreType=image/gif&amp;s=30'
+       alt='spoken: 503rd most common (1 in 6757 words)'
+       title='spoken: 503rd most common (1 in 6757 words)'
+       width='288'
+       height='22'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>spoken: 503rd most common (1 in 6757 words)</plaintext>
+  </subpod>
+  <subpod title=''>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP105315i119b274chh20900001d47aibhbhb6ic1e?MSPStoreType=image/gif&amp;s=30'
+       alt='(includes some inflected forms)'
+       title='(includes some inflected forms)'
+       width='179'
+       height='21'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>(includes some inflected forms)</plaintext>
+  </subpod>
+  <expressiontypes count='2'>
+   <expressiontype name='Grid' />
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Word frequency history'
+     scanner='Data'
+     id='BookMatchFrequency:WordData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP105415i119b274chh20900004d921igfae445f59?MSPStoreType=image/gif&amp;s=30'
+       alt='Word frequency history'
+       title=''
+       width='433'
+       height='125'
+       type='TimeSeriesPlot_1'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='TimeSeriesPlot' />
+  </expressiontypes>
+  <states count='2'>
+   <statelist count='2'
+       value='Linear scale'
+       delimiters=''>
+    <state name='Linear scale'
+        input='BookMatchFrequency:WordData__Linear scale' />
+    <state name='Log scale'
+        input='BookMatchFrequency:WordData__Log scale' />
+   </statelist>
+   <statelist count='2'
+       value='Binned'
+       delimiters=''>
+    <state name='Binned'
+        input='BookMatchFrequency:WordData__Binned' />
+    <state name='Raw'
+        input='BookMatchFrequency:WordData__Raw' />
+   </statelist>
+  </states>
+  <definitions count='1'>
+   <definition word='Word frequency history'
+       desc='based on a Google Books sample of one million books in English; Michel, J.-B., Y. K. Shen, A. P. Aiden, A. Veres, M. K. Gray, The Google Books Team, J. P. Pickett, D. Hoiberg, D. Clancy, P. Norvig, J. Orwant, S. Pinker, M. A. Nowak, and E. L. Aiden. &quot;Quantitative Analysis of Culture Using Millions of Digitized Books.&quot; Science 331 (2011)' />
+  </definitions>
+ </pod>
+ <pod title='Inflected forms'
+     scanner='Data'
+     id='InflectedForms:WordData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP105515i119b274chh209000040bhd61755ii32bc?MSPStoreType=image/gif&amp;s=30'
+       alt='tables | tabled | tabling'
+       title='tables | tabled | tabling'
+       width='174'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>tables | tabled | tabling</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Synonyms'
+     scanner='Data'
+     id='Synonyms:WordData'
+     position='1100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP105615i119b274chh20900004a1ee9b0hhb29ib2?MSPStoreType=image/gif&amp;s=30'
+       alt='tabular array | mesa | board | defer | hold over | postpone | prorogue | put off | put over | remit | set back | shelve | tabularise | tabularize | tabulate (total: 15)'
+       title='tabular array | mesa | board | defer | hold over | postpone | prorogue | put off | put over | remit | set back | shelve | tabularise | tabularize | tabulate (total: 15)'
+       width='527'
+       height='60'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>tabular array | mesa | board | defer | hold over | postpone | prorogue | put off | put over | remit | set back | shelve | tabularise | tabularize | tabulate (total: 15)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show synonym network'
+       input='Synonyms:WordData__Show synonym network' />
+   <statelist count='2'
+       value='Meanings combined'
+       delimiters=''>
+    <state name='Meanings divided'
+        input='Synonyms:WordData__Meanings divided' />
+    <state name='Meanings combined'
+        input='Synonyms:WordData__Meanings combined' />
+   </statelist>
+  </states>
+ </pod>
+ <pod title='Narrower terms'
+     scanner='Data'
+     id='Hyponym:WordData'
+     position='1200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP105715i119b274chh20900004771f366d705g723?MSPStoreType=image/gif&amp;s=30'
+       alt='actuarial table | calendar | contents | correlation table | file allocation table | periodic table | statistical table | table of contents | altar | billiard table | booth | breakfast table | card table | cocktail table | coffee table | ... (total: 58)'
+       title='actuarial table | calendar | contents | correlation table | file allocation table | periodic table | statistical table | table of contents | altar | billiard table | booth | breakfast table | card table | cocktail table | coffee table | ... (total: 58)'
+       width='536'
+       height='80'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>actuarial table | calendar | contents | correlation table | file allocation table | periodic table | statistical table | table of contents | altar | billiard table | booth | breakfast table | card table | cocktail table | coffee table | ... (total: 58)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='2'>
+   <statelist count='2'
+       value='Meanings combined'
+       delimiters=''>
+    <state name='Meanings divided'
+        input='Hyponym:WordData__Meanings divided' />
+    <state name='Meanings combined'
+        input='Hyponym:WordData__Meanings combined' />
+   </statelist>
+   <state name='More'
+       input='Hyponym:WordData__More' />
+  </states>
+ </pod>
+ <pod title='Broader terms'
+     scanner='Data'
+     id='Hypernym:WordData'
+     position='1300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP105815i119b274chh20900005251g55c55d825f1?MSPStoreType=image/gif&amp;s=30'
+       alt='array | article of furniture | furniture | piece of furniture | plateau | tableland | assemblage | gathering | fare | delay | arrange | set (total: 12)'
+       title='array | article of furniture | furniture | piece of furniture | plateau | tableland | assemblage | gathering | fare | delay | arrange | set (total: 12)'
+       width='533'
+       height='60'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>array | article of furniture | furniture | piece of furniture | plateau | tableland | assemblage | gathering | fare | delay | arrange | set (total: 12)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <statelist count='2'
+       value='Meanings combined'
+       delimiters=''>
+    <state name='Meanings divided'
+        input='Hypernym:WordData__Meanings divided' />
+    <state name='Meanings combined'
+        input='Hypernym:WordData__Meanings combined' />
+   </statelist>
+  </states>
+ </pod>
+ <pod title='Rhymes'
+     scanner='Data'
+     id='Rhyme:WordData'
+     position='1400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP105915i119b274chh20900001f9giia2e5341315?MSPStoreType=image/gif&amp;s=30'
+       alt='cable | disable | enable | fable | gable | label | sable | stabile | stable | unable | unstable (total: 11)
+(based on typical American pronunciation)'
+       title='cable | disable | enable | fable | gable | label | sable | stabile | stable | unable | unstable (total: 11)
+(based on typical American pronunciation)'
+       width='495'
+       height='66'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>cable | disable | enable | fable | gable | label | sable | stabile | stable | unable | unstable (total: 11)
+(based on typical American pronunciation)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <statelist count='4'
+       value='Sorted alphabetically'
+       delimiters=''>
+    <state name='Sorted alphabetically'
+        input='Rhyme:WordData__Sorted alphabetically' />
+    <state name='Sorted by length'
+        input='Rhyme:WordData__Sorted by length' />
+    <state name='Sorted by syllables'
+        input='Rhyme:WordData__Sorted by syllables' />
+    <state name='Sorted by frequency'
+        input='Rhyme:WordData__Sorted by frequency' />
+   </statelist>
+  </states>
+ </pod>
+ <pod title='Lexically close words'
+     scanner='Data'
+     id='LexicallyCloseWords:WordData'
+     position='1500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP106015i119b274chh20900001bbfh1c844adh315?MSPStoreType=image/gif&amp;s=30'
+       alt='cable | fable | gable | Gable | Mable | sable | stable | tabla | tablet (total: 9)'
+       title='cable | fable | gable | Gable | Mable | sable | stable | tabla | tablet (total: 9)'
+       width='528'
+       height='40'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>cable | fable | gable | Gable | Mable | sable | stable | tabla | tablet (total: 9)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <statelist count='2'
+       value='1-letter difference'
+       delimiters=''>
+    <state name='1-letter difference'
+        input='LexicallyCloseWords:WordData__1-letter difference' />
+    <state name='Up to 2-letter difference'
+        input='LexicallyCloseWords:WordData__Up to 2-letter difference' />
+   </statelist>
+  </states>
+ </pod>
+ <pod title='Anagram'
+     scanner='Data'
+     id='Anagram:WordData'
+     position='1600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP106115i119b274chh20900001b339ai28265a4ad?MSPStoreType=image/gif&amp;s=30'
+       alt='bleat'
+       title='bleat'
+       width='32'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>bleat</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Phrases'
+     scanner='Data'
+     id='Phrase:WordData'
+     position='1700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP106215i119b274chh20900003hg0a39g34dchc52?MSPStoreType=image/gif&amp;s=30'
+       alt='coffee-table book | decision table | dining-room table | dinner table | drafting table | drawing table | gateleg table | graduated table | high table | Japanese table pine | ... (total: 46)'
+       title='coffee-table book | decision table | dining-room table | dinner table | drafting table | drawing table | gateleg table | graduated table | high table | Japanese table pine | ... (total: 46)'
+       width='500'
+       height='60'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>coffee-table book | decision table | dining-room table | dinner table | drafting table | drawing table | gateleg table | graduated table | high table | Japanese table pine | ... (total: 46)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Phrase:WordData__More' />
+  </states>
+ </pod>
+ <pod title='Other notable uses'
+     scanner='Data'
+     id='Entities:WordData'
+     position='1800'
+     error='false'
+     numsubpods='6'>
+  <subpod title='Surnames'>
+   <microsources>
+    <microsource>SurnameData</microsource>
+    <microsource>WordData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>USCensusSurnames</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP106315i119b274chh20900000ddea388d2bce0g1?MSPStoreType=image/gif&amp;s=30'
+       alt='Table (US population: 140 people, white: 57% | black: 35%)'
+       title='Table (US population: 140 people, white: 57% | black: 35%)'
+       width='333'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Table (US population: 140 people, white: 57% | black: 35%)</plaintext>
+  </subpod>
+  <subpod title='Cities'>
+   <microsources>
+    <microsource>CityData</microsource>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP106415i119b274chh20900003ca8efdi7a5d0heg?MSPStoreType=image/gif&amp;s=30'
+       alt='Table Rock (Wyoming, 0 people) | La Table (France, 475 people) | Table Grove (Illinois, 383 people) | Table Rock (Nebraska, 253 people) | Table Rock (Missouri, 229 people) (total: 5)'
+       title='Table Rock (Wyoming, 0 people) | La Table (France, 475 people) | Table Grove (Illinois, 383 people) | Table Rock (Nebraska, 253 people) | Table Rock (Missouri, 229 people) (total: 5)'
+       width='537'
+       height='60'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Table Rock (Wyoming, 0 people) | La Table (France, 475 people) | Table Grove (Illinois, 383 people) | Table Rock (Nebraska, 253 people) | Table Rock (Missouri, 229 people) (total: 5)</plaintext>
+  </subpod>
+  <subpod title='Lakes'>
+   <microsources>
+    <microsource>LakeData</microsource>
+    <microsource>WordData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>ILECWorldLakeDatabase</datasource>
+    <datasource>TheWikimediaFoundationIncWikipedia</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP106515i119b274chh20900005ab9a8741676h7ea?MSPStoreType=image/gif&amp;s=30'
+       alt='Table Rock Lake (Missouri)'
+       title='Table Rock Lake (Missouri)'
+       width='166'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Table Rock Lake (Missouri)</plaintext>
+  </subpod>
+  <subpod title='Mountains'>
+   <microsources>
+    <microsource>MountainData</microsource>
+    <microsource>WordData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PeakwareWorldMountainEncyclopedia</datasource>
+    <datasource>TheWikimediaFoundationIncWikipedia</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP106615i119b274chh20900002ge4e5141fci6c8g?MSPStoreType=image/gif&amp;s=30'
+       alt='Table Rock (United States, 3891 ft) | Table Mountain (United States, 3847 ft) | Table Mountain (South Africa, 3566 ft) | Table Top Mountain (United States, 4413 ft)'
+       title='Table Rock (United States, 3891 ft) | Table Mountain (United States, 3847 ft) | Table Mountain (South Africa, 3566 ft) | Table Top Mountain (United States, 4413 ft)'
+       width='534'
+       height='40'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Table Rock (United States, 3891 ft) | Table Mountain (United States, 3847 ft) | Table Mountain (South Africa, 3566 ft) | Table Top Mountain (United States, 4413 ft)</plaintext>
+  </subpod>
+  <subpod title='Movies'>
+   <microsources>
+    <microsource>MovieData</microsource>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP106715i119b274chh20900003d7echd8811a50gd?MSPStoreType=image/gif&amp;s=30'
+       alt='The Ten-Year Lunch | Knights of the Round Table | An Angel at My Table'
+       title='The Ten-Year Lunch | Knights of the Round Table | An Angel at My Table'
+       width='509'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>The Ten-Year Lunch | Knights of the Round Table | An Angel at My Table</plaintext>
+  </subpod>
+  <subpod title='Internet domains'>
+   <microsources>
+    <microsource>InternetData</microsource>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP106815i119b274chh20900000dd7di079018a32h?MSPStoreType=image/gif&amp;s=30'
+       alt='table.com | table.info | table.biz'
+       title='table.com | table.info | table.biz'
+       width='231'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>table.com | table.info | table.biz</plaintext>
+  </subpod>
+  <expressiontypes count='15'>
+   <expressiontype name='Default' />
+   <expressiontype name='Default' />
+   <expressiontype name='Default' />
+   <expressiontype name='Default' />
+   <expressiontype name='Default' />
+   <expressiontype name='Default' />
+   <expressiontype name='Default' />
+   <expressiontype name='Default' />
+   <expressiontype name='Default' />
+   <expressiontype name='Default' />
+   <expressiontype name='Default' />
+   <expressiontype name='Default' />
+   <expressiontype name='Default' />
+   <expressiontype name='Default' />
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Crossword puzzle clues'
+     scanner='Data'
+     id='NYTCrosswordPuzzleClues:WordData'
+     position='1900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>XWordInfo</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP106915i119b274chh20900001hd32004egafb0ia?MSPStoreType=image/gif&amp;s=30'
+       alt='Billiards furniture | Coffee ___ | Contents list | Postpone | Put aside | Put off | Put off, as a motion | Put on ice | Spreadsheet section | Word before hop or top (total: 10)
+(based on all New York Times crossword puzzles 1994 to 2009)'
+       title='Billiards furniture | Coffee ___ | Contents list | Postpone | Put aside | Put off | Put off, as a motion | Put on ice | Spreadsheet section | Word before hop or top (total: 10)
+(based on all New York Times crossword puzzles 1994 to 2009)'
+       width='539'
+       height='86'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Billiards furniture | Coffee ___ | Contents list | Postpone | Put aside | Put off | Put off, as a motion | Put on ice | Spreadsheet section | Word before hop or top (total: 10)
+(based on all New York Times crossword puzzles 1994 to 2009)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Less'
+       input='NYTCrosswordPuzzleClues:WordData__Less' />
+  </states>
+ </pod>
+ <pod title='Scrabble score'
+     scanner='Data'
+     id='ScrabbleScore:WordData'
+     position='2000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP107015i119b274chh209000023dc60b7c4bfbdd1?MSPStoreType=image/gif&amp;s=30'
+       alt='7 (International English) | 7 (North American English)'
+       title='7 (International English) | 7 (North American English)'
+       width='378'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>7 (International English) | 7 (North American English)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Phone keypad digits'
+     scanner='Data'
+     id='TelephoneNumber:WordData'
+     position='2100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>WordData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP107115i119b274chh2090000367d5b531e09h5i8?MSPStoreType=image/gif&amp;s=30'
+       alt='(???) ??8-2253'
+       title='(???) ??8-2253'
+       width='103'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>(???) ??8-2253</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='table'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='Word'
+       desc='a word'
+       input='*C.table-_*Word-' />
+   <value name='Unit'
+       desc='a unit'
+       input='*C.table-_*Unit-' />
+  </assumption>
+ </assumptions>
+ <sources count='17'>
+  <source url='https://www4b.wolframalpha.com/sources/AdministrativeDivisionDataSourceInformationNotes.html'
+      text='Administrative division data' />
+  <source url='https://www4b.wolframalpha.com/sources/BookDataSourceInformationNotes.html'
+      text='Book data' />
+  <source url='https://www4b.wolframalpha.com/sources/BridgeDataSourceInformationNotes.html'
+      text='Bridge data' />
+  <source url='https://www4b.wolframalpha.com/sources/BuildingDataSourceInformationNotes.html'
+      text='Building data' />
+  <source url='https://www4b.wolframalpha.com/sources/CityDataSourceInformationNotes.html'
+      text='City data' />
+  <source url='https://www4b.wolframalpha.com/sources/CompanyDataSourceInformationNotes.html'
+      text='Company data' />
+  <source url='https://www4b.wolframalpha.com/sources/CountryDataSourceInformationNotes.html'
+      text='Country data' />
+  <source url='https://www4b.wolframalpha.com/sources/GivenNameDataSourceInformationNotes.html'
+      text='Given name data' />
+  <source url='https://www4b.wolframalpha.com/sources/HistoricalPeriodDataSourceInformationNotes.html'
+      text='Historical period data' />
+  <source url='https://www4b.wolframalpha.com/sources/InternetDataSourceInformationNotes.html'
+      text='Internet data' />
+  <source url='https://www4b.wolframalpha.com/sources/LakeDataSourceInformationNotes.html'
+      text='Lake data' />
+  <source url='https://www4b.wolframalpha.com/sources/MountainDataSourceInformationNotes.html'
+      text='Mountain data' />
+  <source url='https://www4b.wolframalpha.com/sources/MovieDataSourceInformationNotes.html'
+      text='Movie data' />
+  <source url='https://www4b.wolframalpha.com/sources/OceanDataSourceInformationNotes.html'
+      text='Ocean data' />
+  <source url='https://www4b.wolframalpha.com/sources/RiverDataSourceInformationNotes.html'
+      text='River data' />
+  <source url='https://www4b.wolframalpha.com/sources/SurnameDataSourceInformationNotes.html'
+      text='Surname data' />
+  <source url='https://www4b.wolframalpha.com/sources/WordDataSourceInformationNotes.html'
+      text='Word data' />
+ </sources>
+</queryresult>

@@ -1,0 +1,354 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='9'
+    datatypes='Chemical'
+    timedout=''
+    timedoutpods=''
+    timing='3.443'
+    parsetiming='0.156'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP365523fhhefh1604a89000004ec1ace22e3eib56'
+    host='https://www4b.wolframalpha.com'
+    server='7'
+    related='https://www4b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa365623fhhefh1604a890000017id37hii98b052d7918145380195608682'
+    version='2.6'
+    inputstring='chromic acid'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP365723fhhefh1604a890000047a191adhcii4b0h?MSPStoreType=image/gif&amp;s=7'
+       alt='chromic acid'
+       title='chromic acid'
+       width='84'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>chromic acid</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP365823fhhefh1604a89000002hga037if087004b?MSPStoreType=image/gif&amp;s=7'
+       alt='formula | H_2CrO_4
+Hill formula | CrH_2O_4
+name | chromic acid
+IUPAC name | dihydroxy-dioxo-chromium'
+       title='formula | H_2CrO_4
+Hill formula | CrH_2O_4
+name | chromic acid
+IUPAC name | dihydroxy-dioxo-chromium'
+       width='320'
+       height='140'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | H_2CrO_4
+Hill formula | CrH_2O_4
+name | chromic acid
+IUPAC name | dihydroxy-dioxo-chromium</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP365923fhhefh1604a890000023f2117igg2hec07?MSPStoreType=image/gif&amp;s=7'
+       alt='Structure diagram'
+       title=''
+       width='104'
+       height='73'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalData__Show graph properties' />
+  </states>
+ </pod>
+ <pod title='3D structure'
+     scanner='Data'
+     id='3DStructure:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP366023fhhefh1604a890000021bffdeh953bh1c4?MSPStoreType=image/gif&amp;s=7'
+       alt='3D structure'
+       title=''
+       width='400'
+       height='150'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show bonds only'
+       input='3DStructure:ChemicalData__Show bonds only' />
+   <state name='Show space filling model'
+       input='3DStructure:ChemicalData__Show space filling model' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP366123fhhefh1604a89000004ia27da81aa5388i?MSPStoreType=image/gif&amp;s=7'
+       alt='molar mass | 118.01 g/mol
+phase | solid (at STP)
+melting point | 196 °C
+density | 2.7 g/cm^3
+solubility in water | very soluble'
+       title='molar mass | 118.01 g/mol
+phase | solid (at STP)
+melting point | 196 °C
+density | 2.7 g/cm^3
+solubility in water | very soluble'
+       width='252'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 118.01 g/mol
+phase | solid (at STP)
+melting point | 196 °C
+density | 2.7 g/cm^3
+solubility in water | very soluble</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP366223fhhefh1604a89000003236884b2934bh6b?MSPStoreType=image/gif&amp;s=7'
+         width='234'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Solid properties (at STP)'
+     scanner='Data'
+     id='SolidProperties:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP366323fhhefh1604a8900000639h9b76f8g939ab?MSPStoreType=image/gif&amp;s=7'
+       alt='density | 2.7 g/cm^3'
+       title='density | 2.7 g/cm^3'
+       width='157'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>density | 2.7 g/cm^3</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP366423fhhefh1604a89000002g27cbd252f6behg?MSPStoreType=image/gif&amp;s=7'
+       alt='CAS number | 7738-94-5
+PubChem CID number | 24425
+SMILES identifier | O[Cr](=O)(=O)O'
+       title='CAS number | 7738-94-5
+PubChem CID number | 24425
+SMILES identifier | O[Cr](=O)(=O)O'
+       width='303'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 7738-94-5
+PubChem CID number | 24425
+SMILES identifier | O[Cr](=O)(=O)O</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='NFPA label'
+     scanner='Data'
+     id='NFPALabel:ChemicalData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP366523fhhefh1604a890000047a3988ha9a6fieg?MSPStoreType=image/gif&amp;s=7'
+       alt='NFPA label'
+       title=''
+       width='40'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Table'
+       input='NFPALabel:ChemicalData__Table' />
+  </states>
+ </pod>
+ <pod title='Toxicity properties'
+     scanner='Data'
+     id='ToxicityProperties:ChemicalData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>MacmillansChemicalAndPhysicalData</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP366623fhhefh1604a89000004676c4d29c2h8b78?MSPStoreType=image/gif&amp;s=7'
+       alt='RTECS classes | mutagen'
+       title='RTECS classes | mutagen'
+       width='200'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>RTECS classes | mutagen</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='2'>
+  <assumption type='Clash'
+      word='chromic acid'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='3'>
+   <value name='Chemical'
+       desc='a chemical compound'
+       input='*C.chromic+acid-_*Chemical-' />
+   <value name='Material'
+       desc='a material'
+       input='*C.chromic+acid-_*Material-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.chromic+acid-_*Word-' />
+  </assumption>
+  <assumption type='SubCategory'
+      word='chromic acid'
+      template='Assuming ${desc1}. Use ${desc2} instead'
+      count='3'>
+   <value name='ChromicAcid'
+       desc='chromic acid'
+       input='*DPClash.ChemicalE.chromic+acid-_*ChromicAcid-' />
+   <value name='DichromicAcid'
+       desc='dichromic acid'
+       input='*DPClash.ChemicalE.chromic+acid-_*DichromicAcid-' />
+   <value name='ChromiumVIOxide'
+       desc='chromium trioxide'
+       input='*DPClash.ChemicalE.chromic+acid-_*ChromiumVIOxide-' />
+  </assumption>
+ </assumptions>
+ <sources count='1'>
+  <source url='https://www4b.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+ </sources>
+</queryresult>

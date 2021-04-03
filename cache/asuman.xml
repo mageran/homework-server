@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='4'
+    datatypes='GivenName,Person'
+    timedout=''
+    timedoutpods=''
+    timing='0.766'
+    parsetiming='0.075'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP9281i623b2fa8bhc9gi000061gef3gi7ad73g37'
+    host='https://www4f.wolframalpha.com'
+    server='21'
+    related='https://www4f.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa9291i623b2fa8bhc9gi00003gha6ige79eed348561598085328412281'
+    version='2.6'
+    inputstring='Asuman'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP9301i623b2fa8bhc9gi0000468gbe10hi3hh6c6?MSPStoreType=image/gif&amp;s=21'
+       alt='Asuman (female given name)'
+       title='Asuman (female given name)'
+       width='198'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Asuman (female given name)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Information for US births'
+     scanner='Data'
+     id='BasicInformation:GivenNameData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>GivenNameData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>USSSABabyNames</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP9311i623b2fa8bhc9gi000060327ce43a6d2ag9?MSPStoreType=image/gif&amp;s=21'
+       alt='number | &lt; 5 people
+(US data based on 2019 births and other SSA registrations in the US)'
+       title='number | &lt; 5 people
+(US data based on 2019 births and other SSA registrations in the US)'
+       width='392'
+       height='64'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>number | &lt; 5 people
+(US data based on 2019 births and other SSA registrations in the US)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Notable people named Asuman'
+     scanner='Data'
+     id='NotablePeopleWithName:GivenNameData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>GivenNameData</microsource>
+    <microsource>PeopleData</microsource>
+   </microsources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP9321i623b2fa8bhc9gi000050agcd81b63657cg?MSPStoreType=image/gif&amp;s=21'
+       alt='Asuman Krause (singer, etc.) (born 1976) (age: 45 years)'
+       title='Asuman Krause (singer, etc.) (born 1976) (age: 45 years)'
+       width='359'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Asuman Krause (singer, etc.) (born 1976) (age: 45 years)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Show dates'
+       input='NotablePeopleWithName:GivenNameData__Show dates' />
+  </states>
+ </pod>
+ <pod title='Etymology'
+     scanner='Data'
+     id='NameMeaning:GivenNameData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>GivenNameData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>BehindTheName</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP9331i623b2fa8bhc9gi00005a7aace2e55e1bfb?MSPStoreType=image/gif&amp;s=21'
+       alt='Means &quot;sky&quot; in Turkish'
+       title='Means &quot;sky&quot; in Turkish'
+       width='150'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Means &quot;sky&quot; in Turkish</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <sources count='2'>
+  <source url='https://www4f.wolframalpha.com/sources/GivenNameDataSourceInformationNotes.html'
+      text='Given name data' />
+  <source url='https://www4f.wolframalpha.com/sources/PeopleDataSourceInformationNotes.html'
+      text='People data' />
+ </sources>
+</queryresult>
