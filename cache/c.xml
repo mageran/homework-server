@@ -1,0 +1,473 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='16'
+    datatypes='Character'
+    timedout=''
+    timedoutpods=''
+    timing='3.5060000000000002'
+    parsetiming='0.25'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP1045915i18iideag8cgg500004h07078692ac0dii'
+    host='https://www4b.wolframalpha.com'
+    server='30'
+    related='https://www4b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa1046015i18iideag8cgg5000043ea0af0id7ia8dg5186426821976139686'
+    version='2.6'
+    inputstring='C'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1046115i18iideag8cgg500003i60g2d12c4e1ii7?MSPStoreType=image/gif&amp;s=30'
+       alt='C (character)'
+       title='C (character)'
+       width='90'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>C (character)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Visual form'
+     scanner='Character'
+     id='VisualForm'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1046215i18iideag8cgg500002gha3199cfadhh9g?MSPStoreType=image/gif&amp;s=30'
+       alt='Visual form'
+       title=''
+       width='42'
+       height='68'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Name'
+     scanner='Character'
+     id='Names'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1046315i18iideag8cgg5000061c1a4c5gdc4a7d4?MSPStoreType=image/gif&amp;s=30'
+       alt='Latin capital letter C'
+       title='Latin capital letter C'
+       width='133'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Latin capital letter C</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Lower case'
+     scanner='Character'
+     id='LowercaseMapping:CharacterData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>CharacterData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>Unicode</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1046415i18iideag8cgg500005e20ddb2ei3i4eg4?MSPStoreType=image/gif&amp;s=30'
+       alt='c (U+0063)'
+       title='c (U+0063)'
+       width='78'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>c (U+0063)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Similar characters'
+     scanner='Character'
+     id='RelatedCharacters:CharacterData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>CharacterData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>Unicode</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1046515i18iideag8cgg5000052e46a49i86ci2dh?MSPStoreType=image/gif&amp;s=30'
+       alt='ℂ (double-struck capital C) | ℭ (black-letter capital C)'
+       title='ℂ (double-struck capital C) | ℭ (black-letter capital C)'
+       width='367'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>ℂ (double-struck capital C) | ℭ (black-letter capital C)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Positions in alphabets'
+     scanner='Character'
+     id='Alphabets:CharacterData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>CharacterData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1046615i18iideag8cgg5000056ia20835ebab8e1?MSPStoreType=image/gif&amp;s=30'
+       alt='English | 3rd letter (24th letter from the end)
+Spanish | 3rd letter (25th letter from the end)
+French | 3rd letter (24th letter from the end)'
+       title='English | 3rd letter (24th letter from the end)
+Spanish | 3rd letter (25th letter from the end)
+French | 3rd letter (24th letter from the end)'
+       width='328'
+       height='109'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>English | 3rd letter (24th letter from the end)
+Spanish | 3rd letter (25th letter from the end)
+French | 3rd letter (24th letter from the end)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Alphabets:CharacterData__More' />
+  </states>
+ </pod>
+ <pod title='Encodings'
+     scanner='Character'
+     id='CharacterEncodingsToggler:CharacterData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>CharacterData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1046715i18iideag8cgg5000062d7h8628c23fgdd?MSPStoreType=image/gif&amp;s=30'
+       alt='ASCII | 67 (hex: 41 | octal: 101 | binary: 01000001)
+Unicode | U+0043 (decimal: 67)'
+       title='ASCII | 67 (hex: 41 | octal: 101 | binary: 01000001)
+Unicode | U+0043 (decimal: 67)'
+       width='414'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>ASCII | 67 (hex: 41 | octal: 101 | binary: 01000001)
+Unicode | U+0043 (decimal: 67)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='CharacterEncodingsToggler:CharacterData__More' />
+  </states>
+ </pod>
+ <pod title='Typical letter frequencies in English'
+     scanner='Character'
+     id='LetterFrequencyGrid:CharacterData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>CharacterData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1046815i18iideag8cgg5000042dghbef5c6i1h43?MSPStoreType=image/gif&amp;s=30'
+       alt='texts | anywhere in words | 2.8% (ranking among letters: 13th)
+dictionaries | anywhere in words | 4% (ranking among letters: 10th)
+ | beginning of words | 9.4% (ranking among letters: 2nd)'
+       title='texts | anywhere in words | 2.8% (ranking among letters: 13th)
+dictionaries | anywhere in words | 4% (ranking among letters: 10th)
+ | beginning of words | 9.4% (ranking among letters: 2nd)'
+       width='479'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>texts | anywhere in words | 2.8% (ranking among letters: 13th)
+dictionaries | anywhere in words | 4% (ranking among letters: 10th)
+ | beginning of words | 9.4% (ranking among letters: 2nd)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Language occurrence'
+     scanner='Character'
+     id='CharFrequencyTable:CharacterData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>CharacterData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1046915i18iideag8cgg500005d7egfd1b096h5e1?MSPStoreType=image/gif&amp;s=30'
+       alt='English | Spanish | Portuguese | Indonesian | Malay | French | German | Javanese | Turkish | Italian | ...'
+       title='English | Spanish | Portuguese | Indonesian | Malay | French | German | Javanese | Turkish | Italian | ...'
+       width='484'
+       height='40'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>English | Spanish | Portuguese | Indonesian | Malay | French | German | Javanese | Turkish | Italian | ...</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='More'
+       input='CharFrequencyTable:CharacterData__More' />
+   <state name='Show frequencies'
+       input='CharFrequencyTable:CharacterData__Show frequencies' />
+  </states>
+ </pod>
+ <pod title='Standard blocks'
+     scanner='Character'
+     id='StandardBlocks:CharacterData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>CharacterData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>Unicode</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1047015i18iideag8cgg500004bde7deh480363bi?MSPStoreType=image/gif&amp;s=30'
+       alt='Unicode | Basic Latin (0 through 127) (128 characters)
+ISO 8859 | ISO 8859-1 (Latin-1) (character 67)'
+       title='Unicode | Basic Latin (0 through 127) (128 characters)
+ISO 8859 | ISO 8859-1 (Latin-1) (character 67)'
+       width='392'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Unicode | Basic Latin (0 through 127) (128 characters)
+ISO 8859 | ISO 8859-1 (Latin-1) (character 67)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Phonetic alphabet'
+     scanner='Character'
+     id='PhoneticAlphabet:CharacterData'
+     position='1100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>CharacterData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1047115i18iideag8cgg50000651b304i3cb1igh2?MSPStoreType=image/gif&amp;s=30'
+       alt='Charlie (CHAR·LEE or SHAR·LEE)'
+       title='Charlie (CHAR·LEE or SHAR·LEE)'
+       width='191'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Charlie (CHAR·LEE or SHAR·LEE)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Unicode classification'
+     scanner='Character'
+     id='UnicodeClassification:CharacterData'
+     position='1200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>CharacterData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>Unicode</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1047215i18iideag8cgg500002a2g5i78ic3gi7ff?MSPStoreType=image/gif&amp;s=30'
+       alt='letter 〉 uppercase'
+       title='letter 〉 uppercase'
+       width='127'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>letter 〉 uppercase</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Transliterations'
+     scanner='Character'
+     id='Transliterations'
+     position='1300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1047315i18iideag8cgg5000011c3e5102g19ec26?MSPStoreType=image/gif&amp;s=30'
+       alt='Greek | Κ (kappa)
+Russian | Ц'
+       title='Greek | Κ (kappa)
+Russian | Ц'
+       width='167'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Greek | Κ (kappa)
+Russian | Ц</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='&quot;C&quot; on a US English keyboard'
+     scanner='ComputerKeyboard'
+     id='LetterOnAKeboard'
+     position='1400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1047415i18iideag8cgg5000048h57e82cbf0bed3?MSPStoreType=image/gif&amp;s=30'
+       alt='&quot;C&quot; on a US English keyboard'
+       title=''
+       width='490'
+       height='180'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Computer keyboards containing &quot;C&quot;'
+     scanner='ComputerKeyboard'
+     id='ComputerKeyboardsContainingLetter'
+     position='1500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1047515i18iideag8cgg50000286hecee2geiai5a?MSPStoreType=image/gif&amp;s=30'
+       alt='US English keyboard | United Kingdom keyboard | Japanese keyboard | Spanish keyboard | German keyboard | French keyboard'
+       title='US English keyboard | United Kingdom keyboard | Japanese keyboard | Spanish keyboard | German keyboard | French keyboard'
+       width='504'
+       height='40'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>US English keyboard | United Kingdom keyboard | Japanese keyboard | Spanish keyboard | German keyboard | French keyboard</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='3'>
+   <state name='More'
+       input='ComputerKeyboardsContainingLetter__More' />
+   <state name='Less'
+       input='ComputerKeyboardsContainingLetter__Less' />
+   <state name='Show key location'
+       input='ComputerKeyboardsContainingLetter__Show key location' />
+  </states>
+ </pod>
+ <pod title='Wikipedia page hits history'
+     scanner='Data'
+     id='PopularityPod:WikipediaStatsData'
+     position='1600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1047615i18iideag8cgg5000038ggg4f6gea43ci4?MSPStoreType=image/gif&amp;s=30'
+       alt='Wikipedia page hits history'
+       title=''
+       width='546'
+       height='169'
+       type='TimeSeriesPlot_1'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='TimeSeriesPlot' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Log scale'
+       input='PopularityPod:WikipediaStatsData__Log scale' />
+  </states>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='C'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='7'>
+   <value name='Character'
+       desc='a character'
+       input='*C.C-_*Character-' />
+   <value name='MusicNote'
+       desc='a musical note'
+       input='*C.C-_*MusicNote-' />
+   <value name='Unit'
+       desc='a unit'
+       input='*C.C-_*Unit-' />
+   <value name='Element'
+       desc='a chemical element'
+       input='*C.C-_*Element-' />
+   <value name='WolframLanguageSymbol'
+       desc='a Wolfram Language symbol'
+       input='*C.C-_*WolframLanguageSymbol-' />
+   <value name='Particle'
+       desc='a particle'
+       input='*C.C-_*Particle-' />
+   <value name='MathWorld'
+       desc=' referring to a mathematical definition'
+       input='*C.C-_*MathWorld-' />
+  </assumption>
+ </assumptions>
+ <sources count='1'>
+  <source url='https://www4b.wolframalpha.com/sources/CharacterDataSourceInformationNotes.html'
+      text='Character data' />
+ </sources>
+</queryresult>

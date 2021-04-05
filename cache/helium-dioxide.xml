@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='4'
+    datatypes='ChemicalIntermediate,Element'
+    timedout=''
+    timedoutpods=''
+    timing='1.441'
+    parsetiming='0.199'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP1004207e52fh5aigad8a000035e621igihdff6f3'
+    host='https://www5a.wolframalpha.com'
+    server='34'
+    related='https://www5a.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa1005207e52fh5aigad8a00004f014c0c35fag3af9169348569951999198'
+    version='2.6'
+    inputstring='helium dioxide'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP1006207e52fh5aigad8a0000666h84d2dhhb0aci?MSPStoreType=image/gif&amp;s=34'
+       alt='helium cation | superoxide anion'
+       title='helium cation | superoxide anion'
+       width='228'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>helium cation | superoxide anion</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Structure diagrams'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalIntermediateData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP1007207e52fh5aigad8a000040f53f68b7cbfgh8?MSPStoreType=image/gif&amp;s=34'
+       alt='Structure diagrams'
+       title=''
+       width='648'
+       height='85'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <statelist count='2'
+       value='Skeletal structure'
+       delimiters=''>
+    <state name='Skeletal structure'
+        input='StructureDiagramPod:ChemicalIntermediateData__Skeletal structure' />
+    <state name='Lewis structure'
+        input='StructureDiagramPod:ChemicalIntermediateData__Lewis structure' />
+   </statelist>
+  </states>
+ </pod>
+ <pod title='General properties'
+     scanner='Data'
+     id='GeneralProperties:ChemicalIntermediateData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP1008207e52fh5aigad8a000055g0d36f50810793?MSPStoreType=image/gif&amp;s=34'
+       alt=' | helium cation | superoxide anion
+formula | He^(2+) | (O_2)^(•-)
+net ionic charge | +2 | -1
+alternate names | alpha particle | dioxidanidyl | dioxide(1-) | dioxide(•1-) | superoxide(1-) | superoxide | superoxide radical | superoxide radical anion'
+       title=' | helium cation | superoxide anion
+formula | He^(2+) | (O_2)^(•-)
+net ionic charge | +2 | -1
+alternate names | alpha particle | dioxidanidyl | dioxide(1-) | dioxide(•1-) | superoxide(1-) | superoxide | superoxide radical | superoxide radical anion'
+       width='546'
+       height='191'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | helium cation | superoxide anion
+formula | He^(2+) | (O_2)^(•-)
+net ionic charge | +2 | -1
+alternate names | alpha particle | dioxidanidyl | dioxide(1-) | dioxide(•1-) | superoxide(1-) | superoxide | superoxide radical | superoxide radical anion</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Other properties'
+     scanner='Data'
+     id='Other:ChemicalIntermediateData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP1009207e52fh5aigad8a0000437d0a7d6547g4f7?MSPStoreType=image/gif&amp;s=34'
+       alt=' | helium cation | superoxide anion
+ion class | cations | group 18 ions | noble gas ions | p block ions | ionic radioactive particles | anions | biomolecule ions | oxoanions | polyatomic ions | radicals'
+       title=' | helium cation | superoxide anion
+ion class | cations | group 18 ions | noble gas ions | p block ions | ionic radioactive particles | anions | biomolecule ions | oxoanions | polyatomic ions | radicals'
+       width='545'
+       height='124'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | helium cation | superoxide anion
+ion class | cations | group 18 ions | noble gas ions | p block ions | ionic radioactive particles | anions | biomolecule ions | oxoanions | polyatomic ions | radicals</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <sources count='2'>
+  <source url='https://www5a.wolframalpha.com/sources/ChemicalIntermediateDataSourceInformationNotes.html'
+      text='Chemical intermediate data' />
+  <source url='https://www5a.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>

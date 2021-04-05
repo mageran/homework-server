@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='false'
+    error='false'
+    xml:space='preserve'
+    numpods='0'
+    datatypes=''
+    timedout=''
+    timedoutpods=''
+    timing='0.937'
+    parsetiming='0.23600000000000002'
+    parsetimedout='false'
+    recalculate=''
+    id=''
+    parseidserver='5'
+    host='https://www5b.wolframalpha.com'
+    server='5'
+    related=''
+    version='2.6'
+    inputstring='tricholerane ethylene'>
+ <didyoumeans count='1'>
+  <didyoumean score='0.380952' level='medium'>ethylene</didyoumean>
+ </didyoumeans>
+</queryresult>

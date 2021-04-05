@@ -1,0 +1,348 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='7'
+    datatypes='Chemical,Thermodynamic'
+    timedout=''
+    timedoutpods=''
+    timing='3.7760000000000002'
+    parsetiming='0.446'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP1119180245433ebg4a700000496941c3af39i5b5'
+    host='https://www5a.wolframalpha.com'
+    server='40'
+    related='https://www5a.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa1120180245433ebg4a700000638d01gcdd57a3b38016232918289159674'
+    version='2.6'
+    inputstring='Water gas'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP1121180245433ebg4a70000066hhdg1f45dad8g2?MSPStoreType=image/gif&amp;s=40'
+       alt='water | phase | gas'
+       title='water | phase | gas'
+       width='184'
+       height='33'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>water | phase | gas</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Thermodynamic properties of matter'
+     scanner='Data'
+     id='PhaseComputedThermodynamicProperties:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ThermodynamicData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+    <datasource>NISTREFPROP</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP1122180245433ebg4a700000497ed56a28gg4f21?MSPStoreType=image/gif&amp;s=40'
+       alt='phase | gas
+temperature | 374.1339 K
+pressure | 1 atm
+density | 0.5959 kg/m^3
+5.959×10^-4 g/cm^3
+boiling point | 100.3 °C
+sound speed | 1058 mph
+472.9 m/s
+specific acoustic impedance | 281.8 Pa s/m'
+       title='phase | gas
+temperature | 374.1339 K
+pressure | 1 atm
+density | 0.5959 kg/m^3
+5.959×10^-4 g/cm^3
+boiling point | 100.3 °C
+sound speed | 1058 mph
+472.9 m/s
+specific acoustic impedance | 281.8 Pa s/m'
+       width='351'
+       height='275'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>phase | gas
+temperature | 374.1339 K
+pressure | 1 atm
+density | 0.5959 kg/m^3
+5.959×10^-4 g/cm^3
+boiling point | 100.3 °C
+sound speed | 1058 mph
+472.9 m/s
+specific acoustic impedance | 281.8 Pa s/m</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='PhaseComputedThermodynamicProperties:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='7'>
+     <unit short='atm'
+         long='atmospheres' />
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='kg/m^3'
+         long='kilograms per cubic meter' />
+     <unit short='K'
+         long='kelvins' />
+     <unit short='mph'
+         long='miles per hour' />
+     <unit short='m/s'
+         long='meters per second' />
+     <unit short='Pa s/m'
+         long='pascal seconds per meter' />
+     <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP1123180245433ebg4a7000005ag18b648b8465hd?MSPStoreType=image/gif&amp;s=40'
+         width='234'
+         height='161' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Phase diagram'
+     scanner='Data'
+     id='PhaseDiagramPhasePlot:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ThermodynamicData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+    <datasource>NISTREFPROP</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP1124180245433ebg4a70000016fb8ec167hi5642?MSPStoreType=image/gif&amp;s=40'
+       alt='Phase diagram'
+       title=''
+       width='300'
+       height='242'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='K'
+         long='kelvins' />
+     <unit short='Pa'
+         long='pascals' />
+     <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP1125180245433ebg4a7000001312c4c5cg98f8h2?MSPStoreType=image/gif&amp;s=40'
+         width='99'
+         height='49' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP1126180245433ebg4a700000218b78cei44d2e08?MSPStoreType=image/gif&amp;s=40'
+       alt='Structure diagram'
+       title=''
+       width='79'
+       height='44'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='4'>
+   <statelist count='2'
+       value='Skeletal structure'
+       delimiters=''>
+    <state name='Skeletal structure'
+        input='StructureDiagramPod:ChemicalData__Skeletal structure' />
+    <state name='Lewis structure'
+        input='StructureDiagramPod:ChemicalData__Lewis structure' />
+   </statelist>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalData__Show graph properties' />
+   <state name='Step-by-step'
+       input='StructureDiagramPod:ChemicalData__Step-by-step'
+       stepbystep='true' />
+  </states>
+ </pod>
+ <pod title='3D structure'
+     scanner='Data'
+     id='3DStructure:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP1127180245433ebg4a70000029b4ed8666d95a5g?MSPStoreType=image/gif&amp;s=40'
+       alt='3D structure'
+       title=''
+       width='400'
+       height='98'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show bonds only'
+       input='3DStructure:ChemicalData__Show bonds only' />
+   <state name='Show space filling model'
+       input='3DStructure:ChemicalData__Show space filling model' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='BasicWithConditions:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP1128180245433ebg4a700000605i753ce3ihf01g?MSPStoreType=image/gif&amp;s=40'
+       alt='formula | H_2O
+name | water
+molar mass | 18.015 g/mol'
+       title='formula | H_2O
+name | water
+molar mass | 18.015 g/mol'
+       width='208'
+       height='104'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | H_2O
+name | water
+molar mass | 18.015 g/mol</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP1129180245433ebg4a700000677i090059ef9d7g?MSPStoreType=image/gif&amp;s=40'
+         width='164'
+         height='27' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP1130180245433ebg4a7000003c9cgcg91bf02b77?MSPStoreType=image/gif&amp;s=40'
+       alt='CAS number | 7732-18-5
+PubChem CID number | 962
+PubChem SID number | 24851683
+SMILES identifier | O'
+       title='CAS number | 7732-18-5
+PubChem CID number | 962
+PubChem SID number | 24851683
+SMILES identifier | O'
+       width='270'
+       height='136'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 7732-18-5
+PubChem CID number | 962
+PubChem SID number | 24851683
+SMILES identifier | O</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='MultiClash'
+      word=''
+      template='Assuming ${word1} is referring to ${desc1}. Use &quot;${word2}&quot; as ${desc2}. Use &quot;${word3}&quot; as ${desc3}.'
+      count='3'>
+   <value name='Chemical'
+       word='Water'
+       desc='a chemical compound'
+       input='*MC.Water+gas-_*Chemical-' />
+   <value name='Movie'
+       word='Water'
+       desc='a movie'
+       input='*MC.Water+gas-_*Movie-' />
+   <value name='Word'
+       word='Water gas'
+       desc='a word'
+       input='*MC.Water+gas-_*Word-' />
+  </assumption>
+ </assumptions>
+ <sources count='2'>
+  <source url='https://www5a.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+  <source url='https://www5a.wolframalpha.com/sources/ThermodynamicDataSourceInformationNotes.html'
+      text='Thermodynamic data' />
+ </sources>
+</queryresult>

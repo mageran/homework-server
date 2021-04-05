@@ -14,26 +14,21 @@ function chemicalQuery(queryString) {
             } catch (err) {
                 console.error(err);
             }
-            if (resObj.formula) {
-                addLatexElement(o, resObj.formula, 'Formula:');
-            }
-            if (resObj['atomic symbol']) {
-                addLatexElement(o, resObj['atomic symbol'], 'Atomic Symbol');
-            }
-
             var table = _htmlElement('table', o, null, 'chemical-properties-table');
             Object.keys(resObj).forEach(prop => {
                 const value = resObj[prop];
                 const tr = _htmlElement('tr', table);
                 const td1 = _htmlElement('td', tr, prop);
-                if (['formula', 'Hill formula'].includes(prop)) {
-                    const td2 = _htmlElement('td', tr);
-                    addLatexElement(td2, value);
-
-                } else {
-                    const td2 = _htmlElement('td', tr, value);
-                }
-            })
+                const td2 = _htmlElement('td', tr);
+                const varray = Array.isArray(value) ? value : [value];
+                varray.forEach(value => {
+                    if (['formula', 'Hill formula'].includes(prop)) {
+                        addLatexElement(td2, value);
+                    } else {
+                        _htmlElement('span', td2, value);
+                    }
+                })
+            });
             //_htmlElement('pre', o, JSON.stringify(resObj, null, 2));
         }
         $.ajax({
@@ -51,4 +46,11 @@ function chemicalQuery(queryString) {
     } catch (err) {
         _addErrorElement(o, err);
     }
+}
+
+const chemicalQueryPromise = queryString => {
+    const url = `/api/chemicalQuery?query=${escape(queryString)}`;
+    return new Promise((resolve, reject) => {
+        
+    })
 }

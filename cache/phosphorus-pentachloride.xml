@@ -1,0 +1,385 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='9'
+    datatypes='Chemical,Element'
+    timedout=''
+    timedoutpods=''
+    timing='3.887'
+    parsetiming='0.221'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP4341d80hdfe8i61650a00005ba282edh781i769'
+    host='https://www5a.wolframalpha.com'
+    server='47'
+    related='https://www5a.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa4351d80hdfe8i61650a000025adeedd2e52h1213940777145929605518'
+    version='2.6'
+    inputstring='Phosphorus pentachloride'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP4361d80hdfe8i61650a000021g865bg9ad2i9i8?MSPStoreType=image/gif&amp;s=47'
+       alt='phosphorus pentachloride'
+       title='phosphorus pentachloride'
+       width='168'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>phosphorus pentachloride</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP4371d80hdfe8i61650a000022d57ggi46f03826?MSPStoreType=image/gif&amp;s=47'
+       alt='formula | PCl_5
+Hill formula | Cl_5P
+name | phosphorus pentachloride
+IUPAC name | pentachlorophosphorane'
+       title='formula | PCl_5
+Hill formula | Cl_5P
+name | phosphorus pentachloride
+IUPAC name | pentachlorophosphorane'
+       width='299'
+       height='138'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | PCl_5
+Hill formula | Cl_5P
+name | phosphorus pentachloride
+IUPAC name | pentachlorophosphorane</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP4381d80hdfe8i61650a00004hgd3c44d554837e?MSPStoreType=image/gif&amp;s=47'
+       alt='Structure diagram'
+       title=''
+       width='79'
+       height='76'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='4'>
+   <statelist count='2'
+       value='Skeletal structure'
+       delimiters=''>
+    <state name='Skeletal structure'
+        input='StructureDiagramPod:ChemicalData__Skeletal structure' />
+    <state name='Lewis structure'
+        input='StructureDiagramPod:ChemicalData__Lewis structure' />
+   </statelist>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalData__Show graph properties' />
+   <state name='Step-by-step'
+       input='StructureDiagramPod:ChemicalData__Step-by-step'
+       stepbystep='true' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP4391d80hdfe8i61650a00004gcdci70d4h2179e?MSPStoreType=image/gif&amp;s=47'
+       alt='molar mass | 208.2 g/mol
+phase | solid (at STP)
+melting point | 148 °C
+density | 3.6 g/cm^3
+solubility in water | reacts'
+       title='molar mass | 208.2 g/mol
+phase | solid (at STP)
+melting point | 148 °C
+density | 3.6 g/cm^3
+solubility in water | reacts'
+       width='251'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 208.2 g/mol
+phase | solid (at STP)
+melting point | 148 °C
+density | 3.6 g/cm^3
+solubility in water | reacts</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP4401d80hdfe8i61650a00005f48028971fg36b4?MSPStoreType=image/gif&amp;s=47'
+         width='234'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Solid properties (at STP)'
+     scanner='Data'
+     id='SolidProperties:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP4411d80hdfe8i61650a00002db62gi7e1f7hf00?MSPStoreType=image/gif&amp;s=47'
+       alt='density | 3.6 g/cm^3'
+       title='density | 3.6 g/cm^3'
+       width='157'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>density | 3.6 g/cm^3</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='Thermodynamics:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP4421d80hdfe8i61650a000012aaf0b9a6c5561d?MSPStoreType=image/gif&amp;s=47'
+       alt='specific heat capacity c_p | gas | 0.5417 J/(g K)
+specific free energy of formation Δ_fG° | gas | -1.465 kJ/g
+specific heat of formation Δ_fH° | gas | -1.8 kJ/g
+ | solid | -2.13 kJ/g
+specific heat of fusion | 0.2012 kJ/g | 
+critical temperature | 645 K | 
+(at STP)'
+       title='specific heat capacity c_p | gas | 0.5417 J/(g K)
+specific free energy of formation Δ_fG° | gas | -1.465 kJ/g
+specific heat of formation Δ_fH° | gas | -1.8 kJ/g
+ | solid | -2.13 kJ/g
+specific heat of fusion | 0.2012 kJ/g | 
+critical temperature | 645 K | 
+(at STP)'
+       width='431'
+       height='227'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>specific heat capacity c_p | gas | 0.5417 J/(g K)
+specific free energy of formation Δ_fG° | gas | -1.465 kJ/g
+specific heat of formation Δ_fH° | gas | -1.8 kJ/g
+ | solid | -2.13 kJ/g
+specific heat of fusion | 0.2012 kJ/g | 
+critical temperature | 645 K | 
+(at STP)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Thermodynamics:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='3'>
+     <unit short='J/(g K)'
+         long='joules per gram kelvin difference' />
+     <unit short='kJ/g'
+         long='kilojoules per gram' />
+     <unit short='K'
+         long='kelvins' />
+     <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP4431d80hdfe8i61650a000024930aabg8db506b?MSPStoreType=image/gif&amp;s=47'
+         width='262'
+         height='71' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP4441d80hdfe8i61650a000046eb9iife8de8g1h?MSPStoreType=image/gif&amp;s=47'
+       alt='CAS number | 10026-13-8
+PubChem CID number | 24819
+SMILES identifier | P(Cl)(Cl)(Cl)(Cl)Cl'
+       title='CAS number | 10026-13-8
+PubChem CID number | 24819
+SMILES identifier | P(Cl)(Cl)(Cl)(Cl)Cl'
+       width='307'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 10026-13-8
+PubChem CID number | 24819
+SMILES identifier | P(Cl)(Cl)(Cl)(Cl)Cl</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='NFPA label'
+     scanner='Data'
+     id='NFPALabel:ChemicalData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP4451d80hdfe8i61650a00003hh9h41eg1hd0550?MSPStoreType=image/gif&amp;s=47'
+       alt='NFPA label'
+       title=''
+       width='40'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Table'
+       input='NFPALabel:ChemicalData__Table' />
+  </states>
+ </pod>
+ <pod title='Toxicity properties'
+     scanner='Data'
+     id='ToxicityProperties:ChemicalData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>MacmillansChemicalAndPhysicalData</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP4461d80hdfe8i61650a00002i973i6e1098cc45?MSPStoreType=image/gif&amp;s=47'
+       alt='lethal dosage | 660 mg/kg (oral dose for rats)'
+       title='lethal dosage | 660 mg/kg (oral dose for rats)'
+       width='316'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>lethal dosage | 660 mg/kg (oral dose for rats)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ToxicityProperties:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short='mg/kg'
+         long='milligrams per kilogram' />
+     <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP4471d80hdfe8i61650a00003e82e3845a040be1?MSPStoreType=image/gif&amp;s=47'
+         width='211'
+         height='27' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <sources count='2'>
+  <source url='https://www5a.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+  <source url='https://www5a.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>

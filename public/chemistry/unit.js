@@ -5,6 +5,10 @@ const UnitConversionsMap = {
         mL: { metric: true, L: _d(0.001), oz: _d(0.033814022701843) },
         oz: { metric: false, mL: _d(29.5735295625), qts: _d(0.03125) },
         gal: { metric: false, L: _d(3.785411784), qts: _d(4), },
+        'm^3': { metric: true, L: _d(1000) },
+        'dm^3': { metric: true, L: _d(1) },
+        'cm^3': { metric: true, L: _d(0.001) },
+        'mm^3': { metric: true, L: _d("1e-6") }
     },
     length: {
         m: { metric: true, ft: _d(3.2808398950131), ref: true },
@@ -18,6 +22,7 @@ const UnitConversionsMap = {
         mi: { metric: false, ft: _d(5280), km: _d(1.609344) }
     },
     weight: {
+        mg: { metric: true, g: _d(0.001) },
         g: { metric: true, ref: true, lb: _d(0.0022046226218488) },
         lb: { metric: false, ref: true, g: _d(453.59237) },
         kg: { metric: true, g: _d(1000), lb: _d(2.2046226218488) },
@@ -31,9 +36,9 @@ const UnitConversionsMap = {
         msec: { metric: true, sec: _d(0.001) }
     },
     temperature: {
-        C: { K: (C => _d(C).plus(_d(273))), F: (C => _d(C).times(_d(1.8)).plus(32)) },
-        F: { C: (F => _d(F - 32).dividedBy(_d(1.8))), K: (F => _d(F - 32).dividedBy(_d(1.8)).plus(_d(273))) },
-        K: { C: (K => _d(K - 273)), F: (K => (_d(K - 273)).times(_d(1.8)).plus(_d(32))) },
+        K: { C: (K => _d(K - 273.15)), F: (K => (_d(K - 273.15)).times(_d(1.8)).plus(_d(32))) },
+        C: { K: (C => _d(C).plus(_d(273.15))), F: (C => _d(C).times(_d(1.8)).plus(32)) },
+        F: { C: (F => _d(F - 32).dividedBy(_d(1.8))), K: (F => _d(F - 32).dividedBy(_d(1.8)).plus(_d(273.15))) },
     },
     pressure: {
         atm: { ref: true, Pa: _d(101325), mmHg: _d(760), torr: _d(760), lbin2: _d(14.7) },
@@ -52,7 +57,7 @@ const UnitConversionsMap = {
 const TemperatureFormulas = {
         C: {
             //K: (C => _d(C).plus(_d(273))),
-            K: `K = {}^oC + 273`,
+            K: `K = {}^oC + 273.15`,
             //F: (C => _d(C).times(_d(1.8)).plus(32)),
             F: `F = {}^oC \\cdot 1.8 + 32`
         },
@@ -60,13 +65,13 @@ const TemperatureFormulas = {
             //C: (F => _d(F - 32).dividedBy(_d(1.8))),
             C: `C = \\fraction{F-32}{1.8}`,
             //K: (F => _d(F - 32).dividedBy(_d(1.8)).minus(_d(273)))
-            K: `K = \\fraction{F-32}{1.8} + 273`
+            K: `K = \\fraction{F-32}{1.8} + 273.15`
         },
         K: {
             //C: (K => _d(K - 273)),
-            C: `C = K - 273`,
+            C: `C = K - 273.15`,
             //F: (K => (_d(K - 273)).times(_d(1.8)).plus(_d(32)))
-            F: `F = (K - 273) \\cdot 1.8 + 32`
+            F: `F = (K - 273.15) \\cdot 1.8 + 32`
         },
 }
 

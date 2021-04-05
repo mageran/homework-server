@@ -1,0 +1,341 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='2'
+    datatypes='GlobalClimateData'
+    timedout=''
+    timedoutpods=''
+    timing='3.6670000000000003'
+    parsetiming='0.323'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP5341513ad93h9cff9g700002b6efe7a9de43aig'
+    host='https://www5b.wolframalpha.com'
+    server='54'
+    related='https://www5b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa5351513ad93h9cff9g700002fh54aagh450723e2137842930739718529'
+    version='2.6'
+    inputstring='CO_2'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP5361513ad93h9cff9g700005e2ib79a00e3df1a?MSPStoreType=image/gif&amp;s=54'
+       alt='global carbon dioxide concentration'
+       title='global carbon dioxide concentration'
+       width='253'
+       height='23'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>global carbon dioxide concentration</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Results'
+     scanner='Climate'
+     id='Result'
+     position='200'
+     error='false'
+     numsubpods='4'
+     primary='true'>
+  <subpod title='History'>
+   <microsources>
+    <microsource>GlobalClimateData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP5371513ad93h9cff9g70000514a1b3fg4ehah5b?MSPStoreType=image/gif&amp;s=54'
+       alt='Results History'
+       title=''
+       width='546'
+       height='222'
+       type='TimeSeriesPlot_3'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <subpod title='Description'>
+   <microsources>
+    <microsource>GlobalClimateData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP5381513ad93h9cff9g700003hhga9a725c0f2g6?MSPStoreType=image/gif&amp;s=54'
+       alt='study | description | year
+ CDIAC-CO2a | ice cores (reconstruction) | 1998
+ CDIAC-CO2b | ice cores (reconstruction) | 1998
+ CDIAC-CO2c | ice cores (reconstruction) | 1998
+ CDIAC-CO2d | ice cores (reconstruction) | 1998
+ CDIAC-CO2e | ice cores (reconstruction) | 1998
+ ScrippsCO2InSituMLO | instrumental | 2001
+ ScrippsCO2InSituMLOd | instrumental | 2001'
+       title='study | description | year
+ CDIAC-CO2a | ice cores (reconstruction) | 1998
+ CDIAC-CO2b | ice cores (reconstruction) | 1998
+ CDIAC-CO2c | ice cores (reconstruction) | 1998
+ CDIAC-CO2d | ice cores (reconstruction) | 1998
+ CDIAC-CO2e | ice cores (reconstruction) | 1998
+ ScrippsCO2InSituMLO | instrumental | 2001
+ ScrippsCO2InSituMLOd | instrumental | 2001'
+       width='439'
+       height='247'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>study | description | year
+ CDIAC-CO2a | ice cores (reconstruction) | 1998
+ CDIAC-CO2b | ice cores (reconstruction) | 1998
+ CDIAC-CO2c | ice cores (reconstruction) | 1998
+ CDIAC-CO2d | ice cores (reconstruction) | 1998
+ CDIAC-CO2e | ice cores (reconstruction) | 1998
+ ScrippsCO2InSituMLO | instrumental | 2001
+ ScrippsCO2InSituMLOd | instrumental | 2001</plaintext>
+   <states count='1'>
+    <state name='Details'
+        input='Result__Description_Details' />
+   </states>
+  </subpod>
+  <subpod title='Trends'>
+   <microsources>
+    <microsource>GlobalClimateData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP5391513ad93h9cff9g700005d80cc06021hi185?MSPStoreType=image/gif&amp;s=54'
+       alt='study | linear trend
+ CDIAC-CO2a | (38.9 ± 1.8) ppm/century
+ CDIAC-CO2b | (57. ± 3.) ppm/century
+ CDIAC-CO2c | (32.5 ± 0.4) ppm/century
+ CDIAC-CO2d | (45. ± 3.) ppm/century
+ CDIAC-CO2e | (46. ± 2.) ppm/century
+ ScrippsCO2InSituMLO | (158. ± 4.) ppm/century
+ ScrippsCO2InSituMLOd | (159. ± 4.) ppm/century'
+       title='study | linear trend
+ CDIAC-CO2a | (38.9 ± 1.8) ppm/century
+ CDIAC-CO2b | (57. ± 3.) ppm/century
+ CDIAC-CO2c | (32.5 ± 0.4) ppm/century
+ CDIAC-CO2d | (45. ± 3.) ppm/century
+ CDIAC-CO2e | (46. ± 2.) ppm/century
+ ScrippsCO2InSituMLO | (158. ± 4.) ppm/century
+ ScrippsCO2InSituMLOd | (159. ± 4.) ppm/century'
+       width='379'
+       height='268'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>study | linear trend
+ CDIAC-CO2a | (38.9 ± 1.8) ppm/century
+ CDIAC-CO2b | (57. ± 3.) ppm/century
+ CDIAC-CO2c | (32.5 ± 0.4) ppm/century
+ CDIAC-CO2d | (45. ± 3.) ppm/century
+ CDIAC-CO2e | (46. ± 2.) ppm/century
+ ScrippsCO2InSituMLO | (158. ± 4.) ppm/century
+ ScrippsCO2InSituMLOd | (159. ± 4.) ppm/century</plaintext>
+  </subpod>
+  <subpod title='Statistics'>
+   <microsources>
+    <microsource>GlobalClimateData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP5401513ad93h9cff9g700004ad714ca47d82779?MSPStoreType=image/gif&amp;s=54'
+       alt='study | min | mean | max | range
+ CDIAC-CO2a | 304.8 ppm
+(1924) | 314.5 ppm
+(1924 to 1969) | 323.7 ppm
+(1968) | 18.9 ppm
+(1924 to 1969)
+ CDIAC-CO2b | 309.2 ppm
+(1934) | 321.7 ppm
+(1934 to 1978) | 335.2 ppm
+(1978) | 26 ppm
+(1934 to 1978)
+ CDIAC-CO2c | 305 ppm
+(1926) | 309.7 ppm
+(1926 to 1959) | 315.7 ppm
+(1959) | 10.7 ppm
+(1926 to 1959)
+ CDIAC-CO2d | 303.8 ppm
+(1922) | 314.5 ppm
+(1922 to 1978) | 333.7 ppm
+(1978) | 29.9 ppm
+(1922 to 1978)
+ CDIAC-CO2e | 304.9 ppm
+(1925) | 314.3 ppm
+(1925 to 1975) | 329.4 ppm
+(1975) | 24.5 ppm
+(1925 to 1975)
+ ScrippsCO2InSituMLO | 313.2 ppm
+(1958) | 355.9 ppm
+(1958 to 2020) | 417.2 ppm
+(2020) | 104 ppm
+(1958 to 2020)
+ ScrippsCO2InSituMLOd | 314.4 ppm
+(1958) | 355.9 ppm
+(1958 to 2020) | 415.2 ppm
+(2020) | 100.8 ppm
+(1958 to 2020)'
+       title='study | min | mean | max | range
+ CDIAC-CO2a | 304.8 ppm
+(1924) | 314.5 ppm
+(1924 to 1969) | 323.7 ppm
+(1968) | 18.9 ppm
+(1924 to 1969)
+ CDIAC-CO2b | 309.2 ppm
+(1934) | 321.7 ppm
+(1934 to 1978) | 335.2 ppm
+(1978) | 26 ppm
+(1934 to 1978)
+ CDIAC-CO2c | 305 ppm
+(1926) | 309.7 ppm
+(1926 to 1959) | 315.7 ppm
+(1959) | 10.7 ppm
+(1926 to 1959)
+ CDIAC-CO2d | 303.8 ppm
+(1922) | 314.5 ppm
+(1922 to 1978) | 333.7 ppm
+(1978) | 29.9 ppm
+(1922 to 1978)
+ CDIAC-CO2e | 304.9 ppm
+(1925) | 314.3 ppm
+(1925 to 1975) | 329.4 ppm
+(1975) | 24.5 ppm
+(1925 to 1975)
+ ScrippsCO2InSituMLO | 313.2 ppm
+(1958) | 355.9 ppm
+(1958 to 2020) | 417.2 ppm
+(2020) | 104 ppm
+(1958 to 2020)
+ ScrippsCO2InSituMLOd | 314.4 ppm
+(1958) | 355.9 ppm
+(1958 to 2020) | 415.2 ppm
+(2020) | 100.8 ppm
+(1958 to 2020)'
+       width='546'
+       height='439'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>study | min | mean | max | range
+ CDIAC-CO2a | 304.8 ppm
+(1924) | 314.5 ppm
+(1924 to 1969) | 323.7 ppm
+(1968) | 18.9 ppm
+(1924 to 1969)
+ CDIAC-CO2b | 309.2 ppm
+(1934) | 321.7 ppm
+(1934 to 1978) | 335.2 ppm
+(1978) | 26 ppm
+(1934 to 1978)
+ CDIAC-CO2c | 305 ppm
+(1926) | 309.7 ppm
+(1926 to 1959) | 315.7 ppm
+(1959) | 10.7 ppm
+(1926 to 1959)
+ CDIAC-CO2d | 303.8 ppm
+(1922) | 314.5 ppm
+(1922 to 1978) | 333.7 ppm
+(1978) | 29.9 ppm
+(1922 to 1978)
+ CDIAC-CO2e | 304.9 ppm
+(1925) | 314.3 ppm
+(1925 to 1975) | 329.4 ppm
+(1975) | 24.5 ppm
+(1925 to 1975)
+ ScrippsCO2InSituMLO | 313.2 ppm
+(1958) | 355.9 ppm
+(1958 to 2020) | 417.2 ppm
+(2020) | 104 ppm
+(1958 to 2020)
+ ScrippsCO2InSituMLOd | 314.4 ppm
+(1958) | 355.9 ppm
+(1958 to 2020) | 415.2 ppm
+(2020) | 100.8 ppm
+(1958 to 2020)</plaintext>
+  </subpod>
+  <expressiontypes count='4'>
+   <expressiontype name='Default' />
+   <expressiontype name='Grid' />
+   <expressiontype name='Grid' />
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='3'>
+   <statelist count='5'
+       value='All'
+       delimiters=''>
+    <state name='Monthly'
+        input='Result__Monthly' />
+    <state name='Annual'
+        input='Result__Annual' />
+    <state name='Five years'
+        input='Result__Five years' />
+    <state name='Irregular'
+        input='Result__Irregular' />
+    <state name='All'
+        input='Result__All' />
+   </statelist>
+   <statelist count='8'
+       value='All models'
+       delimiters=''>
+    <state name='CDIAC-CO2d'
+        input='Result__CDIAC-CO2d' />
+    <state name='CDIAC-CO2e'
+        input='Result__CDIAC-CO2e' />
+    <state name='CDIAC-CO2a'
+        input='Result__CDIAC-CO2a' />
+    <state name='CDIAC-CO2b'
+        input='Result__CDIAC-CO2b' />
+    <state name='CDIAC-CO2c'
+        input='Result__CDIAC-CO2c' />
+    <state name='ScrippsCO2InSituMLO'
+        input='Result__ScrippsCO2InSituMLO' />
+    <state name='ScrippsCO2InSituMLOd'
+        input='Result__ScrippsCO2InSituMLOd' />
+    <state name='All models'
+        input='Result__All models' />
+   </statelist>
+   <statelist count='6'
+       value='Last 100 yr'
+       delimiters=''>
+    <state name='Last 10 yr'
+        input='Result__Last 10 yr' />
+    <state name='Last 50 yr'
+        input='Result__Last 50 yr' />
+    <state name='Last 100 yr'
+        input='Result__Last 100 yr' />
+    <state name='Last 500 yr'
+        input='Result__Last 500 yr' />
+    <state name='Last 1000 yr'
+        input='Result__Last 1000 yr' />
+    <state name='All'
+        input='Result__All' />
+   </statelist>
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short='ppm'
+         long='parts per million' />
+     <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP5411513ad93h9cff9g700001e2002gid23a2589?MSPStoreType=image/gif&amp;s=54'
+         width='160'
+         height='27' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='CO_2'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='CarbonDioxideConcentrationWord'
+       desc=' referring to global climate studies'
+       input='*C.CO%21_2-_*CarbonDioxideConcentrationWord-' />
+   <value name='Chemical'
+       desc='a chemical compound'
+       input='*C.CO%21_2-_*Chemical-' />
+  </assumption>
+ </assumptions>
+ <sources count='1'>
+  <source url='https://www5b.wolframalpha.com/sources/GlobalClimateDataSourceInformationNotes.html'
+      text='Global climate data' />
+ </sources>
+</queryresult>

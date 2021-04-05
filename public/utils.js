@@ -6,6 +6,11 @@ const mergeWith = (obj, values) => {
     return obj;
 }
 
+const elemStyle = (obj, values) => {
+    mergeWith(obj.style, values);
+    return obj;
+}
+
 const productToString = (a, b) => {
     if ((typeof a === 'number') && (typeof b === 'number')) {
         return a * b;
@@ -211,6 +216,9 @@ const _htmlElement = (tag, parent, content, cssClass) => {
 }
 
 const _d = x => {
+    if (x === null || ((typeof x === 'string') && x.trim().length === 0)) {
+        return null;
+    }
     if (typeof Decimalx !== 'undefined') {
         if ((typeof Numeric !== 'undefined') && (x instanceof Numeric)) {
             return x.decimalxValue();
@@ -244,7 +252,7 @@ const mo1 = () => {
 
 }
 
-const createSelectElement = (cont, optionsIn, selectHook, deselectHook) => {
+const createSelectElement = (cont, optionsIn, selectHook, deselectHook, skipInitialSelect = false) => {
     const options = optionsIn.map(({ label, value }) => ({ label, value }));
     const selectObj = {
         options: options
@@ -271,7 +279,7 @@ const createSelectElement = (cont, optionsIn, selectHook, deselectHook) => {
             if (typeof deselectHook === 'function') {
                 deselectHook(selectObj.selected);
             }
-            console.log(`"${selectObj.selected.label}" deselected`);
+            //console.log(`"${selectObj.selected.label}" deselected`);
         }
         selectObj.selected = option;
         if (typeof selectHook === 'function') {
@@ -282,7 +290,7 @@ const createSelectElement = (cont, optionsIn, selectHook, deselectHook) => {
         } catch (e) {
             console.error(e);
         }
-        console.log(`"${option.label}" selected`)
+        //console.log(`"${option.label}" selected`)
     }
 
     options.forEach((option) => {
@@ -299,7 +307,9 @@ const createSelectElement = (cont, optionsIn, selectHook, deselectHook) => {
         option.span = span;
         if (!somethingIsSelected) {
             span.setAttribute("selected", "true");
-            doSelect(option);
+            if (!skipInitialSelect) {
+                doSelect(option);
+            }
             somethingIsSelected = true;
         }
     });

@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='false'
+    error='false'
+    xml:space='preserve'
+    numpods='0'
+    datatypes=''
+    timedout=''
+    timedoutpods=''
+    timing='0.577'
+    parsetiming='0.189'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP8351afi134g07haf20200003c1be53f3g4ibf78'
+    host='https://www5b.wolframalpha.com'
+    server='22'
+    related='https://www5b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa8361afi134g07haf2020000481gfc688a498ic65497800236896342301'
+    version='2.6'
+    inputstring='helium tricarbonate'>
+ <didyoumeans count='1'>
+  <didyoumean score='0.315789' level='medium'>helium</didyoumean>
+ </didyoumeans>
+</queryresult>

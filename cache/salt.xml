@@ -1,0 +1,545 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='13'
+    datatypes='ExpandedFood'
+    timedout=''
+    timedoutpods=''
+    timing='6.103'
+    parsetiming='0.313'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP1943124f75c743e5c3fa00005b34ifb8ai88627b'
+    host='https://www4b.wolframalpha.com'
+    server='28'
+    related='https://www4b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa1944124f75c743e5c3fa00000e8ai2c61090e47a8332623467127739563'
+    version='2.6'
+    inputstring='Salt'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1945124f75c743e5c3fa000042f6f4ggcabh4h2c?MSPStoreType=image/gif&amp;s=28'
+       alt='salt | amount | 1 tbsp (tablespoon)'
+       title='salt | amount | 1 tbsp (tablespoon)'
+       width='286'
+       height='33'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>salt | amount | 1 tbsp (tablespoon)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Nutrition facts'
+     scanner='Data'
+     id='NutritionLabelSingle:ExpandedFoodData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ExpandedFoodData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1946124f75c743e5c3fa0000698c9b805hgdaggi?MSPStoreType=image/gif&amp;s=28'
+       alt='serving size 1 tbsp (18 g)
+total calories 0
+% daily value^* | 
+ total fat 0 g | 0%
+ saturated fat 0 g | 0%
+ trans fat | 
+ cholesterol 0 g | 0%
+ sodium 7 g | 291%
+ total carbohydrates 0 g | 0%
+ dietary fiber 0 g | 0%
+ sugar 0 g | 
+ protein 0 g | 0%
+ 
+*percent daily values are based on a 2000 calorie diet'
+       title='serving size 1 tbsp (18 g)
+total calories 0
+% daily value^* | 
+ total fat 0 g | 0%
+ saturated fat 0 g | 0%
+ trans fat | 
+ cholesterol 0 g | 0%
+ sodium 7 g | 291%
+ total carbohydrates 0 g | 0%
+ dietary fiber 0 g | 0%
+ sugar 0 g | 
+ protein 0 g | 0%
+ 
+*percent daily values are based on a 2000 calorie diet'
+       width='280'
+       height='359'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>serving size 1 tbsp (18 g)
+total calories 0
+% daily value^* | 
+ total fat 0 g | 0%
+ saturated fat 0 g | 0%
+ trans fat | 
+ cholesterol 0 g | 0%
+ sodium 7 g | 291%
+ total carbohydrates 0 g | 0%
+ dietary fiber 0 g | 0%
+ sugar 0 g | 
+ protein 0 g | 0%
+ 
+*percent daily values are based on a 2000 calorie diet</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Daily value ranking'
+     scanner='Data'
+     id='DailyValuesRanking:ExpandedFoodData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ExpandedFoodData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1947124f75c743e5c3fa000055h95a20eh8if662?MSPStoreType=image/gif&amp;s=28'
+       alt=' | value | % daily value
+sodium | 7 g | 291%
+zinc | 18 μg | 0%
+potassium | 1.4 mg | 0%
+ | ⋮ | 
+total carbohydrates | 0 g | 0%
+total calories | 0 Cal | 0%'
+       title=' | value | % daily value
+sodium | 7 g | 291%
+zinc | 18 μg | 0%
+potassium | 1.4 mg | 0%
+ | ⋮ | 
+total carbohydrates | 0 g | 0%
+total calories | 0 Cal | 0%'
+       width='328'
+       height='235'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | value | % daily value
+sodium | 7 g | 291%
+zinc | 18 μg | 0%
+potassium | 1.4 mg | 0%
+ | ⋮ | 
+total carbohydrates | 0 g | 0%
+total calories | 0 Cal | 0%</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='DailyValuesRanking:ExpandedFoodData__More' />
+  </states>
+ </pod>
+ <pod title='Highest nutrients compared to other foods'
+     scanner='Data'
+     id='NutrientRankingPod:ExpandedFoodData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ExpandedFoodData</microsource>
+    <microsource>DietaryReferenceData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1948124f75c743e5c3fa00005b38gf8bd8gb01f3?MSPStoreType=image/gif&amp;s=28'
+       alt=' | amount | % daily value | foods distribution | rank
+sodium | 7 g | 291% | | 98%
+ash | 18 g | | | 98%
+manganese | 18 μg | | | 36%
+(distributions from log nutrient values in standard servings of 7500 common foods)'
+       title=' | amount | % daily value | foods distribution | rank
+sodium | 7 g | 291% | | 98%
+ash | 18 g | | | 98%
+manganese | 18 μg | | | 36%
+(distributions from log nutrient values in standard servings of 7500 common foods)'
+       width='537'
+       height='211'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | amount | % daily value | foods distribution | rank
+sodium | 7 g | 291% | | 98%
+ash | 18 g | | | 98%
+manganese | 18 μg | | | 36%
+(distributions from log nutrient values in standard servings of 7500 common foods)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='NutrientRankingPod:ExpandedFoodData__More' />
+  </states>
+ </pod>
+ <pod title='Calories'
+     scanner='Data'
+     id='Calories:ExpandedFoodData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ExpandedFoodData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1949124f75c743e5c3fa0000527i388g7d0e089d?MSPStoreType=image/gif&amp;s=28'
+       alt=' | value | % daily value
+total calories | 0 Cal | 0%'
+       title=' | value | % daily value
+total calories | 0 Cal | 0%'
+       width='277'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | value | % daily value
+total calories | 0 Cal | 0%</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Calories:ExpandedFoodData__More' />
+  </states>
+ </pod>
+ <pod title='Carbohydrates'
+     scanner='Data'
+     id='Carbohydrates:ExpandedFoodData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ExpandedFoodData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1950124f75c743e5c3fa0000577c11f11h942b45?MSPStoreType=image/gif&amp;s=28'
+       alt=' | value | % daily value
+total carbohydrates | 0 g | 0%
+dietary fiber | 0 g | 0%
+sugar | 0 g | '
+       title=' | value | % daily value
+total carbohydrates | 0 g | 0%
+dietary fiber | 0 g | 0%
+sugar | 0 g | '
+       width='319'
+       height='136'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | value | % daily value
+total carbohydrates | 0 g | 0%
+dietary fiber | 0 g | 0%
+sugar | 0 g | </plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Fats and fatty acids'
+     scanner='Data'
+     id='Fats:ExpandedFoodData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ExpandedFoodData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1951124f75c743e5c3fa00005ach9i6661200b95?MSPStoreType=image/gif&amp;s=28'
+       alt=' | value | % daily value
+total fat | 0 g | 0%
+saturated fat | 0 g | 0%'
+       title=' | value | % daily value
+total fat | 0 g | 0%
+saturated fat | 0 g | 0%'
+       width='277'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | value | % daily value
+total fat | 0 g | 0%
+saturated fat | 0 g | 0%</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Fats:ExpandedFoodData__More' />
+  </states>
+ </pod>
+ <pod title='Protein and amino acids'
+     scanner='Data'
+     id='Protein:ExpandedFoodData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ExpandedFoodData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1952124f75c743e5c3fa00002cf33ic5515f334h?MSPStoreType=image/gif&amp;s=28'
+       alt=' | value | % daily value
+protein | 0 g | 0%'
+       title=' | value | % daily value
+protein | 0 g | 0%'
+       width='240'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | value | % daily value
+protein | 0 g | 0%</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Protein:ExpandedFoodData__More' />
+  </states>
+ </pod>
+ <pod title='Vitamins'
+     scanner='Data'
+     id='Vitamins:ExpandedFoodData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ExpandedFoodData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1953124f75c743e5c3fa000054b3g4731e77g1e3?MSPStoreType=image/gif&amp;s=28'
+       alt=' | value | % daily value
+vitamin A | 0 g | 0%
+vitamin C | 0 g | 0%'
+       title=' | value | % daily value
+vitamin A | 0 g | 0%
+vitamin C | 0 g | 0%'
+       width='259'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | value | % daily value
+vitamin A | 0 g | 0%
+vitamin C | 0 g | 0%</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Vitamins:ExpandedFoodData__More' />
+  </states>
+ </pod>
+ <pod title='Minerals'
+     scanner='Data'
+     id='Minerals:ExpandedFoodData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ExpandedFoodData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1954124f75c743e5c3fa000058b8gh33b3f5698e?MSPStoreType=image/gif&amp;s=28'
+       alt=' | value | % daily value
+calcium | 4.3 mg | 0%
+iron | 59 μg | 0%'
+       title=' | value | % daily value
+calcium | 4.3 mg | 0%
+iron | 59 μg | 0%'
+       width='253'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | value | % daily value
+calcium | 4.3 mg | 0%
+iron | 59 μg | 0%</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Minerals:ExpandedFoodData__More' />
+  </states>
+ </pod>
+ <pod title='Sterols'
+     scanner='Data'
+     id='Sterols:ExpandedFoodData'
+     position='1100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ExpandedFoodData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1955124f75c743e5c3fa00004f2f7ehgbd3ea4g3?MSPStoreType=image/gif&amp;s=28'
+       alt=' | value | % daily value
+cholesterol | 0 g | 0%'
+       title=' | value | % daily value
+cholesterol | 0 g | 0%'
+       width='263'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | value | % daily value
+cholesterol | 0 g | 0%</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Sterols:ExpandedFoodData__More' />
+  </states>
+ </pod>
+ <pod title='Alcohol content'
+     scanner='Data'
+     id='AlcoholContent:ExpandedFoodData'
+     position='1200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ExpandedFoodData</microsource>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1956124f75c743e5c3fa000062ebb919d0g014id?MSPStoreType=image/gif&amp;s=28'
+       alt='volume percentage | 0%
+proof | 0 proof
+mass | 0 g'
+       title='volume percentage | 0%
+proof | 0 proof
+mass | 0 g'
+       width='245'
+       height='121'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>volume percentage | 0%
+proof | 0 proof
+mass | 0 g</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='AlcoholContent:ExpandedFoodData__More' />
+  </states>
+ </pod>
+ <pod title='Physical properties'
+     scanner='Data'
+     id='PhysicalProperties:ExpandedFoodData'
+     position='1300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ExpandedFoodData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP1957124f75c743e5c3fa00001d777afih678938d?MSPStoreType=image/gif&amp;s=28'
+       alt='mass | 0.63 oz (ounces)
+serving volume | 0.5 fl oz (fluid ounces)
+serving density | 1.2 g/cm^3 (grams per cubic centimeter)'
+       title='mass | 0.63 oz (ounces)
+serving volume | 0.5 fl oz (fluid ounces)
+serving density | 1.2 g/cm^3 (grams per cubic centimeter)'
+       width='405'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>mass | 0.63 oz (ounces)
+serving volume | 0.5 fl oz (fluid ounces)
+serving density | 1.2 g/cm^3 (grams per cubic centimeter)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='2'>
+  <assumption type='Clash'
+      word='Salt'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='9'>
+   <value name='ExpandedFood'
+       desc='a food'
+       input='*C.Salt-_*ExpandedFood-' />
+   <value name='Mineral'
+       desc='a mineral'
+       input='*C.Salt-_*Mineral-' />
+   <value name='Chemical'
+       desc='a chemical compound'
+       input='*C.Salt-_*Chemical-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.Salt-_*Word-' />
+   <value name='ChemicalClass'
+       desc='a class of chemicals'
+       input='*C.Salt-_*ChemicalClass-' />
+   <value name='Movie'
+       desc='a movie'
+       input='*C.Salt-_*Movie-' />
+   <value name='Language'
+       desc='a language'
+       input='*C.Salt-_*Language-' />
+   <value name='City'
+       desc='a city'
+       input='*C.Salt-_*City-' />
+   <value name='Book'
+       desc='a book'
+       input='*C.Salt-_*Book-' />
+  </assumption>
+  <assumption type='SubCategory'
+      word='Salt'
+      template='Assuming ${desc1}. Use ${desc2} instead'
+      count='5'>
+   <value name='Salt'
+       desc='salt'
+       input='*DPClash.ExpandedFoodE.Salt-_*Salt-' />
+   <value name='CoarseSeaSalt'
+       desc='coarse sea salt'
+       input='*DPClash.ExpandedFoodE.Salt-_*CoarseSeaSalt-' />
+   <value name='FineSeaSalt'
+       desc='fine sea salt'
+       input='*DPClash.ExpandedFoodE.Salt-_*FineSeaSalt-' />
+   <value name='KosherSalt'
+       desc='kosher salt'
+       input='*DPClash.ExpandedFoodE.Salt-_*KosherSalt-' />
+   <value name='SeaSaltFlakes'
+       desc='sea salt flakes'
+       input='*DPClash.ExpandedFoodE.Salt-_*SeaSaltFlakes-' />
+  </assumption>
+ </assumptions>
+ <sources count='1'>
+  <source url='https://www4b.wolframalpha.com/sources/ExpandedFoodDataSourceInformationNotes.html'
+      text='Expanded food data' />
+ </sources>
+</queryresult>

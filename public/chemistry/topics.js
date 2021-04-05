@@ -1,4 +1,5 @@
 
+
 /*
 const _describeTransformations = {
     title: "Describe function transformations",
@@ -116,12 +117,21 @@ const _chemicalQuery = {
     func: chemicalQuery
 }
 
+const _gasLaws = {
+    title: 'Gas Laws',
+    description: 'Select Gas law and determine missing values.',
+    parameters: [],
+    func: gasLaws
+}
+
 const topicObjects = [
+    _gasLaws,
+    _chemicalQuery,
+    '-------------',
     _unitConversion,
     _chemicalElementInfo,
     _molarMass,
     _balanceChemicalEquation,
     _stoichiometry,
     _stoichiometryMissingQuantity,
-    _chemicalQuery
 ];

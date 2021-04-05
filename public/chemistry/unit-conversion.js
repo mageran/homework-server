@@ -12,7 +12,7 @@ function unitConversion(value, fromUnit, fromUnitExponent, fromQuotientUnit, fro
     var newToUnit = toUnit;
     var newToUnitExponent = toUnitExponent;
     var newToQuotientUnit = toQuotientUnit;
-    var newToQuotientExponent = toQuotientExponent; 
+    var newToQuotientExponent = toQuotientExponent;
     var convertLbin2ToResultUnit = false;
     if (_specialCasePressure(fromUnit, fromUnitExponent, fromQuotientUnit, fromQuotientExponent, toUnit, toUnitExponent, toQuotientUnit, toQuotientExponent)) {
         convInfo0 = convertUnit(fromUnit, 'lbin2', value, fromUnitExponent);
@@ -59,6 +59,7 @@ const _addConversionTable = (outputElem, convInfo, convInfoQuotient) => {
         addLatexElement(outputElem, `${value} ${fromUnit} = ${result} ${toUnit}`);
         return;
     }
+    if (typeof exponent !== 'number') exponent = 1;
     const fromUnitWithExponent = exponent === 1 ? `\\text{${fromUnit}}` : `\\text{${fromUnit}}^${exponent}`;
     const toUnitWithExponent = exponent === 1 ? `\\text{${toUnit}}` : `\\text{${toUnit}}^${exponent}`;
     const table = document.createElement('table');
@@ -89,10 +90,10 @@ const _addConversionTable = (outputElem, convInfo, convInfoQuotient) => {
         td2 = document.createElement('td');
         if (exponent === 1) {
             addLatexElement(td1, `1 \\text{${toUnit}}`);
-            addLatexElement(td2, `${quotient.toPrecision(P)} \\text{${fromUnit}}`);
+            addLatexElement(td2, `${precision(quotient, P)} \\text{${fromUnit}}`);
         } else {
             addLatexElement(td1, `(1 \\text{${toUnit}})^${exponent}`);
-            addLatexElement(td2, `(${quotient.toPrecision(P)} \\text{${fromUnit}})^${exponent}`);
+            addLatexElement(td2, `(${precision(quotient, P)} \\text{${fromUnit}})^${exponent}`);
         }
         tr1.appendChild(td1);
         tr2.appendChild(td2);
@@ -106,10 +107,10 @@ const _addConversionTable = (outputElem, convInfo, convInfoQuotient) => {
             td2 = document.createElement('td');
             if (exponent === 1) {
                 addLatexElement(td1, `1 \\text{${toUnit}}`);
-                addLatexElement(td2, `${quotient.toPrecision(P)} \\text{${fromUnit}}`);
+                addLatexElement(td2, `${precision(quotient, P)} \\text{${fromUnit}}`);
             } else {
                 addLatexElement(td1, `(1 \\text{${toUnit}})^${exponent}`);
-                addLatexElement(td2, `(${quotient.toPrecision(P)} \\text{${fromUnit}})^${exponent}`);
+                addLatexElement(td2, `(${precision(quotient, P)} \\text{${fromUnit}})^${exponent}`);
             }
             tr2.appendChild(td1);
             tr1.appendChild(td2);
@@ -121,7 +122,7 @@ const _addConversionTable = (outputElem, convInfo, convInfoQuotient) => {
         result = result.dividedBy(quotientResult);
     }
     td1 = document.createElement('td');
-    addLatexElement(td1, ` = ${result.toPrecision(P)}${toUnitWithExponent}`);
+    addLatexElement(td1, ` = ${precision(result, P)}${toUnitWithExponent}`);
     tr1.appendChild(td1);
     td2 = document.createElement('td');
     if (convInfoQuotient) {
@@ -147,6 +148,18 @@ function chemicalElementInfoUi(symbol) {
     } catch (err) {
         _addErrorElement(outputElem, `*** ${err}`);
     }
+}
+
+const getMolarMassFromFormula = formula => {
+    const ast = parseChemicalFormula(formula);
+    console.log(JSON.stringify(ast, null, 2));
+    const { coefficient, formulasList } = ast;
+    var totalMass = 0;
+    formulasList.forEach(astElem => {
+        const m = _processChemicalFormulas(null, astElem);
+        totalMass += m;
+    });
+    return totalMass;
 }
 
 function molarMassUi(formula) {
@@ -181,13 +194,14 @@ function molarMassUi(formula) {
 const _processChemicalFormulas = (outputElem, { formulas, multiplier }, calculatedTotal) => {
     const outerMultiplier = (typeof multiplier === 'number') ? multiplier : 1;
     var massInTotal = 0;
+    const createUi = !!outputElem;
     formulas.forEach(elemInfo => {
         let { chemicalElement, multiplier } = elemInfo;
         if (typeof multiplier !== 'number') {
             multiplier = 1;
         }
         const mass = atomicMass(chemicalElement.symbol);
-        const div = document.createElement('div');
+        const div = createUi ? document.createElement('div') : null;
         var multiplierString = `${multiplier}`;
         if (outerMultiplier > 1) {
             multiplierString += ` * ${outerMultiplier}`;
@@ -200,8 +214,10 @@ const _processChemicalFormulas = (outputElem, { formulas, multiplier }, calculat
             pstr = `(${percent}%)`;
         }
         massInTotal += totalMass;
-        div.innerHTML = `${chemicalElement.symbol}, atoms: ${multiplierString}, atomic mass: ${mass} g/mol = ${totalMass} ${pstr}`;
-        outputElem.appendChild(div);
+        if (createUi) {
+            div.innerHTML = `${chemicalElement.symbol}, atoms: ${multiplierString}, atomic mass: ${mass} g/mol = ${totalMass} ${pstr}`;
+            outputElem.appendChild(div);
+        }
     })
     return massInTotal;
 }
@@ -211,8 +227,8 @@ const abc = () => {
     const amBa = atomicMass('Ba');
     const amN = atomicMass('N');
     const amO = atomicMass('O');
-    for (let i = 1 ; i < 10; i++ ) {
-        for(let j = 1; j < 10; j++) {
+    for (let i = 1; i < 10; i++) {
+        for (let j = 1; j < 10; j++) {
             for (let k = 1; k < 10; k++) {
                 let ba = i * amBa;
                 let n = j * amN;
@@ -220,12 +236,12 @@ const abc = () => {
 
                 let total = ba + n + o;
 
-                let baPercent = ba/total * 100;
-                let nPercent = n/total * 100;
-                let oPercent = o/total * 100;
+                let baPercent = ba / total * 100;
+                let nPercent = n / total * 100;
+                let oPercent = o / total * 100;
                 if (baPercent > 52 && baPercent < 53) {
                     console.log(`Ba${i} N${j} O${k}`);
-                    console.log(`ba = ${precision(baPercent,2)}, N = ${precision(nPercent,2)}, O = ${precision(oPercent,2)}`);
+                    console.log(`ba = ${precision(baPercent, 2)}, N = ${precision(nPercent, 2)}, O = ${precision(oPercent, 2)}`);
                 }
             }
         }

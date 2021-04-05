@@ -1,0 +1,737 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='18'
+    datatypes='ACS,Crime,Plant,Species,USState'
+    timedout=''
+    timedoutpods=''
+    timing='7.889'
+    parsetiming='0.449'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP78981cei8geab1dfb3g0000013feib7644beh2fg'
+    host='https://www4c.wolframalpha.com'
+    server='19'
+    related='https://www4c.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa78991cei8geab1dfb3g000003f3c3965df5d8e8i5333240914891044718'
+    version='2.6'
+    inputstring='CO'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79001cei8geab1dfb3g00000493h56ba9g959982?MSPStoreType=image/gif&amp;s=19'
+       alt='Colorado (US state)'
+       title='Colorado (US state)'
+       width='130'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Colorado (US state)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Basic information'
+     scanner='Data'
+     id='BasicInformation:USStateData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>USStateData</microsource>
+   </microsources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79011cei8geab1dfb3g0000069i78di9bfd9b41e?MSPStoreType=image/gif&amp;s=19'
+       alt='full name | State of Colorado
+capital | Denver
+joined Union | August 1, 1876 (144 years ago)'
+       title='full name | State of Colorado
+capital | Denver
+joined Union | August 1, 1876 (144 years ago)'
+       width='325'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>full name | State of Colorado
+capital | Denver
+joined Union | August 1, 1876 (144 years ago)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='BasicInformation:USStateData__More' />
+  </states>
+ </pod>
+ <pod title='Location'
+     scanner='Data'
+     id='Location:USStateData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>USStateData</microsource>
+    <microsource>CountryData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CIAFactbook</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79021cei8geab1dfb3g000002ahdh6ab4ce0h34g?MSPStoreType=image/gif&amp;s=19'
+       alt='Location'
+       title=''
+       width='546'
+       height='295'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Population'
+     scanner='Data'
+     id='Demographics:USStateData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>USStateData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>USCensusQuickfacts</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79031cei8geab1dfb3g000003i92398a7d4ci9e4?MSPStoreType=image/gif&amp;s=19'
+       alt='population | 5.759 million people
+population growth | +1.55% per year (2010-12)
+population density | 55.32 people/mi^2
+annual deaths | 39116 people/yr
+annual births | 64524 people/yr
+(2019)'
+       title='population | 5.759 million people
+population growth | +1.55% per year (2010-12)
+population density | 55.32 people/mi^2
+annual deaths | 39116 people/yr
+annual births | 64524 people/yr
+(2019)'
+       width='344'
+       height='195'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>population | 5.759 million people
+population growth | +1.55% per year (2010-12)
+population density | 55.32 people/mi^2
+annual deaths | 39116 people/yr
+annual births | 64524 people/yr
+(2019)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='people/yr'
+         long='people per year' />
+     <unit short='person/mi^2'
+         long='people per square mile' />
+     <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79041cei8geab1dfb3g000004dh097a56c4e517g?MSPStoreType=image/gif&amp;s=19'
+         width='233'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Population history'
+     scanner='Data'
+     id='PopulationHistory:USStateData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>USStateData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>USCensusQuickfacts</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79051cei8geab1dfb3g0000049cbhh57796de089?MSPStoreType=image/gif&amp;s=19'
+       alt='Population history'
+       title=''
+       width='398'
+       height='160'
+       type='TimeSeriesPlot_1'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='TimeSeriesPlot' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Log scale'
+       input='PopulationHistory:USStateData__Log scale' />
+  </states>
+ </pod>
+ <pod title='Demographics'
+     scanner='Data'
+     id='ACSPercentageEntrainments:ACSData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ACSData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CensusAmericanCommunitySurvey5YearsRace</datasource>
+    <datasource>CensusAmericanCommunitySurvey5YearsHispanicOrigin</datasource>
+    <datasource>CensusAmericanCommunitySurvey5YearsCitizenship</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79061cei8geab1dfb3g0000059bde9giac383ege?MSPStoreType=image/gif&amp;s=19'
+       alt='race | white: 84.2% | other: 4.1% | black/African American: 4.1% | ...
+Hispanic origin | 21.3%
+US citizens | 94.1%'
+       title='race | white: 84.2% | other: 4.1% | black/African American: 4.1% | ...
+Hispanic origin | 21.3%
+US citizens | 94.1%'
+       width='546'
+       height='121'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>race | white: 84.2% | other: 4.1% | black/African American: 4.1% | ...
+Hispanic origin | 21.3%
+US citizens | 94.1%</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ACSPercentageEntrainments:ACSData__More' />
+  </states>
+ </pod>
+ <pod title='Educational attainment'
+     scanner='Data'
+     id='ACSEducationEntrainments:ACSData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ACSData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CensusAmericanCommunitySurvey5YearsEducation</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79071cei8geab1dfb3g0000060cee1c43gcgb3be?MSPStoreType=image/gif&amp;s=19'
+       alt='college degree and above | 47.8% (1.26 × national average)
+high school diploma | 21.6% (0.777 × national average)
+less than high school diploma | 8.9% (0.664 × national average)
+(for population age 25 and older)'
+       title='college degree and above | 47.8% (1.26 × national average)
+high school diploma | 21.6% (0.777 × national average)
+less than high school diploma | 8.9% (0.664 × national average)
+(for population age 25 and older)'
+       width='438'
+       height='125'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>college degree and above | 47.8% (1.26 × national average)
+high school diploma | 21.6% (0.777 × national average)
+less than high school diploma | 8.9% (0.664 × national average)
+(for population age 25 and older)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Show enrollment'
+       input='ACSEducationEntrainments:ACSData__Show enrollment' />
+  </states>
+ </pod>
+ <pod title='Geographic properties'
+     scanner='Data'
+     id='GeographicProperties:USStateData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>USStateData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>USCensusQuickfacts</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79081cei8geab1dfb3g000002957dhbe2978b0a1?MSPStoreType=image/gif&amp;s=19'
+       alt='total area | 104100 mi^2
+land area | 103600 mi^2
+water area | 451.8 mi^2
+farmland area | 31.6 million acres
+mean elevation | 6890 ft
+highest point | Mount Elbert, 14439 ft
+lowest point | Arikaree River, 3314 ft
+(2002)'
+       title='total area | 104100 mi^2
+land area | 103600 mi^2
+water area | 451.8 mi^2
+farmland area | 31.6 million acres
+mean elevation | 6890 ft
+highest point | Mount Elbert, 14439 ft
+lowest point | Arikaree River, 3314 ft
+(2002)'
+       width='298'
+       height='261'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>total area | 104100 mi^2
+land area | 103600 mi^2
+water area | 451.8 mi^2
+farmland area | 31.6 million acres
+mean elevation | 6890 ft
+highest point | Mount Elbert, 14439 ft
+lowest point | Arikaree River, 3314 ft
+(2002)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Show metric'
+       input='GeographicProperties:USStateData__Show metric' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='ft'
+         long='feet' />
+     <unit short='mi^2'
+         long='square miles' />
+     <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79091cei8geab1dfb3g0000053d043ibggia6973?MSPStoreType=image/gif&amp;s=19'
+         width='138'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Housing'
+     scanner='Data'
+     id='Housing:USStateData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>USStateData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>USCensusQuickfacts</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79101cei8geab1dfb3g0000035dbbe55h4267gc0?MSPStoreType=image/gif&amp;s=19'
+       alt='housing units | 2.225 million (2011)
+housing units change | +318797 (2000-07)
+housing units change rate | +2.5% per year (2000-07)
+households | 1.941 million (2011)
+people per household | 2.621 people (2010)'
+       title='housing units | 2.225 million (2011)
+housing units change | +318797 (2000-07)
+housing units change rate | +2.5% per year (2000-07)
+households | 1.941 million (2011)
+people per household | 2.621 people (2010)'
+       width='383'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>housing units | 2.225 million (2011)
+housing units change | +318797 (2000-07)
+housing units change rate | +2.5% per year (2000-07)
+households | 1.941 million (2011)
+people per household | 2.621 people (2010)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Housing:USStateData__More' />
+  </states>
+ </pod>
+ <pod title='Economic properties'
+     scanner='Data'
+     id='Economy:USStateData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>USStateData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>USCensusQuickfacts</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79111cei8geab1dfb3g0000019ei44029c248gba?MSPStoreType=image/gif&amp;s=19'
+       alt='number of businesses | 547770 (2007)
+nonemployer businesses | 426417 (2010)
+private non-farm businesses | 151973 (2010)'
+       title='number of businesses | 547770 (2007)
+nonemployer businesses | 426417 (2010)
+private non-farm businesses | 151973 (2010)'
+       width='331'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>number of businesses | 547770 (2007)
+nonemployer businesses | 426417 (2010)
+private non-farm businesses | 151973 (2010)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='4'>
+   <state name='Business ownership'
+       input='Economy:USStateData__Business ownership' />
+   <state name='Labor'
+       input='Economy:USStateData__Labor' />
+   <state name='Sales'
+       input='Economy:USStateData__Sales' />
+   <state name='Earnings'
+       input='Economy:USStateData__Earnings' />
+  </states>
+ </pod>
+ <pod title='Income statistics'
+     scanner='Data'
+     id='ACSIncomeEntrainments:ACSData'
+     position='1100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ACSData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CensusAmericanCommunitySurvey5YearsMedianIncome</datasource>
+    <datasource>CensusAmericanCommunitySurvey5YearsPerCapitaIncome</datasource>
+    <datasource>CensusAmericanCommunitySurvey5YearsPoverty</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79121cei8geab1dfb3g0000013bidf43hbb6669e?MSPStoreType=image/gif&amp;s=19'
+       alt='median household income | $65460 per year (US dollars per year) (1.18 × national average)
+per capita income | $34845 per year per person (US dollars per year per person) (1.17 × national average)
+population below poverty line | 11.5% (0.762 × national average)'
+       title='median household income | $65460 per year (US dollars per year) (1.18 × national average)
+per capita income | $34845 per year per person (US dollars per year per person) (1.17 × national average)
+population below poverty line | 11.5% (0.762 × national average)'
+       width='546'
+       height='157'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>median household income | $65460 per year (US dollars per year) (1.18 × national average)
+per capita income | $34845 per year per person (US dollars per year per person) (1.17 × national average)
+population below poverty line | 11.5% (0.762 × national average)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Show distribution'
+       input='ACSIncomeEntrainments:ACSData__Show distribution' />
+  </states>
+ </pod>
+ <pod title='Crime statistics'
+     scanner='Data'
+     id='StateCrimeInformation:CrimeData'
+     position='1200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>CrimeData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>UnitedStatesDepartmentOfJusticeBureauOfJusticeStatisticsCrimeAndJusticeDataOnline</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79131cei8geab1dfb3g000003d13e0b972a84163?MSPStoreType=image/gif&amp;s=19'
+       alt='total rate of crime | 3070 crimes/100000 people/yr (2017 estimate)
+total number of crimes | 172121 crimes per year (2017 estimate)
+(UCR Part I offenses)'
+       title='total rate of crime | 3070 crimes/100000 people/yr (2017 estimate)
+total number of crimes | 172121 crimes per year (2017 estimate)
+(UCR Part I offenses)'
+       width='493'
+       height='95'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>total rate of crime | 3070 crimes/100000 people/yr (2017 estimate)
+total number of crimes | 172121 crimes per year (2017 estimate)
+(UCR Part I offenses)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Show details'
+       input='StateCrimeInformation:CrimeData__Show details' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short='crimes/100000 people/yr'
+         long='crimes per 100 000 people per year' />
+     <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79141cei8geab1dfb3g00000152ii5dggi3ad7fg?MSPStoreType=image/gif&amp;s=19'
+         width='373'
+         height='27' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Flag'
+     scanner='Data'
+     id='Flag:USStateData'
+     position='1300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <imagesource>http://en.wikipedia.org/wiki/File:Flag_of_Colorado.svg</imagesource>
+   <microsources>
+    <microsource>USStateData</microsource>
+   </microsources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79151cei8geab1dfb3g000006a849d2a866b79bg?MSPStoreType=image/gif&amp;s=19'
+       alt='Flag'
+       title=''
+       width='55'
+       height='37'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Voting and registration rates'
+     scanner='Data'
+     id='VotingAndRegistrationRates:USStateData'
+     position='1400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>USStateData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>USCBVotingAndRegistration</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79161cei8geab1dfb3g0000049744aefb6d7ei4i?MSPStoreType=image/gif&amp;s=19'
+       alt='total voting rate | 63.82%
+total registration rate | 68.21%
+(2016)'
+       title='total voting rate | 63.82%
+total registration rate | 68.21%
+(2016)'
+       width='236'
+       height='95'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>total voting rate | 63.82%
+total registration rate | 68.21%
+(2016)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='More'
+       input='VotingAndRegistrationRates:USStateData__More' />
+   <state name='Show history'
+       input='VotingAndRegistrationRates:USStateData__Show history' />
+  </states>
+ </pod>
+ <pod title='Public school finance information'
+     scanner='Data'
+     id='EducationFunding:USStateData'
+     position='1500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>USStateData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>USCBPublicElementarySecondaryEducationFinanceData</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79171cei8geab1dfb3g000001e9ec0fi973ffh71?MSPStoreType=image/gif&amp;s=19'
+       alt='total expenditures | $8.634 billion (US dollars) ($10627 per student)
+total revenue | $8.263 billion (US dollars) ($10171 per student)
+total debt | $7.385 billion (US dollars) ($9090 per student)
+total cash and securities | $3.938 billion (US dollars) ($4847 per student)
+(2009)'
+       title='total expenditures | $8.634 billion (US dollars) ($10627 per student)
+total revenue | $8.263 billion (US dollars) ($10171 per student)
+total debt | $7.385 billion (US dollars) ($9090 per student)
+total cash and securities | $3.938 billion (US dollars) ($4847 per student)
+(2009)'
+       width='499'
+       height='161'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>total expenditures | $8.634 billion (US dollars) ($10627 per student)
+total revenue | $8.263 billion (US dollars) ($10171 per student)
+total debt | $7.385 billion (US dollars) ($9090 per student)
+total cash and securities | $3.938 billion (US dollars) ($4847 per student)
+(2009)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Show history'
+       input='EducationFunding:USStateData__Show history' />
+  </states>
+ </pod>
+ <pod title='State symbols'
+     scanner='Data'
+     id='Symbols:USStateData'
+     position='1600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>PlantData</microsource>
+    <microsource>SpeciesData</microsource>
+    <microsource>USStateData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>StateNamesSealsFlagsAndSymbols</datasource>
+    <datasource>CatalogueOfLife</datasource>
+    <datasource>PLANTSDatabase</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79181cei8geab1dfb3g000003dd34e4fgac5a1ei?MSPStoreType=image/gif&amp;s=19'
+       alt='state bird | lark bunting (Calamospiza melanocorys)
+state flower | white and lavender columbine (Aquilegia caerulea)
+state tree | blue spruce (Picea pungens)
+state motto | Nil sine numine'
+       title='state bird | lark bunting (Calamospiza melanocorys)
+state flower | white and lavender columbine (Aquilegia caerulea)
+state tree | blue spruce (Picea pungens)
+state motto | Nil sine numine'
+       width='446'
+       height='136'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>state bird | lark bunting (Calamospiza melanocorys)
+state flower | white and lavender columbine (Aquilegia caerulea)
+state tree | blue spruce (Picea pungens)
+state motto | Nil sine numine</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Symbols:USStateData__More' />
+  </states>
+ </pod>
+ <pod title='Wikipedia summary'
+     scanner='Character'
+     id='WikipediaSummary:USStateData'
+     position='1700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79191cei8geab1dfb3g000005h9e4i399hhdgfa5?MSPStoreType=image/gif&amp;s=19'
+       alt='Colorado (other variants) is a state in the western United States encompassing most of the southern Rocky Mountains as well as the northeastern portion of the Colorado Plateau and the western edge of the Great Plains. It is the 8th most extensive and 21st most populous U.S. state. The estimated population of Colorado is 5, 758, 736 as of 2019, an increase of 14.5% since the 2010 United States Census.'
+       title='Colorado (other variants) is a state in the western United States encompassing most of the southern Rocky Mountains as well as the northeastern portion of the Colorado Plateau and the western edge of the Great Plains. It is the 8th most extensive and 21st most populous U.S. state. The estimated population of Colorado is 5, 758, 736 as of 2019, an increase of 14.5% since the 2010 United States Census.'
+       width='525'
+       height='120'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Colorado (other variants) is a state in the western United States encompassing most of the southern Rocky Mountains as well as the northeastern portion of the Colorado Plateau and the western edge of the Great Plains. It is the 8th most extensive and 21st most populous U.S. state. The estimated population of Colorado is 5, 758, 736 as of 2019, an increase of 14.5% since the 2010 United States Census.</plaintext>
+   <infos count='1'>
+    <info>
+     <link url='http://en.wikipedia.org/wiki?curid=5399'
+         text='Full entry' />
+    </info>
+   </infos>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Wikipedia page hits history'
+     scanner='Data'
+     id='PopularityPod:WikipediaStatsData'
+     position='1800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP79201cei8geab1dfb3g000005f77046a216c1hi7?MSPStoreType=image/gif&amp;s=19'
+       alt='Wikipedia page hits history'
+       title=''
+       width='546'
+       height='167'
+       type='TimeSeriesPlot_1'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='TimeSeriesPlot' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Log scale'
+       input='PopularityPod:WikipediaStatsData__Log scale' />
+  </states>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='CO'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='3'>
+   <value name='USState'
+       desc='a US state'
+       input='*C.CO-_*USState-' />
+   <value name='Chemical'
+       desc='a chemical compound'
+       input='*C.CO-_*Chemical-' />
+   <value name='Unit'
+       desc='a unit'
+       input='*C.CO-_*Unit-' />
+  </assumption>
+ </assumptions>
+ <sources count='5'>
+  <source url='https://www4c.wolframalpha.com/sources/ACSDataSourceInformationNotes.html'
+      text='ACS data' />
+  <source url='https://www4c.wolframalpha.com/sources/CrimeDataSourceInformationNotes.html'
+      text='Crime data' />
+  <source url='https://www4c.wolframalpha.com/sources/PlantDataSourceInformationNotes.html'
+      text='Plant data' />
+  <source url='https://www4c.wolframalpha.com/sources/SpeciesDataSourceInformationNotes.html'
+      text='Species data' />
+  <source url='https://www4c.wolframalpha.com/sources/USStateDataSourceInformationNotes.html'
+      text='US state data' />
+ </sources>
+</queryresult>

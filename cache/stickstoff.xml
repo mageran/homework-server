@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='false'
+    error='false'
+    xml:space='preserve'
+    numpods='0'
+    datatypes=''
+    timedout=''
+    timedoutpods=''
+    timing='0.654'
+    parsetiming='0.233'
+    parsetimedout='false'
+    recalculate=''
+    id=''
+    parseidserver='32'
+    host='https://www4f.wolframalpha.com'
+    server='32'
+    related=''
+    version='2.6'
+    inputstring='stickstoff'>
+ <didyoumeans count='2'>
+  <didyoumean score='0.1' level='low'>nitrogen</didyoumean>
+  <didyoumean score='0.1' level='low'>Dinitrogen</didyoumean>
+ </didyoumeans>
+</queryresult>

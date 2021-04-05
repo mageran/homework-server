@@ -457,3 +457,9 @@ table.chemical-properties-table td {
 table.chemical-properties-table td:first-child {
     background-color: bisque;
 }
+
+.tile-container input {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18pt;
+}

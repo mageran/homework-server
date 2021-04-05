@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='2'
+    datatypes='Chemical'
+    timedout=''
+    timedoutpods=''
+    timing='1.149'
+    parsetiming='0.49'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP17941ecdbhfef1e5c3e600002b7a62g5758472cb'
+    host='https://www4b.wolframalpha.com'
+    server='40'
+    related='https://www4b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa17951ecdbhfef1e5c3e6000050e2g1hh24ff7b0h4675183341951152481'
+    version='2.6'
+    inputstring='carbon oxide half-life'
+    nodata='true'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP17961ecdbhfef1e5c3e600000d104g99d92a0hg4?MSPStoreType=image/gif&amp;s=40'
+       alt='carbon monoxide | biological half-life'
+       title='carbon monoxide | biological half-life'
+       width='263'
+       height='23'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>carbon monoxide | biological half-life</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Result'
+     scanner='Identity'
+     id='Result'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''
+      nodata='true'
+      primary='true'>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP17971ecdbhfef1e5c3e600004831fb434eehah21?MSPStoreType=image/gif&amp;s=40'
+       alt='(data not available)'
+       title='(data not available)'
+       width='127'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>(data not available)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='SubCategory'
+      word='carbon oxide'
+      template='Assuming ${desc1}. Use ${desc2} instead'
+      count='2'>
+   <value name='CarbonMonoxide'
+       desc='carbon monoxide'
+       input='*DPClash.ChemicalE.carbon+oxide-_*CarbonMonoxide-' />
+   <value name='CarbonMonoxide13C1'
+       desc='carbon-13C monoxide'
+       input='*DPClash.ChemicalE.carbon+oxide-_*CarbonMonoxide13C1-' />
+  </assumption>
+ </assumptions>
+ <sources count='1'>
+  <source url='https://www4b.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+ </sources>
+ <generalization topic='carbon monoxide'
+     desc='General results for:'
+     url='https://www4b.wolframalpha.com/api/v2/query?id=MSP17981ecdbhfef1e5c3e6000065aia64b54ebc5b9' />
+</queryresult>

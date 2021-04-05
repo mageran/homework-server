@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='6'
+    datatypes='ChemicalIntermediate,Element'
+    timedout=''
+    timedoutpods=''
+    timing='1.598'
+    parsetiming='0.203'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP51641f3bed810agaa72g0000296e0e4g6b33d2fe'
+    host='https://www4b.wolframalpha.com'
+    server='34'
+    related='https://www4b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa51651f3bed810agaa72g0000437ih69b6757i6d16571155540429298421'
+    version='2.6'
+    inputstring='zyanide'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP51661f3bed810agaa72g00002546igb5dhi42ahf?MSPStoreType=image/gif&amp;s=34'
+       alt='cyanide anion'
+       title='cyanide anion'
+       width='92'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>cyanide anion</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalIntermediateData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP51671f3bed810agaa72g000010fh3fgefead4hb3?MSPStoreType=image/gif&amp;s=34'
+       alt='Structure diagram'
+       title=''
+       width='400'
+       height='36'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='4'>
+   <statelist count='2'
+       value='Skeletal structure'
+       delimiters=''>
+    <state name='Skeletal structure'
+        input='StructureDiagramPod:ChemicalIntermediateData__Skeletal structure' />
+    <state name='Lewis structure'
+        input='StructureDiagramPod:ChemicalIntermediateData__Lewis structure' />
+   </statelist>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalIntermediateData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalIntermediateData__Show graph properties' />
+   <state name='Step-by-step'
+       input='StructureDiagramPod:ChemicalIntermediateData__Step-by-step'
+       stepbystep='true' />
+  </states>
+ </pod>
+ <pod title='General properties'
+     scanner='Data'
+     id='GeneralProperties:ChemicalIntermediateData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP51681f3bed810agaa72g00004h7919a96767i675?MSPStoreType=image/gif&amp;s=34'
+       alt='formula | (CN)^-
+net ionic charge | -1
+alternate names | cyanide | cyanide(1-) | nitrile anion'
+       title='formula | (CN)^-
+net ionic charge | -1
+alternate names | cyanide | cyanide(1-) | nitrile anion'
+       width='413'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | (CN)^-
+net ionic charge | -1
+alternate names | cyanide | cyanide(1-) | nitrile anion</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Ionic radius'
+     scanner='Data'
+     id='IonicRadiusPod:ChemicalIntermediateData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP51691f3bed810agaa72g00006795163fcdg2c12d?MSPStoreType=image/gif&amp;s=34'
+       alt='thermochemical radius | 191 pm'
+       title='thermochemical radius | 191 pm'
+       width='246'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>thermochemical radius | 191 pm</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Other properties'
+     scanner='Data'
+     id='Other:ChemicalIntermediateData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP51701f3bed810agaa72g000049g96g7e3fa3a1cf?MSPStoreType=image/gif&amp;s=34'
+       alt='ion class | anions | polyatomic ions
+common sources of ion | zinc cyanide (2 eq) | tetraethylammonium cyanide (1 eq) | tetrabutylammonium cyanide (1 eq) | sodium dicyanoaurate (2 eq) | sodium cyanide (1 eq) | silver cyanide (1 eq) | potassium tetracyanoplatinate(II) (4 eq) | potassium tetracyanonickelate(II) (4 eq) | potassium hexacyanoplatinate(IV) (6 eq)'
+       title='ion class | anions | polyatomic ions
+common sources of ion | zinc cyanide (2 eq) | tetraethylammonium cyanide (1 eq) | tetrabutylammonium cyanide (1 eq) | sodium dicyanoaurate (2 eq) | sodium cyanide (1 eq) | silver cyanide (1 eq) | potassium tetracyanoplatinate(II) (4 eq) | potassium tetracyanonickelate(II) (4 eq) | potassium hexacyanoplatinate(IV) (6 eq)'
+       width='546'
+       height='178'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>ion class | anions | polyatomic ions
+common sources of ion | zinc cyanide (2 eq) | tetraethylammonium cyanide (1 eq) | tetrabutylammonium cyanide (1 eq) | sodium dicyanoaurate (2 eq) | sodium cyanide (1 eq) | silver cyanide (1 eq) | potassium tetracyanoplatinate(II) (4 eq) | potassium tetracyanonickelate(II) (4 eq) | potassium hexacyanoplatinate(IV) (6 eq)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='ThermodynamicProperties:ChemicalIntermediateData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP51711f3bed810agaa72g00004i8hadh706g829fb?MSPStoreType=image/gif&amp;s=34'
+       alt='molar free energy of formation Δ_fG° | aqueous | 172.4 kJ/mol (kilojoules per mole)
+molar heat of formation Δ_fH° | aqueous | 150.6 kJ/mol (kilojoules per mole)
+ | gas | 60 kJ/mol (kilojoules per mole)
+molar entropy S° | aqueous | 94.1 J/(mol K) (joules per mole kelvin)'
+       title='molar free energy of formation Δ_fG° | aqueous | 172.4 kJ/mol (kilojoules per mole)
+molar heat of formation Δ_fH° | aqueous | 150.6 kJ/mol (kilojoules per mole)
+ | gas | 60 kJ/mol (kilojoules per mole)
+molar entropy S° | aqueous | 94.1 J/(mol K) (joules per mole kelvin)'
+       width='546'
+       height='188'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar free energy of formation Δ_fG° | aqueous | 172.4 kJ/mol (kilojoules per mole)
+molar heat of formation Δ_fH° | aqueous | 150.6 kJ/mol (kilojoules per mole)
+ | gas | 60 kJ/mol (kilojoules per mole)
+molar entropy S° | aqueous | 94.1 J/(mol K) (joules per mole kelvin)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='zyanide'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='ChemicalIntermediate'
+       desc='an ion'
+       input='*C.zyanide-_*ChemicalIntermediate-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.zyanide-_*Word-' />
+  </assumption>
+ </assumptions>
+ <warnings count='1'>
+  <spellcheck word='zyanide'
+      suggestion='cyanide'
+      text='Interpreting &quot;zyanide&quot; as &quot;cyanide&quot;' />
+ </warnings>
+ <sources count='2'>
+  <source url='https://www4b.wolframalpha.com/sources/ChemicalIntermediateDataSourceInformationNotes.html'
+      text='Chemical intermediate data' />
+  <source url='https://www4b.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>
