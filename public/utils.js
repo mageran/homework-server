@@ -336,5 +336,12 @@ const createSelectElement = (cont, optionsIn, selectHook, deselectHook, skipInit
         event.stopPropagation();
         return true;
     })
+    selectObj.select = filterFun => {
+        const selectedOptions = options.filter(filterFun);
+        if (selectedOptions.length === 1) {
+            let option = selectedOptions[0];
+            doSelect(option);
+        }
+    }
     return selectObj;
 }

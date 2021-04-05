@@ -42,6 +42,12 @@ function gasLaws() {
                 label: div => {
                     addLatexElement(div, `\\text{Ideal gas law:&nbsp;} PV = nRT`);
                 },
+            },
+            {
+                value: 'density',
+                label: div => {
+                    addLatexElement(div, `\\text{Gas density:&nbsp;} d = \\frac{Pn}{RT}`);
+                },
             }
         ];
         _htmlElement('div', o, "Select which law to use: ");
@@ -58,6 +64,9 @@ function gasLaws() {
                 case 'charles':
                     currentGasContainer = new CharlesLawContainer();
                     break;
+                case 'avogadro':
+                    currentGasContainer = new AvogardosLawContainer();
+                    break;
                 case 'gay-lussac':
                     currentGasContainer = new GayLussacLawContainer();
                     break;
@@ -66,6 +75,9 @@ function gasLaws() {
                     break;
                 case 'ideal':
                     currentGasContainer = new IdealGasLawContainer();
+                    break;
+                case 'density':
+                    currentGasContainer = new GasDensityContainer();
                     break;
             }
             if (currentGasContainer) {
@@ -88,6 +100,9 @@ class GasLawContainer {
         this.cont = cont;
         this.tileContainer.createUI(cont);
         this._addTiles();
+        if (this.addSTPButton) {
+            this._addSTPButton();
+        }
         this._addGoButton();
         this.resultContainer = _htmlElement('div', cont);
     }
@@ -139,6 +154,25 @@ class GasLawContainer {
             }
         }
         this.goButton.addEventListener('click', safeProcess);
+    }
+
+    setSTP() {
+    }
+
+    _addSTPButton() {
+        const div = _htmlElement('div', this.cont);
+        this.stpButton = _htmlElement('input', div);
+        this.stpButton.type = "button";
+        this.stpButton.value = "STP";
+        elemStyle(this.stpButton, { fontSize: '18pt' })
+        const safeProcess = () => {
+            try {
+                this.setSTP.call(this);
+            } catch (err) {
+                //_addErrorElement(this.resultContainer, err);
+            }
+        }
+        this.stpButton.addEventListener('click', safeProcess);
     }
 
     _convertToSameUnit(o, category, ...valueObjs) {
@@ -197,6 +231,24 @@ class GasLawContainer {
         this._convertToSameUnit(o, 'pressure', p1, p2);
     }
 
+    _convertToGramPerLiter(o, d) {
+        if (d.numberValue === null) {
+            d.unit = 'g/L';
+            return;
+        }
+        const d1 = { numberValue: null, unit: 'g/L' };
+        this._convertToSameUnit(o, 'density', d1, d);
+    }
+
+    _convertToGrams(o, m) {
+        if (m.numberValue === null) {
+            m.unit = 'g';
+            return;
+        }
+        const m1 = { numberValue: null, unit: 'g' };
+        this._convertToSameUnit(o, 'weight', m1, m);
+    }
+
     _convertToMoles(o, valueObj) {
         const { numberValue, unit, formula, molarMass } = valueObj;
         console.log(valueObj);
@@ -251,22 +303,22 @@ class BoylesLawContainer extends GasLawContainer {
         var res;
         var unit;
         if (missingId === 'P1') {
-            latex = `${_l(p1)} = \\frac{${_l(p2)}${_l(v2)}}{${_l(v1)}}`;
+            latex = `P_1 = \\frac{${_l(p2)}${_l(v2)}}{${_l(v1)}}`;
             res = p2.numberValue.mul(v2.numberValue).div(v1.numberValue);
             unit = p1.unit;
         }
         if (missingId === 'P2') {
-            latex = `${_l(p2)} = \\frac{${_l(p1)}${_l(v1)}}{${_l(v2)}}`;
+            latex = `P_2 = \\frac{${_l(p1)}${_l(v1)}}{${_l(v2)}}`;
             res = p1.numberValue.mul(v1.numberValue).div(v2.numberValue);
             unit = p2.unit;
         }
         if (missingId === 'V1') {
-            latex = `${_l(v1)} = \\frac{${_l(p2)}${_l(v2)}}{${_l(p1)}}`;
+            latex = `V_1 = \\frac{${_l(p2)}${_l(v2)}}{${_l(p1)}}`;
             res = p2.numberValue.mul(v2.numberValue).div(p1.numberValue);
             unit = v1.unit;
         }
         if (missingId === 'V2') {
-            latex = `${_l(v2)} = \\frac{${_l(p1)}${_l(v1)}}{${_l(p2)}}`;
+            latex = `V_2 = \\frac{${_l(p1)}${_l(v1)}}{${_l(p2)}}`;
             res = p1.numberValue.mul(v1.numberValue).div(p2.numberValue);
             unit = v2.unit;
         }
@@ -327,6 +379,82 @@ class CharlesLawContainer extends GasLawContainer {
             unit = 'K';
             const info = convertUnit('K', t2.unit, res);
             convertedResult = ` = ${info.result} ${t2.unit}`;
+        }
+        addLatexElement(o, latex + '=' + res + `\\text{${unit}}${convertedResult}`);
+    }
+}
+
+class AvogardosLawContainer extends GasLawContainer {
+    constructor() {
+        super();
+    }
+
+    _addTiles() {
+        const { tileContainer } = this;
+        tileContainer.addTile(new VolumeInputTile('V1', { label: 'V_1', labelIsLatex: true }));
+        tileContainer.addTile(new MassOrMolesInputTile('n1', { label: 'n_1', labelIsLatex: true }));
+        tileContainer.addTile(new VolumeInputTile('V2', { label: 'V_2', labelIsLatex: true }));
+        tileContainer.addTile(new MassOrMolesInputTile('n2', { label: 'n_2', labelIsLatex: true }));
+    }
+    process() {
+        const _l = this._valueObjToLatex.bind(this);
+        const o = this.clearResultContainer();
+        _htmlElement('div', o, "Charles's Law");
+        const missingTile = this.getMissingValueTile();
+        addLatexElement(o, `\\text{Missing: &nbsp;} ${missingTile.label}`);
+        const missingId = missingTile.id;
+        let n1 = this.getValue('n1');
+        let n2 = this.getValue('n2');
+        let v1 = this.getValue('V1');
+        let v2 = this.getValue('V2');
+        this._convertToSameUnit(o, 'liquidVolume', v1, v2);
+        this._convertToMoles(o, n1);
+        this._convertToMoles(o, n2);
+        var latex = "";
+        var res = "";
+        var unit = "";
+        var convertedResult = "";
+        if (missingId === 'V1') {
+            latex = `V_1 = \\frac{${_l(v2)}${_l(n1)}}{${_l(n2)}}`;
+            res = v2.numberValue.mul(n1.numberValue).div(n2.numberValue);
+            unit = v1.unit;
+        }
+        if (missingId === 'V2') {
+            latex = `V_2 = \\frac{${_l(v1)}${_l(n2)}}{${_l(n1)}}`;
+            res = v1.numberValue.mul(n2.numberValue).div(n1.numberValue);
+            unit = v2.unit;
+        }
+        if (missingId === 'n1') {
+            latex = `n_1 = \\frac{${_l(v1)}${_l(n2)}}{${_l(v2)}}`;
+            res = v1.numberValue.mul(n2.numberValue).div(v2.numberValue);
+            unit = 'moles';
+            let n = n1;
+            if (n.unit === 'g') {
+                console.log(n);
+                const mm = _d(n.molarMass);
+                if (mm) {
+                    let cres = res.mul(mm);
+                    convertedResult = `= ${cres} \\text{${n.unit}${n.formula}}`;
+                }
+            } else {
+                if (n.unit !== 'moles' ) throw `unit ${n.unit} not supported here`;
+            }
+        }
+        if (missingId === 'n2') {
+            latex = `n_2 = \\frac{${_l(v2)}${_l(n1)}}{${_l(v1)}}`;
+            res = v2.numberValue.mul(n1.numberValue).div(v1.numberValue);
+            unit = 'moles';
+            let n = n2;
+            if (n.unit === 'g') {
+                console.log(n);
+                const mm = _d(n.molarMass);
+                if (mm) {
+                    let cres = res.mul(mm);
+                    convertedResult = `= ${cres} \\text{${n.unit}${n.formula}}`;
+                }
+            } else {
+                if (n.unit !== 'moles' ) throw `unit ${n.unit} not supported here`;
+            }
         }
         addLatexElement(o, latex + '=' + res + `\\text{${unit}}${convertedResult}`);
     }
@@ -472,6 +600,7 @@ class CombinedLawContainer extends GasLawContainer {
 class IdealGasLawContainer extends GasLawContainer {
     constructor() {
         super();
+        this.addSTPButton = true;
     }
 
     _addTiles() {
@@ -481,6 +610,14 @@ class IdealGasLawContainer extends GasLawContainer {
         tileContainer.addTile(new MassOrMolesInputTile('n', { label: 'n', labelIsLatex: true }));
         tileContainer.addTile(new TemperatureInputTile('T', { label: 'T', labelIsLatex: true }));
     }
+
+    setSTP() {
+        const ptile = this.getTile('P');
+        ptile.setInputValues(1, "atm");
+        const ttile = this.getTile('T');
+        ttile.setInputValues(0, "C")
+    }
+
     process() {
         const _l = this._valueObjToLatex.bind(this);
         const o = this.clearResultContainer();
@@ -535,6 +672,8 @@ class IdealGasLawContainer extends GasLawContainer {
                     let cres = res.mul(mm);
                     convertedResult = `= ${cres} \\text{${n.unit}${n.formula}}`;
                 }
+            } else {
+                if (n.unit !== 'moles' ) throw `unit ${n.unit} not supported here`;
             }
         }
         if (missingId === 'T') {
@@ -542,6 +681,87 @@ class IdealGasLawContainer extends GasLawContainer {
             console.log(latex);
             res = p.numberValue.mul(v.numberValue)
                 .div(r.numberValue.mul(n.numberValue));
+            unit = 'K';
+            const info = convertUnit('K', t.unit, res);
+            convertedResult = ` = ${info.result} ${t.unit}`;
+        }
+        addLatexElement(o, latex + '=' + res + `\\text{${unit}}${convertedResult}`);
+    }
+}
+
+class GasDensityContainer extends GasLawContainer {
+    constructor() {
+        super();
+        this.addSTPButton = true;
+    }
+
+    _addTiles() {
+        const { tileContainer } = this;
+        tileContainer.addTile(new DensityInputTile('d', { label: 'd', labelIsLatex: true }));
+        tileContainer.addTile(new PressureInputTile('P', { label: 'P', labelIsLatex: true }));
+        tileContainer.addTile(new MolarMassInputTile('m', { label: 'm', labelIsLatex: true }));
+        tileContainer.addTile(new TemperatureInputTile('T', { label: 'T', labelIsLatex: true }));
+    }
+
+    setSTP() {
+        const ptile = this.getTile('P');
+        ptile.setInputValues(1, "atm");
+        const ttile = this.getTile('T');
+        ttile.setInputValues(0, "C")
+    }
+
+    process() {
+        const _l = this._valueObjToLatex.bind(this);
+        const o = this.clearResultContainer();
+        _htmlElement('div', o, "Gas Density");
+        const missingTile = this.getMissingValueTile();
+        addLatexElement(o, `\\text{Missing: &nbsp;} ${missingTile.label}`);
+        const missingId = missingTile.id;
+        let p = this.getValue('P');
+        let d = this.getValue('d');
+        let m = this.getValue('m');
+        let t = this.getValue('T');
+        this._convertToKelvin(o, t);
+        this._convertToGrams(o, m);
+        this._convertToGramPerLiter(o, d);
+        var r = { numberValue: _d(0.0821), unit: 'atm*L/(mol*K)' };
+        if (p.unit === 'kPa') {
+            r.numberValue = _d(8.314);
+            r.unit = 'kPa*L/(mol*K)';
+        }
+        else if (p.unit === 'torr') {
+            r.numberValue = _d(62.4);
+            r.unit = 'torr*L/(mol*K)';
+        }
+        else {
+            this._convertToAtm(o, p);
+        }
+        var latex = "";
+        var res = "";
+        var unit = "";
+        var convertedResult = "";
+        if (missingId === 'P') {
+            latex = `P = \\frac{${_l(d)}${_l(r)}${_l(t)}}{${_l(m)}}`;
+            res = d.numberValue.mul(r.numberValue).mul(t.numberValue)
+                .div(m.numberValue);
+            unit = p.unit;
+        }
+        if (missingId === 'd') {
+            latex = `d = \\frac{${_l(p)}${_l(m)}}{${_l(r)}${_l(t)}}`;
+            res = p.numberValue.mul(m.numberValue)
+                .div(r.numberValue.mul(t.numberValue));
+            unit = d.unit;
+        }
+        if (missingId === 'm') {
+            latex = `m = \\frac{${_l(d)}${_l(r)}${_l(t)}}{${_l(p)}}`;
+            res = d.numberValue.mul(r.numberValue).mul(t.numberValue)
+                .div(p.numberValue);
+            unit = m.unit
+        }
+        if (missingId === 'T') {
+            latex = `t = \\frac{${_l(p)}${_l(m)}}{${_l(d)}${_l(r)}}`;
+            res = p.numberValue.mul(m.numberValue)
+                .div(d.numberValue.mul(r.numberValue));
             unit = 'K';
             const info = convertUnit('K', t.unit, res);
             convertedResult = ` = ${info.result} ${t.unit}`;

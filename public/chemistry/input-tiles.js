@@ -38,6 +38,10 @@ class InputTile {
         throw `getValue() not implemented for class ${this.constructor.name}`;
     }
 
+    setInputValues() {
+
+    }
+
     toLatex() {
         return '';
     }
@@ -78,6 +82,10 @@ class NumberInputTile extends InputTile {
         return { numberValue, selectValue };
     }
 
+    setInputValues(numberValue) {
+        this.input.value = numberValue;
+    }
+
 }
 
 class UnitInputTile extends NumberInputTile {
@@ -103,11 +111,23 @@ class UnitInputTile extends NumberInputTile {
         return valueObj;
     }
 
+    setInputValues(numberValue, unit) {
+        super.setInputValues(numberValue);
+        this.selectObj.select(({value}) => value === unit);
+    }
+
 }
 
 class PressureInputTile extends UnitInputTile {
     constructor(id, options) {
         options.unit = 'pressure';
+        super(id, options);
+    }
+}
+
+class WeightInputTile extends UnitInputTile {
+    constructor(id, options) {
+        options.unit = 'weight';
         super(id, options);
     }
 }
@@ -121,6 +141,13 @@ class VolumeInputTile extends UnitInputTile {
 class TemperatureInputTile extends UnitInputTile {
     constructor(id, options) {
         options.unit = 'temperature';
+        super(id, options);
+    }
+}
+
+class DensityInputTile extends UnitInputTile {
+    constructor(id, options) {
+        options.unit = 'density';
         super(id, options);
     }
 }
@@ -149,6 +176,7 @@ class MassOrMolesInputTile extends NumberInputTile {
         const gasNameInput = _htmlElement('input', span)
         this.gasNameInput = gasNameInput;
         elemStyle(span, { visibility: 'hidden' });
+        return o;
     }
 
     getValue() {
@@ -163,6 +191,48 @@ class MassOrMolesInputTile extends NumberInputTile {
         }
         return valueObj;
     }
+}
+
+class MolarMassInputTile extends WeightInputTile {
+
+    createUI(cont) {
+
+        const updateMolarMass = () => {
+            const formula = this.gasNameInput.value;
+            try {
+                const molarMass = getMolarMassFromFormula(formula);
+                const unit = this.selectObj.selected.value;
+                var massValue = molarMass
+                if (unit !== 'g') {
+                    const convInfo = convertUnit('g', unit, molarMass);
+                    massValue = convInfo.result;
+                }
+                this.input.value = massValue;
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        this.options.selectCallback = () => {
+            this.input.value = "";
+            if (this.gasNameInput) {
+                updateMolarMass();
+            }
+        };
+        const o = super.createUI(cont);
+        const span = _htmlElement('span', o, null, 'gas-name-container');
+        this.gasNameInputContainer = span;
+        _htmlElement('label', span, "Gas formula:");
+        const gasNameInput = _htmlElement('input', span)
+        this.gasNameInput = gasNameInput;
+        const b = _htmlElement('input', span);
+        b.type = 'button';
+        b.value = 'Calculate and insert molar mass';
+        elemStyle(b, { marginLeft: '10px' });
+        b.addEventListener('click', updateMolarMass)
+        return o;
+    }
+
 }
 
 
@@ -188,7 +258,7 @@ class TileContainer extends InputTile {
     getAllNumberInputTiles() {
         const tiles = [];
         const children = this.container.children;
-        for(let i = 0; i < children.length; i++) {
+        for (let i = 0; i < children.length; i++) {
             let cnode = children[i];
             let tile = cnode.tile;
             if (tile instanceof NumberInputTile) {
@@ -204,7 +274,7 @@ class TileContainer extends InputTile {
 
     getTile(id) {
         const children = this.container.children;
-        for(let i = 0; i < children.length; i++) {
+        for (let i = 0; i < children.length; i++) {
             let cnode = children[i];
             let tile = cnode.tile;
             if (tile instanceof InputTile) {

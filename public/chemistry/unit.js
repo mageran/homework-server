@@ -22,8 +22,8 @@ const UnitConversionsMap = {
         mi: { metric: false, ft: _d(5280), km: _d(1.609344) }
     },
     weight: {
-        mg: { metric: true, g: _d(0.001) },
         g: { metric: true, ref: true, lb: _d(0.0022046226218488) },
+        mg: { metric: true, g: _d(0.001) },
         lb: { metric: false, ref: true, g: _d(453.59237) },
         kg: { metric: true, g: _d(1000), lb: _d(2.2046226218488) },
         tons: { metric: true, g: _d(1000000) }
@@ -51,6 +51,11 @@ const UnitConversionsMap = {
             atm: _d(1).div(_d(14.6959)),
             sameAs: { unit: 'lb', exponent: 1, quotientUnit: 'in', quotientExponent: 2 }
         }
+    },
+    density: {
+        'g/L': { ref: true, 'kg/m^3': _d(1), 'g/cm^3': _d(0.001) },
+        'kg/m^3': { 'g/L': _d(1) },
+        'g/cm^3': { 'g/L': _d(1000) }
     }
 };
 
