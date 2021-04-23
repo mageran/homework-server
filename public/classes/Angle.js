@@ -260,8 +260,8 @@ class Angle {
         return this.degree === angle.degree;
     }
 
-    clone() {
-        return new Angle(this.degree);
+    clone(doNotRound = false) {
+        return new Angle(this.degree, doNotRound);
     }
 
     toLatex(mode = 'degree') {

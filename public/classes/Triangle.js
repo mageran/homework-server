@@ -2,12 +2,20 @@
 
 class Triangle {
 
-    constructor(nameA, angleA, sideA, nameB, angleB, sideB, nameC, angleC, sideC) {
-        this.sidePairs = [
-            new TriangleSideAnglePair(this, nameA, angleA, sideA),
-            new TriangleSideAnglePair(this, nameB, angleB, sideB),
-            new TriangleSideAnglePair(this, nameC, angleC, sideC)
-        ]
+    constructor(nameA, angleA, sideA, nameB, angleB, sideB, nameC, angleC, sideC, doNotInitialize = false) {
+        if (!doNotInitialize) {
+            this.sidePairs = [
+                new TriangleSideAnglePair(this, nameA, angleA, sideA),
+                new TriangleSideAnglePair(this, nameB, angleB, sideB),
+                new TriangleSideAnglePair(this, nameC, angleC, sideC)
+            ]
+        }
+    }
+
+    clone() {
+        const triangle = new Triangle(null, null, null, null, null, null, null, null, null, true);
+        triangle.sidePairs = this.sidePairs.map(sp => sp.clone(triangle));
+        return triangle;
     }
 
     get isRightTriangle() {
@@ -39,7 +47,7 @@ class Triangle {
         if (status.length > 3) {
             throw `too many parameters given; remove ${status.length - 3} entry/ies`;
         }
-        if (this.isRightTriangle) {
+        if (this.isRightTriangle && !this.forceOblique) {
             return this.solveRightTriangle(status);
         }
         return this.solveObliqueTriangle(status);
@@ -64,6 +72,7 @@ class Triangle {
                 }
             })
             missingAngleObject.angle = Angle.fromDegree(result, true);
+            steps.push({ drawTriangle: this.clone() });
         }
         else if (statusStr === 'SSA') {
             steps.push({ text: 'Determining missing side using pythagoras:' });
@@ -89,6 +98,10 @@ class Triangle {
                         `\\Rightarrow ${b.angleName} = tan^{-1}(\\frac{${b.side}}{${a.side}})` +
                         ` = ${bAngleResult}`
                 })
+                a.angle = Angle.fromDegree(aAngleResult, true);
+                b.angle = Angle.fromDegree(bAngleResult, true);
+                c.side = cResult;
+                steps.push({ drawTriangle: this.clone() });
             } else {
                 let a, c;
                 if (givenPairs[0].isHypotenuse()) {
@@ -115,6 +128,10 @@ class Triangle {
                     latex: `cos ${b.angleName} = \\frac{${a.side}}{${c.side}} \\Rightarrow ` +
                         `${b.angleName} = cos^{-1}(\\frac{${a.side}}{${c.side}}) = ${bAngleResult}`
                 })
+                b.side = bResult;
+                a.angle = Angle.fromDegree(aAngleResult, true);
+                b.angle = Angle.fromDegree(bAngleResult, true);
+                steps.push({ drawTriangle: this.clone() });
             }
         }
         else {
@@ -135,19 +152,25 @@ class Triangle {
                 text: `Determine missing angle ${missingAngleName}:`,
                 latex: `${missingAngleName} = 180 - ${givenAngles.join(' - ')} = ${result}`
             })
-            steps.push({ text: 'Determining missing sides:' });
-            missingAngleObject.angle = Angle.fromDegree(result, true);
-            let a = this.sidePairs.filter(sp => sp.side)[0];
-            a.getOtherPairs().forEach(b => {
-                const bResult = a.side.mul(b.angle.sinDecimal).div(a.angle.sinDecimal).toFixed(2);
-                var latex = `\\frac{sin ${a.angle.degree}}{${a.side}} `
-                    + `= \\frac{sin ${b.angle.degree}}{${b.sideName}}`
-                    + `\\Rightarrow ${b.sideName} = `
-                    + `\\frac{${a.side}\\cdot sin ${b.angle.degree}}{sin ${a.angle.degree}}`
-                    + `= ${bResult}`;
-                console.log(latex);
-                steps.push({ latex });
-            })
+            if (result <= 0) {
+                steps.push(`this combination of values doesn't yield a valid triangle!`);
+            } else {
+                steps.push({ text: 'Determining missing sides:' });
+                missingAngleObject.angle = Angle.fromDegree(result, true);
+                let a = this.sidePairs.filter(sp => sp.side)[0];
+                a.getOtherPairs().forEach(b => {
+                    const bResult = a.side.mul(b.angle.sinDecimal).div(a.angle.sinDecimal).toFixed(2);
+                    var latex = `\\frac{sin ${a.angle.degree}}{${a.side}} `
+                        + `= \\frac{sin ${b.angle.degree}}{${b.sideName}}`
+                        + `\\Rightarrow ${b.sideName} = `
+                        + `\\frac{${a.side}\\cdot sin ${b.angle.degree}}{sin ${a.angle.degree}}`
+                        + `= ${bResult}`;
+                    console.log(latex);
+                    steps.push({ latex });
+                    b.side = _d(bResult);
+                })
+                steps.push({ drawTriangle: this.clone() });
+            }
         }
         else if (statusStr === 'SSA') {
             const givenSides = this.sidePairs.filter(sp => sp.side);
@@ -181,7 +204,7 @@ class Triangle {
                         latex: `${b.angleName}_2 = 180 - ${B1Value} = ${B2Value}`
                     })
                     let angleSum = B2Value.add(a.angle.degree);
-                    let _stepsToFindC = (bAngle, i=1) => {
+                    let _stepsToFindC = (bAngle, i = 1) => {
                         steps.push(`Triangle ${i}:`)
                         const cAngleName = `${c.angleName}_${i}`;
                         const cSideName = `${c.sideName}_${i}`;
@@ -193,11 +216,15 @@ class Triangle {
                         const cSide = a.side.mul(cAngle.sinDecimal).div(a.angle.sinDecimal).toFixed(2);
                         steps.push({
                             latex: `\\frac{sin ${cAngleDegree}}{${cSideName}} = \\frac{sin ${a.angle.degree}}{${a.side}} ` +
-                            `\\Rightarrow ${cSideName} = \\frac{${a.side}\\cdot sin ${cAngleDegree}}{sin ${a.angle.degree}} `
+                                `\\Rightarrow ${cSideName} = \\frac{${a.side}\\cdot sin ${cAngleDegree}}{sin ${a.angle.degree}} `
                         })
                         steps.push({
                             latex: `${cSideName} \\approx ${cSide}`
                         })
+                        b.angle = bAngle;
+                        c.angle = cAngle;
+                        c.side = _d(cSide);
+                        steps.push({ drawTriangle: this.clone() });
                     }
                     if (angleSum >= 180) {
                         steps.push({
@@ -225,36 +252,137 @@ class Triangle {
         return steps;
     }
 
+    draw(cont) {
+        const canvasSize = 500.0;
+        const maxSideLength = _d(Math.max(...this.sidePairs.map(sp => sp.side.toNumber())));
+        const scaleFactor = canvasSize / maxSideLength;
+        console.log(`max side length: ${maxSideLength}`);
+        const cv = _htmlElement('canvas', cont);
+        const xoff = canvasSize / 8;
+        const yoff = canvasSize / 8;
+        const ctx = cv.getContext('2d');
+        const _cc = p => {
+            let x = (xoff + p.x * scaleFactor);
+            let y = canvasSize + yoff - p.y * scaleFactor;
+            return { x, y };
+        }
+        const _drawLine = (p1, p2) => {
+            const c1 = _cc(p1);
+            const c2 = _cc(p2);
+            ctx.moveTo(c1.x, c1.y);
+            ctx.lineTo(c2.x, c2.y);
+            console.log(`drawing line (${c1.x},${c1.y}) --> (${c2.x},${c2.y})`)
+        }
+        const _cornerLabel = (sp, { x, y }, dx, dy) => {
+            const distance = 20/scaleFactor;
+            const cp = _cc({
+                 x: x + dx * distance,
+                 y: y + dy * distance
+            });
+            var label = sp.angleName;
+            if (sp.initialGivenStatus.includes('A')) {
+                label += `=${sp.angle.degree}`;
+            }
+            console.log(`corner label ${label} at (${cp.x},${cp.y})`);
+            ctx.strokeText(label, cp.x, cp.y);
+        }
+        const _sideLabel = (sp, aCoords, bCoords, dx, dy) => {
+            const distance = 20/scaleFactor;
+            const aXoffset = (bCoords.x - aCoords.x)/2;
+            const aYoffset = (bCoords.y - aCoords.y)/2;
+            const cp = _cc({
+                x: aCoords.x + aXoffset + dx * distance,
+                y: aCoords.y + aYoffset + dy * distance
+            });
+            var label = sp.sideName;
+            if (sp.initialGivenStatus.includes('S')) {
+                label += `=${sp.side}`;
+            }
+            console.log(`side label ${label} at (${cp.x},${cp.y})`);
+            ctx.strokeText(label, cp.x, cp.y);
+        }
+        cv.setAttribute("width", canvasSize + xoff * 2);
+        cv.setAttribute("height", canvasSize + yoff * 2);
+        cv.style.backgroundColor = '#eee';
+        //ctx.scale(scaleFactor, scaleFactor);
+        const [a, b, c] = this.sidePairs;
+        const aCoords = { x: 0, y: 0 };
+        const bCoords = { x: c.side.toNumber(), y: 0 }
+        ctx.strokeStyle = "black";
+        ctx.font = '10pt Courier New';
+        // determine c coordinates as offset to b coordinates
+        const h = a.side.mul(b.angle.sinDecimal);
+        const k = a.side.mul(b.angle.cosDecimal);
+        const cCoords = { x: bCoords.x - k.toNumber(), y: bCoords.y + h.toNumber() };
+        const allCoords = [aCoords, bCoords, cCoords];
+        console.log(allCoords);
+        const minX = Math.min(...allCoords.map(p => p.x));
+        const minY = Math.min(...allCoords.map(p => p.y));
+        if (minX < 0) allCoords.forEach(p => { p.x = p.x - minX });
+        if (minY < 0) allCoords.forEach(p => { p.y = p.y - minY });
+        ctx.beginPath();
+        _drawLine(aCoords, bCoords);
+        _drawLine(bCoords, cCoords);
+        _drawLine(aCoords, cCoords);
+        ctx.stroke();
+        ctx.strokeStyle = "green";
+        _cornerLabel(a, aCoords, -1, -1);
+        _cornerLabel(b, bCoords, 1, -1);
+        _cornerLabel(c, cCoords, 0, 1);
+        ctx.strokeStyle = "blue";
+        _sideLabel(a, bCoords, cCoords, 1, 1);
+        _sideLabel(b, aCoords, cCoords, -1.5, 1);
+        _sideLabel(c, aCoords, bCoords, 0, -1);
+    }
+
 }
 
 
 class TriangleSideAnglePair {
 
-    constructor(triangle, name, angle, side) {
+    constructor(triangle, name, angle, side, doNotInitialize = false) {
         this.triangle = triangle;
-        this.sideName = name.toLowerCase();
-        this.angleName = name.toUpperCase();
-        if (typeof angle === 'number') {
-            this.angle = Angle.fromDegree(angle, true);
+        if (!doNotInitialize) {
+            this.sideName = name.toLowerCase();
+            this.angleName = name.toUpperCase();
+            if (typeof angle === 'number') {
+                this.angle = Angle.fromDegree(angle, true);
+            }
+            else if (typeof angle === 'undefined') {
+            }
+            else if (angle instanceof Angle) {
+                this.angle = Angle;
+            }
+            else {
+                throw `unrecognized angle format: ${angle}`;
+            }
+            if (typeof side == 'number') {
+                this.side = _d(side);
+            }
+            else if (typeof side === 'undefined') {
+                this.side = side;
+            }
+            else {
+                throw `triangle side must be a number, found ${side}`;
+            }
+            this.isRightAngle = this.angle && this.angle.degree === 90;
+            this.initialGivenStatus = this.getGivenStatus();
         }
-        else if (typeof angle === 'undefined') {
+    }
+
+    clone(triangle) {
+        const sp = new TriangleSideAnglePair(triangle, null, null, null, true);
+        sp.sideName = this.sideName;
+        sp.angleName = this.angleName;
+        if (this.angle) {
+            sp.angle = this.angle.clone(true);
         }
-        else if (angle instanceof Angle) {
-            this.angle = Angle;
+        if (this.side) {
+            sp.side = _d(this.side);
         }
-        else {
-            throw `unrecognized angle format: ${angle}`;
-        }
-        if (typeof side == 'number') {
-            this.side = _d(side);
-        }
-        else if (typeof side === 'undefined') {
-            this.side = side;
-        }
-        else {
-            throw `triangle side must be a number, found ${side}`;
-        }
-        this.isRightAngle = this.angle && this.angle.degree === 90;
+        sp.isRightAngle = this.isRightAngle;
+        sp.initialGivenStatus = this.initialGivenStatus;
+        return sp;
     }
 
     getGivenStatus() {
@@ -265,7 +393,6 @@ class TriangleSideAnglePair {
         if (this.angle) {
             givenStatus.push('A');
         }
-        this.initialGivenStatus = givenStatus;
         return givenStatus;
     }
 
@@ -299,6 +426,8 @@ class TriangleSideAnglePair {
             let cResult = a.side.div(a.angle.sinDecimal).toFixed(2);
             steps.push({ latex: `tan ${a.angleName} = \\frac{${a.sideName}}{${b.sideName}} \\Rightarrow ${b.sideName} = \\frac{${a.sideName}}{tan ${a.angleName}} = ${bResult}` });
             steps.push({ latex: `sin ${a.angleName} = \\frac{${a.sideName}}{${c.sideName}} \\Rightarrow ${c.sideName} = \\frac{${a.sideName}}{sin ${a.angleName}} = ${cResult}` });
+            b.side = bResult;
+            c.side = cResult;
         }
         else if (notHypPair.side) {
             let a = this;
@@ -308,6 +437,8 @@ class TriangleSideAnglePair {
             let cResult = b.side.div(a.angle.cosDecimal).toFixed(2);
             steps.push({ latex: `tan ${a.angleName} = \\frac{${a.sideName}}{${b.sideName}} \\Rightarrow ${a.sideName} = ${b.sideName}\\cdot tan ${a.angleName} = ${aResult}` });
             steps.push({ latex: `cos ${a.angleName} = \\frac{${b.sideName}}{${c.sideName}} \\Rightarrow ${c.sideName} = \\frac{${b.sideName}}{cos ${a.angleName}} = ${cResult}` });
+            a.side = aResult;
+            c.side = cResult;
         }
         else if (hypPair.side) {
             let a = this;
@@ -317,6 +448,8 @@ class TriangleSideAnglePair {
             let bResult = c.side.mul(a.angle.cosDecimal).toFixed(2);
             steps.push({ latex: `sin ${a.angleName} = \\frac{${a.sideName}}{${c.sideName}} \\Rightarrow ${a.sideName} = ${c.sideName}\\cdot sin ${a.angleName} = ${aResult}` });
             steps.push({ latex: `cos ${a.angleName} = \\frac{${b.sideName}}{${c.sideName}} \\Rightarrow ${b.sideName} = ${c.sideName}\\cdot cos ${a.angleName} = ${bResult}` });
+            a.side = aResult;
+            b.side = bResult;
         }
         return steps;
     }
