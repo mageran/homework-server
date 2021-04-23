@@ -14,6 +14,5 @@ function bearingAngles(angleString) {
         bhtml.addCanvas(_htmlElement('div', o));
     } catch (err) {
         _addErrorElement(o, err);
-        throw err
     }
 }

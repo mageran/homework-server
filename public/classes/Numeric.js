@@ -87,6 +87,29 @@ class Numeric {
         return { numerator, denominator, isRealFraction };
     }
 
+    static findFractionWithConstant(num, constant = Math.PI) {
+        const numx = _d(num);
+        const cval = _d(constant);
+        var numerator = num;
+        var denominator = 1;
+        var isRealFraction = false;
+        for(let i = 1; i < 1000; i++) {
+            let p = numx.mul(_d(i)).div(cval);
+            let pp = _d(p.toPrecision(Numeric.precision - 2));
+            if (pp.eq(pp.trunc())) {
+                numerator = pp.toNumber();
+                denominator = i;
+                isRealFraction = true;
+                break;
+            }
+        }
+        return { numerator, denominator, constant, isRealFraction };
+    }
+
+    static findFractionWithPi(num) {
+        return Numeric.findFractionWithConstant(num, Math.PI);
+    }
+
     static findFractionWithSquareRoot(num) {
         var numx = _d(num);
         var sign = Math.sign(num);
@@ -95,7 +118,7 @@ class Numeric {
         var isRealFraction = false;
         for(let i = 1; i < 1000; i++) {
             let p = numx.mul(_d(i));
-            let pSquare = _d(p.pow(2).toPrecision(Numeric.precision));
+            let pSquare = _d(p.pow(_d(2)).toPrecision(Numeric.precision-2));
             if (pSquare.eq(pSquare.trunc())) {
                 numeratorRadicand = pSquare.toNumber();
                 denominator = i;
@@ -129,14 +152,27 @@ class Numeric {
             }
         }
         {
-            let { numeratorRadicand, denominator, sign, isRealFraction } = Numeric.findFractionWithSquareRoot(valx);
+            let { numerator, denominator, isRealFraction } = Numeric.findFractionWithPi(valx);
+            if (isRealFraction) {
+                let numerator0 = new Product(numerator, PI);
+                let res = retValue(fraction(numerator0, denominator));
+                console.log(`returning fraction of PI: ${JSON.stringify(res, null, 2)}`);
+                console.log(res.toLatex());
+                console.log('----');
+                return res;
+            }
+        }
+        {
+            let findFractionWithSquareRootResult = Numeric.findFractionWithSquareRoot(valx);
+            console.log(JSON.stringify(findFractionWithSquareRootResult, null, 2));
+            let { numeratorRadicand, denominator, sign, isRealFraction, constant } = findFractionWithSquareRootResult;
             if (isRealFraction) {
                 let numerator = sqrt(numeratorRadicand, sign);
                 if (denominator == 1) {
                     return retValue(numerator);
                 }
                 return retValue(fraction(numerator, denominator).simplify());
-            }
+            } 
         }
         return retValue(new Decimal(value));
     }
@@ -294,7 +330,7 @@ class Sum extends Numeric {
 
     toLatex(context) {
         const { open, close } = this.getParenthesis(context);
-        const sumString = this.operands.map(operand => operand.toLatex(this)).join(" + ");
+        const sumString = this.operands.map(operand => ensureNumeric(operand).toLatex(this)).join(" + ");
         return open + sumString + close;
     }
 }
@@ -347,13 +383,13 @@ class Product extends Numeric {
 
     toString(context) {
         const { open, close } = this.getParenthesis(context);
-        const sumString = this.operands.map(operand => operand.toString(this)).join(" + ");
+        const sumString = this.operands.map(operand => operand.toString(this)).join(" * ");
         return open + sumString + close;
     }
 
     toLatex(context) {
         const { open, close } = this.getParenthesis(context);
-        const sumString = this.operands.map(operand => operand.toLatex(this)).join(" + ");
+        const sumString = this.operands.map(operand => ensureNumeric(operand).toLatex(context)).join("\\cdot");
         return open + sumString + close;
     }
 }
@@ -612,7 +648,9 @@ class Fraction2 extends Numeric {
             this.fractionObject.normalize();
             return this.fractionObject.toString(this.keepNumerator);
         }
-        return `${numericToString(this.numerator)}/${numericToString(this.denominator)}`;
+        const nstr = ensureNumeric(this.numerator).toString(latex);
+        const dstr = ensureNumeric(this.denominator).toString(latex);
+        return `${nstr}/${dstr}`;
     }
 
     toLatex(keepNumerator = true) {
@@ -620,7 +658,9 @@ class Fraction2 extends Numeric {
             this.fractionObject.normalize();
             return this.fractionObject.toLatex(keepNumerator);
         }
-        return `\\frac{${numericToLatex(this.numerator)}}{${numericToLatex(this.denominator)}}`;
+        const numeratorLatex = ensureNumeric(this.numerator).toLatex();
+        const denominatorLatex = ensureNumeric(this.denominator).toLatex();
+        return `\\frac{${numeratorLatex}}{${denominatorLatex}}`;
     }
 
     clone() {

@@ -4,8 +4,8 @@
 
 class Angle {
 
-    constructor(degree) {
-        this.degree = Math.round(degree);
+    constructor(degree, doNotRound = false) {
+        this.degree = doNotRound ? degree : Math.round(degree);
     }
 
     static fromPIFactor(piFactor) {
@@ -15,16 +15,16 @@ class Angle {
         return Angle.fromRadians(piFactor * pi);
     }
 
-    static fromRadians(radians) {
+    static fromRadians(radians, doNotRound = false) {
         var angle = Angle.reverseLookupRadiansToUnitCircleAngle(radians);
         if (!angle) {
-            angle = new Angle(radians * 180 / pi);
+            angle = new Angle(radians * 180.0 / pi, doNotRound);
         }
         return angle;
     }
 
-    static fromDegree(degree) {
-        return new Angle(degree);
+    static fromDegree(degree, doNotRound = false) {
+        return new Angle(degree, doNotRound);
     }
 
     get inverseAngle() {
@@ -297,15 +297,19 @@ class Angle {
         const { cos, sin, tan, sec, csc, cot } = this.getTrigFunctionValuesAsDecimals();
         const trigValues = [cos, sin, tan, sec, csc, cot];
         const trigNames = ['cos', 'sin', 'tan', 'sec', 'csc', 'cot'];
-        const valx = _d(decimalValue).toPrecision(precision);
         const trigFunctions = [];
-        for (let i = 0; i < trigValues.length; i++) {
-            let tval = trigValues[i];
-            if (tval instanceof Decimalx) {
-                if (tval.toPrecision(precision) == valx) {
-                    trigFunctions.push(trigNames[i]);
+        try {
+            const valx = _d(decimalValue).toPrecision(precision);
+            for (let i = 0; i < trigValues.length; i++) {
+                let tval = trigValues[i];
+                if (tval instanceof Decimalx) {
+                    if (tval.toPrecision(precision) == valx) {
+                        trigFunctions.push(trigNames[i]);
+                    }
                 }
             }
+        } catch (err) {
+
         }
         return trigFunctions;
     }
@@ -333,7 +337,7 @@ class Angle {
         if (!Array.isArray(angles)) {
             return null;
         }
-        for(let i = 0; i < angles.length; i++) {
+        for (let i = 0; i < angles.length; i++) {
             let angle = angles[i];
             if (checkValue(angle)) {
                 return angle;

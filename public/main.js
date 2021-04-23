@@ -101,6 +101,7 @@ const populate = tobj => {
         else {
             inpElem = document.createElement('input');
             inpElem.value = param.value !== null ? param.value : "";
+            inpElem.initialValue = inpElem.value;
             if (typeof param.size === 'number') {
                 inpElem.setAttribute('size', param.size);
             }
@@ -205,7 +206,7 @@ const populate = tobj => {
                     inpElem.mathField.latex('');
                 }
                 else {
-                    inpElem.value = '';
+                    inpElem.value = inpElem.initialValue ? inpElem.initialValue : '';
                 }
                 inpElem.style.background = "white";
             });

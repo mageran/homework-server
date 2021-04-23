@@ -74,12 +74,16 @@ PTerm
   
   
 Prim
-  = Integer
+  = Float
+  / Integer
   / Identifier
 
 
 Integer "integer"
   = _ [0-9]+ { return parseInt(text(), 10); }
+
+Float "float"
+  = _ [0-9]+ "." [0-9]+ { return parseFloat(text()); }
 
 Identifier "identifier"
   = [A-Za-z] { return text(); }

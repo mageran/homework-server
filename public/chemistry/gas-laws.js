@@ -46,7 +46,7 @@ function gasLaws() {
             {
                 value: 'density',
                 label: div => {
-                    addLatexElement(div, `\\text{Gas density:&nbsp;} d = \\frac{Pn}{RT}`);
+                    addLatexElement(div, `\\text{Gas density:&nbsp;} d = \\frac{P\\cdot\\text{molar-mass}}{RT}`);
                 },
             }
         ];

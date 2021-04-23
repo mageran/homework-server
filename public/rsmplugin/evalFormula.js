@@ -519,7 +519,7 @@ const _evalGCF = formula => {
         throw "GCF is only supported on number terms as arguments";
     }
     var term0 = terms.shift();
-    const gcf = terms.reduce((gcfSoFar, num) => gcd(gcfSoFar,num), term0);
+    const gcf = terms.reduce((gcfSoFar, num) => gcd(gcfSoFar, num), term0);
     return gcf;
 }
 
@@ -627,6 +627,53 @@ const simplifyFormula = (formula, level = 0, logStepFun) => {
                         let res = evalNumericPart(op, opfun, ...operands);
                         if (_isNumeric(res) || res) return res;
                     }
+                    return { op, operands }
+                case 'fraction':
+                    let num = simplifyFormula(formula.numerator, level + 1);
+                    let denom = simplifyFormula(formula.denominator, level + 1);
+                    let res = new Fraction(num, denom);
+                    //let opfun1 = operatorFunctions['fraction'];
+                    //let res = evalNumericPart('fraction', opfun1, num, denom);
+                    if (!isNaN(res.decimalValue()) && (_isNumeric(res) || res)) {
+                        if (typeof formula.wholeNumber === 'number') {
+                            //res += formula.wholeNumber;
+                            res = res.add(formula.wholeNumber);
+                        }
+                        return res;
+                    } else {
+                        return { wholeNumber: formula.wholeNumber, op: formula.op, numerator: num, denominator: denom };
+                    }
+                case 'BUILTIN':
+                    let fname = formula.functionName;
+                    if (fname === 'GCF') {
+                        return _evalGCF(formula);
+                    }
+                default:
+                    let msg = `unknown operator: "${formula.op}"`;
+                    console.error(msg);
+                    throw msg
+            }
+        }
+    }
+    const toDecimal = formula => {
+        console.log(`toDecimal(${JSON.stringify(formula)})...`);
+        if (_isNumeric(formula) || (typeof formula === 'string')) {
+            return formula;
+        }
+        if (typeof formula === 'object') {
+            var { op } = formula;
+            switch (op) {
+                case '':
+                    op = '*'
+                case 'equation':
+                case 'uminus':
+                case 'reciprocal':
+                case '+':
+                case '-':
+                case '*':
+                case '/':
+                case '^':
+                    let operands = formula.operands.map(t => toDecimal(t));
                     return { op, operands }
                 case 'fraction':
                     let num = simplifyFormula(formula.numerator, level + 1);

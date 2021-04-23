@@ -36,9 +36,9 @@ const UnitConversionsMap = {
         msec: { metric: true, sec: _d(0.001) }
     },
     temperature: {
-        K: { C: (K => _d(K - 273.15)), F: (K => (_d(K - 273.15)).times(_d(1.8)).plus(_d(32))) },
-        C: { K: (C => _d(C).plus(_d(273.15))), F: (C => _d(C).times(_d(1.8)).plus(32)) },
-        F: { C: (F => _d(F - 32).dividedBy(_d(1.8))), K: (F => _d(F - 32).dividedBy(_d(1.8)).plus(_d(273.15))) },
+        K: { C: (K => _d(K - 273)), F: (K => (_d(K - 273)).times(_d(1.8)).plus(_d(32))) },
+        C: { K: (C => _d(C).plus(_d(273))), F: (C => _d(C).times(_d(1.8)).plus(32)) },
+        F: { C: (F => _d(F - 32).dividedBy(_d(1.8))), K: (F => _d(F - 32).dividedBy(_d(1.8)).plus(_d(273))) },
     },
     pressure: {
         atm: { ref: true, Pa: _d(101325), mmHg: _d(760), torr: _d(760), lbin2: _d(14.7) },
@@ -62,7 +62,7 @@ const UnitConversionsMap = {
 const TemperatureFormulas = {
         C: {
             //K: (C => _d(C).plus(_d(273))),
-            K: `K = {}^oC + 273.15`,
+            K: `K = {}^oC + 273`,
             //F: (C => _d(C).times(_d(1.8)).plus(32)),
             F: `F = {}^oC \\cdot 1.8 + 32`
         },
@@ -70,13 +70,13 @@ const TemperatureFormulas = {
             //C: (F => _d(F - 32).dividedBy(_d(1.8))),
             C: `C = \\fraction{F-32}{1.8}`,
             //K: (F => _d(F - 32).dividedBy(_d(1.8)).minus(_d(273)))
-            K: `K = \\fraction{F-32}{1.8} + 273.15`
+            K: `K = \\fraction{F-32}{1.8} + 273`
         },
         K: {
             //C: (K => _d(K - 273)),
-            C: `C = K - 273.15`,
+            C: `C = K - 273`,
             //F: (K => (_d(K - 273)).times(_d(1.8)).plus(_d(32)))
-            F: `F = (K - 273.15) \\cdot 1.8 + 32`
+            F: `F = (K - 273) \\cdot 1.8 + 32`
         },
 }
 

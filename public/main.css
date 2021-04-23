@@ -463,3 +463,18 @@ table.chemical-properties-table td:first-child {
     border-radius: 5px;
     font-size: 18pt;
 }
+
+table.left-header-table {
+    border: 1px solid orange;
+    border-collapse: collapse;
+}
+
+table.left-header-table td:first-child {
+    text-align: right;
+    background-color: #ddd;
+}
+
+table.left-header-table td {
+    padding: 5px;
+    border-bottom: 1px solid orange;
+}

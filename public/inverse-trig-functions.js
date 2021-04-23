@@ -70,7 +70,7 @@ function inverseTrigonomicFunctions() {
     }
 }
 
-function reverseUnitCircleLookup(formulaLatex) {
+function reverseUnitCircleLookup(formulaLatex, skipUnitCircle = false, skipShowValue = false, givenValue = null) {
     const o = this;
     o.style.fontSize = '18pt';
     const trigTable = initializeInverseTrigTable();
@@ -91,13 +91,20 @@ function reverseUnitCircleLookup(formulaLatex) {
         return angleIsInRange(angle);
     }
     try {
-        var { ast, value } = evalLatexFormula(formulaLatex);
+        console.log('reverseUnitCircleLookup...');
+        var value = givenValue;
+        if (value === null) {
+            value = evalLatexFormula(formulaLatex).value;
+        }
         //_htmlElement('pre', o, `value: ${value}`);
         value = _d(precision(value.toNumber(), 10));
-        _htmlElement('pre', o, `value: ${value}`);
+        if (!skipShowValue) {
+            _htmlElement('pre', o, `value: ${value}`);
+        }
         const storedValueDiv = _htmlElement('div', o);
         const trigFunctionsAngles = Angle.reverseLookupTrigFunctions(value, true);
-        if (trigFunctionsAngles.length === 0) {
+        if (Object.keys(trigFunctionsAngles).length === 0) {
+            skipUnitCircle = true;
             _htmlElement('div', o, 'No matches found.');
         } else {
             //_htmlElement('pre', o, JSON.stringify(ast, null, 2));
@@ -140,7 +147,9 @@ function reverseUnitCircleLookup(formulaLatex) {
                 })
             })
         }
-        configurableUnitCircle.call(o);
+        if (!skipUnitCircle) {
+            configurableUnitCircle.call(o);
+        }
     } catch (err) {
         _addErrorElement(o, err);
     }
@@ -601,7 +610,7 @@ const _addQuadrantTriangeFromTrigFunctionAndValue = (o, trigFunction, value) => 
             quadrant = value < 0 ? 2 : 1;
             break;
     }
-    console.log(`trigFunction: ${trigFunction}, quadrant: ${quadrant}, value<0: ${value<0}`)
+    console.log(`trigFunction: ${trigFunction}, quadrant: ${quadrant}, value<0: ${value < 0}`)
     if (quadrant === 0) return;
     const imgsrc = `images/q${quadrant}-triangle.png`;
     const img = _htmlElement('img', o, null, 'trigfunction-range-sketch');
@@ -682,7 +691,96 @@ function singleTrigFunction(trigFunction2, trigFunction, latexValue) {
         }
     } catch (err) {
         _addErrorElement(o, err);
-        //throw err
+        throw err
     }
 }
 
+/**
+ * 
+ * @param {sin|cos|tan} trigFunction 
+ * @param {*} value 
+ */
+const calculateInverseTrigFunction = (trigFunction, val, P = 2) => {
+    assert(['sin', 'cos', 'tan'].includes(trigFunction), `trig function "${trigFunction}" not support for this.`);
+    const _pi = _d(Math.PI);
+    const _2pi = _pi.mul(2);
+    const ifunName = `a${trigFunction}`;
+    const _t = val => {
+        const value = _d(val);
+        const f = value[trigFunction].bind(value);
+        return f.call();
+    }
+    const _i = val => {
+        const value = _d(val);
+        const f = value[ifunName].bind(value);
+        return f.call();
+    }
+    const isEqual = (val1, val2, p = 8) => {
+        const v1 = _d(_d(val1).toPrecision(p));
+        const v2 = _d(_d(val2).toPrecision(p));
+        return v1.equals(v2);
+    }
+    const checkRange = val => {
+        const value = _d(val);
+        return value >= 0 && value < _2pi;
+    }
+    const x = _i(val);
+    console.log(`x: ${x}`);
+    const values = {
+        'x': x,
+        'pi+x': _pi.add(x),
+        'pi-x': _pi.sub(x),
+        '2pi+x': _2pi.add(x),
+        '2pi-x': _2pi.sub(x)
+    }
+    const solutions = [];
+    Object.keys(values).forEach(key => {
+        const radians = values[key];
+        if (!checkRange(radians)) return;
+        const xval = _t(radians);
+        const latex = key.replace('pi', '\\pi');
+        const isSolution = isEqual(xval, val);
+        const color = isSolution ? 'green' : '#eee';
+        console.log(`%c${trigFunction}(${key}) = ${xval}`, `color: ${color}`);
+        if (isSolution) {
+            solutions.push({
+                label: key,
+                latexLabel: latex,
+                radians: precision(radians, P)
+            })
+        }
+    })
+    const calculatedValue = precision(x, P);
+    return { calculatedValue, solutions };
+}
+
+function calculatedInverseTrigValues(trigFunction, value) {
+    const o = this;
+    o.style.fontSize = '18pt';
+    try {
+        const { calculatedValue, solutions } = calculateInverseTrigFunction(trigFunction, value);
+        if (solutions.length === 0) {
+            _htmlElement('div', o, "No solutions found.");
+            return;
+        }
+        var latex = `${trigFunction}^{-1}(${value}) = ${calculatedValue}`;
+        addLatexElement(o, latex, 'Calculated value:');
+        _htmlElement('h4', o, 'Solutions:');
+        var table = _htmlElement('table', o);
+        elemStyle(table, { borderCollapse: "true" });
+        solutions.forEach(({ label, latexLabel, radians }) => {
+            const tr = _htmlElement('tr', table);
+            var td = _htmlElement('td', tr);
+            td.setAttribute("align", "right");
+            addLatexElement(td, `\\theta = ${latexLabel.replace('x', String(calculatedValue))}=`);
+            td = _htmlElement('td', tr);
+            addLatexElement(td, radians);
+            td = _htmlElement('td', tr);
+            const angle = Angle.fromRadians(radians);
+            const angleHtml = new AngleHtml(angle);
+            angleHtml.addCanvas(td);
+        })
+    } catch (err) {
+        _addErrorElement(o, err);
+    }
+}

@@ -401,7 +401,67 @@ const _singleTrigFunctionOnUnitCircleAngle = {
     func: singleTrigFunction
 }
 
+const _calculatedInverseTrigValues = {
+    title: 'Calculated Inverse Trig Values',
+    description: 'Determine solutions for inverse trig functions based on calculated value (0 <= x < 2pi)',
+    parameters: [
+        {
+            name: 'Trig Function',
+            type: 'select',
+            options: _trigInverseTrigOptions.filter(({ value }) => ['cos', 'sin', 'tan'].includes(value))
+        },
+        {
+            name: 'Value',
+            value: ''
+        }
+    ],
+    func: calculatedInverseTrigValues
+}
+
+const _calculator = {
+    title: 'Calculator',
+    description: '',
+    parameters: [
+        { name: 'Formula', type: 'formula', cssClass: 'width700' }
+    ],
+    func: calculator
+}
+
+const _bearingAngles = {
+    title: 'Bearing Angles',
+    description: 'draw bearing angles of the form 170 or N20E',
+    parameters: [
+        { name: 'Bearing angle', value: '' }
+    ],
+    func: bearingAngles
+}
+
+const _triangleQuestions = {
+    title: 'Triangle Questions',
+    description: 'Solve triangle questions where sides and angles are given',
+    parameters: [
+        {
+            name: 'Type',
+            type: 'select',
+            options: [
+                { label: 'Select Triangle type', value: null },
+                { label: 'Right Triangle', value: 'right' },
+                { label: 'Oblique Triangle', value: 'oblique' }
+            ]
+        },
+        { separator: true }, { name: 'Side/Angle name', value: 'a' }, { name: 'Angle', value: '' }, { name: 'Side', value: '' },
+        { separator: true }, { name: 'Side/Angle name', value: 'b' }, { name: 'Angle', value: '' }, { name: 'Side', value: '' },
+        { separator: true }, { name: 'Side/Angle name', value: 'c' }, { name: 'Angle', value: '' }, { name: 'Side', value: '' },
+        { separator: true }
+    ],
+    func: triangleQuestions
+}
+
 const topicObjects = [
+    _triangleQuestions,
+    _bearingAngles,
+    '<b>---------------------</b>',
+    _calculatedInverseTrigValues,
     _singleTrigFunctionOnUnitCircleAngle,
     _reverseUnitCircleLookup,
     _inverseTrigonomicFunctions,
@@ -436,4 +496,6 @@ const topicObjects = [
     _standardToVertex,
     _whatPoint,
     _imageOnly('Parent Functions', 'images/parent_functions.png'),
+    '<b>---------------------</b>',
+    _calculator
 ];

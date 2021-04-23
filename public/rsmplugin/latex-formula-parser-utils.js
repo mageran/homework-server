@@ -26,6 +26,21 @@ const evalLatexFormula = formulaLatex => {
   return { ast, value };
 }
 
+const evalLatexFormulaWithContext = formulaLatex => {
+  const latexParts = formulaLatex.split(';');
+  const formulaToEvaluate = latexParts.splice(latexParts.length - 1)[0];
+  const identifierAssignments = {};
+  latexParts.forEach(latex => {
+    console.log(`latex part: "${latex}"`);
+    const ast = parseLatexFormula(latex);
+    evalAst(ast, identifierAssignments);
+  });
+  console.log(`identifier assignments: ${JSON.stringify(identifierAssignments, null, 2)}`);
+  const ast = parseLatexFormula(formulaToEvaluate);
+  const value = evalAst(ast, identifierAssignments);
+  return { ast, value };
+}
+
 
 const parseChemicalFormula = formulaLatex => {
   console.log(`formula: ${formulaLatex}`);
@@ -48,19 +63,28 @@ const parseChemicalFormula = formulaLatex => {
   return ast;
 }
 
-const evalAst = ast => {
-  const _e = evalAst;
+const evalAst = (ast, identifierAssignments = {}) => {
+  const _e = x => evalAst(x, identifierAssignments);
   if (ast === "\\pi") {
     return _d(Math.PI);
   }
   if (typeof ast === 'number') {
     return _d(ast);
   }
+  if (typeof ast === 'string' && Object.keys(identifierAssignments).includes(ast)) {
+    let val = identifierAssignments[ast];
+    console.log(`returning value for ${ast} = ${val}`);
+    return val;
+  }
   if (ast.op === '+') {
     return ast.operands.reduce((res, operand) => res.add(_e(operand)), _d(0));
   }
   if (ast.op === '*') {
     return ast.operands.reduce((res, operand) => res.mul(_e(operand)), _d(1));
+  }
+  if (ast.op === '^') {
+    let [op0, ...restOperands] = ast.operands;
+    return restOperands.reduce((res, operand) => res.pow(_e(operand)), _e(op0));
   }
   if (ast.op === 'fraction') {
     let { wholeNumber, numerator, denominator } = ast;
@@ -84,6 +108,14 @@ const evalAst = ast => {
   }
   if (ast.op === 'uminus') {
     return _e(ast.operands[0]).negated();
+  }
+  if (ast.op === 'equation') {
+    let lhs = ast.operands[0];
+    let res = _e(ast.operands[1]);
+    if (typeof lhs === 'string') {
+      identifierAssignments[lhs] = res;
+    }
+    return res;
   }
   if (ast.isTrigFunction) {
     let [operand] = ast.operands;
