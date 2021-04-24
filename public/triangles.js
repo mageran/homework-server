@@ -1,4 +1,4 @@
-function triangleQuestions(triangleType, aName, A, a, bName, B, b, cName, C, c) {
+function triangleQuestions(triangleType, aName, A, a, bName, B, b, cName, C, c, sketchType) {
     const o = this;
     o.style.fontSize = '18pt';
     try {
@@ -6,7 +6,7 @@ function triangleQuestions(triangleType, aName, A, a, bName, B, b, cName, C, c) 
         if (!triangleType) {
             throw "please select a triangle type"
         }
-        if (triangleType === 'right' && !C) {
+        if (triangleType === 'right' && (!C || Number(C) === 90)) {
             currentInputElements[8].value = '90';
             C = 90;
         } else {
@@ -34,8 +34,8 @@ function triangleQuestions(triangleType, aName, A, a, bName, B, b, cName, C, c) 
                 addLatexElement(o, latex0);
             }
             if (triangle) {
-                _htmlElement('div', o, 'Triangle sketch:');
-                triangle.draw(_htmlElement('div', o));
+                //_htmlElement('div', o, 'Triangle sketch:');
+                triangle.draw(_htmlElement('div', o), sketchType === 'fake');
             }
         })
     } catch (err) {

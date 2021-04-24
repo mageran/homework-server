@@ -49,7 +49,7 @@ class BearingAngle {
     }
 
     parseAsCompassBearing(angleString) {
-        const re = /^\s*([NS])\s*([0-9]+)\s*([EW])\s*$/;
+        const re = /^\s*([NS])\s*([0-9\\.]+)\s*([EW])\s*$/;
         const m = String(angleString).match(re);
         if (!m) {
             return false;

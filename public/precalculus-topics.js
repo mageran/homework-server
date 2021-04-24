@@ -452,7 +452,8 @@ const _triangleQuestions = {
         { separator: true }, { name: 'Side/Angle name', value: 'a' }, { name: 'Angle', value: '' }, { name: 'Side', value: '' },
         { separator: true }, { name: 'Side/Angle name', value: 'b' }, { name: 'Angle', value: '' }, { name: 'Side', value: '' },
         { separator: true }, { name: 'Side/Angle name', value: 'c' }, { name: 'Angle', value: '' }, { name: 'Side', value: '' },
-        { separator: true }
+        { separator: true },
+        { name: 'Sketch', type: 'select', options: [ { label: 'fake', value: 'fake' }, { label: 'accurate', value: 'accurate' }]}
     ],
     func: triangleQuestions
 }
