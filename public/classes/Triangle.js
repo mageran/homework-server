@@ -46,11 +46,17 @@ class Triangle {
         this.sidePairs.filter(sp => sp.sideName === sname).forEach(sp => sp.addSuffix(suffix));
     }
 
-    _disp(x) {
+    _disp(x, toFixedNum = null) {
+        let num, defaultToFixed;
         if (x instanceof Angle) {
-            return Number(_d(x.degree).toFixed(_toFixedAngles));
+            num = _d(x.degree);
+            defaultToFixed = _toFixedAngles;
+        } else {
+            num = _d(x);
+            defaultToFixed = _toFixedSides;
         }
-        return Number(_d(x).toFixed(_toFixedSides));
+        let tf = (typeof toFixedNum === 'number') ? toFixedNum : defaultToFixed;
+        return Number(num.toFixed(tf));
     }
 
     solve() {
@@ -267,7 +273,21 @@ class Triangle {
                 }
             } else {
                 console.log(`given angle and side are in different pairs: ${givenAngle.angleName}, ${givenSides.map(sp => sp.sideName).join(', ')}`);
-                throw `this combination (given angle doesn't have a given side) is not supported`;
+                //throw `this combination (given angle doesn't have a given side) is not supported`;
+                this.sidePairs.forEach(sp => {
+                    const steps0 = sp.solveForSideUsingLawOfCosine();
+                    if (steps0) {
+                        steps.push(...steps0);
+                    }
+                })
+                this.sidePairs.forEach(sp => {
+                    const steps0 = sp.solveForAngle();
+                    if (steps0) {
+                        steps.push(...steps0);
+                    }
+                })
+                steps.push({ drawTriangle: this.clone() });
+                steps.push(...this.solveHeights());
             }
         }
         else if (statusStr === 'SSS') {
@@ -628,7 +648,23 @@ class TriangleSideAnglePair {
     }
 
     solveForSideUsingLawOfCosine() {
-        return null;
+        const { _disp, sidePairs } = this.triangle;
+        const a = this;
+        const [b, c] = this.getOtherPairs();
+        if (a.side) return null;
+        if (!a.angle) return null;
+        if (!b.side || !c.side) return null;
+        const steps = [];
+        steps.push(`Determining side ${a.sideName} using Law of Cosine:`);
+        const aSquare = (b.side.pow(2)).add(c.side.pow(2)).sub(_d(2).mul(b.side).mul(c.side).mul(a.angle.cosDecimal));
+        a.side = aSquare.sqrt();
+        const formulas = [
+            `${a.sideName}^2 = ${b.sideName}^2 + ${c.sideName}^2 - 2\\cdot ${b.sideName}\\cdot ${c.sideName}\\cdot cos ${a.angleName}`
+            + ` = ${_disp(b.side)}^2 + ${_disp(c.side)}^2 - 2\\cdot ${_disp(b.side)}\\cdot ${_disp(c.side)}\\cdot cos ${_disp(a.angle)} = ${_disp(aSquare, 4)}`,
+            `${a.sideName} \\approx ${_disp(a.side)}`
+        ]
+        steps.push(...formulas.map(latex => ({ latex })));
+        return steps;
     }
 
 }
