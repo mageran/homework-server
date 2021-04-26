@@ -253,8 +253,8 @@ const populate = tobj => {
             borderRadius: '8px'
         })
         tobj.testValues.forEach(testValueList => {
-            var buttonTitle;
-            if (typeof testValuesList === 'function') {
+            var buttonTitle = 'Run';
+            if (typeof testValueList === 'function') {
                 buttonTitle = 'Run with generated values'
             } else {
                 buttonTitle = `Run with values ${testValueList.join(', ')}`;

@@ -494,7 +494,12 @@ const _bearingAngleNavigationQuestions = {
         ['N46E', 3.8, 'N25W', 1.6],
         ['N10E', 3.8, 'N85W', 2.6],
         [10, 3.8, 275, 2.6],
-        () => [Math.random()*360, Math.random() * 100 + 10, Math.random()*360, Math.random() * 100 + 10]
+        (() => [
+            Math.trunc(Math.random() * 360),
+            Math.trunc(Math.random() * 100) + 10,
+            Math.trunc(Math.random() * 360), 
+            Math.trunc(Math.random() * 100) + 10
+        ])
     ],
     func: bearingAngleNavigationQuestions
 }
