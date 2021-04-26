@@ -123,6 +123,10 @@ class BearingAngleTriangle extends Triangle {
         return steps;
     }
 
+    solveAdditional() {
+        return this.solveFinalBearing();
+    }
+
     solve() {
         console.log(`BearingAngleTriangle.draw: this: ${this.constructor.name}`);
         const steps = [];
@@ -130,7 +134,7 @@ class BearingAngleTriangle extends Triangle {
         this.isRightTurn = this.bearingAngle2.isRightTurn(this.bearingAngle1);
         steps.push(`<p><b>Direction change is a <span style="background-color:yellow">${this.isRightTurn ? 'right' : 'left'} turn</span>.</b></p>`);
         steps.push(...super.solve());
-        steps.push(...this.solveFinalBearing());
+        //steps.push(...this.solveFinalBearing());
         return steps;
     }
 
@@ -147,7 +151,9 @@ class BearingAngleTriangle extends Triangle {
         return { aCoords, bCoords, cCoords };
     }
 
-    drawAdditional({ ctx, _cc, _drawLine, _cornerLabel, scaleFactor, aCoords, bCoords, cCoords }) {
+    drawAdditional({ ctx, _cc, _drawLine, _drawArc, _cornerLabel, scaleFactor, aCoords, bCoords, cCoords, _addLegend }) {
+        const { _disp } = this;
+        const a = this.sidePairs[0];
         ctx.strokeStyle = 'orange';
         ctx.lineWidth = 2;
         const axisLength = 75 / scaleFactor;
@@ -165,6 +171,45 @@ class BearingAngleTriangle extends Triangle {
         }
         _drawAxesAroundPoint(aCoords);
         _drawAxesAroundPoint(bCoords);
+        const arcRadius1 = 55;
+        const arcRadius2 = 65;
+        const arcRadius3 = 65;
+        const arcRadius4 = 74;
+        ctx.lineWidth = 4;
+        // bearing1
+        var color = "purple";
+        ctx.strokeStyle = color;
+        ctx.beginPath();
+        _drawArc(aCoords, arcRadius1, ...this.bearingAngle1.getParametersForDrawingOnCanvas(true));
+        ctx.stroke();
+        ctx.beginPath();
+        _drawArc(bCoords, arcRadius1, ...this.bearingAngle1.opposite.getParametersForDrawingOnCanvas(true));
+        ctx.stroke();
+        _addLegend(color, `initial bearing ${this.bearingAngle1.compassBearingString}`);
+        // bearing2
+        color = "magenta";
+        ctx.strokeStyle = color;
+        ctx.beginPath();
+        _drawArc(bCoords, arcRadius2, ...this.bearingAngle2.getParametersForDrawingOnCanvas(true));
+        ctx.stroke();
+        _addLegend(color, `turn bearing ${this.bearingAngle2.compassBearingString}`);
+        // angle A
+        color = "red";
+        ctx.strokeStyle = color;
+        ctx.beginPath();
+        const arcAStartAngle = this.bearingAngle1.trueBearing - 90;
+        const arcAEndingAngle = this.finalBearing.trueBearing - 90;
+        const arcACounterClockwise = !this.isRightTurn;
+        _drawArc(aCoords, arcRadius3, arcAStartAngle, arcAEndingAngle, arcACounterClockwise);
+        _addLegend(color, `angle A = ${_disp(a.angle)}`);
+        ctx.stroke();
+        // final bearing
+        color = "teal";
+        ctx.strokeStyle = color;
+        ctx.beginPath();
+        _drawArc(aCoords, arcRadius4, ...this.finalBearing.getParametersForDrawingOnCanvas(true));
+        ctx.stroke();
+        _addLegend(color, `final bearing ${this.finalBearing.compassBearingString}`);
     }
 
 }

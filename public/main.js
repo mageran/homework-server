@@ -29,7 +29,7 @@ const init = () => {
     });
     const hideSelectMenus = () => {
         const selectMenus = document.getElementsByClassName('select-menu-container');
-        for(let m of selectMenus) {
+        for (let m of selectMenus) {
             if (m.style.display !== 'none') {
                 //console.log('hideSelectMenu...');
                 m.style.display = 'none';
@@ -128,6 +128,15 @@ const populate = tobj => {
             const cont = document.createElement('div');
             if (param.separator) {
                 cont.style.display = 'block';
+                inputs.appendChild(cont);
+                return;
+            }
+            if (param.html) {
+                if (typeof param.html === 'string') {
+                    cont.innerHTML = param.html;
+                } else {
+                    let { tag, style, className, innerHTML } = param.html;
+                }
                 inputs.appendChild(cont);
                 return;
             }
@@ -244,7 +253,12 @@ const populate = tobj => {
         });
     }
     if (tobj.testValues && parametersExist) {
-        let cont = _htmlElement('div', inputs);
+        let cdiv = _collapsibleSection(inputs, "Run with test values...", {
+            noBorder: true,
+            initialStateCollapsed: true,
+            width: "100%"
+        });
+        let cont = _htmlElement('div', cdiv);
         elemStyle(cont, {
             margin: '20px 0',
             padding: '10px',
@@ -268,6 +282,7 @@ const populate = tobj => {
             })
             b.addEventListener('click', () => {
                 doExecute(testValueList);
+                //cdiv.collapse();
             })
         })
     }

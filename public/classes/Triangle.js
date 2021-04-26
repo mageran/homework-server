@@ -73,6 +73,10 @@ class Triangle {
         return this.solveObliqueTriangle(status);
     }
 
+    solveAdditional() {
+        return [];
+    }
+
     solveRightTriangle(status) {
         const { _disp } = this;
         const steps = [];
@@ -93,6 +97,7 @@ class Triangle {
                 }
             })
             missingAngleObject.angle = Angle.fromDegree(result, true);
+            steps.push(...this.solveAdditional());
             steps.push({ drawTriangle: this.clone() });
         }
         else if (statusStr === 'SSA') {
@@ -122,6 +127,7 @@ class Triangle {
                 a.angle = Angle.fromDegree(aAngleResult, true);
                 b.angle = Angle.fromDegree(bAngleResult, true);
                 c.side = cResult;
+                steps.push(...this.solveAdditional());
                 steps.push({ drawTriangle: this.clone() });
             } else {
                 let a, c;
@@ -152,6 +158,7 @@ class Triangle {
                 b.side = bResult;
                 a.angle = Angle.fromDegree(aAngleResult, true);
                 b.angle = Angle.fromDegree(bAngleResult, true);
+                steps.push(...this.solveAdditional());
                 steps.push({ drawTriangle: this.clone() });
             }
         }
@@ -191,6 +198,7 @@ class Triangle {
                     steps.push({ latex });
                     b.side = _d(bResult);
                 })
+                steps.push(...this.solveAdditional());
                 steps.push({ drawTriangle: this.clone() });
                 steps.push(...this.solveHeights());
             }
@@ -253,6 +261,7 @@ class Triangle {
                             triangle.addAngleSideSuffix(b.sideName, String(i));
                             triangle.addAngleSideSuffix(c.sideName, String(i));
                         }
+                        steps.push(...this.solveAdditional());
                         steps.push({ drawTriangle: triangle });
                         steps.push(...triangle.solveHeights());
                     }
@@ -286,6 +295,7 @@ class Triangle {
                         steps.push(...steps0);
                     }
                 })
+                steps.push(...this.solveAdditional());
                 steps.push({ drawTriangle: this.clone() });
                 steps.push(...this.solveHeights());
             }
@@ -297,6 +307,7 @@ class Triangle {
                     steps.push(...steps0);
                 }
             })
+            steps.push(...this.solveAdditional());
             steps.push({ drawTriangle: this.clone() });
             steps.push(...this.solveHeights());
         }
@@ -372,11 +383,12 @@ class Triangle {
         const maxSideLength = _d(Math.max(...this.sidePairs.map(sp => sp.side.toNumber())));
         var scaleFactor = canvasSize / maxSideLength;
         console.log(`max side length: ${maxSideLength}`);
-        const cv = _htmlElement('canvas', cont);
+        const cv = document.createElement('canvas');
         const xoff = canvasSize / 8;
         const yoff = canvasSize / 8;
         const ctx = cv.getContext('2d');
         var shiftUp = 0;
+        const legendEntries = [];
         const drawClockWise = this.getDrawClockWise();
         const _cc = p => {
             let x = (xoff + p.x * scaleFactor);
@@ -392,6 +404,12 @@ class Triangle {
             ctx.moveTo(c1.x, c1.y);
             ctx.lineTo(c2.x, c2.y);
             console.log(`drawing line (${c1.x},${c1.y}) --> (${c2.x},${c2.y})`)
+        }
+        const _drawArc = (centerPoint, radius, startAngleDegree, endingAngleDegree, counterclockwise) => {
+            const startAngle = Angle.fromDegree(startAngleDegree, true);
+            const endingAngle = Angle.fromDegree(endingAngleDegree, true);
+            const { x, y } = _cc(centerPoint);
+            ctx.arc(x, y, radius, startAngle.radians, endingAngle.radians, counterclockwise);
         }
         const _cornerLabel = (sp, { x, y }, dx, dy) => {
             const distance = 20 / scaleFactor;
@@ -424,6 +442,9 @@ class Triangle {
             }
             console.log(`side label ${label} at (${cp.x},${cp.y})`);
             ctx.strokeText(label, cp.x, cp.y);
+        }
+        const _addLegend = (color, text) => {
+            legendEntries.push({ color, text });
         }
         elemStyle(cv, {
             backgroundColor: '#efefef',
@@ -511,7 +532,33 @@ class Triangle {
         ctx.beginPath();
         //_drawLine({ x: 0, y: 0 }, { x: 150/scaleFactor, y: 300/scaleFactor });
         ctx.stroke();
-        this.drawAdditional({ ctx, _cc, _drawLine, _cornerLabel, scaleFactor, aCoords, bCoords, cCoords })
+        this.drawAdditional({ ctx, _cc, _drawLine, _drawArc, _cornerLabel, scaleFactor, aCoords, bCoords, cCoords, _addLegend });
+        if (legendEntries.length === 0) {
+            cont.appendChild(cv);
+        } else {
+            let table = _htmlElement('table', cont);
+            let tr = _htmlElement('tr', table);
+            let td = _htmlElement('td', tr);
+            td.setAttribute("valign", "top");
+            td.appendChild(cv);
+            td = _htmlElement('td', tr);
+            td.setAttribute("valign", "top");
+            let legendTable = _htmlElement('table', td);
+            legendEntries.forEach(({ color, text }) => {
+                const tr = _htmlElement('tr', legendTable);
+                var td = _htmlElement('td', tr);
+                td.setAttribute('valign', 'middle');
+                const cspan = _htmlElement('div', td);
+                elemStyle(cspan, {
+                    width: '50px',
+                    height: '5px',
+                    backgroundColor: color
+                })
+                td = _htmlElement('td', tr);
+                td.setAttribute('valign', 'middle');
+                td.innerHTML = text;
+            })
+        }
     }
 
 }

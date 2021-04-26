@@ -94,6 +94,19 @@ option {
     border-bottom: 1pt solid green;
 }
 
+.xsection-header .xsection-header-title, .xsection-header input {
+    vertical-align: middle;
+}
+
+.xsection-header .xsection-header-title {
+    font-size: 16pt;
+}
+
+.xsection-header input {
+    width: 20px;
+    height: 20px;
+}
+
 .longdiv-table {
     border-spacing: 0px;
     padding: 5px;

@@ -473,12 +473,12 @@ const _bearingAngleNavigationQuestions = {
     </p>
     In this case the two bearing angle are 200 and 340, the two side lengths are 1.5*200 = 300 and 2*250 = 500.`,
     parameters: [
-        { name: 'Starting direction (bearings)', value: '' },
+        { name: 'Starting direction (bearings) (at point A)', value: '' },
         { name: 'Distance for initial part', value: '' },
         { separator: true },
-        { name: 'Turn direction (bearings)', value: '' },
+        { name: '&nbsp;&nbsp; Turn direction (bearings) (at point B)', value: '' },
         { name: 'Distance for second part', value: '' },
-        { separator: true },
+        { separator: true }
     ],
     testValues: [
         [200, 300, 340, 500],
@@ -495,9 +495,15 @@ const _bearingAngleNavigationQuestions = {
         ['N10E', 3.8, 'N85W', 2.6],
         [10, 3.8, 275, 2.6],
         (() => [
-            Math.trunc(Math.random() * 360),
+            Math.trunc(Math.random() * 340) + 10,
             Math.trunc(Math.random() * 100) + 10,
-            Math.trunc(Math.random() * 360), 
+            Math.trunc(Math.random() * 340) + 10, 
+            Math.trunc(Math.random() * 100) + 10
+        ]),
+        (() => [
+            (Math.random()>.5?'N':'S')+Math.trunc(Math.random() * 90)+(Math.random()>.5?'E':'W'),
+            Math.trunc(Math.random() * 100) + 10,
+            (Math.random()>.5?'N':'S')+Math.trunc(Math.random() * 90)+(Math.random()>.5?'E':'W'),
             Math.trunc(Math.random() * 100) + 10
         ])
     ],

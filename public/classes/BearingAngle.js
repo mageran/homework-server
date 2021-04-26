@@ -182,6 +182,38 @@ class BearingAngle {
         return endPoint;
     }
 
+    getParametersForDrawingOnCanvas(returnAsList) {
+        const { ns, angle, ew} = this.compassBaering;
+        const direction = `${ns}${ew}`;
+        var startAngleDegree;
+        var endingAngleDegree;
+        var counterclockwise;
+        if (direction === 'NE') {
+            startAngleDegree = 270;
+            endingAngleDegree = angle + 270;
+            counterclockwise = false;
+        }
+        else if (direction === 'SE') {
+            startAngleDegree = 90;
+            endingAngleDegree = 90 - angle;
+            counterclockwise = true;
+        }
+        else if (direction === 'SW') {
+            startAngleDegree = 90;
+            endingAngleDegree = angle + 90;
+            counterclockwise = false;
+        }
+        else if (direction === 'NW') {
+            startAngleDegree = 270;
+            endingAngleDegree = 270 - angle;
+            counterclockwise = true;
+        }
+        if (returnAsList) {
+            return [startAngleDegree, endingAngleDegree, counterclockwise];
+        }
+        return { startAngleDegree, endingAngleDegree, counterclockwise };
+    }
+
 }
 
 class BearingAngleHtml {

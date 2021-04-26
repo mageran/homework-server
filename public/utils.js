@@ -109,14 +109,23 @@ const addTableRow = (table, ...cellContents) => {
     table.appendChild(tr);
 }
 
-const _collapsibleSection = (cont, title) => {
+const _collapsibleSection = (cont, title, options = {}) => {
+    const { noBorder, initialStateCollapsed, width } = options;
     const outer = document.createElement('div');
     outer.className = 'section-container';
+    if (noBorder) {
+        elemStyle(outer, { borderWidth: 0 });
+    }
+    if (width) {
+        elemStyle(outer, { width });
+    }
     const headerDiv = document.createElement('div');
     headerDiv.className = 'xsection-header';
     const checkbox = document.createElement('input');
     checkbox.setAttribute('type', 'checkbox');
-    checkbox.setAttribute('checked', 'true');
+    if (!initialStateCollapsed) {
+        checkbox.setAttribute('checked', 'true');
+    }
     headerDiv.appendChild(checkbox);
     const titleSpan = document.createElement('span');
     titleSpan.className = 'xsection-header-title';
@@ -128,8 +137,16 @@ const _collapsibleSection = (cont, title) => {
     checkbox.addEventListener('change', event => {
         cdiv.style.display = checkbox.checked ? 'block' : 'none';
     });
+    if (initialStateCollapsed) {
+        cdiv.style.display = 'none';
+    };
     outer.appendChild(cdiv);
     cont.appendChild(outer);
+    cdiv.collapse = () => {
+        console.log(`collapsing...`);
+        checkbox.checked = false;
+        cdiv.style.display = 'none';
+    }
     return cdiv;
 }
 
@@ -344,4 +361,23 @@ const createSelectElement = (cont, optionsIn, selectHook, deselectHook, skipInit
         }
     }
     return selectObj;
+}
+
+
+const __tmp = () => {
+    const ns = ['N', 'S'];
+    const ew = ['E', 'W'];
+    const lr = ['LT', 'RT'];
+    var lines = ['['];
+    for(let i = 0; i < ns.length; i++) {
+        for(let j = 0; j < ew.length; j++) {
+            for(let k = 0; k < lr.length; k++) {
+                let direction = ns[i] + ew[j];
+                let isRightTurn = lr[k] === 'RT';
+                lines.push(`   { direction: "${direction}", isRightTurn: ${isRightTurn}, calc: (b1, b2) => b1 + b2 }, `)
+            }
+        }
+    }
+    lines.push(']');
+    return lines.join('\n');
 }
