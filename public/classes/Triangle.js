@@ -307,8 +307,9 @@ class Triangle {
     }
 
     solveHeights() {
-        const { _disp } = this;
+        const { _disp, skipHeightCalculationSteps } = this;
         const steps = [];
+        if (skipHeightCalculationSteps) return steps;
         const [a, b, c] = this.sidePairs;
         const haResult = c.side.mul(b.angle.sinDecimal);
         const hbResult = c.side.mul(a.angle.sinDecimal);
@@ -332,7 +333,40 @@ class Triangle {
         return steps;
     }
 
+    getDrawClockWise() {
+        return false;
+    }
+
+    getSidePairsForDrawing() {
+        const sidePairs = this.sidePairs.slice();
+        const [a, b, c] = sidePairs.sort((sp1, sp2) => {
+            if (sp1.isRightAngle) {
+                return -1;
+            }
+            if (sp2.isRightAngle) {
+                return 1;
+            }
+            return 0;
+        });
+        return [a, b, c];
+    }
+
+    getCornerCoords(a, b, c) {
+        var aCoords = { x: 0, y: 0 };
+        var bCoords = { x: c.side.toNumber(), y: 0 }
+        // determine c coordinates as offset to b coordinates
+        const h = a.side.mul(b.angle.sinDecimal);
+        const k = a.side.mul(b.angle.cosDecimal);
+        var cCoords = { x: bCoords.x - k.toNumber(), y: bCoords.y + h.toNumber() };
+        return { aCoords, bCoords, cCoords };
+    }
+
+    drawAdditional(env) {
+
+    }
+
     draw(cont, fakeCoords = true) {
+        console.log(`draw: this: ${this.constructor.name}`);
         const { _disp } = this;
         const canvasSize = 800.0;
         const maxSideLength = _d(Math.max(...this.sidePairs.map(sp => sp.side.toNumber())));
@@ -343,10 +377,13 @@ class Triangle {
         const yoff = canvasSize / 8;
         const ctx = cv.getContext('2d');
         var shiftUp = 0;
+        const drawClockWise = this.getDrawClockWise();
         const _cc = p => {
             let x = (xoff + p.x * scaleFactor);
             let y = canvasSize + yoff - p.y * scaleFactor - shiftUp;
-            //y = yoff + p.y * scaleFactor;
+            if (drawClockWise) {
+                y = yoff + p.y * scaleFactor;
+            }
             return { x, y };
         }
         const _drawLine = (p1, p2) => {
@@ -364,9 +401,9 @@ class Triangle {
             });
             var label = sp.angleName;
             if (sp.initialGivenStatus.includes('A')) {
-                label += `=${sp.angle.degree}`;
+                label += `=${_disp(sp.angle.degree)}`;
             } else {
-                label += `=${_disp(sp.angle.degree)}*`;
+                label += `=${_disp(sp.angle)}*`;
             }
             console.log(`corner label ${label} at (${cp.x},${cp.y})`);
             ctx.strokeText(label, cp.x, cp.y);
@@ -394,6 +431,7 @@ class Triangle {
             boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)'
         });
         //ctx.scale(scaleFactor, scaleFactor);
+        /*
         const sidePairs = this.sidePairs.slice();
         const [a, b, c] = sidePairs.sort((sp1, sp2) => {
             if (sp1.isRightAngle) {
@@ -404,13 +442,17 @@ class Triangle {
             }
             return 0;
         });
+        */
+        /*
         var aCoords = { x: 0, y: 0 };
         var bCoords = { x: c.side.toNumber(), y: 0 }
-        ctx.strokeStyle = "black";
         // determine c coordinates as offset to b coordinates
         const h = a.side.mul(b.angle.sinDecimal);
         const k = a.side.mul(b.angle.cosDecimal);
         var cCoords = { x: bCoords.x - k.toNumber(), y: bCoords.y + h.toNumber() };
+        */
+        const [a, b, c] = this.getSidePairsForDrawing();
+        var { aCoords, bCoords, cCoords } = this.getCornerCoords(a, b, c);
 
         if (fakeCoords) {
             aCoords.x = 0;
@@ -450,6 +492,7 @@ class Triangle {
         //cv.setAttribute("height", canvasSize + yoff * 2);
         cv.setAttribute("height", canvasSize + yoff * 2 - shiftUp);
         ctx.font = '12pt Courier New';
+        ctx.strokeStyle = "black";
         ctx.beginPath();
         _drawLine(aCoords, bCoords);
         _drawLine(bCoords, cCoords);
@@ -468,6 +511,7 @@ class Triangle {
         ctx.beginPath();
         //_drawLine({ x: 0, y: 0 }, { x: 150/scaleFactor, y: 300/scaleFactor });
         ctx.stroke();
+        this.drawAdditional({ ctx, _cc, _drawLine, _cornerLabel, scaleFactor, aCoords, bCoords, cCoords })
     }
 
 }

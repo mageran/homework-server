@@ -453,12 +453,54 @@ const _triangleQuestions = {
         { separator: true }, { name: 'Side/Angle name', value: 'b' }, { name: 'Angle', value: '' }, { name: 'Side', value: '' },
         { separator: true }, { name: 'Side/Angle name', value: 'c' }, { name: 'Angle', value: '' }, { name: 'Side', value: '' },
         { separator: true },
-        { name: 'Sketch', type: 'select', options: [ { label: 'fake', value: 'fake' }, { label: 'accurate', value: 'accurate' }]}
+        { name: 'Sketch', type: 'select', options: [{ label: 'fake', value: 'fake' }, { label: 'accurate', value: 'accurate' }] }
+    ],
+    testValues: [
+        ['oblique', 'a', '', 3, 'b', '', 4, 'c', '', 5, 'accurate' ]
     ],
     func: triangleQuestions
 }
 
+const _bearingAngleNavigationQuestions = {
+    title: 'Bearing Angles Navigation Problems',
+    description: `This page is used to solve navigation style question, for instance:
+    <p>
+      <em>
+       After leaving an airport, a plane flies for 1.5 h at a speed of 200 km/h on a course of 200 degree. 
+       Then on a course of 340 degree, the plane flies for 2 h at a speed of 250 km/h. At that time,
+       how far is the plane from the airport? Draw and label a diagram. (332 km)
+      </em>
+    </p>
+    In this case the two bearing angle are 200 and 340, the two side lengths are 1.5*200 = 300 and 2*250 = 500.`,
+    parameters: [
+        { name: 'Starting direction (bearings)', value: '' },
+        { name: 'Distance for initial part', value: '' },
+        { separator: true },
+        { name: 'Turn direction (bearings)', value: '' },
+        { name: 'Distance for second part', value: '' },
+        { separator: true },
+    ],
+    testValues: [
+        [200, 300, 340, 500],
+        ['S20W', 300, 'N20W', 500],
+        [200, 30000, 340, 50000],
+        [200, 0.3, 340, 0.5],
+        ['S62E', 75, 'N18E', 53],
+        [90, 500, 125, 200],
+        [90, 500, 180, 200],
+        ['N90E', 500, 'S55E', 200],
+        ['N90E', 500, 'S0E', 200],
+        ['N90E', 500, 'S45W', 800],
+        ['N46E', 3.8, 'N25W', 1.6],
+        ['N10E', 3.8, 'N85W', 2.6],
+        [10, 3.8, 275, 2.6],
+        () => [Math.random()*360, Math.random() * 100 + 10, Math.random()*360, Math.random() * 100 + 10]
+    ],
+    func: bearingAngleNavigationQuestions
+}
+
 const topicObjects = [
+    _bearingAngleNavigationQuestions,
     _triangleQuestions,
     _bearingAngles,
     '<b>---------------------</b>',

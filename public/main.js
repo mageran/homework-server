@@ -142,21 +142,51 @@ const populate = tobj => {
             inputs.appendChild(cont);
         });
     }
-    const doExecute = () => {
+    const doExecute = (testValues) => {
         if (typeof tobj.func !== 'function') {
             return;
         }
         if (tobj.hideHeader) {
             _clearHeader();
         }
+        if (typeof testValues === 'function') {
+            testValues = testValues.call();
+        }
+        var hasTestValues = Array.isArray(testValues);
+        if (hasTestValues && testValues.length !== inputElements.length) {
+            console.error(`testValues ignored; exactly ${inputElements.length} required; given ${testValues.length}`);
+            hasTestValues = false;
+        }
         const outputElement = document.getElementById('topic-output');
         outputElement.innerHTML = "";
+        const tvalues = testValues ? testValues.slice() : [];
         let args = inputElements.map(inpElem => {
             let res;
             if (inpElem.mathField) {
+                if (hasTestValues) {
+                    let latex = tvalues.shift();
+                    inpElem.mathField.latex(latex);
+                    return latex;
+                }
                 return inpElem.mathField.latex();
             }
-            res = inpElem.value;
+            if (hasTestValues) {
+                res = tvalues.shift();
+                inpElem.value = res;
+                if (inpElem.tagName.toUpperCase() === 'SELECT') {
+                    inpElem.noEval = true;
+                    for (let i = 0; i < inpElem.children.length; i++) {
+                        let option = inpElem.children[i];
+                        if (option.tagName.toUpperCase() !== 'OPTION') continue;
+                        if (option.value === res) {
+                            option.selected = true;
+                            break;
+                        }
+                    }
+                }
+            } else {
+                res = inpElem.value;
+            }
             if (!inpElem.noEval) {
                 try {
                     res = eval(inpElem.value);
@@ -183,6 +213,7 @@ const populate = tobj => {
     }
     if (typeof (tobj.func) === 'function') {
         let button = document.createElement('input');
+        button.className = 'main-button';
         button.type = 'button';
         button.value = 'Go';
         button.style.backgroundColor = "lightgreen";
@@ -196,7 +227,7 @@ const populate = tobj => {
     }
     const addClearButton = parametersExist;
     if (addClearButton) {
-        let button = document.createElement('input');
+        let button = _htmlElement('input', inputs, null, 'main-button');
         button.type = 'button';
         button.value = 'Clear Input Fields';
         button.style.marginLeft = "500px";
@@ -211,7 +242,34 @@ const populate = tobj => {
                 inpElem.style.background = "white";
             });
         });
-        inputs.appendChild(button);
+    }
+    if (tobj.testValues && parametersExist) {
+        let cont = _htmlElement('div', inputs);
+        elemStyle(cont, {
+            margin: '20px 0',
+            padding: '10px',
+            backgroundColor: '#f8f8f8',
+            border: '1px dashed black',
+            borderRadius: '8px'
+        })
+        tobj.testValues.forEach(testValueList => {
+            var buttonTitle;
+            if (typeof testValuesList === 'function') {
+                buttonTitle = 'Run with generated values'
+            } else {
+                buttonTitle = `Run with values ${testValueList.join(', ')}`;
+            }
+            const b = _htmlElement('input', cont, null, 'main-button');
+            b.type = 'button';
+            b.value = buttonTitle;
+            elemStyle(b, {
+                fontSize: '12pt',
+                marginLeft: '10px'
+            })
+            b.addEventListener('click', () => {
+                doExecute(testValueList);
+            })
+        })
     }
     MathJax.typeset();
     if (!parametersExist) {

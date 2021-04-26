@@ -25,6 +25,12 @@ option {
     border-radius: 8px;
 }
 
+.main-button {
+    padding: 5px;
+    font-size: 16pt;
+    border-radius: 8px;
+}
+
 .width500 {
     width: 500px;
 }

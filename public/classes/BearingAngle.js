@@ -4,13 +4,17 @@
 class BearingAngle {
 
     constructor(angleString) {
-        if (this.parseAsTrueBearing(angleString))  {
+        if (this.parseAsTrueBearing(angleString)) {
             return;
         }
         if (this.parseAsCompassBearing(angleString)) {
             return;
         }
         throw `unrecognized format of bearing angle: ${angleString}`;
+    }
+
+    get opposite() {
+        return new BearingAngle((this.trueBearing + 180) % 360);
     }
 
     parseAsTrueBearing(angleString) {
@@ -80,12 +84,102 @@ class BearingAngle {
     }
 
     get trueBearingString() {
-        return String(this.trueBearing);
+        return String(Number(_d(this.trueBearing).toFixed(1)));
     }
 
     get compassBearingString() {
         const { ns, angle, ew } = this.compassBaering;
-        return `${ns}${angle}${ew}`;
+        return `${ns}${Number(_d(angle).toFixed(1))}${ew}`;
+    }
+
+    /**
+     * returns true, if this angle is between the given angles in clockwise direction
+     * For instance,
+     * - 20 would be between angles [300, 50]
+     * - 70 woud *not* be between angles [300,50]           
+     * @param {*} bearingAngle1 
+     * @param {*} bearingAngle2 
+     */
+    isBetweenBearingAngles(bearingAngle1, bearingAngle2) {
+        const tb = this.trueBearing;
+        const tb1 = bearingAngle1.trueBearing;
+        const tb2 = bearingAngle2.trueBearing;
+        if (tb1 < tb2) {
+            return tb > tb1 && tb < tb2
+        }
+        // Zero angle (N) is within the range:
+        return tb > tb1 || tb < tb2;
+    }
+
+    /**
+     * Determine whether this angle represents a right turn with respect to the initial bearing given as argument.
+     * For instance, if initialBearing is N55E then
+     * - S60E would be a right turn:
+     *       /\
+     *      /  \
+     *     /    \
+     *    /      \
+     * initial  this
+     *
+     * - N30W would be a left turn:
+     * 
+     *   this
+     *      \
+     *       \
+     *        \
+     *         \
+     *        /
+     *       /
+     *      /
+     *     /
+     * initial
+     * 
+     * @param {BearingAngle} initialBearing 
+     */
+    isRightTurn(initialBearing) {
+        return this.isBetweenBearingAngles(initialBearing, initialBearing.opposite);
+    }
+
+    /**
+     * Calculates the end point for a line that starts at the given
+     * startPoint and has this bearing as direction.
+     * 
+     * @param {x: Number, y: Number} startPoint 
+     * @param {Number} sideLength 
+     */
+    getEndPoint(startPoint, sideLength) {
+        var alpha, xsign, ysign;
+        const { x, y } = startPoint;
+        const tb = this.trueBearing;
+        if (tb <= 90) {
+            alpha = 90 - tb;
+            xsign = 1;
+            ysign = 1;
+        }
+        else if (tb <= 180) {
+            alpha = tb - 90;
+            xsign = 1;
+            ysign = -1;
+        }
+        else if (tb <= 270) {
+            alpha = 270 - tb;
+            xsign = -1;
+            ysign = -1;
+        }
+        else {
+            alpha = tb - 270;
+            xsign = -1;
+            ysign = 1;
+        }
+        const side = _d(sideLength);
+        const angle = Angle.fromDegree(alpha, true);
+        const dx = angle.cosDecimal.mul(side);
+        const dy = angle.sinDecimal.mul(side);
+        const endPoint = {
+            x: _d(x).add(dx.mul(xsign)).toNumber(),
+            y: _d(y).add(dy.mul(ysign)).toNumber()
+        }
+        return endPoint;
     }
 
 }
@@ -122,16 +216,16 @@ class BearingAngleHtml {
         ctx.strokeText('N', 93, y(10));
         ctx.strokeStyle = "black";
         ctx.beginPath();
-        var pi2 = _d(-Math.PI/2);
+        var pi2 = _d(-Math.PI / 2);
         var startAngle = pi2.toNumber();
         var endAngle = angle;
         var counterClockwise = false;
         if (!givenAsTrueBearing) {
-            const { ns, ew} = compassBaering;
+            const { ns, ew } = compassBaering;
             if (ns === 'N') {
                 counterClockwise = ew === 'W';
             } else {
-                startAngle = Math.PI/2;
+                startAngle = Math.PI / 2;
                 counterClockwise = ew === 'E';
             }
         }
