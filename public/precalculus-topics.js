@@ -456,7 +456,12 @@ const _triangleQuestions = {
         { name: 'Sketch', type: 'select', options: [{ label: 'fake', value: 'fake' }, { label: 'accurate', value: 'accurate' }] }
     ],
     testValues: [
-        ['oblique', 'a', '', 3, 'b', '', 4, 'c', '', 5, 'accurate' ]
+        ['oblique', 'a', '', 3, 'b', '', 4, 'c', '', 5, 'accurate' ],
+        ['right', 'c', '', 500, 'b', 58, '', 'a', 90, '', 'accurate' ],
+        ['right', 'a', 90, '', 'b', 58, '', 'c', '', 500, 'accurate' ],
+        ['oblique', 'a', '', 6, 'b', 25, '', 'c', '', 7, 'accurate' ],
+        ['oblique', 'a', '', 7, 'b', '', 3, 'c', '', 6, 'accurate' ],
+        ['oblique', 'a', 70, '', 'b', '', 9, 'c', '', 7, 'accurate' ],
     ],
     func: triangleQuestions
 }

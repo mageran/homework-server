@@ -1,6 +1,6 @@
 
-const _toFixedAngles = 1;
-const _toFixedSides = 2;
+var _toFixedAngles = 1;
+var _toFixedSides = 2;
 
 class Triangle {
 
@@ -25,6 +25,22 @@ class Triangle {
 
     get isRightTriangle() {
         return this.sidePairs.some(sp => sp.isRightAngle);
+    }
+
+    getProblemCategory() {
+        const status = this.getGivenStatus().join('');
+        if (status === 'SSS') {
+            return status;
+        }
+        if (status === 'SSA') {
+            let anglePair = this.sidePairs.filter(sp => sp.angle)[0];
+            return anglePair.side ? 'SSA' : 'SAS';
+        }
+        if (status === 'SAA') {
+            let sidePair = this.sidePairs.filter(sp => sp.side)[0];
+            return sidePair.angle ? 'SAA' : 'ASA';
+        }
+        return '[unsupported]';
     }
 
     getGivenStatus() {
@@ -547,6 +563,7 @@ class Triangle {
         //_drawLine({ x: 0, y: 0 }, { x: 150/scaleFactor, y: 300/scaleFactor });
         ctx.stroke();
         this.drawAdditional({ ctx, _cc, _drawLine, _drawArc, _cornerLabel, scaleFactor, aCoords, bCoords, cCoords, _addLegend });
+
         const redrawLegendTable = (legendTable) => {
             legendTable.innerHTML = '';
             legendEntries.forEach(({ color, text }) => {
@@ -576,13 +593,7 @@ class Triangle {
         td = _htmlElement('td', tr);
         elemStyle(td, { paddingLeft: "15px" });
         td.setAttribute("valign", "top");
-        let legendTable = _htmlElement('table', _htmlElement('div', td));
-        redrawLegendTable(legendTable);
-        let drawOptionsContainer = _htmlElement('div', td);
-        const redrawCanvas = () => {
-            ctx.clearRect(0, 0, cv.width, cv.height);
-            this.draw(null, cv, legendTable);
-        }
+
         const optionsContainer = _htmlElement('div', td);
         elemStyle(optionsContainer, { padding: '20px 0' });
         Object.keys(this.drawOptions).forEach(key => {
@@ -600,6 +611,14 @@ class Triangle {
                 redrawCanvas();
             })
         });
+
+        let legendTable = _htmlElement('table', _htmlElement('div', td));
+        redrawLegendTable(legendTable);
+        let drawOptionsContainer = _htmlElement('div', td);
+        const redrawCanvas = () => {
+            ctx.clearRect(0, 0, cv.width, cv.height);
+            this.draw(null, cv, legendTable);
+        }
         let redrawButton = _htmlElement('input', td, null, 'main-button');
         redrawButton.type = 'button';
         redrawButton.value = "Redraw";
@@ -681,7 +700,7 @@ class TriangleSideAnglePair {
     }
 
     solveRightTriangle() {
-        const { _disp } = this;
+        const { _disp } = this.triangle;
         if (this.isHypotenuse()) {
             return null;
         }
@@ -768,7 +787,7 @@ class TriangleSideAnglePair {
         const plus = '+'; // because syntax highlighting breaks otherwise...
         formulas.push(`cos ${a.angleName} = \\frac{${b.sideName}^2 ${plus} ${c.sideName}^2 - ${a.sideName}^2}{2${b.sideName}${c.sideName}}` +
             `= \\frac{${_disp(b.side)}^2 ${plus} ${_disp(c.side)}^2 - ${_disp(a.side)}^2}{2\\cdot ${_disp(b.side)}\\cdot ${_disp(c.side)}}` +
-            ` = ${_disp(tmpValue)}`,
+            ` = ${_disp(tmpValue, 4)}`,
             `${a.angleName} = cos^{-1}(${Number(tmpValue.toFixed(4))}) = ${_disp(angleResult)}`);
         steps.push(`Determining angle ${a.angleName} using Law of Cosine:`);
         steps.push(...formulas.map(latex => ({ latex })));

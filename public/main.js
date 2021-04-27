@@ -290,6 +290,7 @@ const populate = tobj => {
     if (!parametersExist) {
         doExecute();
     }
+    DO_EXECUTE = doExecute;
 };
 
 const addMathResult = (cont, callback, { notext, isInput } = {}, displayOptions) => {
