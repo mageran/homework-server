@@ -182,7 +182,7 @@ class BearingAngle {
         return endPoint;
     }
 
-    getParametersForDrawingOnCanvas(returnAsList) {
+    getParametersForDrawingOnCanvas(asTrueBearing, returnAsList) {
         const { ns, angle, ew} = this.compassBaering;
         const direction = `${ns}${ew}`;
         var startAngleDegree;
@@ -207,6 +207,10 @@ class BearingAngle {
             startAngleDegree = 270;
             endingAngleDegree = 270 - angle;
             counterclockwise = true;
+        }
+        if (asTrueBearing) {
+            startAngleDegree = 270;
+            counterclockwise = false;
         }
         if (returnAsList) {
             return [startAngleDegree, endingAngleDegree, counterclockwise];

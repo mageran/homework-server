@@ -11,12 +11,15 @@ class Triangle {
                 new TriangleSideAnglePair(this, nameB, angleB, sideB),
                 new TriangleSideAnglePair(this, nameC, angleC, sideC)
             ]
+            this.initDrawOptions();
         }
     }
 
     clone() {
         const triangle = new Triangle(null, null, null, null, null, null, null, null, null, true);
         triangle.sidePairs = this.sidePairs.map(sp => sp.clone(triangle));
+        triangle.fakeCoords = this.fakeCoords;
+        triangle.drawOptions = this.drawOptions;
         return triangle;
     }
 
@@ -376,16 +379,27 @@ class Triangle {
 
     }
 
-    draw(cont, fakeCoords = true) {
+    initDrawOptions() {
+        this.drawOptions = {};
+    }
+
+    getDrawOptionValue(id) {
+        if (typeof this.drawOptions[id] === 'object') {
+            return this.drawOptions[id].value;
+        }
+        return null;
+    }
+
+    draw(cont, canvas = null, legendTableForRedraw = null) {
         console.log(`draw: this: ${this.constructor.name}`);
-        const { _disp } = this;
+        const { _disp, fakeCoords } = this;
         const canvasSize = 800.0;
         const maxSideLength = _d(Math.max(...this.sidePairs.map(sp => sp.side.toNumber())));
         var scaleFactor = canvasSize / maxSideLength;
         console.log(`max side length: ${maxSideLength}`);
-        const cv = document.createElement('canvas');
+        const cv = canvas ? canvas : document.createElement('canvas');
         const xoff = canvasSize / 8;
-        const yoff = canvasSize / 8;
+        const yoff = canvasSize / 4;
         const ctx = cv.getContext('2d');
         var shiftUp = 0;
         const legendEntries = [];
@@ -533,17 +547,8 @@ class Triangle {
         //_drawLine({ x: 0, y: 0 }, { x: 150/scaleFactor, y: 300/scaleFactor });
         ctx.stroke();
         this.drawAdditional({ ctx, _cc, _drawLine, _drawArc, _cornerLabel, scaleFactor, aCoords, bCoords, cCoords, _addLegend });
-        if (legendEntries.length === 0) {
-            cont.appendChild(cv);
-        } else {
-            let table = _htmlElement('table', cont);
-            let tr = _htmlElement('tr', table);
-            let td = _htmlElement('td', tr);
-            td.setAttribute("valign", "top");
-            td.appendChild(cv);
-            td = _htmlElement('td', tr);
-            td.setAttribute("valign", "top");
-            let legendTable = _htmlElement('table', td);
+        const redrawLegendTable = (legendTable) => {
+            legendTable.innerHTML = '';
             legendEntries.forEach(({ color, text }) => {
                 const tr = _htmlElement('tr', legendTable);
                 var td = _htmlElement('td', tr);
@@ -559,6 +564,46 @@ class Triangle {
                 td.innerHTML = text;
             })
         }
+        if (legendTableForRedraw) {
+            redrawLegendTable(legendTableForRedraw);
+        }
+        if (canvas) return;
+        let table = _htmlElement('table', cont);
+        let tr = _htmlElement('tr', table);
+        let td = _htmlElement('td', tr);
+        td.setAttribute("valign", "top");
+        td.appendChild(cv);
+        td = _htmlElement('td', tr);
+        elemStyle(td, { paddingLeft: "15px" });
+        td.setAttribute("valign", "top");
+        let legendTable = _htmlElement('table', _htmlElement('div', td));
+        redrawLegendTable(legendTable);
+        let drawOptionsContainer = _htmlElement('div', td);
+        const redrawCanvas = () => {
+            ctx.clearRect(0, 0, cv.width, cv.height);
+            this.draw(null, cv, legendTable);
+        }
+        const optionsContainer = _htmlElement('div', td);
+        elemStyle(optionsContainer, { padding: '20px 0' });
+        Object.keys(this.drawOptions).forEach(key => {
+            const { label, value } = this.drawOptions[key];
+            const div = _htmlElement('div', optionsContainer);
+            const cb = _htmlElement('input', div);
+            cb.type = 'checkbox';
+            elemStyle(cb, { width: '40px', height: '40px', verticalAlign: 'middle' });
+            const labelElement = _htmlElement('div', div, label);
+            elemStyle(labelElement, { verticalAlign: 'middle', display: 'inline-block' });
+            cb.checked = !!value;
+            cb.addEventListener('change', () => {
+                const newValue = cb.checked;
+                this.drawOptions[key].value = newValue;
+                redrawCanvas();
+            })
+        });
+        let redrawButton = _htmlElement('input', td, null, 'main-button');
+        redrawButton.type = 'button';
+        redrawButton.value = "Redraw";
+        redrawButton.addEventListener('click', redrawCanvas);
     }
 
 }

@@ -19,7 +19,7 @@ const _showComputationSteps = (o, steps, options = {}) => {
         if (triangle) {
             let { fakeSketch } = options;
             //_htmlElement('div', o, 'Triangle sketch:');
-            triangle.draw(_htmlElement('div', o), fakeSketch);
+            triangle.draw(_htmlElement('div', o));
         }
     });
     return steps;
@@ -42,11 +42,12 @@ function triangleQuestions(triangleType, aName, A, a, bName, B, b, cName, C, c, 
         }
         const triangle = new Triangle(aName, A, a, bName, B, b, cName, C, c);
         triangle.forceOblique = forceOblique;
+        triangle.fakeCoords = sketchType === 'fake';
         const status = triangle.getGivenStatus();
         console.log(`status: ${status}`);
         _htmlElement('div', o, `This is an ${status.join('')} problem (SSA might be SAS!)`);
         const steps = triangle.solve();
-        _showComputationSteps(o, steps, { fakeSketch: sketchType === 'fake'});
+        _showComputationSteps(o, steps);
     } catch (err) {
         _addErrorElement(o, err);
         //throw err
@@ -59,7 +60,7 @@ function bearingAngleNavigationQuestions(bearingAngle1, side1, bearingAngle2, si
     try {
         const bearingTriangle = new BearingAngleTriangle(bearingAngle1, bearingAngle2, side1, side2);
         bearingTriangle.skipHeightCalculationSteps = true;
-        _showComputationSteps(o, bearingTriangle.solve(), { fakeSketch: false });
+        _showComputationSteps(o, bearingTriangle.solve());
     } catch (err) {
         _addErrorElement(o, err);
         throw err
