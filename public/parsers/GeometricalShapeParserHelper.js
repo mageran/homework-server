@@ -26,7 +26,10 @@ class GeometricalShapeParserHelper {
                 if (!triangleObject[id]) {
                     triangleObject[id] = {};
                 }
-                triangleObject[id][prop] = identifierAssignments[name];
+                const value = identifierAssignments[name];
+                if (value !== null) {
+                    triangleObject[id][prop] = value;
+                }
             })
             console.log(triangleObject);
             const t = Triangle.createTriangleFromObject(triangleObject);
@@ -73,7 +76,12 @@ class GeometricalShapeParserHelper {
         const { definitions } = this.parse(inputString, false);
         const toplevelIdentifierAssignments = {};
         definitions.forEach(({ artifactId, assignments }) => {
+            const missingNames = [];
             const reduceFun = (identifierAssignments, { id, expr }) => {
+                if (typeof expr === 'undefined') {
+                    missingNames.push(id);
+                    return identifierAssignments;
+                }
                 const idAssignments = shallowCopy(identifierAssignments);
                 mergeWith(idAssignments, toplevelIdentifierAssignments);
                 const num = evalAst(expr, idAssignments);
@@ -82,10 +90,23 @@ class GeometricalShapeParserHelper {
             }
             const identifierAssignments = assignments.reduce(reduceFun, {});
             //console.log(identifierAssignments);
+            missingNames.forEach(name => { identifierAssignments[name] = null; });
             const shape = this.createShapeObject(artifactId, identifierAssignments);
             toplevelIdentifierAssignments[artifactId] = shape;
         });
         return toplevelIdentifierAssignments;
+    }
+
+    parseTriangleDefinition(inputString) {
+        const triangleName = 'T';
+        const shapeSpec = `${triangleName}: ${inputString};`;
+        const shapesMap = this.parseDefinitions(shapeSpec);
+        const triangle = shapesMap[triangleName];
+        if (!triangle) {
+            throw `something went wrong while trying to create triangle object using "${inputString}"`;
+        }
+        triangle.reset();
+        return triangle;
     }
 
     parseExpresion(inputString, shapeObjectsMap) {

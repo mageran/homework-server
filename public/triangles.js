@@ -114,19 +114,9 @@ function triangleQuestionsOneLineInput(anglesAndSidesLatex) {
     const o = this;
     o.style.fontSize = '18pt';
     try {
-        const { identifierAssignments } = evalLatexFormulaWithContext(anglesAndSidesLatex, /\s*[;,]\s*/);
-        console.log(identifierAssignments);
-        const triangleObject = {};
-        Object.keys(identifierAssignments).forEach(name => {
-            const id = name.toLowerCase();
-            const prop = name.match(/^[A-Z].*$/) ? 'angle' : 'side';
-            if (!triangleObject[id]) {
-                triangleObject[id] = {};
-            }
-            triangleObject[id][prop] = Number(identifierAssignments[name]);
-        })
-        console.log(triangleObject);
-        const triangle = Triangle.createTriangleFromObject(triangleObject);
+        _addInputsForRoundingOfAnglesAndSides(o);
+        const hlp = new GeometricalShapeParserHelper();        
+        const triangle = hlp.parseTriangleDefinition(anglesAndSidesLatex);
         _showTriangleSolution(o, triangle);
     } catch (err) {
         _addErrorElement(o, err);
@@ -158,7 +148,7 @@ function areaOfComposedShapes(shapesSpec, resultExpression) {
         const steps = [];
         Object.keys(shapeObjectsMap).forEach(id => {
             const shape = shapeObjectsMap[id];
-            const solveAreaSteps = shape.solveArea();
+            const solveAreaSteps = shape.solveArea(3);
             var needsSolvingStr = '';
             if (shape.needsSolving) {
                 needsSolvingStr = ` [needs solving for "${shape.needsSolving.join('" and "')}"]`;

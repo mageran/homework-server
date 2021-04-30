@@ -481,6 +481,11 @@ const _triangleQuestionsOneLineInput = {
         ['a = 7; b = 3; c = 6'],
         ['A = 70; b = 9; c = 7'],
         ['A = 73; b = 4; c = 7'],
+        ['B = 35, a = 3, c = 6'],
+        ['a = 14, b = 10, c = 6'],
+        ['a = 7, c = 6, B = 115'],
+        ['a = 8, b = 17, c = 20'],
+        ['P = 44, p = 4, Q = 56, r'],
     ],
     func: triangleQuestionsOneLineInput
 }
@@ -540,7 +545,7 @@ const _areaOfComposedShapes = {
     For instance, the area of a circle segment, which is the area of a triangle substcted from the area of a circle sector.
     `,
     parameters: [
-        { name: "Shape input", rows: 20, size: 80, value: '', noEval: true },
+        { name: "Shapes input (see test cases for examples)", rows: 20, size: 80, value: '', noEval: true },
         { name: "Area calculation expression", value: '', noEval: true }
     ],
     testValues: [
@@ -561,9 +566,12 @@ const _areaOfComposedShapes = {
             'S - T'
         ],
         [
-            'T: A=40, b=5, c=b;\nS: angle=180, radius = 0.5 * T.a;',
+            'T: C=40, b=5, a=b;\nS: angle=180, radius = 0.5 * T.c;',
             'T + S'
-        ]
+        ],
+        ['T: P = 44, p = 4, Q = 56, r;', 'T'],
+        ['T: S = 122, s = 7, r = 4.3;', 'T'],
+        ['T: R = 32, Q = 62, p = 13;', 'T'],
     ],
     func: areaOfComposedShapes
 }

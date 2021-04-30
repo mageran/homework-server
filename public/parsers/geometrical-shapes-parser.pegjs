@@ -111,6 +111,10 @@ Assignment
   = id: Identifier _ '=' _ expr: Expression _ {
     return { id, expr };
   }
+  / id:Identifier {
+    let expr = undefined;
+    return { id, expr }
+  }
 
 Equation
   = _ lhs:Expression rhs:(_ "=" _ Expression)? _ {

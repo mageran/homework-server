@@ -221,7 +221,8 @@ class Triangle extends GeometricShape {
                     c = givenPairs[1];
                 }
                 let b = missingPair;
-                let bResult = c.side.pow(2).sub(a.side.pow(2)).sqrt().toFixed(_toFixedSides);
+                let bResult0 = c.side.pow(2).sub(a.side.pow(2)).sqrt();
+                let bResult = bResult0.toFixed(_toFixedSides);
                 steps.push({
                     latex: `${b.sideName}^2 = ${c.sideName}^2 - ${a.sideName}^2\\Rightarrow ` +
                         `${b.sideName} = \\sqrt{${c.side}^2 - ${a.side}^2} = ${bResult}`
@@ -237,7 +238,7 @@ class Triangle extends GeometricShape {
                     latex: `cos ${b.angleName} = \\frac{${a.side}}{${c.side}} \\Rightarrow ` +
                         `${b.angleName} = cos^{-1}(\\frac{${a.side}}{${c.side}}) = ${bAngleResult}`
                 })
-                b.side = bResult;
+                b.side = bResult0;
                 a.angle = Angle.fromDegree(aAngleResult, true);
                 b.angle = Angle.fromDegree(bAngleResult, true);
                 steps.push(...this.solveAdditional());
@@ -426,7 +427,7 @@ class Triangle extends GeometricShape {
         return steps;
     }
 
-    solveArea() {
+    solveArea(toFixedForResult = null) {
         const { _disp, sidePairs } = this;
         const cat = this.getProblemCategory();
         const steps = [];
@@ -434,16 +435,17 @@ class Triangle extends GeometricShape {
         const _solveSSS = () => {
             steps.push(`&nbsp;&nbsp;Using formula for SSS triangles:`);
             const [a, b, c] = sidePairs;
-            const s = (a.side.add(b.side).add(c.side)).div(2);
+            const s = (a.side.add(b.side).add(c.side)).div(_d(2));
             const k = (s.mul(s.sub(a.side)).mul(s.sub(b.side)).mul(s.sub(c.side))).sqrt();
             steps.push({
                 latex: `s = \\frac{1}{2}(${a.sideName} + ${b.sideName} + ${c.sideName})`
-                    + ` = \\frac{1}{2}(${_disp(a.side)} + ${_disp(b.side)} + ${_disp(c.side)}) = ${_disp(s)}`
+                    + ` = \\frac{1}{2}(${_disp(a.side)} + ${_disp(b.side)} + ${_disp(c.side)}) = ${_disp(s, toFixedForResult)}`
             });
+            console.log(`s = ${s}`);
             steps.push({
                 latex: `K = \\sqrt{s(s - ${a.sideName})(s - ${b.sideName})(s - ${c.sideName})} `
                     + `= \\sqrt{${_disp(s)}\\cdot ${_disp(s.sub(a.side))}\\cdot ${_disp(s.sub(b.side))}\\cdot ${_disp(s.sub(c.side))}}`
-                    + ` = ${_disp(k)}`
+                    + ` = ${_disp(k, toFixedForResult)}`
             });
             this.area = k;
         }
@@ -451,11 +453,11 @@ class Triangle extends GeometricShape {
             steps.push(`&nbsp;&nbsp;Using formula for ${cat} triangles:`);
             let a = sidePairs.filter(sp => sp.angleIsGiven)[0];
             let [b, c] = sidePairs.filter(sp => sp.sideIsGiven);
-            const k = b.side.mul(c.side).mul(a.angle.sinDecimal).div(2);
+            const k = (b.side.mul(c.side).mul(a.angle.sinDecimal)).div(2);
             steps.push({
                 latex: `K = \\frac{1}{2}${b.sideName}${c.sideName}\\cdot sin ${a.angleName} = `
                     + `\\frac{1}{2}\\cdot ${_disp(b.side)}\\cdot ${_disp(c.side)}\\cdot sin ${_disp(a.angle)}`
-                    + `= ${_disp(k)}`
+                    + `= ${_disp(k, toFixedForResult)}`
             })
             this.area = k;
         }
