@@ -456,14 +456,33 @@ const _triangleQuestions = {
         { name: 'Sketch', type: 'select', options: [{ label: 'fake', value: 'fake' }, { label: 'accurate', value: 'accurate' }] }
     ],
     testValues: [
-        ['oblique', 'a', '', 3, 'b', '', 4, 'c', '', 5, 'accurate' ],
-        ['right', 'c', '', 500, 'b', 58, '', 'a', 90, '', 'accurate' ],
-        ['right', 'a', 90, '', 'b', 58, '', 'c', '', 500, 'accurate' ],
-        ['oblique', 'a', '', 6, 'b', 25, '', 'c', '', 7, 'accurate' ],
-        ['oblique', 'a', '', 7, 'b', '', 3, 'c', '', 6, 'accurate' ],
-        ['oblique', 'a', 70, '', 'b', '', 9, 'c', '', 7, 'accurate' ],
-    ],
+        ['oblique', 'a', '', 3, 'b', '', 4, 'c', '', 5, 'accurate'],
+        ['right', 'c', '', 500, 'b', 58, '', 'a', 90, '', 'accurate'],
+        ['right', 'a', 90, '', 'b', 58, '', 'c', '', 500, 'accurate'],
+        ['oblique', 'a', '', 6, 'b', 25, '', 'c', '', 7, 'accurate'],
+        ['oblique', 'a', '', 7, 'b', '', 3, 'c', '', 6, 'accurate'],
+        ['oblique', 'a', 70, '', 'b', '', 9, 'c', '', 7, 'accurate'],
+        ["oblique", "a", 73, '', "b", '', 4, "c", '', 7, "accurate"]],
     func: triangleQuestions
+}
+
+const _triangleQuestionsOneLineInput = {
+    title: 'Triangle Questions (1-line input)',
+    description: `Solve triangle questions where sides and angles are given. Specify the triangle using assignments
+    like "a = 5; B = 60; c = 5" which stands for "length of side a is 5, angle B is 60 degrees, length of side c is 5"`,
+    parameters: [
+        { name: 'Sides and angles', type: 'formula', cssClass: 'width500' }
+    ],
+    testValues: [
+        ['a = 3; b = 4, c = 5'],
+        ['c = 500; B = 58; A = 90'],
+        ['A = 90; B = 58; c = 500'],
+        ['a = 6; B = 25; c = 7'],
+        ['a = 7; b = 3; c = 6'],
+        ['A = 70; b = 9; c = 7'],
+        ['A = 73; b = 4; c = 7'],
+    ],
+    func: triangleQuestionsOneLineInput
 }
 
 const _bearingAngleNavigationQuestions = {
@@ -502,21 +521,57 @@ const _bearingAngleNavigationQuestions = {
         (() => [
             Math.trunc(Math.random() * 340) + 10,
             Math.trunc(Math.random() * 100) + 10,
-            Math.trunc(Math.random() * 340) + 10, 
+            Math.trunc(Math.random() * 340) + 10,
             Math.trunc(Math.random() * 100) + 10
         ]),
         (() => [
-            (Math.random()>.5?'N':'S')+Math.trunc(Math.random() * 90)+(Math.random()>.5?'E':'W'),
+            (Math.random() > .5 ? 'N' : 'S') + Math.trunc(Math.random() * 90) + (Math.random() > .5 ? 'E' : 'W'),
             Math.trunc(Math.random() * 100) + 10,
-            (Math.random()>.5?'N':'S')+Math.trunc(Math.random() * 90)+(Math.random()>.5?'E':'W'),
+            (Math.random() > .5 ? 'N' : 'S') + Math.trunc(Math.random() * 90) + (Math.random() > .5 ? 'E' : 'W'),
             Math.trunc(Math.random() * 100) + 10
         ])
     ],
     func: bearingAngleNavigationQuestions
 }
 
+const _areaOfComposedShapes = {
+    title: 'Area of Geometrical Shapes',
+    description: `Calculate the area of shapes (triangle, circle sectors, rectangles) that are composed with each other.
+    For instance, the area of a circle segment, which is the area of a triangle substcted from the area of a circle sector.
+    `,
+    parameters: [
+        { name: "Shape input", rows: 20, size: 80, value: '', noEval: true },
+        { name: "Area calculation expression", value: '', noEval: true }
+    ],
+    testValues: [
+        [
+            `T1: A = 75, c = 16.5, b = 26;\nT2: c = 18, b = 12.5, a = T1.a;`,
+            `T1 + T2`
+        ],
+        [
+            `T: A=60, b=6, c=b;\nS: angle=60, radius=6;`,
+            `S - T`
+        ],
+        [
+            `R: width = 12, height = 8.5;\nT: a = 12, b = 11, c = 11;`,
+            'R + T'
+        ],
+        [
+            `S: angle = 180, radius = 3;\nT: B = 90, b = 6, c = 3;`,
+            'S - T'
+        ],
+        [
+            'T: A=40, b=5, c=b;\nS: angle=180, radius = 0.5 * T.a;',
+            'T + S'
+        ]
+    ],
+    func: areaOfComposedShapes
+}
+
 const topicObjects = [
+    _areaOfComposedShapes,
     _bearingAngleNavigationQuestions,
+    _triangleQuestionsOneLineInput,
     _triangleQuestions,
     _bearingAngles,
     '<b>---------------------</b>',

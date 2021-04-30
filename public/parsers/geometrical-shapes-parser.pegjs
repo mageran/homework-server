@@ -1,7 +1,10 @@
 // compile into latex-formula-grammar.js using
-// pegjs -e latexFormulaParser --format globals latex-formula-grammar.pegjs
+/*
+pegjs -e geometricalShapesParser --format globals geometrical-shapes-parser.pegjs
+pegjs -o geometrical-shapes-expression-parser.js -e geometricalShapesExpressionParser --format globals --allowed-start-rules Expression geometrical-shapes-parser.pegjs
+*/
 // then use variable "latexFormulaParser" in the code like this:
-// latexFormulaParser.parse(string);
+// geometricalShapesParser.parse(string);
 {
 
   const trigFunctionNames = {
@@ -88,6 +91,26 @@
 
 }
 
+Program
+  = _ definitions:(ArtifactDefinition)* _ {
+    return { 
+      definitions: definitions
+    }
+  }
+
+ArtifactDefinition
+  = id: Identifier _ ':' _ assignment: Assignment _ tail:(_ ',' _ Assignment)* _ ';' _ {
+    let assignments = tail.map(elem => elem[3]);
+    return {
+        artifactId: id,
+        assignments: [assignment, ...assignments]
+    };
+  }
+
+Assignment
+  = id: Identifier _ '=' _ expr: Expression _ {
+    return { id, expr };
+  }
 
 Equation
   = _ lhs:Expression rhs:(_ "=" _ Expression)? _ {
@@ -177,6 +200,11 @@ PTerm
     const degree = degreePart ? degreePart[1] : 2;
     return degree === 2 ? { op: 'sqrt', radicand } : { op: 'nthroot', degree, radicand };
   }
+  / recordId: Identifier '.' fieldId: Identifier {
+    return {
+      op: 'fieldAccess', operands: [recordId, fieldId]
+    };
+  }
   / p:Prim { return p; }
   
   
@@ -184,7 +212,6 @@ Prim
   = Float
   / Integer
   / Identifier
-  / ChemicalElement
   / LatexIdentifier
 
 TrigFunction
@@ -197,16 +224,25 @@ Float "float"
   = [0-9]+ "." [0-9]+ { return parseFloat(text()); }
 
 Identifier "identifier"
-  = [A-Za-z] { return text(); }
+  = [A-Za-z][A-Za-z_0-9]* { return text(); }
 
 LatexIdentifier
 = "\\" [a-z]+ { return text(); }
 
-ChemicalElement
-= [A-Z][a-z]* {
-    const obj = { symbol: text(), chemicalElement: chemicalElement(text()) };
-    return obj; 
-  }
+_
+  = (whitespace)*
 
-_ "whitespace"
-  = [ \t\n\r\u00A0]*
+whitespace
+  = [ \t\n\r\u00A0]
+
+lineTerminator
+= [\n\r]
+
+enclosedComment
+= "/*" (!"*/" anyCharacter)* "*/"
+
+lineComment
+= "//" (!lineTerminator anyCharacter)*
+
+anyCharacter
+= .

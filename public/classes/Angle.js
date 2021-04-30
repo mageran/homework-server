@@ -399,6 +399,8 @@ function* unitCircleAngles(k = 0) {
 
 const pi = Math.PI;
 
+/* copied to CircleSector.js */
+/*
 class CircleSector {
 
     constructor() {
@@ -438,6 +440,7 @@ class CircleSector {
     }
 
 }
+*/
 
 class CircleArea {
 

@@ -6,6 +6,10 @@ const mergeWith = (obj, values) => {
     return obj;
 }
 
+const shallowCopy = obj => {
+    return mergeWith({}, obj);
+}
+
 const elemStyle = (obj, values) => {
     mergeWith(obj.style, values);
     return obj;
@@ -120,32 +124,59 @@ const _collapsibleSection = (cont, title, options = {}) => {
         elemStyle(outer, { width });
     }
     const headerDiv = document.createElement('div');
-    headerDiv.className = 'xsection-header';
-    const checkbox = document.createElement('input');
-    checkbox.setAttribute('type', 'checkbox');
-    if (!initialStateCollapsed) {
-        checkbox.setAttribute('checked', 'true');
+    headerDiv.className = 'collapsible-section-header';
+    const cdiv = document.createElement('div');
+    const createCollapsedIndicator = () => {
+        const cb = _htmlElement('span', headerDiv, null, 'collapsed-indicator');
+        elemStyle(cb, { padding: "3px" });
+        headerDiv.appendChild(cb);
+        cb.expand = () => {
+            cb.innerHTML = "&#9660";
+            cdiv.style.display = 'block';
+        }
+        cb.collapse = () => {
+            cb.innerHTML = "&#9658";
+            cdiv.style.display = 'none';
+        }
+        cb.toggle = () => {
+            if (cb.isCollapsed()) {
+                cb.expand();
+            } else {
+                cb.collapse();
+            }
+        }
+        cb.isCollapsed = () => {
+            return cdiv.style.display === 'none';
+        }
+        cb.addEventListener('click', () => {
+            cb.toggle();
+        })
+        return cb;
     }
-    headerDiv.appendChild(checkbox);
+    headerDiv.className = 'xsection-header';
+    //const checkbox = document.createElement('input');
+    //checkbox.setAttribute('type', 'checkbox');
+    const checkbox = createCollapsedIndicator();
+
+    //headerDiv.appendChild(checkbox);
     const titleSpan = document.createElement('span');
     titleSpan.className = 'xsection-header-title';
     titleSpan.innerHTML = title;
     headerDiv.appendChild(titleSpan);
     outer.appendChild(headerDiv);
-    const cdiv = document.createElement('div');
     cdiv.className = 'xsection-content';
     checkbox.addEventListener('change', event => {
-        cdiv.style.display = checkbox.checked ? 'block' : 'none';
+        checkbox.toggle();
     });
     if (initialStateCollapsed) {
-        cdiv.style.display = 'none';
+        checkbox.collapse();
+    } else {
+        checkbox.expand();
     };
     outer.appendChild(cdiv);
     cont.appendChild(outer);
     cdiv.collapse = () => {
-        console.log(`collapsing...`);
-        checkbox.checked = false;
-        cdiv.style.display = 'none';
+        checkbox.collapse();
     }
     return cdiv;
 }
@@ -246,6 +277,19 @@ const _d = x => {
         return new Decimalx(x);
     }
     return new Decimal(x);
+}
+
+const _disp = (x, toFixedNum = null) => {
+    let num, defaultToFixed;
+    if (x instanceof Angle) {
+        num = _d(x.degree);
+        defaultToFixed = _toFixedAngles;
+    } else {
+        num = _d(x);
+        defaultToFixed = _toFixedSides;
+    }
+    let tf = (typeof toFixedNum === 'number') ? toFixedNum : defaultToFixed;
+    return Number(num.toFixed(tf));
 }
 
 const mo1 = () => {
@@ -361,23 +405,4 @@ const createSelectElement = (cont, optionsIn, selectHook, deselectHook, skipInit
         }
     }
     return selectObj;
-}
-
-
-const __tmp = () => {
-    const ns = ['N', 'S'];
-    const ew = ['E', 'W'];
-    const lr = ['LT', 'RT'];
-    var lines = ['['];
-    for(let i = 0; i < ns.length; i++) {
-        for(let j = 0; j < ew.length; j++) {
-            for(let k = 0; k < lr.length; k++) {
-                let direction = ns[i] + ew[j];
-                let isRightTurn = lr[k] === 'RT';
-                lines.push(`   { direction: "${direction}", isRightTurn: ${isRightTurn}, calc: (b1, b2) => b1 + b2 }, `)
-            }
-        }
-    }
-    lines.push(']');
-    return lines.join('\n');
 }

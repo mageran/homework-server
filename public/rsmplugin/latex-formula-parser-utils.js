@@ -20,14 +20,16 @@ const parseLatexFormula = formulaLatex => {
   return ast;
 }
 
+
+
 const evalLatexFormula = formulaLatex => {
   const ast = parseLatexFormula(formulaLatex);
   const value = evalAst(ast);
   return { ast, value };
 }
 
-const evalLatexFormulaWithContext = formulaLatex => {
-  const latexParts = formulaLatex.split(';');
+const evalLatexFormulaWithContext = (formulaLatex, sepSymRe) => {
+  const latexParts = formulaLatex.split(sepSymRe ? sepSymRe : ';');
   const formulaToEvaluate = latexParts.splice(latexParts.length - 1)[0];
   const identifierAssignments = {};
   latexParts.forEach(latex => {
@@ -38,7 +40,7 @@ const evalLatexFormulaWithContext = formulaLatex => {
   console.log(`identifier assignments: ${JSON.stringify(identifierAssignments, null, 2)}`);
   const ast = parseLatexFormula(formulaToEvaluate);
   const value = evalAst(ast, identifierAssignments);
-  return { ast, value };
+  return { ast, value, identifierAssignments };
 }
 
 
@@ -63,13 +65,17 @@ const parseChemicalFormula = formulaLatex => {
   return ast;
 }
 
-const evalAst = (ast, identifierAssignments = {}) => {
+const evalAst = (ast, identifierAssignments = {}, options = {}) => {
+  const angleModeDegree = (typeof options.angleModeDegree !== 'undefined') ? options.angleModeDegree : true;
   const _e = x => evalAst(x, identifierAssignments);
   if (ast === "\\pi") {
     return _d(Math.PI);
   }
-  if (typeof ast === 'number') {
+  if ((typeof ast === 'number') || (ast instanceof Decimalx)) {
     return _d(ast);
+  }
+  if (ast instanceof Angle) {
+    return angleModeDegree ? _d(ast.degree) : _d(ast.radians);
   }
   if (typeof ast === 'string' && Object.keys(identifierAssignments).includes(ast)) {
     let val = identifierAssignments[ast];
@@ -116,6 +122,19 @@ const evalAst = (ast, identifierAssignments = {}) => {
       identifierAssignments[lhs] = res;
     }
     return res;
+  }
+  if (ast.op === 'fieldAccess') {
+    let [recordId, id] = ast.operands;
+    if (!Object.keys(identifierAssignments).includes(recordId)) {
+      throw `object ${recordId} not found.`;
+    }
+    let record = identifierAssignments[recordId];
+    console.log("record:");
+    console.log(record);
+    if (typeof record[id] === 'undefined') {
+      throw `field ${id} not found for object ${recordId}`;
+    }
+    return record[id];
   }
   if (ast.isTrigFunction) {
     let [operand] = ast.operands;

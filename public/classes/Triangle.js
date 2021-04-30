@@ -2,9 +2,10 @@
 var _toFixedAngles = 1;
 var _toFixedSides = 2;
 
-class Triangle {
+class Triangle extends GeometricShape {
 
     constructor(nameA, angleA, sideA, nameB, angleB, sideB, nameC, angleC, sideC, doNotInitialize = false) {
+        super();
         if (!doNotInitialize) {
             this.sidePairs = [
                 new TriangleSideAnglePair(this, nameA, angleA, sideA),
@@ -12,15 +13,84 @@ class Triangle {
                 new TriangleSideAnglePair(this, nameC, angleC, sideC)
             ]
             this.initDrawOptions();
+            this.getProblemCategory();
         }
+    }
+
+    get shapeName() {
+        return 'Triangle';
+    }
+
+    /**
+     * create triangle from the given triangleObject. The keys of the object are used as 
+     * side names, each value can have keys "side" and "angle", for example:
+     * 
+     * { 
+     *   a: { side: 5 },
+     *   b: { angle: 60 }, 
+     *   c: { side: 7 }
+     * }
+     * 
+     * @param {*} triangleObject
+     */
+    static createTriangleFromObject(triangleObject) {
+        const parameters = [];
+        var keys = Object.keys(triangleObject);
+        if (keys.length === 2) {
+            //add missing empty angle/side pair
+            let ids = ['a', 'b', 'c'];
+            for (let i = 0; i < ids.length; i++) {
+                let id = ids[i];
+                if (!keys.includes(id)) {
+                    triangleObject[id] = {};
+                    break;
+                }
+            }
+            keys = Object.keys(triangleObject);
+        }
+        if (keys.length !== 3) {
+            throw `malformed input; expected 3 angle/side pairs; given ${keys.length}`;
+        }
+        keys.forEach(name => {
+            const { side, angle } = triangleObject[name];
+            parameters.push(name, angle, side);
+        })
+        return new Triangle(...parameters);
+    }
+
+    static createFromOneLineString = (inputString) => {
+        const { identifierAssignments } = evalLatexFormulaWithContext(inputString, /\s*[;,]\s*/);
+        console.log(identifierAssignments);
+        const triangleObject = {};
+        Object.keys(identifierAssignments).forEach(name => {
+            const id = name.toLowerCase();
+            const prop = name.match(/^[A-Z].*$/) ? 'angle' : 'side';
+            if (!triangleObject[id]) {
+                triangleObject[id] = {};
+            }
+            triangleObject[id][prop] = Number(identifierAssignments[name]);
+        })
+        console.log(triangleObject);
+        const triangle = Triangle.createTriangleFromObject(triangleObject);
+        return triangle;
+    }
+
+    _clonePropertiesTo(triangle) {
+        triangle.sidePairs = this.sidePairs.map(sp => sp.clone(triangle));
+        triangle.fakeCoords = this.fakeCoords;
+        triangle.drawOptions = this.drawOptions;
+        triangle.area = this.area;
+        triangle.needsSolving = this.needsSolving;
     }
 
     clone() {
         const triangle = new Triangle(null, null, null, null, null, null, null, null, null, true);
-        triangle.sidePairs = this.sidePairs.map(sp => sp.clone(triangle));
-        triangle.fakeCoords = this.fakeCoords;
-        triangle.drawOptions = this.drawOptions;
+        this._clonePropertiesTo(triangle);
         return triangle;
+    }
+
+    reset() {
+        this.sidePairs.forEach(sp => sp.reset());
     }
 
     get isRightTriangle() {
@@ -28,19 +98,25 @@ class Triangle {
     }
 
     getProblemCategory() {
-        const status = this.getGivenStatus().join('');
-        if (status === 'SSS') {
-            return status;
+        const getCategory = () => {
+            const status = this.getGivenStatus().join('');
+            if (status === 'SSS') {
+                return status;
+            }
+            if (status === 'SSA') {
+                let anglePair = this.sidePairs.filter(sp => sp.angle)[0];
+                return anglePair.side ? 'SSA' : 'SAS';
+            }
+            if (status === 'SAA') {
+                let sidePair = this.sidePairs.filter(sp => sp.side)[0];
+                return sidePair.angle ? 'SAA' : 'ASA';
+            }
+            return '[unsupported]';
         }
-        if (status === 'SSA') {
-            let anglePair = this.sidePairs.filter(sp => sp.angle)[0];
-            return anglePair.side ? 'SSA' : 'SAS';
+        if (!this.$problemCategory) {
+            this.$problemCategory = getCategory();
         }
-        if (status === 'SAA') {
-            let sidePair = this.sidePairs.filter(sp => sp.side)[0];
-            return sidePair.angle ? 'SAA' : 'ASA';
-        }
-        return '[unsupported]';
+        return this.$problemCategory;
     }
 
     getGivenStatus() {
@@ -63,19 +139,6 @@ class Triangle {
     addAngleSideSuffix(sideName, suffix) {
         const sname = sideName.toLowerCase();
         this.sidePairs.filter(sp => sp.sideName === sname).forEach(sp => sp.addSuffix(suffix));
-    }
-
-    _disp(x, toFixedNum = null) {
-        let num, defaultToFixed;
-        if (x instanceof Angle) {
-            num = _d(x.degree);
-            defaultToFixed = _toFixedAngles;
-        } else {
-            num = _d(x);
-            defaultToFixed = _toFixedSides;
-        }
-        let tf = (typeof toFixedNum === 'number') ? toFixedNum : defaultToFixed;
-        return Number(num.toFixed(tf));
     }
 
     solve() {
@@ -363,6 +426,55 @@ class Triangle {
         return steps;
     }
 
+    solveArea() {
+        const { _disp, sidePairs } = this;
+        const cat = this.getProblemCategory();
+        const steps = [];
+        steps.push(`Determine triangle area:`);
+        const _solveSSS = () => {
+            steps.push(`&nbsp;&nbsp;Using formula for SSS triangles:`);
+            const [a, b, c] = sidePairs;
+            const s = (a.side.add(b.side).add(c.side)).div(2);
+            const k = (s.mul(s.sub(a.side)).mul(s.sub(b.side)).mul(s.sub(c.side))).sqrt();
+            steps.push({
+                latex: `s = \\frac{1}{2}(${a.sideName} + ${b.sideName} + ${c.sideName})`
+                    + ` = \\frac{1}{2}(${_disp(a.side)} + ${_disp(b.side)} + ${_disp(c.side)}) = ${_disp(s)}`
+            });
+            steps.push({
+                latex: `K = \\sqrt{s(s - ${a.sideName})(s - ${b.sideName})(s - ${c.sideName})} `
+                    + `= \\sqrt{${_disp(s)}\\cdot ${_disp(s.sub(a.side))}\\cdot ${_disp(s.sub(b.side))}\\cdot ${_disp(s.sub(c.side))}}`
+                    + ` = ${_disp(k)}`
+            });
+            this.area = k;
+        }
+        if (cat === 'SAS') {
+            steps.push(`&nbsp;&nbsp;Using formula for ${cat} triangles:`);
+            let a = sidePairs.filter(sp => sp.angleIsGiven)[0];
+            let [b, c] = sidePairs.filter(sp => sp.sideIsGiven);
+            const k = b.side.mul(c.side).mul(a.angle.sinDecimal).div(2);
+            steps.push({
+                latex: `K = \\frac{1}{2}${b.sideName}${c.sideName}\\cdot sin ${a.angleName} = `
+                    + `\\frac{1}{2}\\cdot ${_disp(b.side)}\\cdot ${_disp(c.side)}\\cdot sin ${_disp(a.angle)}`
+                    + `= ${_disp(k)}`
+            })
+            this.area = k;
+        }
+        else if (cat === 'SSS') {
+            _solveSSS();
+        }
+        else {
+            steps.push(`area calculation for triangles of type ${cat} is not supported`);
+            if (sidePairs.every(sp => sp.side)) {
+                _solveSSS();
+            } else {
+                this.needsSolving = this.sidePairs.filter(sp => !sp.side).map(sp => sp.sideName);
+                this.solve();
+                _solveSSS();
+            }
+        }
+        return steps;
+    }
+
     getDrawClockWise() {
         return false;
     }
@@ -481,27 +593,6 @@ class Triangle {
             borderRadius: '8px',
             boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)'
         });
-        //ctx.scale(scaleFactor, scaleFactor);
-        /*
-        const sidePairs = this.sidePairs.slice();
-        const [a, b, c] = sidePairs.sort((sp1, sp2) => {
-            if (sp1.isRightAngle) {
-                return -1;
-            }
-            if (sp2.isRightAngle) {
-                return 1;
-            }
-            return 0;
-        });
-        */
-        /*
-        var aCoords = { x: 0, y: 0 };
-        var bCoords = { x: c.side.toNumber(), y: 0 }
-        // determine c coordinates as offset to b coordinates
-        const h = a.side.mul(b.angle.sinDecimal);
-        const k = a.side.mul(b.angle.cosDecimal);
-        var cCoords = { x: bCoords.x - k.toNumber(), y: bCoords.y + h.toNumber() };
-        */
         const [a, b, c] = this.getSidePairsForDrawing();
         var { aCoords, bCoords, cCoords } = this.getCornerCoords(a, b, c);
 
@@ -635,8 +726,8 @@ class TriangleSideAnglePair {
         if (!doNotInitialize) {
             this.sideName = name.toLowerCase();
             this.angleName = name.toUpperCase();
-            if (typeof angle === 'number') {
-                this.angle = Angle.fromDegree(angle, true);
+            if ((typeof angle === 'number') || (angle instanceof Decimalx)) {
+                this.angle = Angle.fromDegree(Number(angle), true);
             }
             else if (typeof angle === 'undefined') {
             }
@@ -646,7 +737,7 @@ class TriangleSideAnglePair {
             else {
                 throw `unrecognized angle format: ${angle}`;
             }
-            if (typeof side == 'number') {
+            if ((typeof side == 'number') || (side instanceof Decimalx)) {
                 this.side = _d(side);
             }
             else if (typeof side === 'undefined') {
@@ -658,6 +749,31 @@ class TriangleSideAnglePair {
             this.isRightAngle = this.angle && this.angle.degree === 90;
             this.initialGivenStatus = this.getGivenStatus();
         }
+        this._defineGettersInTriangleObject();
+    }
+
+    _defineGettersInTriangleObject() {
+        const runSolveFor = vname => {
+                console.log(`${vname} is still undefined`);
+                this.triangle.solve();
+                if (!Array.isArray(this.triangle.needsSolving)) {
+                    this.triangle.needsSolving = [];
+                }
+                this.triangle.needsSolving.push(vname);
+
+        }
+        this.triangle.constructor.prototype.__defineGetter__(this.sideName, () => {
+            if (typeof this.side === 'undefined') {
+                runSolveFor(this.sideName);
+            }
+            return this.side;
+        });
+        this.triangle.constructor.prototype.__defineGetter__(this.angleName, () => {
+            if (typeof this.angle === 'undefined') {
+                runSolveFor(this.angleName);
+            }
+            return this.angle;
+        });
     }
 
     clone(triangle) {
@@ -675,6 +791,15 @@ class TriangleSideAnglePair {
         return sp;
     }
 
+    reset() {
+        if (!this.sideIsGiven) {
+            this.side = undefined;
+        }
+        if (!this.angleIsGiven) {
+            this.angle = undefined;
+        }
+    }
+
     addSuffix(suffix) {
         this.sideName += `_${suffix}`;
         this.angleName += `_${suffix}`;
@@ -689,6 +814,14 @@ class TriangleSideAnglePair {
             givenStatus.push('A');
         }
         return givenStatus;
+    }
+
+    get sideIsGiven() {
+        return this.initialGivenStatus.includes('S');
+    }
+
+    get angleIsGiven() {
+        return this.initialGivenStatus.includes('A');
     }
 
     isHypotenuse() {

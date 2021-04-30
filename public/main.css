@@ -94,18 +94,6 @@ option {
     border-bottom: 1pt solid green;
 }
 
-.xsection-header .xsection-header-title, .xsection-header input {
-    vertical-align: middle;
-}
-
-.xsection-header .xsection-header-title {
-    font-size: 16pt;
-}
-
-.xsection-header input {
-    width: 20px;
-    height: 20px;
-}
 
 .longdiv-table {
     border-spacing: 0px;
@@ -496,4 +484,41 @@ table.left-header-table td:first-child {
 table.left-header-table td {
     padding: 5px;
     border-bottom: 1px solid orange;
+}
+
+.inverse-font-colors {
+    background-color: white !important;
+    color: black !important;
+}
+
+.xsection-header {
+    display: inline-block;
+}
+
+.xsection-header .collapsed-indicator {
+    vertical-align: middle;
+    font-size: 18pt;
+}
+
+.xsection-header .collapsed-indicator:hover {
+    cursor: pointer;
+}
+
+.xsection-header .xsection-header-title, .xsection-header input {
+    vertical-align: middle;
+}
+
+.xsection-header .xsection-header-title {
+    font-size: 18pt;
+}
+
+.xsection-header input {
+    width: 20px;
+    height: 20px;
+}
+
+.xsection-content {
+    margin-left: 11px;
+    border-left: 10px #ddd solid;
+    padding-left: 30px;
 }

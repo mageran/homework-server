@@ -28,14 +28,16 @@ class BearingAngleTriangle extends Triangle {
         this.constructorArguments = constructorArguments;
     }
 
-    clone() {
-        const t = new BearingAngleTriangle(...this.constructorArguments);
-        t.sidePairs = this.sidePairs.map(sp => sp.clone(t));
-        t.fakeCoords = this.fakeCoords;
+    _clonePropertiesTo(t) {
+        super._clonePropertiesTo(t);
         t.finalBearing = this.finalBearing;
         t.isRightTurn = this.isRightTurn;
         t.drawFinalBearingAsTrueBearing = this.drawFinalBearingAsTrueBearing;
-        t.drawOptions = this.drawOptions;
+    }
+
+    clone() {
+        const t = new BearingAngleTriangle(...this.constructorArguments);
+        this._clonePropertiesTo(t);
         return t;
     }
 

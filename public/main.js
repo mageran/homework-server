@@ -65,6 +65,7 @@ const _clearTopicArea = () => {
 
 const populate = tobj => {
     const createInputElement = param => {
+        const isTextarea = !!param.rows;
         var inpElem;
         if (param.type === 'select') {
             inpElem = document.createElement('select');
@@ -99,11 +100,15 @@ const populate = tobj => {
             }, { isInput: true, notext: true }, displayOptions);
         }
         else {
-            inpElem = document.createElement('input');
+            let tagName = isTextarea ? 'textarea' : 'input'
+            inpElem = document.createElement(tagName);
             inpElem.value = param.value !== null ? param.value : "";
             inpElem.initialValue = inpElem.value;
             if (typeof param.size === 'number') {
-                inpElem.setAttribute('size', param.size);
+                inpElem.setAttribute(isTextarea ? 'cols' : 'size', param.size);
+            }
+            if (typeof param.rows === 'number') {
+                inpElem.setAttribute('rows', param.rows);
             }
             if (param.noEval) {
                 inpElem.noEval = true;
@@ -125,6 +130,7 @@ const populate = tobj => {
     if (tobj.parameters && tobj.parameters.length > 0) {
         parametersExist = true;
         tobj.parameters.forEach(param => {
+            let isTextarea = !!param.rows;
             const cont = document.createElement('div');
             if (param.separator) {
                 cont.style.display = 'block';
@@ -144,11 +150,14 @@ const populate = tobj => {
             cont.style.padding = '10px';
             const label = document.createElement('div');
             label.innerHTML = `${param.name}:`;
-            label.style.display = 'inline-block';
+            label.style.display = isTextarea ? 'block' : 'inline-block';
             cont.appendChild(label);
             const inpElem = createInputElement(param);
             cont.appendChild(inpElem);
             inputs.appendChild(cont);
+            if (isTextarea) {
+                _htmlElement('div', inputs);
+            }
         });
     }
     const doExecute = (testValues) => {
