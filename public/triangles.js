@@ -115,7 +115,7 @@ function triangleQuestionsOneLineInput(anglesAndSidesLatex) {
     o.style.fontSize = '18pt';
     try {
         _addInputsForRoundingOfAnglesAndSides(o);
-        const hlp = new GeometricalShapeParserHelper();        
+        const hlp = new GeometricalShapeParserHelper();
         const triangle = hlp.parseTriangleDefinition(anglesAndSidesLatex);
         _showTriangleSolution(o, triangle);
     } catch (err) {
@@ -157,12 +157,15 @@ function areaOfComposedShapes(shapesSpec, resultExpression) {
             {
                 let fyi = shape.needsSolving ? '' : ' (FYI)';
                 shape.reset();
-                steps.push({
-                    collapsibleSection: {
-                        steps: shape.solve(),
-                        title: `Solve ${shape.shapeName} ${id}${fyi}...`
-                    }
-                });
+                let solveSteps = shape.solve();
+                if (solveSteps) {
+                    steps.push({
+                        collapsibleSection: {
+                            steps: solveSteps,
+                            title: `Solve ${shape.shapeName} ${id}${fyi}...`
+                        }
+                    });
+                }
             }
             steps.push(...solveAreaSteps);
         });
