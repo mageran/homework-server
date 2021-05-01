@@ -239,7 +239,7 @@ function* allCombinations(min, max, length) {
     }
 }
 
-const _htmlElement = (tag, parent, content, cssClass) => {
+const _htmlElement = (tag, parent, content, cssClass, style) => {
     const elem = document.createElement(tag);
     if (parent) {
         parent.appendChild(elem);
@@ -259,6 +259,9 @@ const _htmlElement = (tag, parent, content, cssClass) => {
     }
     if (cssClass) {
         elem.className = cssClass;
+    }
+    if (style) {
+        elemStyle(elem, style);
     }
     return elem;
 }

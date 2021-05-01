@@ -756,12 +756,17 @@ class TriangleSideAnglePair {
 
     _defineGettersInTriangleObject() {
         const runSolveFor = vname => {
-                console.log(`${vname} is still undefined`);
+            console.log(`${vname} is still undefined`);
+            try {
                 this.triangle.solve();
-                if (!Array.isArray(this.triangle.needsSolving)) {
-                    this.triangle.needsSolving = [];
-                }
-                this.triangle.needsSolving.push(vname);
+            } catch (err) {
+                console.log(`something went wrong when trying to solve triangle for ${vname}: ${err}`);
+            }
+            console.log(`solved triangle:`); console.log(this.triangle);
+            if (!Array.isArray(this.triangle.needsSolving)) {
+                this.triangle.needsSolving = [];
+            }
+            this.triangle.needsSolving.push(vname);
 
         }
         this.triangle.constructor.prototype.__defineGetter__(this.sideName, () => {

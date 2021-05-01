@@ -151,15 +151,16 @@ function areaOfComposedShapes(shapesSpec, resultExpression) {
             const solveAreaSteps = shape.solveArea(3);
             var needsSolvingStr = '';
             if (shape.needsSolving) {
-                needsSolvingStr = ` [needs solving for "${shape.needsSolving.join('" and "')}"]`;
+                needsSolvingStr = ` [needs solving for (at least) "${shape.needsSolving.join('" and "')}"]`;
             }
             steps.push(`<div style="color:white;background:black">${shape.shapeName} ${id}${needsSolvingStr}:</div>`);
-            if (shape.needsSolving) {
+            {
+                let fyi = shape.needsSolving ? '' : ' (FYI)';
                 shape.reset();
                 steps.push({
                     collapsibleSection: {
                         steps: shape.solve(),
-                        title: `Solve ${shape.shapeName} ${id}...`
+                        title: `Solve ${shape.shapeName} ${id}${fyi}...`
                     }
                 });
             }

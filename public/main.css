@@ -522,3 +522,10 @@ table.left-header-table td {
     border-left: 10px #ddd solid;
     padding-left: 30px;
 }
+
+.CodeMirror {
+    min-width: 500px;
+    font-size: 14pt;
+    border: 1px solid grey;
+    padding: 3px;
+}

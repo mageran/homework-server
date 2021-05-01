@@ -75,6 +75,7 @@ const evalAst = (ast, identifierAssignments = {}, options = {}) => {
     return _d(ast);
   }
   if (ast instanceof Angle) {
+    console.log(`evalAst: angle found: ${ast.degree}`);
     return angleModeDegree ? _d(ast.degree) : _d(ast.radians);
   }
   if (typeof ast === 'string' && Object.keys(identifierAssignments).includes(ast)) {
@@ -134,7 +135,9 @@ const evalAst = (ast, identifierAssignments = {}, options = {}) => {
     if (typeof record[id] === 'undefined') {
       throw `field ${id} not found for object ${recordId}`;
     }
-    return record[id];
+    let value = record[id];
+    console.log(`evalAst: fieldAccess ${recordId}.${id} = %o`, value);
+    return _e(value);
   }
   if (ast.isTrigFunction) {
     let [operand] = ast.operands;

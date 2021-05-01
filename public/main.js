@@ -117,6 +117,19 @@ const populate = tobj => {
                 console.log('focus');
                 inpElem.select();
             });
+            if (param.codeEditor) {
+                inpElem.init = () => {
+                    let codeEditor = CodeMirror.fromTextArea(inpElem, {
+                        lineNumbers: true
+                    });
+                    inpElem.__defineGetter__('value', () => {
+                        return codeEditor.getValue();
+                    })
+                    inpElem.__defineSetter__('value', val => {
+                        codeEditor.setValue(val);
+                    })
+                }
+            }
         }
         inputElements.push(inpElem);
         return inpElem;
@@ -155,6 +168,9 @@ const populate = tobj => {
             const inpElem = createInputElement(param);
             cont.appendChild(inpElem);
             inputs.appendChild(cont);
+            if (typeof inpElem.init === 'function') {
+                inpElem.init();
+            }
             if (isTextarea) {
                 _htmlElement('div', inputs);
             }
