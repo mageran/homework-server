@@ -61,6 +61,13 @@ const _clearTopicArea = () => {
 
         }
     });
+    const embeddedWidgetsDiv = document.getElementById('embedded-widgets');
+    if (embeddedWidgetsDiv) {
+        for(let i = 0; i < embeddedWidgetsDiv.children.length; i++) {
+            let widgetElement = embeddedWidgetsDiv.children[i];
+            elemStyle(widgetElement, { display: 'none' });
+        }
+    }
 }
 
 const populate = tobj => {

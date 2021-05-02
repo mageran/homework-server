@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='false'
+    error='false'
+    xml:space='preserve'
+    numpods='0'
+    datatypes=''
+    timedout=''
+    timedoutpods=''
+    timing='1.072'
+    parsetiming='0.529'
+    parsetimedout='false'
+    recalculate=''
+    id=''
+    parseidserver='53'
+    host='https://www4c.wolframalpha.com'
+    server='53'
+    related=''
+    version='2.6'
+    inputstring='H2O covalent'>
+ <didyoumeans count='3'>
+  <didyoumean score='0.666667' level='high'>covalent</didyoumean>
+  <didyoumean score='0.25' level='low'>H2O</didyoumean>
+  <didyoumean score='0.166667' level='low'>element O</didyoumean>
+ </didyoumeans>
+</queryresult>

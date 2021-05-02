@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='3'
+    datatypes='Plot'
+    timedout=''
+    timedoutpods=''
+    timing='1.752'
+    parsetiming='0.581'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP6640122b60fc25ebagch0000628hfhf47f98e30e'
+    host='https://www4c.wolframalpha.com'
+    server='8'
+    related='https://www4c.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa6641122b60fc25ebagch00005607dia1912c7hhd5885777321538554506'
+    version='2.6'
+    inputstring='polar H2O'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP6642122b60fc25ebagch00002da849f36h9b2hab?MSPStoreType=image/gif&amp;s=8'
+       alt='polar plot | H^2 O'
+       title='polar plot | H^2 O'
+       width='155'
+       height='38'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>polar plot | H^2 O</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='3D plot'
+     scanner='Plot'
+     id='3DPlot'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP6643122b60fc25ebagch0000234h384i2d3h13hd?MSPStoreType=image/gif&amp;s=8'
+       alt='3D plot'
+       title=''
+       width='312'
+       height='330'
+       type='3DMathPlot'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='3DMathPlot' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Show contour lines'
+       input='3DPlot__Show contour lines' />
+  </states>
+ </pod>
+ <pod title='Contour plot'
+     scanner='Plot'
+     id='ContourPlot'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP6644122b60fc25ebagch000029i5e9d0990cb1gg?MSPStoreType=image/gif&amp;s=8'
+       alt='Contour plot'
+       title=''
+       width='330'
+       height='322'
+       type='ContourPlot'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='ContourPlot' />
+  </expressiontypes>
+ </pod>
+</queryresult>

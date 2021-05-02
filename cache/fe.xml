@@ -1,0 +1,458 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='10'
+    datatypes='AtomicLine,Element'
+    timedout='Data'
+    timedoutpods=''
+    timing='5.792'
+    parsetiming='0.136'
+    parsetimedout='false'
+    recalculate='https://www4d.wolframalpha.com/api/v1/recalc.jsp?id=MSPa1563113204iad386f97e00001706i5381b3gh7c99159347654517908871'
+    id='MSP1564113204iad386f97e000028f03a3e7e9giah3'
+    host='https://www4d.wolframalpha.com'
+    server='10'
+    related='https://www4d.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa1565113204iad386f97e0000674hab66ge9eh0309159347654517908871'
+    version='2.6'
+    inputstring='Fe'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1566113204iad386f97e0000274e1e9f0hice994?MSPStoreType=image/gif&amp;s=10'
+       alt='iron (chemical element)'
+       title='iron (chemical element)'
+       width='159'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>iron (chemical element)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Periodic table location'
+     scanner='Data'
+     id='PeriodicTableLocation:ElementData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1567113204iad386f97e0000202cg908ac84haec?MSPStoreType=image/gif&amp;s=10'
+       alt='Periodic table location'
+       title=''
+       width='320'
+       height='240'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Larger'
+       input='PeriodicTableLocation:ElementData__Larger' />
+  </states>
+ </pod>
+ <pod title='Image'
+     scanner='Data'
+     id='Image:ElementData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <imagesource>http://periodictable.com/Items/026.32/index.html</imagesource>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1568113204iad386f97e0000304chea8ae3bg257?MSPStoreType=image/gif&amp;s=10'
+       alt='Image'
+       title=''
+       width='150'
+       height='150'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Basic elemental properties'
+     scanner='Data'
+     id='Elemental2:ElementData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+    <datasource>NISTAtomicWeights</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1569113204iad386f97e00002fe405a0d6b3hc7d?MSPStoreType=image/gif&amp;s=10'
+       alt='atomic symbol | Fe
+atomic number | 26
+atomic mass | 55.845 u (unified atomic mass units)'
+       title='atomic symbol | Fe
+atomic number | 26
+atomic mass | 55.845 u (unified atomic mass units)'
+       width='387'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>atomic symbol | Fe
+atomic number | 26
+atomic mass | 55.845 u (unified atomic mass units)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Elemental2:ElementData__More' />
+  </states>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='Thermodynamics:ElementData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1570113204iad386f97e000024cb8b52a65h9e48?MSPStoreType=image/gif&amp;s=10'
+       alt='phase at STP | solid
+melting point | 1538 °C (rank: 26th)
+boiling point | 2861 °C (rank: 39th)
+(properties at standard conditions)'
+       title='phase at STP | solid
+melting point | 1538 °C (rank: 26th)
+boiling point | 2861 °C (rank: 39th)
+(properties at standard conditions)'
+       width='259'
+       height='129'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>phase at STP | solid
+melting point | 1538 °C (rank: 26th)
+boiling point | 2861 °C (rank: 39th)
+(properties at standard conditions)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Thermodynamics:ElementData__More' />
+  </states>
+ </pod>
+ <pod title='Material properties'
+     scanner='Data'
+     id='Material:ElementData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1571113204iad386f97e00005fbgg41297540025?MSPStoreType=image/gif&amp;s=10'
+       alt='density | 7.874 g/cm^3 (rank: 60th)
+Mohs hardness | 4 (≈ fluorite)
+Young&apos;s modulus | 211 GPa (rank: 9th)
+tensile yield strength | 50 MPa (rank: 27th)
+sound speed | 4910 m/s (rank: 14th)
+thermal expansion | 1.18×10^-5 K^(-1) (rank: 30th)
+thermal conductivity | 80 W/(m K) (rank: 25th)
+(properties at standard conditions)'
+       title='density | 7.874 g/cm^3 (rank: 60th)
+Mohs hardness | 4 (≈ fluorite)
+Young&apos;s modulus | 211 GPa (rank: 9th)
+tensile yield strength | 50 MPa (rank: 27th)
+sound speed | 4910 m/s (rank: 14th)
+thermal expansion | 1.18×10^-5 K^(-1) (rank: 30th)
+thermal conductivity | 80 W/(m K) (rank: 25th)
+(properties at standard conditions)'
+       width='354'
+       height='261'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>density | 7.874 g/cm^3 (rank: 60th)
+Mohs hardness | 4 (≈ fluorite)
+Young&apos;s modulus | 211 GPa (rank: 9th)
+tensile yield strength | 50 MPa (rank: 27th)
+sound speed | 4910 m/s (rank: 14th)
+thermal expansion | 1.18×10^-5 K^(-1) (rank: 30th)
+thermal conductivity | 80 W/(m K) (rank: 25th)
+(properties at standard conditions)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Material:ElementData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='6'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='GPa'
+         long='gigapascals' />
+     <unit short='K^(-1)'
+         long='reciprocal kelvins difference' />
+     <unit short='MPa'
+         long='megapascals' />
+     <unit short='m/s'
+         long='meters per second' />
+     <unit short='W/(m K)'
+         long='watts per meter kelvin difference' />
+     <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1572113204iad386f97e0000257g67498ab9158g?MSPStoreType=image/gif&amp;s=10'
+         width='272'
+         height='139' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Electromagnetic properties'
+     scanner='Data'
+     id='Electromagnetic:ElementData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>EnvironmentalChemistry</datasource>
+    <datasource>WebElements</datasource>
+    <datasource>MaterialsHandbook</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1573113204iad386f97e000042i5hgcgief98dab?MSPStoreType=image/gif&amp;s=10'
+       alt='electrical type | conductor
+resistivity | 9.7×10^-8 Ω m (ohm meters)
+magnetic type | ferromagnetic
+color | (gray)'
+       title='electrical type | conductor
+resistivity | 9.7×10^-8 Ω m (ohm meters)
+magnetic type | ferromagnetic
+color | (gray)'
+       width='325'
+       height='137'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>electrical type | conductor
+resistivity | 9.7×10^-8 Ω m (ohm meters)
+magnetic type | ferromagnetic
+color | (gray)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Electromagnetic:ElementData__More' />
+  </states>
+ </pod>
+ <pod title='Reactivity'
+     scanner='Data'
+     id='Chemical:ElementData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+    <datasource>TheWikimediaFoundationIncWikipedia</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1574113204iad386f97e000054e0ghi8iedei89h?MSPStoreType=image/gif&amp;s=10'
+       alt='valence | 3
+electronegativity | 1.83
+electron affinity | 0.163 eV (molar electronvolts)
+first ionization energy | 7.903 eV (molar electronvolts)'
+       title='valence | 3
+electronegativity | 1.83
+electron affinity | 0.163 eV (molar electronvolts)
+first ionization energy | 7.903 eV (molar electronvolts)'
+       width='391'
+       height='136'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>valence | 3
+electronegativity | 1.83
+electron affinity | 0.163 eV (molar electronvolts)
+first ionization energy | 7.903 eV (molar electronvolts)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='3'>
+   <state name='Show energy plot'
+       input='Chemical:ElementData__Show energy plot' />
+   <state name='Show metric'
+       input='Chemical:ElementData__Show metric' />
+   <state name='More'
+       input='Chemical:ElementData__More' />
+  </states>
+ </pod>
+ <pod title='Atomic properties'
+     scanner='Data'
+     id='Atomic:ElementData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>AtomicLineData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1575113204iad386f97e00002i1g5d57fdbc7209?MSPStoreType=image/gif&amp;s=10'
+       alt='term symbol | ^5D_4
+atomic radius | 140 pm
+(electronic ground state properties)'
+       title='term symbol | ^5D_4
+atomic radius | 140 pm
+(electronic ground state properties)'
+       width='201'
+       height='91'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>term symbol | ^5D_4
+atomic radius | 140 pm
+(electronic ground state properties)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='More'
+       input='Atomic:ElementData__More' />
+   <state name='Spectrum'
+       input='Atomic:ElementData__Spectrum' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short='pm'
+         long='picometers' />
+     <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1576113204iad386f97e00003ib8f41a5ehb1if1?MSPStoreType=image/gif&amp;s=10'
+         width='124'
+         height='27' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Abundances'
+     scanner='Data'
+     id='Abundance:ElementData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1577113204iad386f97e000061h4ei735i432c53?MSPStoreType=image/gif&amp;s=10'
+       alt='universe abundance | 0.11 mass% (rank: 6th)
+crust abundance | 6.3 mass% (rank: 4th)
+human abundance | 0.006 mass% (rank: 13th)'
+       title='universe abundance | 0.11 mass% (rank: 6th)
+crust abundance | 6.3 mass% (rank: 4th)
+human abundance | 0.006 mass% (rank: 13th)'
+       width='341'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>universe abundance | 0.11 mass% (rank: 6th)
+crust abundance | 6.3 mass% (rank: 4th)
+human abundance | 0.006 mass% (rank: 13th)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Show atomic abundances'
+       input='Abundance:ElementData__Show atomic abundances' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short=' mass%'
+         long='mass percent' />
+     <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP1578113204iad386f97e00000fec7i5ac779chce?MSPStoreType=image/gif&amp;s=10'
+         width='160'
+         height='27' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='Fe'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='4'>
+   <value name='Element'
+       desc='a chemical element'
+       input='*C.Fe-_*Element-' />
+   <value name='DietaryReference'
+       desc='a dietary reference'
+       input='*C.Fe-_*DietaryReference-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.Fe-_*Word-' />
+   <value name='Financial'
+       desc='a financial entity'
+       input='*C.Fe-_*Financial-' />
+  </assumption>
+ </assumptions>
+ <sources count='2'>
+  <source url='https://www4d.wolframalpha.com/sources/AtomicLineDataSourceInformationNotes.html'
+      text='Atomic line data' />
+  <source url='https://www4d.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>

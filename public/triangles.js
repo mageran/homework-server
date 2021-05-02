@@ -39,7 +39,7 @@ const _addInputsForRoundingOfAnglesAndSides = (cont) => {
     var div;
     div = _htmlElement('div', cont);
     elemStyle(div, {
-        fontSize: '12pt',
+        fontSize: '20pt',
         position: 'fixed',
         right: '10px',
         top: '10px'
@@ -48,24 +48,34 @@ const _addInputsForRoundingOfAnglesAndSides = (cont) => {
     const input1 = _htmlElement('input', div);
     input1.type = 'number';
     input1.min = 0;
-    elemStyle(input1, { width: '30px', marginRight: '10px' });
+    elemStyle(input1, { width: '60px', fontSize: '18pt', marginRight: '10px' });
     input1.value = _toFixedAngles;
     input1.addEventListener('change', () => {
         _toFixedAngles = Number(input1.value);
+        cont.setFocusOnRoundingAnglesInput = true;
         DO_EXECUTE();
     })
+    if (cont.setFocusOnRoundingAnglesInput) {
+        input1.focus();
+        cont.setFocusOnRoundingAnglesInput = false;
+    }
 
     //div = _htmlElement('div', cont); var input;
     _htmlElement('label', div, 'Rounding for sides: ')
     const input2 = _htmlElement('input', div);
     input2.type = 'number';
     input2.min = 0;
-    elemStyle(input2, { width: '30px' });
+    elemStyle(input2, { width: '60px', fontSize: '18pt' });
     input2.value = _toFixedSides;
     input2.addEventListener('change', () => {
         _toFixedSides = Number(input2.value);
+        cont.setFocusOnRoundingSidesInput = true;
         DO_EXECUTE();
     })
+    if (cont.setFocusOnRoundingSidesInput) {
+        input2.focus();
+        cont.setFocusOnRoundingSidesInput = false;
+    }
 }
 
 

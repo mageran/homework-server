@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='2'
+    datatypes='Chemical'
+    timedout=''
+    timedoutpods=''
+    timing='1.247'
+    parsetiming='0.504'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP550714cfe1gde171ffhc00003a5b54d048ebi193'
+    host='https://www4c.wolframalpha.com'
+    server='37'
+    related='https://www4c.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa550814cfe1gde171ffhc00004caa1eab9319h1283310938070167488196'
+    version='2.6'
+    inputstring='polarity H2O'
+    nodata='true'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP550914cfe1gde171ffhc00000ih5d424ag562gce?MSPStoreType=image/gif&amp;s=37'
+       alt='water | polarity'
+       title='water | polarity'
+       width='120'
+       height='23'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>water | polarity</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Result'
+     scanner='Identity'
+     id='Result'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''
+      nodata='true'
+      primary='true'>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP551014cfe1gde171ffhc000064ddee5561hfb270?MSPStoreType=image/gif&amp;s=37'
+       alt='(data not available)'
+       title='(data not available)'
+       width='127'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>(data not available)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <sources count='1'>
+  <source url='https://www4c.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+ </sources>
+ <generalization topic='water'
+     desc='General results for:'
+     url='https://www4c.wolframalpha.com/api/v2/query?id=MSP551114cfe1gde171ffhc00000g43dc2i42h8def1' />
+</queryresult>

@@ -1,0 +1,437 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='11'
+    datatypes='Chemical,ChemicalIntermediate,Element'
+    timedout=''
+    timedoutpods=''
+    timing='4.163'
+    parsetiming='0.183'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP3369137de7dad0idi5cd00003cf7e23870b29hc8'
+    host='https://www4b.wolframalpha.com'
+    server='23'
+    related='https://www4b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa3370137de7dad0idi5cd000038b55g595022egg15181386928986290122'
+    version='2.6'
+    inputstring='potassium chlorate'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP3371137de7dad0idi5cd0000361h75ciaa4c2i7h?MSPStoreType=image/gif&amp;s=23'
+       alt='potassium chlorate'
+       title='potassium chlorate'
+       width='124'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>potassium chlorate</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP3372137de7dad0idi5cd00005fh692dcafe66e9g?MSPStoreType=image/gif&amp;s=23'
+       alt='formula | KClO_3
+Hill formula | ClKO_3
+name | potassium chlorate'
+       title='formula | KClO_3
+Hill formula | ClKO_3
+name | potassium chlorate'
+       width='252'
+       height='105'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | KClO_3
+Hill formula | ClKO_3
+name | potassium chlorate</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP3373137de7dad0idi5cd00001g14dd7fhg62bga9?MSPStoreType=image/gif&amp;s=23'
+       alt='Structure diagram'
+       title=''
+       width='98'
+       height='67'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalData__Show graph properties' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP3374137de7dad0idi5cd000046fghd3giaai13aa?MSPStoreType=image/gif&amp;s=23'
+       alt='molar mass | 122.5 g/mol
+phase | solid (at STP)
+melting point | 356 °C
+density | 2.34 g/cm^3
+solubility in water | soluble'
+       title='molar mass | 122.5 g/mol
+phase | solid (at STP)
+melting point | 356 °C
+density | 2.34 g/cm^3
+solubility in water | soluble'
+       width='251'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 122.5 g/mol
+phase | solid (at STP)
+melting point | 356 °C
+density | 2.34 g/cm^3
+solubility in water | soluble</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP3375137de7dad0idi5cd00003ib2487ci422bicb?MSPStoreType=image/gif&amp;s=23'
+         width='234'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Solid properties (at STP)'
+     scanner='Data'
+     id='SolidProperties:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP3376137de7dad0idi5cd0000245e41be5547e1g3?MSPStoreType=image/gif&amp;s=23'
+       alt='density | 2.34 g/cm^3
+refractive index | 1.40835'
+       title='density | 2.34 g/cm^3
+refractive index | 1.40835'
+       width='221'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>density | 2.34 g/cm^3
+refractive index | 1.40835</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='Thermodynamics:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP3377137de7dad0idi5cd00002dc8gf1hed1cee1d?MSPStoreType=image/gif&amp;s=23'
+       alt='specific free energy of formation Δ_fG° | solid | -2.418 kJ/g
+specific heat of formation Δ_fH° | solid | -3.245 kJ/g
+specific entropy S° | solid | 1.167 J/(g K)
+(at STP)'
+       title='specific free energy of formation Δ_fG° | solid | -2.418 kJ/g
+specific heat of formation Δ_fH° | solid | -3.245 kJ/g
+specific entropy S° | solid | 1.167 J/(g K)
+(at STP)'
+       width='423'
+       height='133'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>specific free energy of formation Δ_fG° | solid | -2.418 kJ/g
+specific heat of formation Δ_fH° | solid | -3.245 kJ/g
+specific entropy S° | solid | 1.167 J/(g K)
+(at STP)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Thermodynamics:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='J/(g K)'
+         long='joules per gram kelvin' />
+     <unit short='kJ/g'
+         long='kilojoules per gram' />
+     <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP3378137de7dad0idi5cd00002026501i2e64cc74?MSPStoreType=image/gif&amp;s=23'
+         width='201'
+         height='49' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP3379137de7dad0idi5cd00005de52fia4b909d4f?MSPStoreType=image/gif&amp;s=23'
+       alt='CAS number | 3811-04-9
+PubChem CID number | 6426889
+PubChem SID number | 24869084
+SMILES identifier | [O-]Cl(=O)=O.[K+]'
+       title='CAS number | 3811-04-9
+PubChem CID number | 6426889
+PubChem SID number | 24869084
+SMILES identifier | [O-]Cl(=O)=O.[K+]'
+       width='324'
+       height='136'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 3811-04-9
+PubChem CID number | 6426889
+PubChem SID number | 24869084
+SMILES identifier | [O-]Cl(=O)=O.[K+]</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='NFPA label'
+     scanner='Data'
+     id='NFPALabel:ChemicalData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP3380137de7dad0idi5cd0000600hfa61i797id99?MSPStoreType=image/gif&amp;s=23'
+       alt='NFPA label'
+       title=''
+       width='40'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Table'
+       input='NFPALabel:ChemicalData__Table' />
+  </states>
+ </pod>
+ <pod title='Safety properties'
+     scanner='Data'
+     id='SafetyProperties:ChemicalData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP3381137de7dad0idi5cd00001b0304bdh58c9fgb?MSPStoreType=image/gif&amp;s=23'
+       alt='flash point | 400 °C'
+       title='flash point | 400 °C'
+       width='159'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>flash point | 400 °C</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='SafetyProperties:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Toxicity properties'
+     scanner='Data'
+     id='ToxicityProperties:ChemicalData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>MacmillansChemicalAndPhysicalData</datasource>
+   </datasources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP3382137de7dad0idi5cd00006a88d92hched1g6h?MSPStoreType=image/gif&amp;s=23'
+       alt='lethal dosage | 1870 mg/kg (oral dose for rats)'
+       title='lethal dosage | 1870 mg/kg (oral dose for rats)'
+       width='324'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>lethal dosage | 1870 mg/kg (oral dose for rats)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ToxicityProperties:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short='mg/kg'
+         long='milligrams per kilogram' />
+     <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP3383137de7dad0idi5cd00002496h424fi48hf85?MSPStoreType=image/gif&amp;s=23'
+         width='211'
+         height='27' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Ion equivalents'
+     scanner='Data'
+     id='IonProperties:ChemicalData'
+     position='1100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www4b.wolframalpha.com/Calculate/MSP/MSP3384137de7dad0idi5cd00006ag05523fc0f1574?MSPStoreType=image/gif&amp;s=23'
+       alt='K^+ (potassium cation) | 1
+(ClO_3)^- (chlorate anion) | 1'
+       title='K^+ (potassium cation) | 1
+(ClO_3)^- (chlorate anion) | 1'
+       width='204'
+       height='67'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>K^+ (potassium cation) | 1
+(ClO_3)^- (chlorate anion) | 1</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='potassium chlorate'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='Chemical'
+       desc='a chemical compound'
+       input='*C.potassium+chlorate-_*Chemical-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.potassium+chlorate-_*Word-' />
+  </assumption>
+ </assumptions>
+ <sources count='3'>
+  <source url='https://www4b.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+  <source url='https://www4b.wolframalpha.com/sources/ChemicalIntermediateDataSourceInformationNotes.html'
+      text='Chemical intermediate data' />
+  <source url='https://www4b.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>

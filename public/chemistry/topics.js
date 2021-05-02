@@ -124,7 +124,24 @@ const _gasLaws = {
     func: gasLaws
 }
 
+const _lewisStructureWidget = {
+    title: 'Lewis Structure',
+    description: '',
+    parameters: [],
+    func: lewisStructureWidget,
+}
+
+const _solutionConcentration = {
+    title: 'Solution concentration formulas',
+    description: 'Calculate Molarity, molality, mole fraction, dilution of solutions',
+    parameters: [],
+    func: solutionConcentrationUI,
+}
+
 const topicObjects = [
+    _solutionConcentration,
+    _lewisStructureWidget,
+    '-------------',
     _gasLaws,
     _chemicalQuery,
     '-------------',

@@ -54,3 +54,12 @@ const chemicalQueryPromise = queryString => {
         
     })
 }
+
+function lewisStructureWidget() {
+    const widget = document.getElementById('lewis-structure-widget');
+    jQuery.browser = {};
+    console.log(`lewis structure div: %o`, widget);
+    if (widget) {
+        elemStyle(widget, { display: 'block' });
+    }
+}

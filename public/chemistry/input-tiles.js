@@ -15,10 +15,13 @@ class InputTile {
     }
 
     _addLabel(cont = this.container) {
-        const { label, labelIsLatex } = this.options;
+        const { label, labelIsLatex, labelStyle } = this.options;
         if (label) {
             this.label = label;
             let labelElem = _htmlElement('label', cont);
+            if (labelStyle) {
+                elemStyle(labelElem, labelStyle);
+            }
             if (labelIsLatex) {
                 let idiv = _htmlElement('div', labelElem)
                 elemStyle(idiv, { display: 'inline-block' });
