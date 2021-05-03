@@ -1,3 +1,4 @@
+
 class InputTile {
     constructor(id, options) {
         this.id = id;
@@ -30,6 +31,9 @@ class InputTile {
                 labelElem.innerHTML = label;
             }
         }
+    }
+
+    clear() {
     }
 
     createUI(cont) {
@@ -72,21 +76,31 @@ class NumberInputTile extends InputTile {
         return o;
     }
 
+    clear() {
+        super.clear();
+        this.input.value = '';
+    }
+
     isEmpty() {
         return this.input.value.trim() === "";
     }
 
     getValue() {
+        const stringValue = this.input.value;
         const numberValue = _d(this.input.value);
         var selectValue;
         if (this.selectObj) {
             selectValue = this.selectObj.selected.value;
         }
-        return { numberValue, selectValue };
+        return { numberValue, stringValue, selectValue };
     }
 
     setInputValues(numberValue) {
         this.input.value = numberValue;
+    }
+
+    selectValue(val) {
+        this.selectObj.select(({ value }) => value === val);
     }
 
 }
@@ -116,7 +130,7 @@ class UnitInputTile extends NumberInputTile {
 
     setInputValues(numberValue, unit) {
         super.setInputValues(numberValue);
-        this.selectObj.select(({value}) => value === unit);
+        this.selectObj.select(({ value }) => value === unit);
     }
 
 }
@@ -141,6 +155,7 @@ class VolumeInputTile extends UnitInputTile {
         super(id, options);
     }
 }
+
 class TemperatureInputTile extends UnitInputTile {
     constructor(id, options) {
         options.unit = 'temperature';
@@ -163,12 +178,13 @@ class MassOrMolesInputTile extends NumberInputTile {
         options.selectCallback = selected => {
             const unit = selected.value;
             //console.log(`selected unit: ${unit}`);
-            if (this.gasNameInputContainer) {
+            if (this.gasNameInputContainer && !options.alwaysShowFormula) {
                 this.gasNameInputContainer.style.visibility = unit === 'moles' ? 'hidden' : 'visible';
             }
         }
         super(id, options);
         this.units = units;
+        this.alwaysShowFormula = !!options.alwaysShowFormula;
     }
 
     createUI(cont) {
@@ -178,8 +194,15 @@ class MassOrMolesInputTile extends NumberInputTile {
         _htmlElement('label', span, "Gas formula or name:");
         const gasNameInput = _htmlElement('input', span)
         this.gasNameInput = gasNameInput;
-        elemStyle(span, { visibility: 'hidden' });
+        if (!this.alwaysShowFormula) {
+            elemStyle(span, { visibility: 'hidden' });
+        }
         return o;
+    }
+
+    clear() {
+        super.clear();
+        this.gasNameInput.value = '';
     }
 
     getValue() {
@@ -236,6 +259,11 @@ class MolarMassInputTile extends WeightInputTile {
         return o;
     }
 
+    clear() {
+        super.clear();
+        this.gasNameInput.value = '';
+    }
+
 }
 
 
@@ -253,12 +281,41 @@ class TileContainer extends InputTile {
         this.container.innerHTML = "";
     }
 
+    resetUI() {
+        this.clear();
+        this.createUI();
+    }
+
+    _addRemoveTileButton(div, tile) {
+        const deleteSymbol = '🗑';
+        const removeButton = _htmlElement('input', div, null, 'big-button', { marginLeft: '20px' });
+        removeButton.type = 'button';
+        removeButton.value = deleteSymbol;
+        removeButton.title = "remove this row";
+        removeButton.addEventListener('click', () => {
+            //const cnode = this.getTileNode(tile.id);
+            //cnode.remove();
+            //removeButton.remove();
+            tile.parentContainerForRemoval.remove();
+        });
+    }
+
     addTile(tile) {
         // tile instanceof InputTile
-        tile.createUI(this.container);
+        if (tile.isRemovable) {
+            const cont = _htmlElement('div', this.container);
+            const contentDiv = _htmlElement('div', cont, null, null, { display: 'inline-block' });
+            const buttonDiv = _htmlElement('div', cont, null, null, { display: 'inline-block' });
+            tile.createUI(contentDiv);
+            this._addRemoveTileButton(buttonDiv, tile);
+            tile.parentContainerForRemoval = cont;
+        } else {
+            tile.createUI(this.container);
+        }
     }
 
     getAllNumberInputTiles() {
+        /*
         const tiles = [];
         const children = this.container.children;
         for (let i = 0; i < children.length; i++) {
@@ -269,24 +326,52 @@ class TileContainer extends InputTile {
             }
         }
         return tiles;
+        */
+        const allTiles = [];
+        this.getTileNode(null, allTiles);
+        return allTiles;
+    }
+
+    clearAllTiles() {
+        this.getAllNumberInputTiles().forEach(tile => tile.clear());
     }
 
     getMissingValueTiles() {
         return this.getAllNumberInputTiles().filter(tile => tile.isEmpty());
     }
 
-    getTile(id) {
-        const children = this.container.children;
-        for (let i = 0; i < children.length; i++) {
-            let cnode = children[i];
-            let tile = cnode.tile;
-            if (tile instanceof InputTile) {
-                if (tile.id === id) {
-                    return tile;
+    getTileNode(id, allTiles) {
+        const maxLevel = 2;
+        const _getTile = (cont, level = 0) => {
+            if (level > maxLevel) {
+                return null;
+            }
+            const children = cont.children;
+            for (let i = 0; i < children.length; i++) {
+                let cnode = children[i];
+                let tile = cnode.tile;
+                if (tile instanceof InputTile) {
+                    if (Array.isArray(allTiles)) {
+                        allTiles.push(tile);
+                    }
+                    if (tile.id === id) {
+                        //return tile;
+                        return cnode;
+                    }
+                }
+                let cnode0 = _getTile(cnode, level + 1);
+                if (cnode0) {
+                    return cnode0;
                 }
             }
+            return null;
         }
-        return null;
+        return _getTile(this.container);
+    }
+
+    getTile(id) {
+        const cnode = this.getTileNode(id);
+        return cnode ? cnode.tile : null;
     }
 
     getValue(id) {
@@ -295,5 +380,15 @@ class TileContainer extends InputTile {
             return null;
         }
         return tile.getValue()
+    }
+
+    getAllValues(asString = false) {
+        return this.getAllNumberInputTiles().map(tile => {
+            const val = tile.getValue();
+            if (val) {
+                return asString ? val.stringValue : val.numberValue;
+            }
+            return null;
+        }).filter(val => val !== null && val !== "");
     }
 }

@@ -1,6 +1,7 @@
 class ChemicalLawContainer {
     constructor() {
         this.tileContainer = new TileContainer();
+        this._toFixed = 3;
     }
 
     createUI(cont) {
@@ -10,6 +11,7 @@ class ChemicalLawContainer {
         if (this.addSTPButton) {
             this._addSTPButton();
         }
+        this._addContentBeforeGoButton(cont);
         this._addGoButton();
         this.resultContainer = _htmlElement('div', cont);
     }
@@ -22,10 +24,32 @@ class ChemicalLawContainer {
     _addTiles() {
     }
 
+    _addContentBeforeGoButton(cont) {
+
+    }
+
+    _disp(num) {
+        const { _toFixed } = this;
+        return Number(_d(num).toFixed(_toFixed));
+    }
+
     _valueObjToLatex({ numberValue, unit, formula }) {
-        const nstr = numberValue === null ? 'x' : numberValue;
-        const unitStr = unit ? `\\text{${unit}}` : '';
+        const _disp = this._disp.bind(this);
+        const nstr = numberValue === null ? 'x' : _disp(numberValue);
+        const unitStr = unit ? `\\text{&nbsp;}${unit}` : '';
         return `(${nstr}${unitStr})`;
+    }
+
+    _formulaToLatex(formula) {
+        return formula.replaceAll(/([A-Za-z])([0-9]+)/g, '$1_{$2}')
+    }
+
+    getSigFigs() {
+        const allInputValues = this.tileContainer.getAllValues(true);
+        console.log(`all input values: %o`, allInputValues);
+        const sigFigs = Math.max(...allInputValues.map(val => _getSigFigs(val)));
+        console.log(`calculated sigFigs: ${sigFigs}`);
+        return sigFigs;
     }
 
     process() {
@@ -40,12 +64,23 @@ class ChemicalLawContainer {
         return this.tileContainer.getValue(id);
     }
 
-    getMissingValueTile() {
+    getMissingValueTile(okIfNotOne = false) {
         const missingTiles = this.tileContainer.getMissingValueTiles();
         if (missingTiles.length !== 1) {
+            if (okIfNotOne) {
+                return null;
+            }
             throw "Please leave only one field empty; the value will be calculated from the others";
         }
         return missingTiles[0];
+    }
+
+    getMissingValueTiles() {
+        return this.tileContainer.getMissingValueTiles();
+    }
+
+    getAllNumberInputTiles() {
+        return this.tileContainer.getAllNumberInputTiles();
     }
 
     _addGoButton() {
@@ -62,6 +97,18 @@ class ChemicalLawContainer {
             }
         }
         this.goButton.addEventListener('click', safeProcess);
+        this._addClearInputButton(div);
+    }
+
+    _addClearInputButton(div) {
+        const b = _htmlElement('input', div);
+        b.type = 'button';
+        b.value = 'Clear';
+        elemStyle(b, { fontSize: '18pt', marginLeft: '10px', float: 'right' })
+        b.addEventListener('click', () => {
+            this.tileContainer.clearAllTiles();
+            this.clearResultContainer();
+        });
     }
 
     setSTP() {
@@ -83,7 +130,24 @@ class ChemicalLawContainer {
         this.stpButton.addEventListener('click', safeProcess);
     }
 
+    _addOtherButtons(cont, functionsHash) {
+        Object.keys(functionsHash).forEach(label => {
+            let func = functionsHash[label];
+            let b = _htmlElement('input', cont, null, 'big-button', { marginLeft: '10px' });
+            b.type = 'button';
+            b.value = label;
+            b.addEventListener('click', () => {
+                this.tileContainer.resetUI();
+                this._addTiles();
+                if (typeof func === 'function') {
+                    func();
+                }
+            });
+        });
+    }
+
     _convertToSameUnit(o, category, ...valueObjs) {
+        const _disp = this._disp.bind(this);
         let units = Object.keys(UnitConversionsMap[category]);
         let sortedValueObjs = valueObjs.sort((value1, value2) => {
             if (value1.numberValue === null) {
@@ -108,7 +172,7 @@ class ChemicalLawContainer {
         let value = sortedValueObjs[1].numberValue;
         console.log(`unit conversion needed for ${fromUnit} ==> ${toUnit}`);
         const convertInfo = convertUnit(fromUnit, toUnit, value, 1);
-        _htmlElement('h4', o, `Unit conversion: ${value} ${fromUnit} ==> ${toUnit}`);
+        _htmlElement('h4', o, `Unit conversion: ${_disp(value)} ${fromUnit} ==> ${toUnit}`);
         _addConversionTable(o, convertInfo);
         //console.log(convertInfo);
         sortedValueObjs[1].numberValue = _d(convertInfo.result);
@@ -148,34 +212,66 @@ class ChemicalLawContainer {
         this._convertToSameUnit(o, 'density', d1, d);
     }
 
-    _convertToGrams(o, m) {
+    _convertToWeight(o, m, unit = 'g') {
         if (m.numberValue === null) {
-            m.unit = 'g';
+            m.unit = unit;
             return;
         }
-        const m1 = { numberValue: null, unit: 'g' };
+        const m1 = { numberValue: null, unit };
         this._convertToSameUnit(o, 'weight', m1, m);
     }
 
+    _convertToGrams(o, m) {
+        return this._convertToWeight(o, m, 'g');
+    }
+
+    _convertToKilograms(o, m) {
+        return this._convertToWeight(o, m, 'kg');
+    }
+
     _convertToMoles(o, valueObj) {
+        const _disp = this._disp.bind(this);
+        const _formulaToLatex = this._formulaToLatex.bind(this);
         const { numberValue, unit, formula, molarMass } = valueObj;
         console.log(valueObj);
         if (numberValue === null) {
             return;
         }
         if (unit === 'moles') {
+            valueObj.moles = numberValue;
             return;
         }
         if (unit !== 'g') {
             throw `unit ${unit} not supported, please use "g"`;
         }
+        const lformula = _formulaToLatex(formula)
         const gunit = `\\text{${unit}${formula}}`;
-        var latex = `${numberValue}${gunit} = \\frac{1\\text{mol${formula}}}{${molarMass}${gunit}}`;
+        var latex = `${_disp(numberValue)}${gunit} = \\frac{1\\text{mol}${lformula}}{${molarMass}${gunit}}`;
         const res = numberValue.div(_d(molarMass));
-        latex += ` = ${res}\\text{mol${formula}}`;
+        latex += ` = ${_disp(res)}\\text{mol}${lformula}`;
         addLatexElement(o, latex);
         valueObj.numberValue = res;
         valueObj.unit = 'moles';
+        valueObj.moles = res;
+    }
+
+    _convertMolesToMolarMassGrams(o, valueObj) {
+        const _disp = this._disp.bind(this);
+        const _formulaToLatex = this._formulaToLatex.bind(this);
+        const { numberValue, unit, formula, molarMass } = valueObj;
+        if (numberValue === null) {
+            return;
+        }
+        if (unit === 'g') {
+            // nothing to do
+            return;
+        }
+        if (unit !== 'moles') {
+            throw `unit ${unit} not supported; "moles" expected`;
+        }
+        const latex = `\\frac{${_disp(molarMass)}g ${_formulaToLatex(formula)}}{1 moles}`;
+        addLatexElement(o, latex);
+        return latex;
     }
 
 }

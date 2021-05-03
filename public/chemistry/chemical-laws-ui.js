@@ -26,6 +26,12 @@ function chemicalLawsUI(o, lawsOptions, options = {}) {
             }
         });
         lawSelect.outerContainer.style.height = '80px';
+        if (options.menuContainerWidth) {
+            lawSelect.outerContainer.style.width = options.menuContainerWidth;
+        }
+        if (options.menuWidth) {
+            lawSelect.selectMenuContainer.style.width = options.menuWidth;
+        }
         o.appendChild(output);
     } catch (err) {
         _addErrorElement(o, err);

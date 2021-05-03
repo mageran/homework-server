@@ -420,6 +420,12 @@ table.make-a-table td {
     font-size: 18pt;
 }
 
+.big-button {
+    font-size: 18pt;
+    padding: 10px;
+    margin: 20px 0px;
+}
+
 table.reverse-lookup-table {
     border-collapse: collapse;
     margin-top: 20px;

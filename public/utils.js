@@ -295,6 +295,26 @@ const _disp = (x, toFixedNum = null) => {
     return Number(num.toFixed(tf));
 }
 
+const _getSigFigs = num => {
+    try {
+        if (Number(_d(num)) === 0) {
+            return 1;
+        }
+        const nstr = String(num).replace(/[eE].*$/, '')
+        const parts = nstr.split('.');
+        const hasDecimalPoint = parts.length === 2;
+        var sigFigNumStr = parts.join('');
+        sigFigNumStr = sigFigNumStr.replace(/^0*/, '');
+        if (!hasDecimalPoint) {
+            sigFigNumStr = sigFigNumStr.replace(/0*$/, '')
+        }
+        console.log(`numstr used for determining sig figs: "${sigFigNumStr}"`);
+        return sigFigNumStr.length;
+    } catch (err) {
+        return -1;
+    }
+}
+
 const mo1 = () => {
     const sol = [];
     for (let x of allCombinations(0, 9, 7)) {
@@ -378,6 +398,7 @@ const createSelectElement = (cont, optionsIn, selectHook, deselectHook, skipInit
         }
     });
     const menuContainer = _htmlElement('div', outerContainer, null, 'select-menu-container');
+    selectObj.selectMenuContainer = menuContainer;
     options.forEach(option => {
         const { label, value, span } = option;
         var menuEntryDiv;

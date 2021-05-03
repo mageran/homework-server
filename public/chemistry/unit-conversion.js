@@ -150,33 +150,56 @@ function chemicalElementInfoUi(symbol) {
     }
 }
 
+const _getFormulasListFromAst = ast => {
+    if (ast.formulasList) {
+        return [ast];
+    }
+    if (ast.op === '+') {
+        return ast.operands;
+    }
+    throw "unsupported format of chemical formula";
+}
+
 const getMolarMassFromFormula = formula => {
     const ast = parseChemicalFormula(formula);
-    console.log(JSON.stringify(ast, null, 2));
-    const { coefficient, formulasList } = ast;
+    //console.log(JSON.stringify(ast, null, 2));
+    const formulaOperands = _getFormulasListFromAst(ast);
     var totalMass = 0;
-    formulasList.forEach(astElem => {
-        const m = _processChemicalFormulas(null, astElem);
-        totalMass += m;
+    formulaOperands.forEach(({ coefficient, formulasList }) => {
+        //    const { coefficient, formulasList } = ast;
+        formulasList.forEach(astElem => {
+            const m = _processChemicalFormulas(null, astElem);
+            const multiplier = (typeof coefficient === 'number') ? coefficient : 1;
+            totalMass += m * multiplier;
+        });
     });
     return totalMass;
 }
 
 function molarMassUi(formula) {
     const outputElem = this;
+    elemStyle(outputElem, { fontSize: '18pt' });
     try {
         const ast = parseChemicalFormula(formula);
-        console.log(JSON.stringify(ast, null, 2));
-        const { coefficient, formulasList } = ast;
+        //console.log(JSON.stringify(ast, null, 2));
         var totalMass = 0;
-        formulasList.forEach(astElem => {
-            const m = _processChemicalFormulas(outputElem, astElem);
-            totalMass += m;
+        const formulaOperands = _getFormulasListFromAst(ast);
+        formulaOperands.forEach(({ coefficient, formulasList }) => {
+            //const { coefficient, formulasList } = ast;
+            formulasList.forEach(astElem => {
+                const m = _processChemicalFormulas(outputElem, astElem);
+                if ((typeof coefficient === 'number') && coefficient > 1) {
+                    _htmlElement('div', outputElem, `multiply with coefficient ${coefficient}`, null, null, { marginLeft: '25px' });
+                    addLatexElement(outputElem, `${coefficient} \\cdot ${m} = ${m * coefficient}`);
+                }
+                totalMass += m * coefficient;
+            });
         });
         var div = document.createElement('div');
         div.innerHTML = `total mass: ${totalMass} g/mol`;
         outputElem.appendChild(div);
 
+        /*
         const hr = document.createElement('hr');
         _htmlElement('h3', outputElem, "with percentages:");
         outputElem.appendChild(hr);
@@ -186,6 +209,7 @@ function molarMassUi(formula) {
         div = document.createElement('div');
         div.innerHTML = `total mass: ${totalMass} g/mol`;
         outputElem.appendChild(div);
+        */
     } catch (err) {
         _addErrorElement(outputElem, `*** ${err}`);
     }

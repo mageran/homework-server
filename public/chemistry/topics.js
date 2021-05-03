@@ -80,7 +80,7 @@ const _molarMass = {
     title: 'Molar Mass Calculator',
     description: '',
     parameters: [
-        { name: 'Chemical Formula', type: 'formula' }
+        { name: 'Chemical Formula', type: 'formula', cssClass: 'width500' }
     ],
     func: molarMassUi
 }

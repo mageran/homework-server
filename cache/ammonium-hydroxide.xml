@@ -1,0 +1,399 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='10'
+    datatypes='Chemical,ChemicalIntermediate,Element'
+    timedout=''
+    timedoutpods=''
+    timing='3.686'
+    parsetiming='0.157'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP13822age58ibcf7hea60000190920e72165edgf'
+    host='https://www5a.wolframalpha.com'
+    server='10'
+    related='https://www5a.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa13922age58ibcf7hea600004c48c7f04ie4cge77941033312631285083'
+    version='2.6'
+    inputstring='ammonium hydroxide'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP14022age58ibcf7hea600001ee9i99g94g5004a?MSPStoreType=image/gif&amp;s=10'
+       alt='ammonium hydroxide'
+       title='ammonium hydroxide'
+       width='145'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>ammonium hydroxide</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP14122age58ibcf7hea600004ibd30a971788290?MSPStoreType=image/gif&amp;s=10'
+       alt='formula | NH_4OH
+Hill formula | H_5NO
+name | ammonium hydroxide'
+       title='formula | NH_4OH
+Hill formula | H_5NO
+name | ammonium hydroxide'
+       width='273'
+       height='106'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | NH_4OH
+Hill formula | H_5NO
+name | ammonium hydroxide</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP14222age58ibcf7hea600003e9h1f62a3b8e177?MSPStoreType=image/gif&amp;s=10'
+       alt='Structure diagram'
+       title=''
+       width='79'
+       height='191'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalData__Show bond information' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP14322age58ibcf7hea600002hg0dgab380f31i1?MSPStoreType=image/gif&amp;s=10'
+       alt='molar mass | 35.046 g/mol
+phase | aqueous (at STP)
+melting point | -57.5 °C
+boiling point | 36 °C
+density | 0.9 g/cm^3
+solubility in water | very soluble'
+       title='molar mass | 35.046 g/mol
+phase | aqueous (at STP)
+melting point | -57.5 °C
+boiling point | 36 °C
+density | 0.9 g/cm^3
+solubility in water | very soluble'
+       width='276'
+       height='202'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 35.046 g/mol
+phase | aqueous (at STP)
+melting point | -57.5 °C
+boiling point | 36 °C
+density | 0.9 g/cm^3
+solubility in water | very soluble</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP14422age58ibcf7hea600005i88idh0hhi9cf99?MSPStoreType=image/gif&amp;s=10'
+         width='234'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='Thermodynamics:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP14522age58ibcf7hea600004e9f8338dabb5a09?MSPStoreType=image/gif&amp;s=10'
+       alt='specific heat capacity c_p | liquid | 4.42 J/(g K)
+specific free energy of formation Δ_fG° | liquid | -7.248 kJ/g
+(at STP)'
+       title='specific heat capacity c_p | liquid | 4.42 J/(g K)
+specific free energy of formation Δ_fG° | liquid | -7.248 kJ/g
+(at STP)'
+       width='429'
+       height='99'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>specific heat capacity c_p | liquid | 4.42 J/(g K)
+specific free energy of formation Δ_fG° | liquid | -7.248 kJ/g
+(at STP)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Thermodynamics:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='J/(g K)'
+         long='joules per gram kelvin difference' />
+     <unit short='kJ/g'
+         long='kilojoules per gram' />
+     <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP14622age58ibcf7hea60000584iggcg699470a3?MSPStoreType=image/gif&amp;s=10'
+         width='262'
+         height='49' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP14722age58ibcf7hea60000668f1ei08e78c573?MSPStoreType=image/gif&amp;s=10'
+       alt='CAS number | 1336-21-6
+Beilstein number | 3587154
+PubChem CID number | 14923
+PubChem SID number | 24859136
+SMILES identifier | [NH4+].[OH-]'
+       title='CAS number | 1336-21-6
+Beilstein number | 3587154
+PubChem CID number | 14923
+PubChem SID number | 24859136
+SMILES identifier | [NH4+].[OH-]'
+       width='291'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 1336-21-6
+Beilstein number | 3587154
+PubChem CID number | 14923
+PubChem SID number | 24859136
+SMILES identifier | [NH4+].[OH-]</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='NFPA label'
+     scanner='Data'
+     id='NFPALabel:ChemicalData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP14822age58ibcf7hea60000347744afacfe2dd7?MSPStoreType=image/gif&amp;s=10'
+       alt='NFPA label'
+       title=''
+       width='40'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Table'
+       input='NFPALabel:ChemicalData__Table' />
+  </states>
+ </pod>
+ <pod title='Safety properties'
+     scanner='Data'
+     id='SafetyProperties:ChemicalData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP14922age58ibcf7hea600000i90g3c9166e042b?MSPStoreType=image/gif&amp;s=10'
+       alt='autoignition point | 650 °C
+lower explosive limit | 15.4% (concentration in air)
+upper explosive limit | 33.6% (concentration in air)'
+       title='autoignition point | 650 °C
+lower explosive limit | 15.4% (concentration in air)
+upper explosive limit | 33.6% (concentration in air)'
+       width='350'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>autoignition point | 650 °C
+lower explosive limit | 15.4% (concentration in air)
+upper explosive limit | 33.6% (concentration in air)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='SafetyProperties:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Toxicity properties'
+     scanner='Data'
+     id='ToxicityProperties:ChemicalData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>MacmillansChemicalAndPhysicalData</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP15022age58ibcf7hea600002e24f1i1a600e471?MSPStoreType=image/gif&amp;s=10'
+       alt='RTECS classes | mutagen | human data | primary irritant'
+       title='RTECS classes | mutagen | human data | primary irritant'
+       width='434'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>RTECS classes | mutagen | human data | primary irritant</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Ion equivalents'
+     scanner='Data'
+     id='IonProperties:ChemicalData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP15122age58ibcf7hea600001bgc87eegg7i7id3?MSPStoreType=image/gif&amp;s=10'
+       alt='(NH_4)^+ (ammonium cation) | 1
+(OH)^- (hydroxide anion) | 1'
+       title='(NH_4)^+ (ammonium cation) | 1
+(OH)^- (hydroxide anion) | 1'
+       width='229'
+       height='68'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>(NH_4)^+ (ammonium cation) | 1
+(OH)^- (hydroxide anion) | 1</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='ammonium hydroxide'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='Chemical'
+       desc='a chemical compound'
+       input='*C.ammonium+hydroxide-_*Chemical-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.ammonium+hydroxide-_*Word-' />
+  </assumption>
+ </assumptions>
+ <sources count='3'>
+  <source url='https://www5a.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+  <source url='https://www5a.wolframalpha.com/sources/ChemicalIntermediateDataSourceInformationNotes.html'
+      text='Chemical intermediate data' />
+  <source url='https://www5a.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>
