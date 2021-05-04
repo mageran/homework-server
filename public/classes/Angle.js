@@ -43,7 +43,7 @@ class Angle {
     }
 
     get radiansDecimal() {
-        return _d(this.degree).mul(_d(pi)).div(_d(180));
+        return _d(this.degree).mul(_d(pi)).div(_d(180.0));
     }
 
     get piFactor() {

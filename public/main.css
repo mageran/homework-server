@@ -424,6 +424,8 @@ table.make-a-table td {
     font-size: 18pt;
     padding: 10px;
     margin: 20px 0px;
+    border-radius: 8px;
+    box-shadow: 3px 3px rgba(1, 1, 1, 0.3);
 }
 
 table.reverse-lookup-table {
@@ -534,4 +536,17 @@ table.left-header-table td {
     font-size: 14pt;
     border: 1px solid grey;
     padding: 3px;
+}
+
+table.table-with-header {
+    border-collapse: collapse;
+}
+
+table.table-with-header th {
+    background-color: beige;
+}
+
+table.table-with-header th, table.table-with-header td {
+    border: 1px solid black;
+    padding: 10px;
 }

@@ -127,6 +127,7 @@ function triangleQuestionsOneLineInput(anglesAndSidesLatex) {
         _addInputsForRoundingOfAnglesAndSides(o);
         const hlp = new GeometricalShapeParserHelper();
         const triangle = hlp.parseTriangleDefinition(anglesAndSidesLatex);
+        triangle.skipHeightCalculationSteps = false;
         _showTriangleSolution(o, triangle);
     } catch (err) {
         _addErrorElement(o, err);

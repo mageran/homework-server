@@ -474,6 +474,8 @@ const _triangleQuestionsOneLineInput = {
         { name: 'Sides and angles', type: 'formula', cssClass: 'width500' }
     ],
     testValues: [
+        ['P=34,\ r,\ p\ =\ 8,\ Q=90'],
+        ['R=90, r=19, q=14.3, p'],
         ['a = 3; b = 4, c = 5'],
         ['c = 500; B = 58; A = 90'],
         ['A = 90; B = 58; c = 500'],
@@ -510,6 +512,7 @@ const _bearingAngleNavigationQuestions = {
         { separator: true }
     ],
     testValues: [
+        ['S61E', 112, 'N20.8W', 148.78],
         [200, 300, 340, 500],
         ['S20W', 300, 'N20W', 500],
         [200, 30000, 340, 50000],
@@ -572,7 +575,8 @@ const _areaOfComposedShapes = {
         ['T: P = 44, p = 4, Q = 56, r;', 'T'],
         ['T: S = 122, s = 7, r = 4.3;', 'T'],
         ['T: R = 32, Q = 62, p = 13;', 'T'],
-        ['T1: A=108, b=10, c=12;\nT2: b=T1.a, A=132-T1.B, c=10;', 'T1+T2']
+        ['T1: A=108, b=10, c=12;\nT2: b=T1.a, A=132-T1.B, c=10;', 'T1+T2'],
+        ['T: A = 46, B = 104, c = 16;', 'T']
     ],
     func: areaOfComposedShapes
 }

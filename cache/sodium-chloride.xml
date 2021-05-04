@@ -1,0 +1,426 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='10'
+    datatypes='Chemical,ChemicalIntermediate,Element'
+    timedout=''
+    timedoutpods=''
+    timing='3.86'
+    parsetiming='0.229'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP5792490d0f6g39g0f9500006790a1418h4hdeb4'
+    host='https://www5a.wolframalpha.com'
+    server='24'
+    related='https://www5a.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa5802490d0f6g39g0f9500003i451d5g5g0e93hd5106314412482791943'
+    version='2.6'
+    inputstring='sodium chloride'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP5812490d0f6g39g0f95000063he0b45f17f82ff?MSPStoreType=image/gif&amp;s=24'
+       alt='sodium chloride'
+       title='sodium chloride'
+       width='104'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>sodium chloride</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP5822490d0f6g39g0f95000034345f0cc3dac3b7?MSPStoreType=image/gif&amp;s=24'
+       alt='formula | NaCl
+Hill formula | ClNa
+name | sodium chloride'
+       title='formula | NaCl
+Hill formula | ClNa
+name | sodium chloride'
+       width='232'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | NaCl
+Hill formula | ClNa
+name | sodium chloride</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP5832490d0f6g39g0f950000624hc606f0c5334b?MSPStoreType=image/gif&amp;s=24'
+       alt='Structure diagram'
+       title=''
+       width='79'
+       height='25'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP5842490d0f6g39g0f9500000h070952a73d556g?MSPStoreType=image/gif&amp;s=24'
+       alt='molar mass | 58.44 g/mol
+phase | solid (at STP)
+melting point | 801 °C
+boiling point | 1413 °C
+density | 2.16 g/cm^3
+solubility in water | soluble'
+       title='molar mass | 58.44 g/mol
+phase | solid (at STP)
+melting point | 801 °C
+boiling point | 1413 °C
+density | 2.16 g/cm^3
+solubility in water | soluble'
+       width='251'
+       height='202'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 58.44 g/mol
+phase | solid (at STP)
+melting point | 801 °C
+boiling point | 1413 °C
+density | 2.16 g/cm^3
+solubility in water | soluble</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP5852490d0f6g39g0f9500005691b2i1fca0752c?MSPStoreType=image/gif&amp;s=24'
+         width='234'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Solid properties (at STP)'
+     scanner='Data'
+     id='SolidProperties:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP5862490d0f6g39g0f9500003ic84e85c7de4b32?MSPStoreType=image/gif&amp;s=24'
+       alt='density | 2.16 g/cm^3
+vapor pressure | 0.9998 mmHg (at 865 °C)'
+       title='density | 2.16 g/cm^3
+vapor pressure | 0.9998 mmHg (at 865 °C)'
+       width='302'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>density | 2.16 g/cm^3
+vapor pressure | 0.9998 mmHg (at 865 °C)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='Thermodynamics:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP5872490d0f6g39g0f95000050gfei9ae7a063cg?MSPStoreType=image/gif&amp;s=24'
+       alt='specific heat capacity c_p | solid | 0.8641 J/(g K)
+specific free energy of formation Δ_fG° | solid | -6.573 kJ/g
+specific heat of formation Δ_fH° | solid | -7.036 kJ/g
+specific entropy S° | solid | 1.232 J/(g K)
+specific heat of fusion | 0.4819 kJ/g | 
+(at STP)'
+       title='specific heat capacity c_p | solid | 0.8641 J/(g K)
+specific free energy of formation Δ_fG° | solid | -6.573 kJ/g
+specific heat of formation Δ_fH° | solid | -7.036 kJ/g
+specific entropy S° | solid | 1.232 J/(g K)
+specific heat of fusion | 0.4819 kJ/g | 
+(at STP)'
+       width='431'
+       height='201'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>specific heat capacity c_p | solid | 0.8641 J/(g K)
+specific free energy of formation Δ_fG° | solid | -6.573 kJ/g
+specific heat of formation Δ_fH° | solid | -7.036 kJ/g
+specific entropy S° | solid | 1.232 J/(g K)
+specific heat of fusion | 0.4819 kJ/g | 
+(at STP)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Thermodynamics:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='3'>
+     <unit short='J/(g K)'
+         long='joules per gram kelvin' />
+     <unit short='J/(g K)'
+         long='joules per gram kelvin difference' />
+     <unit short='kJ/g'
+         long='kilojoules per gram' />
+     <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP5882490d0f6g39g0f95000027ach4b0i3f54edb?MSPStoreType=image/gif&amp;s=24'
+         width='262'
+         height='71' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP5892490d0f6g39g0f95000066c60db30009ie1b?MSPStoreType=image/gif&amp;s=24'
+       alt='CAS number | 7647-14-5
+Beilstein number | 3534976
+PubChem CID number | 5234
+PubChem SID number | 24852266
+SMILES identifier | [Na+].[Cl-]'
+       title='CAS number | 7647-14-5
+Beilstein number | 3534976
+PubChem CID number | 5234
+PubChem SID number | 24852266
+SMILES identifier | [Na+].[Cl-]'
+       width='271'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 7647-14-5
+Beilstein number | 3534976
+PubChem CID number | 5234
+PubChem SID number | 24852266
+SMILES identifier | [Na+].[Cl-]</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='NFPA label'
+     scanner='Data'
+     id='NFPALabel:ChemicalData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP5902490d0f6g39g0f9500005794b8g7bdag5c89?MSPStoreType=image/gif&amp;s=24'
+       alt='NFPA label'
+       title=''
+       width='40'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Table'
+       input='NFPALabel:ChemicalData__Table' />
+  </states>
+ </pod>
+ <pod title='Toxicity properties'
+     scanner='Data'
+     id='ToxicityProperties:ChemicalData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>MacmillansChemicalAndPhysicalData</datasource>
+   </datasources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP5912490d0f6g39g0f950000302if28ge3g82g68?MSPStoreType=image/gif&amp;s=24'
+       alt='odor | odorless
+lethal dosage | 3000 mg/kg (oral dose for rats)'
+       title='odor | odorless
+lethal dosage | 3000 mg/kg (oral dose for rats)'
+       width='324'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>odor | odorless
+lethal dosage | 3000 mg/kg (oral dose for rats)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ToxicityProperties:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short='mg/kg'
+         long='milligrams per kilogram' />
+     <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP5922490d0f6g39g0f9500000gh5f2be978c1956?MSPStoreType=image/gif&amp;s=24'
+         width='211'
+         height='27' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Ion equivalents'
+     scanner='Data'
+     id='IonProperties:ChemicalData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP5932490d0f6g39g0f950000233b653ie485e843?MSPStoreType=image/gif&amp;s=24'
+       alt='Na^+ (sodium cation) | 1
+Cl^- (chloride anion) | 1'
+       title='Na^+ (sodium cation) | 1
+Cl^- (chloride anion) | 1'
+       width='190'
+       height='66'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Na^+ (sodium cation) | 1
+Cl^- (chloride anion) | 1</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='MultiClash'
+      word=''
+      template='Assuming ${word1} is referring to ${desc1}. Use as ${desc2} instead. Use &quot;${word3}&quot; as ${desc3}.'
+      count='3'>
+   <value name='Chemical'
+       word='the input'
+       desc='a chemical compound'
+       input='*MC.%7E-_*Chemical-' />
+   <value name='Word'
+       word='the input'
+       desc='a word'
+       input='*MC.%7E-_*Word-' />
+   <value name='MedicalTest'
+       word='sodium'
+       desc='a medical test'
+       input='*MC.%7E-_*MedicalTest-' />
+  </assumption>
+ </assumptions>
+ <sources count='3'>
+  <source url='https://www5a.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+  <source url='https://www5a.wolframalpha.com/sources/ChemicalIntermediateDataSourceInformationNotes.html'
+      text='Chemical intermediate data' />
+  <source url='https://www5a.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>

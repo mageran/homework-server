@@ -73,6 +73,9 @@ const _balanceChemicalEquation = {
         { separator: true },
         { name: 'Chemical Equation', type: 'formula', cssClass: 'width700' },
     ],
+    testValues: [
+        [20, 'KMnO4 + HCl = KCl + MnCl2 + H2O + Cl2']
+    ],
     func: balanceChemicalEquation
 }
 
@@ -138,9 +141,20 @@ const _solutionConcentration = {
     func: solutionConcentrationUI,
 }
 
+const _electronegativity = {
+    title: 'Electronegativity of Chemical Formula',
+    description: 'Lookup electronegativity for the elements in the given chemical formula',
+    parameters: [
+        { name: 'Formula', type: 'formula', cssClass: 'width500' }
+    ],
+    testValues: [['NaCl'], ['SO2'], ['CO2'], ['Al2S3'], ['MgO'], ['MgCl2']],
+    func: electronegativityUI
+}
+
 const topicObjects = [
     _solutionConcentration,
     _lewisStructureWidget,
+    _electronegativity,
     '-------------',
     _gasLaws,
     _chemicalQuery,

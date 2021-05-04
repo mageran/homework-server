@@ -38,6 +38,22 @@ const productToString = (a, b) => {
     return `${a}*${b}`;
 }
 
+const isSorted = list => {
+    var previousValue;
+    for(let i = 0; i < list.length; i++) {
+        let val = list[i];
+        if (i === 0) {
+            previousValue = val;
+            continue;
+        }
+        if (val < previousValue) {
+            return false;
+        }
+        previousValue = val;
+    }
+    return true;
+}
+
 const sumToString = (a, b) => {
     if ((typeof a === 'number') && (typeof b === 'number')) {
         return a + b;

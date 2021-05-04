@@ -1,0 +1,468 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='10'
+    datatypes='Chemical,Element'
+    timedout=''
+    timedoutpods=''
+    timing='4.313'
+    parsetiming='0.155'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP638014i2e0ei11b7641400006a8eg5119b43a797'
+    host='https://www4c.wolframalpha.com'
+    server='41'
+    related='https://www4c.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa638114i2e0ei11b7641400005ahgi35eadb7373e2280401133652745401'
+    version='2.6'
+    inputstring='hydrogen peroxide'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP638214i2e0ei11b7641400004dga9264ee8h2gd3?MSPStoreType=image/gif&amp;s=41'
+       alt='hydrogen peroxide'
+       title='hydrogen peroxide'
+       width='121'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>hydrogen peroxide</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP638314i2e0ei11b7641400005d9i1a2gca504395?MSPStoreType=image/gif&amp;s=41'
+       alt='formula | H_2O_2
+name | hydrogen peroxide'
+       title='formula | H_2O_2
+name | hydrogen peroxide'
+       width='222'
+       height='71'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | H_2O_2
+name | hydrogen peroxide</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP638414i2e0ei11b764140000489h57ag9734hced?MSPStoreType=image/gif&amp;s=41'
+       alt='Structure diagram'
+       title=''
+       width='87'
+       height='39'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='4'>
+   <statelist count='2'
+       value='Skeletal structure'
+       delimiters=''>
+    <state name='Skeletal structure'
+        input='StructureDiagramPod:ChemicalData__Skeletal structure' />
+    <state name='Lewis structure'
+        input='StructureDiagramPod:ChemicalData__Lewis structure' />
+   </statelist>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalData__Show graph properties' />
+   <state name='Step-by-step'
+       input='StructureDiagramPod:ChemicalData__Step-by-step'
+       stepbystep='true' />
+  </states>
+ </pod>
+ <pod title='3D structure'
+     scanner='Data'
+     id='3DStructure:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP638514i2e0ei11b7641400001218c8e7g9a6g28i?MSPStoreType=image/gif&amp;s=41'
+       alt='3D structure'
+       title=''
+       width='400'
+       height='79'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show bonds only'
+       input='3DStructure:ChemicalData__Show bonds only' />
+   <state name='Show space filling model'
+       input='3DStructure:ChemicalData__Show space filling model' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP638614i2e0ei11b7641400005e728h8e7hbhg92h?MSPStoreType=image/gif&amp;s=41'
+       alt='molar mass | 34.014 g/mol
+phase | liquid (at STP)
+melting point | -0.43 °C
+boiling point | 150.2 °C
+density | 1.44 g/cm^3
+solubility in water | miscible'
+       title='molar mass | 34.014 g/mol
+phase | liquid (at STP)
+melting point | -0.43 °C
+boiling point | 150.2 °C
+density | 1.44 g/cm^3
+solubility in water | miscible'
+       width='258'
+       height='202'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 34.014 g/mol
+phase | liquid (at STP)
+melting point | -0.43 °C
+boiling point | 150.2 °C
+density | 1.44 g/cm^3
+solubility in water | miscible</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP638714i2e0ei11b76414000066hh3042ag7b4h3e?MSPStoreType=image/gif&amp;s=41'
+         width='234'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Liquid properties (at STP)'
+     scanner='Data'
+     id='LiquidProperties:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP638814i2e0ei11b7641400005ahic02a968iifa1?MSPStoreType=image/gif&amp;s=41'
+       alt='density | 1.44 g/cm^3
+vapor pressure | 23.3 mmHg
+dynamic viscosity | 0.001249 Pa s (at 20 °C)
+surface tension | 0.0804 N/m
+refractive index | 1.34'
+       title='density | 1.44 g/cm^3
+vapor pressure | 23.3 mmHg
+dynamic viscosity | 0.001249 Pa s (at 20 °C)
+surface tension | 0.0804 N/m
+refractive index | 1.34'
+       width='311'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>density | 1.44 g/cm^3
+vapor pressure | 23.3 mmHg
+dynamic viscosity | 0.001249 Pa s (at 20 °C)
+surface tension | 0.0804 N/m
+refractive index | 1.34</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='Thermodynamics:ChemicalData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP638914i2e0ei11b764140000463ig421750ea5ca?MSPStoreType=image/gif&amp;s=41'
+       alt='specific heat capacity c_p | gas | 1.267 J/(g K)
+ | liquid | 2.62 J/(g K)
+specific free energy of formation Δ_fG° | gas | -3.105 kJ/g
+ | liquid | -3.54 kJ/g
+specific heat of formation Δ_fH° | gas | -4.007 kJ/g
+specific heat of vaporization | 1.52 kJ/g | 
+specific heat of fusion | 0.367 kJ/g | 
+critical temperature | 730 K | 
+critical pressure | 21 MPa | 
+(at STP)'
+       title='specific heat capacity c_p | gas | 1.267 J/(g K)
+ | liquid | 2.62 J/(g K)
+specific free energy of formation Δ_fG° | gas | -3.105 kJ/g
+ | liquid | -3.54 kJ/g
+specific heat of formation Δ_fH° | gas | -4.007 kJ/g
+specific heat of vaporization | 1.52 kJ/g | 
+specific heat of fusion | 0.367 kJ/g | 
+critical temperature | 730 K | 
+critical pressure | 21 MPa | 
+(at STP)'
+       width='430'
+       height='321'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>specific heat capacity c_p | gas | 1.267 J/(g K)
+ | liquid | 2.62 J/(g K)
+specific free energy of formation Δ_fG° | gas | -3.105 kJ/g
+ | liquid | -3.54 kJ/g
+specific heat of formation Δ_fH° | gas | -4.007 kJ/g
+specific heat of vaporization | 1.52 kJ/g | 
+specific heat of fusion | 0.367 kJ/g | 
+critical temperature | 730 K | 
+critical pressure | 21 MPa | 
+(at STP)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Thermodynamics:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='4'>
+     <unit short='J/(g K)'
+         long='joules per gram kelvin difference' />
+     <unit short='kJ/g'
+         long='kilojoules per gram' />
+     <unit short='K'
+         long='kelvins' />
+     <unit short='MPa'
+         long='megapascals' />
+     <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP639014i2e0ei11b76414000024674c5f750b0f91?MSPStoreType=image/gif&amp;s=41'
+         width='262'
+         height='93' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP639114i2e0ei11b7641400000e0add22a97d3e2f?MSPStoreType=image/gif&amp;s=41'
+       alt='CAS number | 7722-84-1
+Beilstein number | 3587191
+PubChem CID number | 784
+SMILES identifier | OO'
+       title='CAS number | 7722-84-1
+Beilstein number | 3587191
+PubChem CID number | 784
+SMILES identifier | OO'
+       width='271'
+       height='136'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 7722-84-1
+Beilstein number | 3587191
+PubChem CID number | 784
+SMILES identifier | OO</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='NFPA label'
+     scanner='Data'
+     id='NFPALabel:ChemicalData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP639214i2e0ei11b7641400005e8eiiebe1ece2hi?MSPStoreType=image/gif&amp;s=41'
+       alt='NFPA label'
+       title=''
+       width='40'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Table'
+       input='NFPALabel:ChemicalData__Table' />
+  </states>
+ </pod>
+ <pod title='Toxicity properties'
+     scanner='Data'
+     id='ToxicityProperties:ChemicalData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>MacmillansChemicalAndPhysicalData</datasource>
+   </datasources>
+   <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP639314i2e0ei11b76414000067afe03bdeagc172?MSPStoreType=image/gif&amp;s=41'
+       alt='lethal dosage | 1518 mg/kg (oral dose for rats)
+short-term exposure limit | 3 mg/m^3
+threshold limit value | 1 ppmv'
+       title='lethal dosage | 1518 mg/kg (oral dose for rats)
+short-term exposure limit | 3 mg/m^3
+threshold limit value | 1 ppmv'
+       width='405'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>lethal dosage | 1518 mg/kg (oral dose for rats)
+short-term exposure limit | 3 mg/m^3
+threshold limit value | 1 ppmv</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ToxicityProperties:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='3'>
+     <unit short='mg/kg'
+         long='milligrams per kilogram' />
+     <unit short='mg/m^3'
+         long='milligrams per cubic meter' />
+     <unit short='ppmv'
+         long='parts per million by volume' />
+     <img src='https://www4c.wolframalpha.com/Calculate/MSP/MSP639414i2e0ei11b7641400004h259ii18ecc4f65?MSPStoreType=image/gif&amp;s=41'
+         width='238'
+         height='72' />
+    </units>
+   </info>
+  </infos>
+  <definitions count='1'>
+   <definition word='threshold limit value'
+       desc='the allowable airborne concentration in parts per million by volume, the level that an average person can be repeatedly exposed to without adverse effects' />
+  </definitions>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='hydrogen peroxide'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='Chemical'
+       desc='a chemical compound'
+       input='*C.hydrogen+peroxide-_*Chemical-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.hydrogen+peroxide-_*Word-' />
+  </assumption>
+ </assumptions>
+ <sources count='2'>
+  <source url='https://www4c.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+  <source url='https://www4c.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>

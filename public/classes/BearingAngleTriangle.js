@@ -43,7 +43,7 @@ class BearingAngleTriangle extends Triangle {
 
     _angleBCalculationSteps() {
         const [_, b, __] = this.sidePairs;
-        const bAngle = b.angle.degree;
+        const bAngle = Number(_d(b.angle.degree).toFixed(1));
         //const angle1 = this.givenAsTrueBearing ? this.bearingAngle1.trueBearing : this.bearingAngle1.compassBaering.angle;
         //const angle2 = this.givenAsTrueBearing ? this.bearingAngle2.trueBearing : this.bearingAngle2.compassBaering.angle;
         const angle1 = this.bearingAngle1.compassBaering.angle;
@@ -72,6 +72,7 @@ class BearingAngleTriangle extends Triangle {
             value += (angle2Positive ? 1 : -1) * angle2;
             latex += opsym + angle2;
             console.log(`value: ${value}, latex: ${latex}`);
+            value = Number(_d(value).toFixed(2));
             if (value === bAngle) {
                 console.log('found calculation!');
                 return [{

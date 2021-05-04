@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='6'
+    datatypes='Chemical,ChemicalIntermediate'
+    timedout=''
+    timedoutpods=''
+    timing='2.91'
+    parsetiming='0.21'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP200921i81e846b81i44600003ha9i9103acha2f6'
+    host='https://www4d.wolframalpha.com'
+    server='1'
+    related='https://www4d.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa201021i81e846b81i446000069dhi9ccbgccch2h2837828943889480209'
+    version='2.6'
+    inputstring='copper II nitrate'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP201121i81e846b81i4460000270aa1b4b9cc2i9g?MSPStoreType=image/gif&amp;s=1'
+       alt='copper(II) nitrate'
+       title='copper(II) nitrate'
+       width='112'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>copper(II) nitrate</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP201221i81e846b81i44600003bde02h62eei4d8e?MSPStoreType=image/gif&amp;s=1'
+       alt='formula | Cu(NO_3)_2
+Hill formula | CuN_2O_6
+name | copper(II) nitrate'
+       title='formula | Cu(NO_3)_2
+Hill formula | CuN_2O_6
+name | copper(II) nitrate'
+       width='240'
+       height='105'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | Cu(NO_3)_2
+Hill formula | CuN_2O_6
+name | copper(II) nitrate</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP201321i81e846b81i446000047597853db642301?MSPStoreType=image/gif&amp;s=1'
+       alt='Structure diagram'
+       title=''
+       width='148'
+       height='166'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalData__Show bond information' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP201421i81e846b81i446000012ae59a0222bce8g?MSPStoreType=image/gif&amp;s=1'
+       alt='molar mass | 187.55 g/mol'
+       title='molar mass | 187.55 g/mol'
+       width='208'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 187.55 g/mol</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP201521i81e846b81i4460000567fii8ig0eh17b5?MSPStoreType=image/gif&amp;s=1'
+         width='164'
+         height='27' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP201621i81e846b81i44600003e0hhg448e1ac63d?MSPStoreType=image/gif&amp;s=1'
+       alt='CAS number | 3251-23-8
+PubChem CID number | 18616
+SMILES identifier | [Cu+2].[N+](=O)([O-])[O-].[N+](=O)([O-])[O-]'
+       title='CAS number | 3251-23-8
+PubChem CID number | 18616
+SMILES identifier | [Cu+2].[N+](=O)([O-])[O-].[N+](=O)([O-])[O-]'
+       width='516'
+       height='103'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 3251-23-8
+PubChem CID number | 18616
+SMILES identifier | [Cu+2].[N+](=O)([O-])[O-].[N+](=O)([O-])[O-]</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Ion equivalents'
+     scanner='Data'
+     id='IonProperties:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP201721i81e846b81i44600004i3b0934238ebgfg?MSPStoreType=image/gif&amp;s=1'
+       alt='Cu^(2+) (copper(II) cation) | 1
+(NO_3)^- (nitrate anion) | 2'
+       title='Cu^(2+) (copper(II) cation) | 1
+(NO_3)^- (nitrate anion) | 2'
+       width='211'
+       height='69'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Cu^(2+) (copper(II) cation) | 1
+(NO_3)^- (nitrate anion) | 2</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <sources count='2'>
+  <source url='https://www4d.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+  <source url='https://www4d.wolframalpha.com/sources/ChemicalIntermediateDataSourceInformationNotes.html'
+      text='Chemical intermediate data' />
+ </sources>
+</queryresult>

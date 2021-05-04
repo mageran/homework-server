@@ -143,6 +143,7 @@ class Triangle extends GeometricShape {
 
     solve() {
         const status = this.getGivenStatus();
+        console.log(`status: ${status}`);
         if (status.length < 3) {
             throw `not enough information to solve triangle; add ${3 - status.length} entry/ies`;
         }
@@ -271,12 +272,13 @@ class Triangle extends GeometricShape {
                 missingAngleObject.angle = Angle.fromDegree(result, true);
                 let a = this.sidePairs.filter(sp => sp.side)[0];
                 a.getOtherPairs().forEach(b => {
-                    const bResult = a.side.mul(b.angle.sinDecimal).div(a.angle.sinDecimal).toFixed(_toFixedSides);
+                    const bResult = a.side.mul(b.angle.sinDecimal).div(a.angle.sinDecimal);
+                    const bResultDisp = bResult.toFixed(_toFixedSides);
                     var latex = `\\frac{sin ${a.angle.degree}}{${a.side}} `
                         + `= \\frac{sin ${b.angle.degree}}{${b.sideName}}`
                         + `\\Rightarrow ${b.sideName} = `
                         + `\\frac{${a.side}\\cdot sin ${b.angle.degree}}{sin ${a.angle.degree}}`
-                        + `= ${bResult}`;
+                        + `= ${bResultDisp}`;
                     console.log(latex);
                     steps.push({ latex });
                     b.side = _d(bResult);
@@ -449,10 +451,8 @@ class Triangle extends GeometricShape {
             });
             this.area = k;
         }
-        if (cat === 'SAS') {
-            steps.push(`&nbsp;&nbsp;Using formula for ${cat} triangles:`);
-            let a = sidePairs.filter(sp => sp.angleIsGiven)[0];
-            let [b, c] = sidePairs.filter(sp => sp.sideIsGiven);
+        const _solveSAS = (a, b, c) => {
+            steps.push(`&nbsp;&nbsp;Using formula for SAS triangles:`);
             const k = (b.side.mul(c.side).mul(a.angle.sinDecimal)).div(2);
             steps.push({
                 latex: `K = \\frac{1}{2}${b.sideName}${c.sideName}\\cdot sin ${a.angleName} = `
@@ -460,18 +460,38 @@ class Triangle extends GeometricShape {
                     + `= ${_disp(k, toFixedForResult)}`
             })
             this.area = k;
+
+        };
+        if (cat === 'SAS') {
+            let a = sidePairs.filter(sp => sp.angleIsGiven)[0];
+            let [b, c] = sidePairs.filter(sp => sp.sideIsGiven);
+            _solveSAS(a, b, c);
         }
         else if (cat === 'SSS') {
             _solveSSS();
         }
         else {
-            steps.push(`area calculation for triangles of type ${cat} is not supported`);
-            if (sidePairs.every(sp => sp.side)) {
+            steps.push(`Area calculation for triangles of type ${cat} is not directly supported`);
+            if (sidePairs.every(sp => sp.sideIsGiven)) {
                 _solveSSS();
             } else {
-                this.needsSolving = this.sidePairs.filter(sp => !sp.side).map(sp => sp.sideName);
-                this.solve();
-                _solveSSS();
+                let a = sidePairs.filter(sp => sp.angleIsGiven)[0];
+                let b = sidePairs.filter(sp => (sp !== a && sp.sideIsGiven))[0];
+                let c = sidePairs.filter(sp => (sp !== a && sp !== b))[0];
+                if (a && b && c) {
+                    this.needsSolving = [c.sideName];
+                    steps.push(`<div style="border:1px dotted gray;display:inline-block;padding:5px;background:beige;margin: 10px 0;">`
+                        + `Using given angle "${a.angleName}", given side "${b.sideName}", and calculated side "${c.sideName}"</div>`);
+                    this.reset();
+                    this.solve();
+                    _solveSAS(a, b, c);
+                } else {
+                    // fallback
+                    this.needsSolving = this.sidePairs.filter(sp => !sp.side).map(sp => sp.sideName);
+                    this.reset();
+                    this.solve();
+                    _solveSSS();
+                }
             }
         }
         return steps;

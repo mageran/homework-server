@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='2'
+    datatypes='Chemical'
+    timedout=''
+    timedoutpods=''
+    timing='1.025'
+    parsetiming='0.223'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP77012a471333fdbi513000065557690c4gb0dhf'
+    host='https://www4f.wolframalpha.com'
+    server='55'
+    related='https://www4f.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa77112a471333fdbi51300004ihhc9657b436hb58707379056943765232'
+    version='2.6'
+    inputstring='hydrogen peroxide bonds'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP77212a471333fdbi5130000601dhf6b9dfaaf10?MSPStoreType=image/gif&amp;s=55'
+       alt='hydrogen peroxide | bond information'
+       title='hydrogen peroxide | bond information'
+       width='267'
+       height='23'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>hydrogen peroxide | bond information</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Results'
+     scanner='Data'
+     id='BondInformation:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='2'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP77312a471333fdbi513000040604gcid86chgi7?MSPStoreType=image/gif&amp;s=55'
+       alt='Results'
+       title=''
+       width='87'
+       height='39'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP77412a471333fdbi51300002i7138f3cah3bg10?MSPStoreType=image/gif&amp;s=55'
+       alt=' | bond counts | bond lengths | bond energies
+ | 2 bonds | 1 Å | 459 kJ/mol
+ | 1 bond | 1.4 Å | 142 kJ/mol'
+       title=' | bond counts | bond lengths | bond energies
+ | 2 bonds | 1 Å | 459 kJ/mol
+ | 1 bond | 1.4 Å | 142 kJ/mol'
+       width='376'
+       height='105'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext> | bond counts | bond lengths | bond energies
+ | 2 bonds | 1 Å | 459 kJ/mol
+ | 1 bond | 1.4 Å | 142 kJ/mol</plaintext>
+  </subpod>
+  <expressiontypes count='2'>
+   <expressiontype name='Default' />
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='Å'
+         long='ångströms' />
+     <unit short='kJ/mol'
+         long='kilojoules per mole' />
+     <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP77512a471333fdbi51300005gfdichf0e97d84g?MSPStoreType=image/gif&amp;s=55'
+         width='183'
+         height='49' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <sources count='1'>
+  <source url='https://www4f.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+ </sources>
+</queryresult>

@@ -5087,6 +5087,7 @@ const chemicalElement = symbol => {
 }
 
 const atomicMass = symbol => chemicalElement(symbol).atomic_mass;
+const electroNegativity = symbol => chemicalElement(symbol).electronegativity_pauling;
 
 const allChemicalElementSymbols = PeriodicTable.elements.map(element => element.symbol);
 

@@ -85,10 +85,10 @@ class ChemicalLawContainer {
 
     _addGoButton() {
         const div = _htmlElement('div', this.cont);
-        this.goButton = _htmlElement('input', div);
+        this.goButton = _htmlElement('input', div, null, 'big-button');
         this.goButton.type = "button";
         this.goButton.value = "Go";
-        elemStyle(this.goButton, { fontSize: '18pt' })
+        elemStyle(this.goButton, { backgroundColor: 'lightgreen' })
         const safeProcess = () => {
             try {
                 this.process.call(this);
@@ -101,10 +101,10 @@ class ChemicalLawContainer {
     }
 
     _addClearInputButton(div) {
-        const b = _htmlElement('input', div);
+        const b = _htmlElement('input', div, null, 'big-button');
         b.type = 'button';
         b.value = 'Clear';
-        elemStyle(b, { fontSize: '18pt', marginLeft: '10px', float: 'right' })
+        elemStyle(b, { marginLeft: '50px' })
         b.addEventListener('click', () => {
             this.tileContainer.clearAllTiles();
             this.clearResultContainer();
