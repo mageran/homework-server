@@ -331,6 +331,11 @@ const _getSigFigs = num => {
     }
 }
 
+const removeCommentLines = inputString => {
+    const lines = inputString.split(/\n/);
+    return lines.map(line => line.replace(/^(.*)+\/\/.*$/, '$1')).join('\n');
+}
+
 const mo1 = () => {
     const sol = [];
     for (let x of allCombinations(0, 9, 7)) {

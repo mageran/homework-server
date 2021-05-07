@@ -553,8 +553,16 @@ const _areaOfComposedShapes = {
     ],
     testValues: [
         [
-            `T1: A = 75, c = 16.5, b = 26;\nT2: c = 18, b = 12.5, a = T1.a;`,
-            `T1 + T2`
+            `T1: A = 66, b = 8, c = 12;\nT2: d = T1.a, b = 9, c = 6;`,
+            'T1 + T2'
+        ],
+        [
+            'T1: A = 108, b = 12, c = 10;\nT2: B = 132 - T1.B, d = T1.a, c = 10;',
+            'T1 + T2'
+        ],
+        [
+        `T1: A = 75, c = 16.5, b = 26;\nT2: c = 18, b = 12.5, a = T1.a;`,
+        `T1 + T2`
         ],
         [
             `T: A=60, b=6, c=b;\nS: angle=60, radius=6;`,

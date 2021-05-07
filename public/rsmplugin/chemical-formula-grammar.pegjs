@@ -149,17 +149,14 @@ Term
       }
       return { op, operands }
     }
-    /*
-  / trigFunction:TrigFunction argument:Term {
-      return { trigFunction, argument };
-    }
-  */ 
+   
 
 ChemicalTerm
-  = coefficient:Coefficient? _ factors:Factor+ {
+  = coefficient:Coefficient? _ factors:Factor+ _ state:StateSpec? {
     return {
       coefficient: (typeof coefficient === 'number') ? coefficient : 1,
-      formulasList: factors
+      formulasList: factors,
+      state
     }; 
   }
 
@@ -181,24 +178,11 @@ ChemicalElementWithMultiplier
     };
   }
 
-PTerm
-  = "(" _ expr:Expression _ ")" { return expr; }
-  / wholeNumber:(Integer)? _ "\\frac{" _ expr1:Expression _ "}{" _ expr2:Expression _ "}" {
-        const fractionObj = { wholeNumber: wholeNumber, op: 'fraction', numerator: expr1, denominator: expr2 };
-        return fractionObj;
-     }
-  / p:Prim { return p; }
-  
-  
-Prim
-  = Float
-  / Integer
-  / ChemicalElement
-  / Identifier
-  / LatexIdentifier
-
-TrigFunction
-  = "\\sin" / "\\cos" / "\\tan" / "\\cot" / "\\sec" / "\\csc" { return text() };
+StateSpec
+= "(s)" { return 'solid'; }
+/ "(l)" { return 'liquid'; }
+/ "(g)" { return 'gas'; }
+/ "(aq)" { return 'aqueous'; }
 
 Integer "integer"
   = _ [0-9]+ { return parseInt(text(), 10); }

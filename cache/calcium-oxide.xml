@@ -1,0 +1,394 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='9'
+    datatypes='Chemical,Element'
+    timedout=''
+    timedoutpods=''
+    timing='3.63'
+    parsetiming='0.186'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP115919d86ii2fhc0c5g800004h5eb3f388c9d5ed'
+    host='https://www5b.wolframalpha.com'
+    server='2'
+    related='https://www5b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa116019d86ii2fhc0c5g800005cb76icd3a4952254122074477244246293'
+    version='2.6'
+    inputstring='calcium oxide'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP116119d86ii2fhc0c5g800004hge3306iibh6ef0?MSPStoreType=image/gif&amp;s=2'
+       alt='calcium oxide'
+       title='calcium oxide'
+       width='91'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>calcium oxide</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP116219d86ii2fhc0c5g800004ie11ab684bb49fb?MSPStoreType=image/gif&amp;s=2'
+       alt='formula | CaO
+name | calcium oxide'
+       title='formula | CaO
+name | calcium oxide'
+       width='192'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | CaO
+name | calcium oxide</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP116319d86ii2fhc0c5g800001i627b47f70b90cb?MSPStoreType=image/gif&amp;s=2'
+       alt='Structure diagram'
+       title=''
+       width='79'
+       height='23'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='4'>
+   <statelist count='2'
+       value='Skeletal structure'
+       delimiters=''>
+    <state name='Skeletal structure'
+        input='StructureDiagramPod:ChemicalData__Skeletal structure' />
+    <state name='Lewis structure'
+        input='StructureDiagramPod:ChemicalData__Lewis structure' />
+   </statelist>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalData__Show graph properties' />
+   <state name='Step-by-step'
+       input='StructureDiagramPod:ChemicalData__Step-by-step'
+       stepbystep='true' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP116419d86ii2fhc0c5g80000459ia19628fh98c8?MSPStoreType=image/gif&amp;s=2'
+       alt='molar mass | 56.077 g/mol
+phase | solid (at STP)
+melting point | 2580 °C
+boiling point | 2850 °C
+density | 3.3 g/cm^3
+solubility in water | reacts'
+       title='molar mass | 56.077 g/mol
+phase | solid (at STP)
+melting point | 2580 °C
+boiling point | 2850 °C
+density | 3.3 g/cm^3
+solubility in water | reacts'
+       width='252'
+       height='202'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 56.077 g/mol
+phase | solid (at STP)
+melting point | 2580 °C
+boiling point | 2850 °C
+density | 3.3 g/cm^3
+solubility in water | reacts</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP116519d86ii2fhc0c5g800004d72hb6h092e89ae?MSPStoreType=image/gif&amp;s=2'
+         width='234'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Solid properties (at STP)'
+     scanner='Data'
+     id='SolidProperties:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP116619d86ii2fhc0c5g80000494dgiaif05b308i?MSPStoreType=image/gif&amp;s=2'
+       alt='density | 3.3 g/cm^3
+vapor pressure | 1.8×10^-6 mmHg (at 1455 °C)'
+       title='density | 3.3 g/cm^3
+vapor pressure | 1.8×10^-6 mmHg (at 1455 °C)'
+       width='329'
+       height='71'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>density | 3.3 g/cm^3
+vapor pressure | 1.8×10^-6 mmHg (at 1455 °C)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='Thermodynamics:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP116719d86ii2fhc0c5g8000069907gbfdib7i6if?MSPStoreType=image/gif&amp;s=2'
+       alt='specific heat capacity c_p | solid | 0.749 J/(g K)
+specific free energy of formation Δ_fG° | solid | -10.76 kJ/g
+specific heat of formation Δ_fH° | solid | -11.32 kJ/g
+specific entropy S° | solid | 0.7133 J/(g K)
+specific heat of fusion | 1 kJ/g | 
+(at STP)'
+       title='specific heat capacity c_p | solid | 0.749 J/(g K)
+specific free energy of formation Δ_fG° | solid | -10.76 kJ/g
+specific heat of formation Δ_fH° | solid | -11.32 kJ/g
+specific entropy S° | solid | 0.7133 J/(g K)
+specific heat of fusion | 1 kJ/g | 
+(at STP)'
+       width='431'
+       height='201'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>specific heat capacity c_p | solid | 0.749 J/(g K)
+specific free energy of formation Δ_fG° | solid | -10.76 kJ/g
+specific heat of formation Δ_fH° | solid | -11.32 kJ/g
+specific entropy S° | solid | 0.7133 J/(g K)
+specific heat of fusion | 1 kJ/g | 
+(at STP)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Thermodynamics:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='3'>
+     <unit short='J/(g K)'
+         long='joules per gram kelvin' />
+     <unit short='J/(g K)'
+         long='joules per gram kelvin difference' />
+     <unit short='kJ/g'
+         long='kilojoules per gram' />
+     <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP116819d86ii2fhc0c5g800004579547d2e518fdd?MSPStoreType=image/gif&amp;s=2'
+         width='262'
+         height='71' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP116919d86ii2fhc0c5g800002bihac1052b07310?MSPStoreType=image/gif&amp;s=2'
+       alt='CAS number | 1305-78-8
+PubChem CID number | 14778'
+       title='CAS number | 1305-78-8
+PubChem CID number | 14778'
+       width='270'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 1305-78-8
+PubChem CID number | 14778</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='NFPA label'
+     scanner='Data'
+     id='NFPALabel:ChemicalData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP117019d86ii2fhc0c5g800003841fah3884i7gh7?MSPStoreType=image/gif&amp;s=2'
+       alt='NFPA label'
+       title=''
+       width='40'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Table'
+       input='NFPALabel:ChemicalData__Table' />
+  </states>
+ </pod>
+ <pod title='Toxicity properties'
+     scanner='Data'
+     id='ToxicityProperties:ChemicalData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>MacmillansChemicalAndPhysicalData</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP117119d86ii2fhc0c5g80000322b982d41hade6d?MSPStoreType=image/gif&amp;s=2'
+       alt='long-term exposure limit | 2 mg/m^3 (over 8 hours)
+RTECS classes | other'
+       title='long-term exposure limit | 2 mg/m^3 (over 8 hours)
+RTECS classes | other'
+       width='355'
+       height='70'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>long-term exposure limit | 2 mg/m^3 (over 8 hours)
+RTECS classes | other</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short='mg/m^3'
+         long='milligrams per cubic meter' />
+     <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP117219d86ii2fhc0c5g8000021g6a452e053032i?MSPStoreType=image/gif&amp;s=2'
+         width='234'
+         height='28' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='calcium oxide'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='3'>
+   <value name='Chemical'
+       desc='a chemical compound'
+       input='*C.calcium+oxide-_*Chemical-' />
+   <value name='Mineral'
+       desc='a mineral'
+       input='*C.calcium+oxide-_*Mineral-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.calcium+oxide-_*Word-' />
+  </assumption>
+ </assumptions>
+ <sources count='2'>
+  <source url='https://www5b.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+  <source url='https://www5b.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>

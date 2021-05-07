@@ -1,0 +1,417 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='10'
+    datatypes='Chemical,ChemicalIntermediate,Element'
+    timedout=''
+    timedoutpods=''
+    timing='4.154'
+    parsetiming='0.185'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP53924c9b75b89d92g4h00002945365iciga1909'
+    host='https://www5b.wolframalpha.com'
+    server='21'
+    related='https://www5b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa54024c9b75b89d92g4h00001iifhf3g995i6da95139489976277948902'
+    version='2.6'
+    inputstring='calcium carbonate'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP54124c9b75b89d92g4h000051b81g0771b659e4?MSPStoreType=image/gif&amp;s=21'
+       alt='calcium carbonate'
+       title='calcium carbonate'
+       width='122'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>calcium carbonate</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Chemical names and formulas'
+     scanner='Data'
+     id='ChemicalNamesFormulas:ChemicalData'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP54224c9b75b89d92g4h000068di1fgd516fi943?MSPStoreType=image/gif&amp;s=21'
+       alt='formula | CaCO_3
+Hill formula | CCaO_3
+name | calcium carbonate'
+       title='formula | CaCO_3
+Hill formula | CCaO_3
+name | calcium carbonate'
+       width='250'
+       height='105'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>formula | CaCO_3
+Hill formula | CCaO_3
+name | calcium carbonate</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalNamesFormulas:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='Structure diagram'
+     scanner='Data'
+     id='StructureDiagramPod:ChemicalData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP54324c9b75b89d92g4h00005c9538fab8bif6cb?MSPStoreType=image/gif&amp;s=21'
+       alt='Structure diagram'
+       title=''
+       width='79'
+       height='74'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='2'>
+   <state name='Show bond information'
+       input='StructureDiagramPod:ChemicalData__Show bond information' />
+   <state name='Show graph properties'
+       input='StructureDiagramPod:ChemicalData__Show graph properties' />
+  </states>
+ </pod>
+ <pod title='Basic properties'
+     scanner='Data'
+     id='Basic:ChemicalData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>SOLV-DB</datasource>
+    <datasource>PubChem</datasource>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP54424c9b75b89d92g4h00001ag5f7776e19h57a?MSPStoreType=image/gif&amp;s=21'
+       alt='molar mass | 100.09 g/mol
+phase | solid (at STP)
+melting point | 1340 °C
+density | 2.71 g/cm^3
+solubility in water | insoluble'
+       title='molar mass | 100.09 g/mol
+phase | solid (at STP)
+melting point | 1340 °C
+density | 2.71 g/cm^3
+solubility in water | insoluble'
+       width='252'
+       height='169'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>molar mass | 100.09 g/mol
+phase | solid (at STP)
+melting point | 1340 °C
+density | 2.71 g/cm^3
+solubility in water | insoluble</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <infos count='1'>
+   <info>
+    <units count='2'>
+     <unit short='g/cm^3'
+         long='grams per cubic centimeter' />
+     <unit short='g/mol'
+         long='grams per mole' />
+     <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP54524c9b75b89d92g4h00002713c0gi6634i7i4?MSPStoreType=image/gif&amp;s=21'
+         width='234'
+         height='50' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Solid properties (at STP)'
+     scanner='Data'
+     id='SolidProperties:ChemicalData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>CRCHandbook</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP54624c9b75b89d92g4h00000di8adh1320afeie?MSPStoreType=image/gif&amp;s=21'
+       alt='density | 2.71 g/cm^3'
+       title='density | 2.71 g/cm^3'
+       width='165'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>density | 2.71 g/cm^3</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Thermodynamic properties'
+     scanner='Data'
+     id='Thermodynamics:ChemicalData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ElementData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+    <datasource>WebElements</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP54724c9b75b89d92g4h00002h6b5ebb8185hfgi?MSPStoreType=image/gif&amp;s=21'
+       alt='specific heat capacity c_p | solid | 0.8343 J/(g K)
+specific free energy of formation Δ_fG° | solid | -11.28 kJ/g
+specific heat of formation Δ_fH° | solid | -12.07 kJ/g
+specific entropy S° | solid | 0.9162 J/(g K)
+specific heat of fusion | 0.36 kJ/g | 
+(at STP)'
+       title='specific heat capacity c_p | solid | 0.8343 J/(g K)
+specific free energy of formation Δ_fG° | solid | -11.28 kJ/g
+specific heat of formation Δ_fH° | solid | -12.07 kJ/g
+specific entropy S° | solid | 0.9162 J/(g K)
+specific heat of fusion | 0.36 kJ/g | 
+(at STP)'
+       width='431'
+       height='201'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>specific heat capacity c_p | solid | 0.8343 J/(g K)
+specific free energy of formation Δ_fG° | solid | -11.28 kJ/g
+specific heat of formation Δ_fH° | solid | -12.07 kJ/g
+specific entropy S° | solid | 0.9162 J/(g K)
+specific heat of fusion | 0.36 kJ/g | 
+(at STP)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='Thermodynamics:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='3'>
+     <unit short='J/(g K)'
+         long='joules per gram kelvin' />
+     <unit short='J/(g K)'
+         long='joules per gram kelvin difference' />
+     <unit short='kJ/g'
+         long='kilojoules per gram' />
+     <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP54824c9b75b89d92g4h00006aag92dg71h7dd7d?MSPStoreType=image/gif&amp;s=21'
+         width='262'
+         height='71' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Chemical identifiers'
+     scanner='Data'
+     id='ChemicalIdentifiers:ChemicalData'
+     position='700'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>PubChem</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP54924c9b75b89d92g4h0000603g3255ai08i8d7?MSPStoreType=image/gif&amp;s=21'
+       alt='CAS number | 471-34-1
+Beilstein number | 8008338
+PubChem CID number | 10112
+SMILES identifier | C(=O)([O-])[O-].[Ca+2]'
+       title='CAS number | 471-34-1
+Beilstein number | 8008338
+PubChem CID number | 10112
+SMILES identifier | C(=O)([O-])[O-].[Ca+2]'
+       width='355'
+       height='136'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>CAS number | 471-34-1
+Beilstein number | 8008338
+PubChem CID number | 10112
+SMILES identifier | C(=O)([O-])[O-].[Ca+2]</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ChemicalIdentifiers:ChemicalData__More' />
+  </states>
+ </pod>
+ <pod title='NFPA label'
+     scanner='Data'
+     id='NFPALabel:ChemicalData'
+     position='800'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP55024c9b75b89d92g4h000060h9cgdae639833h?MSPStoreType=image/gif&amp;s=21'
+       alt='NFPA label'
+       title=''
+       width='40'
+       height='40'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Table'
+       input='NFPALabel:ChemicalData__Table' />
+  </states>
+ </pod>
+ <pod title='Toxicity properties'
+     scanner='Data'
+     id='ToxicityProperties:ChemicalData'
+     position='900'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <datasources>
+    <datasource>MacmillansChemicalAndPhysicalData</datasource>
+   </datasources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP55124c9b75b89d92g4h000051a90aggh609e480?MSPStoreType=image/gif&amp;s=21'
+       alt='lethal dosage | 6450 mg/kg (oral dose for rats)'
+       title='lethal dosage | 6450 mg/kg (oral dose for rats)'
+       width='324'
+       height='37'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>lethal dosage | 6450 mg/kg (oral dose for rats)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='More'
+       input='ToxicityProperties:ChemicalData__More' />
+  </states>
+  <infos count='1'>
+   <info>
+    <units count='1'>
+     <unit short='mg/kg'
+         long='milligrams per kilogram' />
+     <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP55224c9b75b89d92g4h0000501g25i4dad3a058?MSPStoreType=image/gif&amp;s=21'
+         width='211'
+         height='27' />
+    </units>
+   </info>
+  </infos>
+ </pod>
+ <pod title='Ion equivalents'
+     scanner='Data'
+     id='IonProperties:ChemicalData'
+     position='1000'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+    <microsource>ChemicalIntermediateData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP55324c9b75b89d92g4h00005ihh74g0460hfe33?MSPStoreType=image/gif&amp;s=21'
+       alt='Ca^(2+) (calcium cation) | 1
+(CO_3)^(2-) (carbonate anion) | 1'
+       title='Ca^(2+) (calcium cation) | 1
+(CO_3)^(2-) (carbonate anion) | 1'
+       width='219'
+       height='71'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Ca^(2+) (calcium cation) | 1
+(CO_3)^(2-) (carbonate anion) | 1</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='calcium carbonate'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='3'>
+   <value name='Chemical'
+       desc='a chemical compound'
+       input='*C.calcium+carbonate-_*Chemical-' />
+   <value name='Material'
+       desc='a material'
+       input='*C.calcium+carbonate-_*Material-' />
+   <value name='Word'
+       desc='a word'
+       input='*C.calcium+carbonate-_*Word-' />
+  </assumption>
+ </assumptions>
+ <sources count='3'>
+  <source url='https://www5b.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+  <source url='https://www5b.wolframalpha.com/sources/ChemicalIntermediateDataSourceInformationNotes.html'
+      text='Chemical intermediate data' />
+  <source url='https://www5b.wolframalpha.com/sources/ElementDataSourceInformationNotes.html'
+      text='Element data' />
+ </sources>
+</queryresult>
