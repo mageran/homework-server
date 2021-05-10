@@ -151,7 +151,30 @@ const _electronegativity = {
     func: electronegativityUI
 }
 
+const _equilibrium = {
+    title: 'Equilibrium',
+    description: `Equilibrium questions based on reaction equation; state information can be added to the components,
+    e.g. <kbd>NH3(g) + H2O(l) ⇋ NH4(aq) + OH(aq)</kbd>`,
+    parameters: [
+        { name: 'Max balancing factor', value: 20, size: 4 },
+        { separator: true },
+        { name: 'Chemical equation', type: 'formula', cssClass: 'width700' },
+        { separator : true },
+        { name: 'Molarities/Equilibrium', type: 'dynamic', func: equilibriumGetDynamicParameters },
+        { separator : true },
+    ],
+    func: equilibrium,
+    testValues: [
+        [20, 'H2(g) + I2(g) = HI(g)'],
+        [20, 'NH3(g) + H2O(l) ⇋ NH4(aq) + OH(aq)', '', '6.82e-3', '3.50e-4', '3.50e-4'],
+        [20, 'N2(g) + 3H2(g) = 2NH3 (g)', '.080', '0.600', '0.420', ''],
+        [20, 'N2O4(g) = 2NO2(g)', '0.2', '2.0', '0.2']
+    ]
+}
+
 const topicObjects = [
+    _equilibrium,
+    '-------------',
     _solutionConcentration,
     _lewisStructureWidget,
     _electronegativity,

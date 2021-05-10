@@ -38,11 +38,11 @@ const simplify = (term, rules, applyEval = true) => {
     return resultingTerm;
 }
 
-const processTerm = (term, rules, applyEval = true) => {
+const processTerm = (term, rules, applyEval = true, asJson = true) => {
     const t = applyEval ? term.$eval() : term;
     const res = t.applyRules(rules);
-    const substMap = term.getVariableSubstitutions(true);
-    console.log(JSON.stringify(substMap, null, 2));
+    const substMap = term.getVariableSubstitutions(asJson);
+    //console.log(JSON.stringify(substMap, null, 2));
     return substMap;
 }
 

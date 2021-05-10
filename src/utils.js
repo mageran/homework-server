@@ -1,3 +1,4 @@
+const Decimal = require('./decimal');
 const colors = require('colors/safe');
 
 const levelIndent = (level = 0, multiplier = 4) => {
@@ -21,7 +22,20 @@ colorNames.forEach(cname => {
     }
 })
 
+const _d = x => {
+    if (x === null || ((typeof x === 'string') && x.trim().length === 0)) {
+        return null;
+    }
+
+    if (x instanceof Decimal) {
+        return x;
+    }
+
+    return new Decimal(x);
+}
+
 module.exports = {
     levelIndent,
-    llog
+    llog,
+    _d
 }

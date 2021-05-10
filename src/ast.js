@@ -15,7 +15,7 @@ const processAst = (ast, context = {}) => {
     }
     if (typeof ast === 'string') {
         const m = ast.match(/^[A-Z]/);
-        return m ? new Variable(ast) : new Terms.Identifier(ast);
+        return m ? new Terms.Variable(ast) : new Terms.Identifier(ast);
     }
     const { op } = ast;
     //console.log(`ast = ${JSON.stringify(ast)}`)

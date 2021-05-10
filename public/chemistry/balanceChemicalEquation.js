@@ -1,11 +1,12 @@
 var MaxBalancingFactor = 20;
 const MaxTermsForSymbolInEquation = 4;
 
-function balanceChemicalEquation(maxBalancingFactor, formula, callback) {
+function balanceChemicalEquation(maxBalancingFactor, formula, callback, options = {}) {
     const outputElem = this;
     var lhs;
     var rhs;
     var eq;
+    const { initialStateCollapsed, tableIsCollapsible } = options;
     const processEquation = ast => {
         assert(ast.op === 'equation', `formula is not an equation`);
         lhs = createEquationSide(ast.operands[0]);
@@ -137,7 +138,13 @@ function balanceChemicalEquation(maxBalancingFactor, formula, callback) {
             table.appendChild(tr);
         })
         if (!skipTable) {
-            outputElem.appendChild(table);
+            let doCreateCollapsibleSection = tableIsCollapsible;
+            if (doCreateCollapsibleSection) {
+                let tableSection = _collapsibleSection(outputElem, 'Balancing Table:', { initialStateCollapsed });
+                tableSection.appendChild(table);
+            } else {
+                outputElem.appendChild(table);
+            }
         }
 
         const equationString = eq.toString(true);

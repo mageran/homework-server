@@ -155,9 +155,47 @@ class ChemicalEquation {
         return true;
     }
 
+    get allTerms() {
+        return [...this.lhs.terms, ...this.rhs.terms];
+    }
+
+    checkStateInfo() {
+        const terms = this.allTerms;
+        const termsWithStateCnt = terms.filter(t => t.state).length;
+        return termsWithStateCnt === 0 || termsWithStateCnt === terms.length;
+    }
+
     toString(includeBalancingFactor) {
         const { lhs, rhs } = this;
         return `${lhs.toString(includeBalancingFactor)} = ${rhs.toString(includeBalancingFactor)}`;
+    }
+
+    static createFromString = inputString => {
+        const createEquationSide = term => {
+            var elements;
+            if (Array.isArray(term.formulasList)) {
+                elements = [term];
+            }
+            else if (term.op === '+') {
+                elements = term.operands;
+            }
+            else {
+                throw `[*] unsupported format of equation side: ${JSON.stringify(term)}`;
+            }
+            const cterms = elements.map(elem => {
+                //assert(Array.isArray(elem), `unsupported format of term: ${JSON.stringify(elem)}`);
+                return new ChemicalEquationTerm(elem);
+            });
+            //cterms.forEach(cterm => console.log(cterm.toString()));
+            return new ChemicalEquationSide(cterms);
+        }
+        const ast = parseChemicalFormula(inputString);
+        assert(ast.op === 'equation', `formula is not an equation`);
+        const lhs = createEquationSide(ast.operands[0]);
+        const rhs = createEquationSide(ast.operands[1]);
+        const eq = new ChemicalEquation(lhs, rhs);
+        console.log(eq.toString(true))
+        return eq;
     }
 
 }

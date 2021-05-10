@@ -82,7 +82,7 @@
     return newOperands;
   }
 
-  console.log(`parser called with options: ${JSON.stringify(options)}`);
+  //console.log(`parser called with options: ${JSON.stringify(options)}`);
 
 }
 
@@ -187,7 +187,7 @@ Float "float"
   = [0-9]+ "." [0-9]+ { return new Decimal(text()); }
 
 Identifier "identifier"
-  = [A-Za-z] { return text(); }
+  = [A-Za-z][A-Za-z_0-9]* { return text(); }
 
 LatexIdentifier
 = "\\" [a-z]+ { return text(); }

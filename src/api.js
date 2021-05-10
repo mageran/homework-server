@@ -105,11 +105,22 @@ const processTermWithRules = (term, rulesFile, functor = null, resultVariable = 
     }
     const inputTerm = functor ? constructFunctorTerm(functor, opterms) : term;
     parseRulesFile(rfile, rules => {
-        const substMap = processTerm(inputTerm, rules);
+        const substMap = processTerm(inputTerm, rules, true, false);
         if (typeof resultCallback === 'function') {
             resultCallback(substMap);
         }
     });
+}
+
+const processTermWithRulesString = (term, rulesString, functor = null, resultVariable = null) => {
+    const opterms = [term];
+    if (resultVariable) {
+        opterms.push(new Terms.Variable(resultVariable));
+    }
+    const inputTerm = functor ? constructFunctorTerm(functor, opterms) : term;
+    const rules = parseRules(rulesString);
+    const substMap = processTerm(inputTerm, rules, true, false);
+    return substMap;
 }
 
 const processLatexWithRules = (latex, rulesFile, functor = null, resultVariable = null, resultCallback) => {
@@ -125,5 +136,6 @@ module.exports = {
     parseRulesFile,
     parseLatexTerm,
     processTermWithRules,
+    processTermWithRulesString,
     processLatexWithRules
 }

@@ -16,10 +16,11 @@ class ParseContext {
         return cnt;
     }
 
-    findVariableInContext(id, asNumberVariable) {
+    findVariableInContext(id, asNumberVariable, asListVariable) {
         var varObj = this.variableMap[id];
         if (!varObj) {
-            let Cls = asNumberVariable ? Terms.NumberVariable : Terms.Variable;
+            let Cls = asNumberVariable ? Terms.NumberVariable
+                : asListVariable ? Terms.ListVariable : Terms.Variable;
             varObj = new Cls(id, this.getNextVariableId());
             this.variableMap[id] = varObj;
         }

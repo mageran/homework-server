@@ -1,6 +1,6 @@
 class ChemicalEquationTerm {
 
-    constructor({ coefficient, formulasList }) {
+    constructor({ coefficient, formulasList, state }) {
         this.groups = formulasList.map(({ formulas, multiplier }) => {
             const elements = formulas.map(({ chemicalElement, multiplier }) => {
                 const { symbol } = chemicalElement;
@@ -9,9 +9,19 @@ class ChemicalEquationTerm {
             return new ChemicalEquationTermGroup(elements, multiplier);
         });
         this.coefficient = (typeof coefficient === 'number') ? coefficient : 1;
-        this.balancingFactor = coefficient;
+        this.$balancingFactor = coefficient;
+        this.state = state;
         //this.balancingFactor = 1;
         //this.balancingFactor = Math.trunc(Math.random() * 3) + 1;
+    }
+
+    get balancingFactor() {
+        return this.$balancingFactor;
+    }
+
+    set balancingFactor(val) {
+        this.$balancingFactor = val;
+        this.coefficient = val;
     }
 
     getElementsMultiplier(multiplyWithBalancingFactor = true) {
@@ -47,6 +57,27 @@ class ChemicalEquationTerm {
     getMolarMassWithCoefficient(info) {
         const mm = this.getMolarMass(info);
         return mm * this.coefficient;
+    }
+
+    getMolarityTermLatex(molarityValue = null) {
+        var latex;
+        if (molarityValue === '') {
+            latex = 'x';
+        } else {
+            latex = `${molarityValue === null ? ("[" + this.toString() + "]") : ("(" + exponentialNumStringToLatex(String(molarityValue)) + ")")}`;
+        }
+        if (this.coefficient > 1) {
+            latex += `^{${this.coefficient}}`
+        }
+        return latex;
+    }
+
+    getMolarityValue(decimalValue) {
+        var res = _d(decimalValue);
+        if (this.coefficient > 1) {
+            res = res.pow(_d(this.coefficient));
+        }
+        return res;
     }
 
     toString(includeBalancingFactor = false) {

@@ -1,6 +1,7 @@
 body {
-    xfont-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     background-color: white;
+    font-size: 14pt;
 }
 
 input {
@@ -89,9 +90,11 @@ option {
     margin: 5px;
     width: 550px;
     padding: 5px;
+    /*
     border-top: 1pt solid green;
     border-left: 1pt solid green;
     border-bottom: 1pt solid green;
+    */
 }
 
 

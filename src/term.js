@@ -3,7 +3,7 @@
 const Decimal = require('./decimal');
 const assert = require('assert');
 const { processTermWithRules } = require('./api');
-const { levelIndent, llog } = require('./utils');
+const { levelIndent, llog, _d } = require('./utils');
 
 class Term {
 
@@ -56,21 +56,104 @@ class Term {
         return this.className !== term.className;
     }
 
-    match(term) {
-        //console.log(`{ => try match: ${this.toTermString()} ~ ${term.toTermString()}...`);
+    match(term, info) {
+        const addReasonInfo = msg => {
+            if (info) {
+                info.reason = msg
+            }
+            console.log.red(msg);
+        }
+        const _operandsContainsListVariables = operands => {
+            return operands.filter(t => t instanceof ListVariable).length > 0;
+        }
+        const _matchListVariablesApplicable = () => {
+            return _operandsContainsListVariables(this.operands) || _operandsContainsListVariables(term.operands);
+        }
+        const _matchListVariables = () => {
+            const _splitOperandTerms = (terms, index) => {
+                const termsBefore = [];
+                const termsAfter = [];
+                for (let i = 0; i < terms.length; i++) {
+                    let t = terms[i];
+                    if (i < index) {
+                        termsBefore.push(t);
+                    }
+                    if (i > index) {
+                        termsAfter.push(t);
+                    }
+                }
+                return { termsBefore, termsAfter };
+            }
+            const terms = [this, term];
+            const varTerm = terms.filter(t => _operandsContainsListVariables(t.operands))[0];
+            const fixTerm = terms.filter(t => !_operandsContainsListVariables(t.operands))[0];
+            if (!fixTerm) {
+                addReasonInfo(`term matching where both terms contain list variables is not supported`);
+                return false;
+            }
+            const varTermIsThis = (varTerm === this);
+            const _doMatchOperands = (operandFromVarTerm, operandFromFixTerm) => {
+                console.log(`match operands: ${operandFromVarTerm.toTermString()} and ${operandFromFixTerm.toTermString()}`);
+                var matchResult = varTermIsThis
+                    ? operandFromVarTerm.match(operandFromFixTerm)
+                    : operandFromFixTerm.match(operandFromVarTerm);
+                return matchResult;
+            }
+            const numListVars = varTerm.operands.filter(t => t instanceof ListVariable).length;
+            if (numListVars > 1) {
+                addReasonInfo(`terms with more than one list variable are not supported ${varTerm.toTermString()}`);
+                return false;
+            }
+            const positionOfListVariable = varTerm.operands.findIndex(t => t instanceof ListVariable);
+            console.log(`position of list variable in ${varTerm.toTermString()}: ${positionOfListVariable}`);
+            const { termsBefore, termsAfter } = _splitOperandTerms(varTerm.operands, positionOfListVariable);
+            console.log(`termsBefore: ${termsBefore.map(t => t.toTermString()).join(', ')}`);
+            const minLengthOfFixTerm = termsBefore.length + termsAfter.length;
+            if (fixTerm.operands.length < minLengthOfFixTerm) {
+                addReasonInfo(`not enough operands in ${fixTerm.toTermString()} (${fixTerm.operands.length}) to match ${varTerm.toTermString()}`);
+                return false;
+            }
+            for (let i = 0; i < termsBefore.length; i++) {
+                let operandFromVarTerm = termsBefore[i];
+                let operandFromFixTerm = fixTerm.operands[i];
+                let matchResult = _doMatchOperands(operandFromVarTerm, operandFromFixTerm);
+                if (!matchResult) return false;
+            }
+            const listMatch = [];
+            for (let i = termsBefore.length; i < fixTerm.operands.length - termsAfter.length; i++) {
+                let operandFromFixTerm = fixTerm.operands[i];
+                listMatch.push(operandFromFixTerm);
+            }
+            const listVariableTerm = varTerm.operands.filter(t => t instanceof ListVariable)[0];
+            const listTerm = new ListTerm(listMatch);
+            console.log(`instantiating list variable ${listVariableTerm.toTermString()} with ${listTerm.toTermString()}`);
+            listVariableTerm.instantiate(listTerm);
+            for (let i = 0; i < termsAfter.length; i++) {
+                let operandFromVarTerm = termsAfter[i];
+                let operandFromFixTerm = fixTerm.operands[fixTerm.operands.length - termsAfter.length + i];
+                let matchResult = _doMatchOperands(operandFromVarTerm, operandFromFixTerm);
+                if (!matchResult) return false;
+            }
+            return true;
+        }
+        console.log(`{ => try match: ${this.toTermString()} ~ ${term.toTermString()}...`);
         if (this._isVariableMatch(term)) {
-            //console.log(`    => match succeeded (isVariableMatch): ${this.toTermString()} ~ ${term.toTermString()}!}`);
+            console.log(`    => match succeeded (isVariableMatch): ${this.toTermString()} ~ ${term.toTermString()}!}`);
             return this._variableMatch(term);
         }
         if (this._functorMatch(term)) {
-            //console.log(`    no match: functor names mismatch "${this.className}" != "${term.className}"}`);
+            addReasonInfo(`no match: functor names mismatch "${this.className}" != "${term.className}"}`);
             return false;
         }
         if (term.operands === null) {
             return false;
         }
+        if (_matchListVariablesApplicable()) {
+            console.log('match term containing list variables...');
+            return _matchListVariables();
+        }
         if (this.operands.length !== term.operands.length) {
-            //console.log(`   no match: different number of operands: "${this.operands.length}" != "${term.operands.length}"}`);
+            addReasonInfo(`no match: different number of operands: "${this.operands.length}" != "${term.operands.length}"}`);
             return false;
         }
         for (let i = 0; i < this.operands.length; i++) {
@@ -79,7 +162,7 @@ class Term {
             if (thisTerm.match(otherTerm)) {
                 continue;
             }
-            //console.log(`    => match failed at operand #${i}: ${this.toTermString()} ~ ${term.toTermString()}}`);
+            addReasonInfo(`=> match failed at operand #${i}: ${this.toTermString()} ~ ${term.toTermString()}}`);
             return false;
         }
         console.log.yellow(`    => match succeeded: ${this.toTermString()} ~ ${term.toTermString()}!}`);
@@ -113,7 +196,7 @@ class Term {
         rule = rule.clone();
         if (this.match(rule.lhs)) {
             try {
-                substTerm = rule.rhs.substituteInstantiatedVariables().clone();
+                substTerm = rule.rhs.substituteInstantiatedVariables().clone().$eval();
                 console.log(`rule match succeeded:
             rule: ${rule.toTermString()}
             term: ${this.toTermString()}
@@ -235,12 +318,10 @@ class Term {
     getVariableSubstitutions(asJson = false) {
         const substMap = {};
         this._addVariableSubstitutions(substMap);
-        if (asJson) {
             Object.keys(substMap).forEach(varname => {
                 const term = substMap[varname].substituteInstantiatedVariables().$eval();
-                substMap[varname] = term.toJson();
+                substMap[varname] = asJson ? term.toJson() : term;
             });
-        }
         return substMap;
     }
 
@@ -275,8 +356,20 @@ class Term {
 
     $eval() {
         //console.log(`$eval called on ${this.toTermString()}`);
+        const _flattenListTerms = terms => {
+            const newTerms = [];
+            terms.forEach(t => {
+                if (t instanceof ListTerm) {
+                    newTerms.push(...t.operands);
+                } else {
+                    newTerms.push(t);
+                }
+            })
+            return newTerms;
+        }
         if (this.operands) {
-            const evaledOperands = this.operands.map(t => t.$eval());
+            let fops = _flattenListTerms(this.operands);
+            const evaledOperands = fops.map(t => t.$eval());
             const evaledTerm = this.$evalOp(evaledOperands);
             console.log.grey(`$eval(${this.toTermString()}) = ${evaledTerm.toTermString()}`)
             return evaledTerm;
@@ -291,6 +384,16 @@ class Term {
         //console.log(`after eval:   ${t0.value} with argument ${t1.value}`);
         if ((t0 instanceof Num) && (t1 instanceof Num)) {
             console.log(`${t0.value.greaterThan(t1.value)}`);
+            return t0.value > t1.value ? TrueTerm : FalseTerm;
+        }
+        return FalseTerm;
+    }
+
+    $neq(term) {
+        const t0 = this.$eval();
+        const t1 = term.$eval();
+        if ((t0 instanceof Num) && (t1 instanceof Num)) {
+            console.log(`${t0.value.equals(t1.value)}`);
             return t0.value > t1.value ? TrueTerm : FalseTerm;
         }
         return FalseTerm;
@@ -378,7 +481,7 @@ class Sum extends Term {
 
     constructor(operands) {
         super(operands);
-        assert.ok(operands.length > 1, 'Sum constructor called with fewer than 1 arguments');
+        //assert.ok(operands.length > 1, 'Sum constructor called with fewer than 2 arguments');
         this.operands = operands;
     }
 
@@ -388,7 +491,7 @@ class Sum extends Term {
             //console.log(`${JSON.stringify(res)} is an instance of Num: ${res instanceof Num}`);
             res.value = res.value.add(elem.value);
             return res;
-        }, new Num(new Decimal(0)));
+        }, new Num(_d(0)));
         const newOperands = [];
         var numObjectAdded = false;
         operands.forEach(t => {
@@ -412,19 +515,19 @@ class Sum extends Term {
 class Difference extends Term {
     constructor(operands) {
         super(operands);
-        assert.ok(operands.length > 1, 'Difference constructor called with fewer than 2 arguments')
+        //assert.ok(operands.length > 1, 'Difference constructor called with fewer than 2 arguments')
     }
 
     $evalOp(operands) {
         console.log.blue('quotient $evalOp...');
         const [operand1, ...restOperands] = operands;
-        var num = new Num(new Decimal(0));
+        var num = new Num(_d(0));
         var hasNumOperands = false;
         if (operand1.isNum()) {
             hasNumOperands = true;
             num = operand1;
         }
-        for(let i = 0; i < restOperands.length; i++) {
+        for (let i = 0; i < restOperands.length; i++) {
             let t = restOperands[i];
             if (t.isNum()) {
                 num.value = num.value.minus(t.value);
@@ -458,7 +561,7 @@ class Product extends Term {
 
     constructor(operands) {
         super(operands);
-        assert.ok(operands.length > 1, 'Product constructor called with fewer than 2 arguments');
+        //assert.ok(operands.length > 1, 'Product constructor called with fewer than 2 arguments');
         this.operands = operands;
     }
 
@@ -468,7 +571,7 @@ class Product extends Term {
             //console.log(`${JSON.stringify(res)} is an instance of Num: ${res instanceof Num}`);
             res.value = res.value.times(elem.value);
             return res;
-        }, new Num(new Decimal(1)));
+        }, new Num(_d(1)));
         const newOperands = [];
         var numObjectAdded = false;
         operands.forEach(t => {
@@ -492,20 +595,20 @@ class Quotient extends Term {
 
     constructor(operands) {
         super(operands);
-        assert.ok(operands.length > 1, 'Product constructor called with fewer than 2 arguments');
+        //assert.ok(operands.length > 1, 'Product constructor called with fewer than 2 arguments');
         this.operands = operands;
     }
 
     $evalOp(operands) {
         console.log.blue('quotient $evalOp...');
         const [operand1, ...restOperands] = operands;
-        var num = new Num(new Decimal(1));
+        var num = new Num(_d(1));
         var hasNumOperands = false;
         if (operand1.isNum()) {
             hasNumOperands = true;
             num = operand1;
         }
-        for(let i = 0; i < restOperands.length; i++) {
+        for (let i = 0; i < restOperands.length; i++) {
             let t = restOperands[i];
             if (t.isNum()) {
                 num.value = num.value.dividedBy(t.value);
@@ -538,8 +641,8 @@ class Quotient extends Term {
 class UMinus extends Product {
 
     constructor(operands) {
-        super([new Num(new Decimal(-1)), ...operands]);
-        this._assertOperandCount(2);
+        super([new Num(_d(-1)), ...operands]);
+        //this._assertOperandCount(2);
     }
 
     /*
@@ -559,7 +662,7 @@ class Power extends Term {
 
     constructor(operands) {
         super(operands);
-        this._assertOperandCount(2);
+        //this._assertOperandCount(2);
     }
 
     $evalOp(operands) {
@@ -582,14 +685,9 @@ class Seq extends Term {
         super(operands);
     }
 
-    _getSeqTerms() {
-        return this.operands;
-    }
-
     substituteInstantiatedVariables() {
         const { operands } = this;
         const oplen = operands.length;
-        assert.ok(oplen >= 1, 'internal error: seq term must have at least 1 operands');
         var cterm = null;
         for (let i = 0; i < oplen; i++) {
             let term = operands[i];
@@ -604,13 +702,31 @@ class Seq extends Term {
         return cterm;
     }
 
+    _getSeqTerms() {
+        return this.operands;
+    }
+
+}
+
+class ListTerm extends Term {
+
+    constructor(operands) {
+        super(operands);
+    }
+
+    
+
+    toTermString() {
+        return `[${this.operands.map(t => t.toTermString()).join(", ")}]`;
+    }
+
 }
 
 class Fraction extends Term {
 
     constructor(operands) {
         super(operands);
-        this._assertOperandCount(2);
+        //this._assertOperandCount(2);
     }
 
     get numerator() {
@@ -627,7 +743,7 @@ class Sqrt extends Term {
 
     constructor(operands) {
         super(operands);
-        this._assertOperandCount(2);
+        //this._assertOperandCount(2);
     }
 
     get degree() {
@@ -644,7 +760,7 @@ class Abs extends Term {
 
     constructor(operands) {
         super(operands);
-        this._assertOperandCount(1);
+        //this._assertOperandCount(1);
     }
 
 }
@@ -869,6 +985,31 @@ class NumberVariable extends Variable {
 
 }
 
+class ListVariable extends Variable {
+
+    constructor(id, uniqueId = -1) {
+        super(id, uniqueId);
+    }
+
+    instantiate(listTerm) {
+        if (!(listTerm instanceof ListTerm)) {
+            console.log(`match failed: a list variable can only be instantiated with a list terms ${this.toTermString()}`);
+            return false;
+        }
+        return super.instantiate(listTerm);
+    }
+
+    toTermString() {
+        //return `...${super.toTermString()}`;
+        return `...${this.name}`;
+    }
+
+    _clone(ctxt) {
+        return ctxt.findVariableInContext(this.name, false, true);
+    }
+
+}
+
 class AnyVariable extends Variable {
 
     constructor(uniqueId) {
@@ -985,6 +1126,7 @@ module.exports = {
     UMinus,
     Power,
     Seq,
+    ListTerm,
     Fraction,
     Sqrt,
     Abs,
@@ -992,6 +1134,7 @@ module.exports = {
     Identifier,
     Variable,
     NumberVariable,
+    ListVariable,
     AnyVariable,
     Apply,
     Boolean,

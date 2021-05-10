@@ -30,9 +30,9 @@
         return context.getNextVariableId();
     }
 
-    const findVariableInContext = (id, asNumberVariable) => {
+    const findVariableInContext = (id, asNumberVariable, asListVariable) => {
         const context = options;
-        return context.findVariableInContext(id, asNumberVariable);
+        return context.findVariableInContext(id, asNumberVariable, asListVariable);
     }
 
     const constructTermOrApply = (functor, allTerms) => {
@@ -105,6 +105,12 @@ Term
     const uniqueId = getNextVariableId();
     return new Terms.AnyVariable(uniqueId);
 }
+/ id:ListVariable {
+    assert.ok(options instanceof ParseContext, 'term uses variables, but context is undefined/null');
+    let asNumberVariable = false;
+    let asListVariable = true;
+    return findVariableInContext(id, asNumberVariable, asListVariable);
+}
 / num:Number {
     return new Terms.Num(num);
 }
@@ -119,6 +125,9 @@ Identifier
 
 Variable
 = UpperCaseIdentifier
+
+ListVariable
+= '...' id: Variable { return id }
 
 Number
 = Float

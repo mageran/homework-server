@@ -331,10 +331,19 @@ const _getSigFigs = num => {
     }
 }
 
+const exponentialNumStringToLatex = numStr => {
+    const parts = numStr.split(/\s*[eE]\s*/);
+    if (parts.length === 1) {
+        return numStr;
+    }
+    return `${parts[0]}\\times 10^{${parts[1]}}`;
+}
+
 const removeCommentLines = inputString => {
     const lines = inputString.split(/\n/);
     return lines.map(line => line.replace(/^(.*)+\/\/.*$/, '$1')).join('\n');
 }
+
 
 const mo1 = () => {
     const sol = [];

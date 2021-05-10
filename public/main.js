@@ -63,7 +63,7 @@ const _clearTopicArea = () => {
     });
     const embeddedWidgetsDiv = document.getElementById('embedded-widgets');
     if (embeddedWidgetsDiv) {
-        for(let i = 0; i < embeddedWidgetsDiv.children.length; i++) {
+        for (let i = 0; i < embeddedWidgetsDiv.children.length; i++) {
             let widgetElement = embeddedWidgetsDiv.children[i];
             elemStyle(widgetElement, { display: 'none' });
         }
@@ -92,6 +92,11 @@ const populate = tobj => {
                 }
                 return val;
             })
+            inpElem.addChangeListenerFunction = func => {
+                inpElem.addEventListener('change', () => {
+                    func.call();
+                });
+            }
         }
         else if (param.type === 'formula') {
             let displayOptions = {};
@@ -105,6 +110,13 @@ const populate = tobj => {
                     mathField.latex(param.value);
                 }
             }, { isInput: true, notext: true }, displayOptions);
+            inpElem.addChangeListenerFunction = func => {
+                inpElem.mathField.config({
+                    handlers: {
+                        edit: func
+                    }
+                })
+            };
         }
         else {
             let tagName = isTextarea ? 'textarea' : 'input'
@@ -119,6 +131,9 @@ const populate = tobj => {
             }
             if (param.noEval) {
                 inpElem.noEval = true;
+            }
+            if (param.type === 'decimal') {
+                inpElem.isDecimal = true;
             }
             inpElem.addEventListener('focus', () => {
                 console.log('focus');
@@ -137,14 +152,182 @@ const populate = tobj => {
                     })
                 }
             }
+            inpElem.addChangeListenerFunction = func => {
+                inpElem.addEventListener('change', () => {
+                    func.call();
+                });
+            }
         }
-        inputElements.push(inpElem);
+        //inputElements.push(inpElem);
         return inpElem;
     }
     _clearTopicArea();
     document.getElementById('topic-title').innerHTML = tobj.title;
     document.getElementById('topic-description').innerHTML = tobj.description;
+
+    const _getArgsFromInputElement = (inpElem, hasTestValues, tvalues) => {
+        let res;
+        let inpElems;
+        if (Array.isArray(inpElem.inputElements)) {
+            inpElems = inpElem.inputElements || [];
+        } else {
+            inpElems = [inpElem];
+        }
+        return inpElems.map(ielem => {
+            if (ielem.mathField) {
+                if (hasTestValues) {
+                    let latex = tvalues.shift();
+                    ielem.mathField.latex(latex);
+                    return latex;
+                }
+                return ielem.mathField.latex();
+            }
+            if (hasTestValues) {
+                res = tvalues.shift();
+                if (typeof res === 'undefined') {
+                    res = '';
+                }
+                ielem.value = res;
+                if (ielem.tagName.toUpperCase() === 'SELECT') {
+                    ielem.noEval = true;
+                    for (let i = 0; i < ielem.children.length; i++) {
+                        let option = ielem.children[i];
+                        if (option.tagName.toUpperCase() !== 'OPTION') continue;
+                        if (option.value === res) {
+                            option.selected = true;
+                            break;
+                        }
+                    }
+                }
+            } else {
+                res = ielem.value;
+            }
+            if (!ielem.noEval) {
+                try {
+                    res = eval(ielem.value);
+                } catch (err) {
+                    //console.error(err);
+                }
+            }
+            if (ielem.isDecimal) {
+                try {
+                    res = _d(res);
+                } catch (err) {
+                    res = _d(0);
+                }
+            }
+            ielem.style.background = "white";
+            return res;
+        });
+    }
+
+    const _getArgsFromInputElements = (inputElements, hasTestValues, tvalues) => {
+        const args = [];
+        inputElements.forEach(inpElem => {
+            const argsForInpElem = _getArgsFromInputElement(inpElem, hasTestValues, tvalues);
+            if (Array.isArray(argsForInpElem)) {
+                args.push(...argsForInpElem);
+            } else {
+                args.push(argsForInpElem);
+            }
+        })
+        return args;
+    }
+
+    const _createInputElementsForParameters = (inputsContainer, parameters) => {
+        const inputElements = [];
+        if (parameters && parameters.length > 0) {
+            parameters.forEach(param => {
+                let isTextarea = !!param.rows;
+                const cont = document.createElement('div');
+                if (param.separator) {
+                    cont.style.display = 'block';
+                    inputsContainer.appendChild(cont);
+                    return;
+                }
+                if (param.html) {
+                    if (typeof param.html === 'string') {
+                        cont.innerHTML = param.html;
+                    } else {
+                        let { tag, style, className, innerHTML } = param.html;
+                    }
+                    inputsContainer.appendChild(cont);
+                    return;
+                }
+                if (param.type === 'dynamic') {
+                    let fun = param.func;
+                    if (typeof fun !== 'function') {
+                        console.error('ignoring parameter entry %o: "func" properties is missing.', param);
+                        return;
+                    }
+                    const subInputsObject = {
+                        inputElements: []
+                    }
+                    const b = _htmlElement('input', cont, null, null, { marginBottom: '10px' });
+                    b.type = 'button';
+                    b.value = `Generate inputs for ${param.name}` || 'generate dynamic inputs';
+                    const clb = _htmlElement('input', cont, null, null, { marginLeft: '10px', marginBottom: '10px' });
+                    clb.type = 'button';
+                    clb.value = `Clear dynamic fields...`;
+                    const inputElementsForDynamicField = inputElements.slice();
+                    const dynamicSectionDiv = _htmlElement('div', cont);
+                    const clearDynamicSection = () => {
+                        dynamicSectionDiv.innerHTML = "";
+                    }
+                    const populateDynamicSection = () => {
+                        clearDynamicSection();
+                        try {
+                            const parametersSoFar = _getArgsFromInputElements(inputElementsForDynamicField);
+                            console.log(`args for creating dynamic section: %o`, parametersSoFar);
+                            const dynamicParameters = fun.call(null, ...parametersSoFar);
+                            console.log('calculated dynamic parameters: %o', dynamicParameters);
+                            const dynamicInputsElements = _createInputElementsForParameters(dynamicSectionDiv, dynamicParameters);
+                            subInputsObject.inputElements = dynamicInputsElements;
+                        } catch (err) {
+                            console.log(`error generating dynamic section: ${err}`);
+                        }
+                    }
+                    b.addEventListener('click', populateDynamicSection);
+                    clb.addEventListener('click', clearDynamicSection);
+                    inputElementsForDynamicField.forEach(ielem => {
+                        let f = ielem.addChangeListenerFunction;
+                        if (typeof f === 'function') {
+                            console.log('addChangeListenerFunction found for input element');
+                            f(populateDynamicSection);
+                        }
+                    });
+                    inputsContainer.appendChild(cont);
+                    inputElements.push(subInputsObject);
+                    return;
+                }
+                cont.style.display = 'inline-block';
+                cont.style.padding = '10px';
+                const label = document.createElement('div');
+                label.innerHTML = `${param.name}:`;
+                label.style.display = isTextarea ? 'block' : 'inline-block';
+                cont.appendChild(label);
+                const inpElem = createInputElement(param);
+                cont.appendChild(inpElem);
+                inputsContainer.appendChild(cont);
+                if (typeof inpElem.init === 'function') {
+                    inpElem.init();
+                }
+                if (isTextarea) {
+                    // insert a "newline"
+                    _htmlElement('div', inputsContainer);
+                }
+                inputElements.push(inpElem);
+            });
+        }
+        return inputElements;
+    }
+
     const inputs = document.getElementById('topic-inputs');
+    const inputElements = _createInputElementsForParameters(inputs, tobj.parameters);
+    const parametersExist = inputElements.length > 0;
+
+
+    /*
     const inputElements = [];
     var parametersExist = false;
     if (tobj.parameters && tobj.parameters.length > 0) {
@@ -183,6 +366,7 @@ const populate = tobj => {
             }
         });
     }
+    */
     const doExecute = (testValues) => {
         if (typeof tobj.func !== 'function') {
             return;
@@ -195,12 +379,29 @@ const populate = tobj => {
         }
         var hasTestValues = Array.isArray(testValues);
         if (hasTestValues && testValues.length !== inputElements.length) {
-            console.error(`testValues ignored; exactly ${inputElements.length} required; given ${testValues.length}`);
-            hasTestValues = false;
+            //console.error(`testValues ignored; exactly ${inputElements.length} required; given ${testValues.length}`);
+            //hasTestValues = false;
         }
         const outputElement = document.getElementById('topic-output');
         outputElement.innerHTML = "";
         const tvalues = testValues ? testValues.slice() : [];
+
+
+        let args = _getArgsFromInputElements(inputElements, hasTestValues, tvalues);
+
+        /*
+        let args = [];
+        inputElements.forEach(inpElem => {
+            const argsForInpElem = _getArgsFromInputElement(inpElem);
+            if (Array.isArray(argsForInpElem)) {
+                args.push(...argsForInpElem);
+            } else {
+                args.push(argsForInpElem);
+            }
+        })
+        */
+
+        /*
         let args = inputElements.map(inpElem => {
             let res;
             if (inpElem.mathField) {
@@ -235,9 +436,13 @@ const populate = tobj => {
                     //console.error(err);
                 }
             }
+            if (inpElem.isDecimal) {
+                res = _d(res);
+            }
             inpElem.style.background = "white";
             return res;
         });
+        */
         console.log(args);
         //console.log(`#input elements: ${inputElements.length}`);
         let output = "no output generated";
@@ -299,11 +504,27 @@ const populate = tobj => {
             borderRadius: '8px'
         })
         tobj.testValues.forEach(testValueList => {
+            let tvalues = testValueList;
             var buttonTitle = 'Run';
-            if (typeof testValueList === 'function') {
-                buttonTitle = 'Run with generated values'
-            } else {
-                buttonTitle = `Run with values ${testValueList.join(', ')}`;
+            var buttonTitleSet = false;
+            if (!(Array.isArray(testValueList)) && (typeof testValueList !== 'function')) {
+                if (typeof testValueList.label === 'string') {
+                    buttonTitle = testValueList.label;
+                    buttonTitleSet = true;
+                }
+                if (Array.isArray(testValueList.values) || (typeof testValueList.values === 'function')) {
+                    tvalues = testValueList.values;
+                } else {
+                    console.error(`ignoring test-values entry %o, either use list of values or an object with format { label, values }`, testValueList);
+                    return;
+                }
+            }
+            if (!buttonTitleSet) {
+                if (typeof tvalues === 'function') {
+                    buttonTitle = 'Run with generated values'
+                } else {
+                    buttonTitle = `Run with values ${tvalues.join(', ')}`;
+                }
             }
             const b = _htmlElement('input', cont, null, 'main-button');
             b.type = 'button';
@@ -313,7 +534,7 @@ const populate = tobj => {
                 marginLeft: '10px'
             })
             b.addEventListener('click', () => {
-                doExecute(testValueList);
+                doExecute(tvalues);
                 //cdiv.collapse();
             })
         })
@@ -325,17 +546,16 @@ const populate = tobj => {
     DO_EXECUTE = doExecute;
 };
 
-const addMathResult = (cont, callback, { notext, isInput } = {}, displayOptions) => {
+const addMathResult = (cont, callback, { notext, isInput } = {}, options = {}) => {
     const formulaContainer = document.createElement('div');
     var cssClassNames = 'formula-container' + (isInput ? '-input' : '');
-    if (displayOptions && displayOptions.cssClass) {
-        cssClassNames += ` ${displayOptions.cssClass}`;
+    if (options && options.cssClass) {
+        cssClassNames += ` ${options.cssClass}`;
     }
-    //console.log(displayOptions);
     formulaContainer.className = cssClassNames;
     const span = document.createElement('span');
     span.className = 'formula-content';
-    const mathField = MQ.MathField(span);
+    const mathField = MQ.MathField(span, options.mathFieldConfig);
     mathField.config({ charsThatBreakOutOfSupSub: '+-=<>' });
     var textDiv = null;
     if (!notext) {
@@ -358,14 +578,14 @@ const addMathElement = (cont, callback, options = {}) => {
     addMathResult(div, callback, options);
 }
 
-const addLatexElement = (cont, latex, text = null) => {
+const addLatexElement = (cont, latex, text = null, mathFieldConfig = {}) => {
     const notext = !text;
     addMathElement(cont, ({ mathField, textDiv }) => {
         if (text) {
             textDiv.innerHTML = text;
         }
         mathField.latex(latex);
-    }, { notext });
+    }, { notext, mathFieldConfig });
 }
 
 const addJsonAsPreElement = (cont, obj) => {
@@ -398,4 +618,32 @@ const createProgressIndicator = cont => {
         idiv.style.width = `${iw}px`;
     }
     return pdiv;
+}
+
+function debugUI(code, latex, mode, functor) {
+    const o = this;
+    elemStyle(o, { fontSize: '18pt' });
+    try {
+        const url = '/api/parse_match_latex';
+        const data = { code, latex, mode, functor };
+        const success = response => {
+            //console.log(`response: ${JSON.stringify(response, null, 2)}`);
+            var resObj = response;
+            try {
+                resObj = JSON.parse(response);
+            } catch (err) {
+                console.error(err);
+            }
+            _htmlElement('pre', o, JSON.stringify(resObj, null, 2));
+        }
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            success: success,
+            error: ajaxErrorFunction(o)
+        });
+    } catch (err) {
+        _addErrorElement(o, err);
+    }
 }

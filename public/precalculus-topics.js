@@ -476,13 +476,13 @@ const _triangleQuestionsOneLineInput = {
     testValues: [
         ['P=34,\ r,\ p\ =\ 8,\ Q=90'],
         ['R=90, r=19, q=14.3, p'],
-        ['a = 3; b = 4, c = 5'],
-        ['c = 500; B = 58; A = 90'],
-        ['A = 90; B = 58; c = 500'],
-        ['a = 6; B = 25; c = 7'],
-        ['a = 7; b = 3; c = 6'],
-        ['A = 70; b = 9; c = 7'],
-        ['A = 73; b = 4; c = 7'],
+        ['a = 3, b = 4, c = 5'],
+        ['c = 500, B = 58, A = 90'],
+        ['A = 90, B = 58, c = 500'],
+        ['a = 6, B = 25, c = 7'],
+        ['a = 7, b = 3, c = 6'],
+        ['A = 70, b = 9, c = 7'],
+        ['A = 73, b = 4, c = 7'],
         ['B = 35, a = 3, c = 6'],
         ['a = 14, b = 10, c = 6'],
         ['a = 7, c = 6, B = 115'],
@@ -526,18 +526,25 @@ const _bearingAngleNavigationQuestions = {
         ['N46E', 3.8, 'N25W', 1.6],
         ['N10E', 3.8, 'N85W', 2.6],
         [10, 3.8, 275, 2.6],
-        (() => [
-            Math.trunc(Math.random() * 340) + 10,
-            Math.trunc(Math.random() * 100) + 10,
-            Math.trunc(Math.random() * 340) + 10,
-            Math.trunc(Math.random() * 100) + 10
-        ]),
-        (() => [
-            (Math.random() > .5 ? 'N' : 'S') + Math.trunc(Math.random() * 90) + (Math.random() > .5 ? 'E' : 'W'),
-            Math.trunc(Math.random() * 100) + 10,
-            (Math.random() > .5 ? 'N' : 'S') + Math.trunc(Math.random() * 90) + (Math.random() > .5 ? 'E' : 'W'),
-            Math.trunc(Math.random() * 100) + 10
-        ])
+        {
+            label: 'Random bearings and distances',
+            values: (() => [
+                Math.trunc(Math.random() * 340) + 10,
+                Math.trunc(Math.random() * 100) + 10,
+                Math.trunc(Math.random() * 340) + 10,
+                Math.trunc(Math.random() * 100) + 10
+            ])
+        },
+        {
+            label: 'Random Compass Bearings and Distances',
+            values: (() => [
+                (Math.random() > .5 ? 'N' : 'S') + Math.trunc(Math.random() * 90) + (Math.random() > .5 ? 'E' : 'W'),
+                Math.trunc(Math.random() * 100) + 10,
+                (Math.random() > .5 ? 'N' : 'S') + Math.trunc(Math.random() * 90) + (Math.random() > .5 ? 'E' : 'W'),
+                Math.trunc(Math.random() * 100) + 10
+            ]
+            )
+        },
     ],
     func: bearingAngleNavigationQuestions
 }
@@ -561,8 +568,8 @@ const _areaOfComposedShapes = {
             'T1 + T2'
         ],
         [
-        `T1: A = 75, c = 16.5, b = 26;\nT2: c = 18, b = 12.5, a = T1.a;`,
-        `T1 + T2`
+            `T1: A = 75, c = 16.5, b = 26;\nT2: c = 18, b = 12.5, a = T1.a;`,
+            `T1 + T2`
         ],
         [
             `T: A=60, b=6, c=b;\nS: angle=60, radius=6;`,
@@ -587,6 +594,39 @@ const _areaOfComposedShapes = {
         ['T: A = 46, B = 104, c = 16;', 'T']
     ],
     func: areaOfComposedShapes
+}
+
+const _debug = {
+    title: 'Debug',
+    description: '',
+    parameters: [
+        { name: 'rules', rows: 10, value: '', noEval: true, codeEditor: true },
+        { name: 'formula', type: 'formula', cssClass: 'width500' },
+        { separator: true },
+        { name: 'mode', type: 'select', options: [{ label: 'match term', value: 'matchTerm' }, { label: 'apply rules', value: 'applyRules' }] },
+        { separator: true },
+        { name: 'functor', value: '' },
+        { separator: true },
+    ],
+    func: debugUI,
+    testValues: [
+        ['sum(...A)', 'a + b + c', 'matchTerm', ''],
+        [`solve(equation(x,X8), solution(X8)).
+
+solve(equation(sum(x,T#),0), solution(product(-1,T#))).
+solve(equation(X1,0), equation(Xsim, 0)) => sim(X1,Xsim).
+
+solve(equation(X2,Y2), R)
+        => solve(equation(sum(X2,product(-1,Y2)),0), R).
+        
+        
+sim(sum(A, C), B) => flattenSum(sum(A, C), B).
+sim(X7,X7).
+        
+flattenSum(sum(sum(X3,Y3),Z3), sum(X3, Y3, Z3)).
+flattenSum(sum(Z4,sum(X4,Y4)), sum(X4, Y4, Z4)).
+flattenSum(X5,X5).`, 'x + 4 = 9', 'applyRules', 'solve']
+    ]
 }
 
 const topicObjects = [
@@ -632,5 +672,7 @@ const topicObjects = [
     _whatPoint,
     _imageOnly('Parent Functions', 'images/parent_functions.png'),
     '<b>---------------------</b>',
-    _calculator
+    _calculator,
+    '<b>---------------------</b>',
+    _debug,
 ];
