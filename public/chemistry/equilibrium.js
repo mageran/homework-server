@@ -167,7 +167,7 @@ function equilibrium(maxBalancingFactor, formula, Keq, ...molarities) {
                             latex = `Q < K_{eq}: \\text{&nbsp;the reaction will proceed in the forward direction (to the right)}`;
                         } 
                         else {
-                            latex = `Q < K_{eq}: \\text{&nbsp;the reaction will proceed in the reverse direction (to the left)}`;
+                            latex = `Q > K_{eq}: \\text{&nbsp;the reaction will proceed in the reverse direction (to the left)}`;
                         } 
                         steps.push({ latex });
                     }

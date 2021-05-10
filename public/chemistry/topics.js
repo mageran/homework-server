@@ -59,7 +59,7 @@ const _chemicalElementInfo = {
         {
             name: 'Element symbol: ',
             type: 'select',
-            options: chemicalElementsAlphabetically.map(element => ({ label: `${element.name} (${element.symbol})`, value: element.symbol}))
+            options: chemicalElementsAlphabetically.map(element => ({ label: `${element.name} (${element.symbol})`, value: element.symbol }))
         }
     ],
     func: chemicalElementInfoUi
@@ -159,16 +159,22 @@ const _equilibrium = {
         { name: 'Max balancing factor', value: 20, size: 4 },
         { separator: true },
         { name: 'Chemical equation', type: 'formula', cssClass: 'width700' },
-        { separator : true },
+        { separator: true },
         { name: 'Molarities/Equilibrium', type: 'dynamic', func: equilibriumGetDynamicParameters },
-        { separator : true },
+        { separator: true },
     ],
     func: equilibrium,
     testValues: [
-        [20, 'H2(g) + I2(g) = HI(g)'],
-        [20, 'NH3(g) + H2O(l) ⇋ NH4(aq) + OH(aq)', '', '6.82e-3', '3.50e-4', '3.50e-4'],
-        [20, 'N2(g) + 3H2(g) = 2NH3 (g)', '.080', '0.600', '0.420', ''],
-        [20, 'N2O4(g) = 2NO2(g)', '0.2', '2.0', '0.2']
+        { label: 'Q11a', values: [20, 'H2(g) + I2(g) = HI(g)']},
+        { label: 'Q11b', values: [20, 'NH4Cl(s) = NH3(g) + HCl(g)']},
+        { label: 'Q11c', values: [20, 'SnO2(s) + 2CO(g) = Sn(s) + 2CO2(g)']},
+        { label: 'Q11d', values: [20, 'CO2(g) + H2(g) = CO(g) + H2O(l)']},
+        { label: 'Q12', values: [20, 'NH3(g) + H2O(l) ⇋ NH4(aq) + OH(aq)', '', '6.82e-3', '3.50e-4', '3.50e-4']},
+        { label: 'Q13', values: [20, '2SO2(g) + O2(g) = 2SO3(g)', '', '0.344', '0.172', '0.056']},
+        { label: 'Q14', values: [20, 'N2(g) + 3H2(g) = 2NH3 (g)', '.080', '0.600', '0.420', '']},
+        { label: 'Q15', values: [20, 'N2(g) + O2(g) = 2NO(g)', '0.0025', '0.81', '0.75', '0.030']},
+        { label: 'Q16', values: [20, '2CO(g) = C(s) + CO2(g)', '7.7e-15', '0.034', '3.6e-17']},
+        { label: 'Q17', values: [20, 'N2O4(g) = 2NO2(g)', '0.2', '2.0', '0.2']},
     ]
 }
 
