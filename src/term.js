@@ -2,7 +2,6 @@
 
 const Decimal = require('./decimal');
 const assert = require('assert');
-const { processTermWithRules } = require('./api');
 const { levelIndent, llog, _d } = require('./utils');
 
 class Term {
@@ -10,6 +9,13 @@ class Term {
     constructor(operands) {
         this.operands = operands;
         this._internalVariableId = 100;
+        if (Array.isArray(operands)) {
+            for (let i = 0; i < operands.length; i++) {
+                let t = operands[i];
+                t.parentTerm = this;
+                t.positionInParentTerm = i;
+            }
+        }
     }
 
     get className() {
@@ -44,6 +50,8 @@ class Term {
         return term instanceof Variable;
     }
 
+    get isNumTerm() { return false; }
+
     _variableMatch(variableTerm) {
         assert.ok(variableTerm instanceof Variable, `_variableMatch called on ${variableTerm.className} instance`);
         if (variableTerm.isInstantiated()) {
@@ -61,7 +69,7 @@ class Term {
             if (info) {
                 info.reason = msg
             }
-            console.log.red(msg);
+            //console.log.red(msg);
         }
         const _operandsContainsListVariables = operands => {
             return operands.filter(t => t instanceof ListVariable).length > 0;
@@ -93,7 +101,7 @@ class Term {
             }
             const varTermIsThis = (varTerm === this);
             const _doMatchOperands = (operandFromVarTerm, operandFromFixTerm) => {
-                console.log(`match operands: ${operandFromVarTerm.toTermString()} and ${operandFromFixTerm.toTermString()}`);
+                //console.log(`match operands: ${operandFromVarTerm.toTermString()} and ${operandFromFixTerm.toTermString()}`);
                 var matchResult = varTermIsThis
                     ? operandFromVarTerm.match(operandFromFixTerm)
                     : operandFromFixTerm.match(operandFromVarTerm);
@@ -105,9 +113,9 @@ class Term {
                 return false;
             }
             const positionOfListVariable = varTerm.operands.findIndex(t => t instanceof ListVariable);
-            console.log(`position of list variable in ${varTerm.toTermString()}: ${positionOfListVariable}`);
+            //console.log(`position of list variable in ${varTerm.toTermString()}: ${positionOfListVariable}`);
             const { termsBefore, termsAfter } = _splitOperandTerms(varTerm.operands, positionOfListVariable);
-            console.log(`termsBefore: ${termsBefore.map(t => t.toTermString()).join(', ')}`);
+            //console.log(`termsBefore: ${termsBefore.map(t => t.toTermString()).join(', ')}`);
             const minLengthOfFixTerm = termsBefore.length + termsAfter.length;
             if (fixTerm.operands.length < minLengthOfFixTerm) {
                 addReasonInfo(`not enough operands in ${fixTerm.toTermString()} (${fixTerm.operands.length}) to match ${varTerm.toTermString()}`);
@@ -126,7 +134,7 @@ class Term {
             }
             const listVariableTerm = varTerm.operands.filter(t => t instanceof ListVariable)[0];
             const listTerm = new ListTerm(listMatch);
-            console.log(`instantiating list variable ${listVariableTerm.toTermString()} with ${listTerm.toTermString()}`);
+            //console.log(`instantiating list variable ${listVariableTerm.toTermString()} with ${listTerm.toTermString()}`);
             listVariableTerm.instantiate(listTerm);
             for (let i = 0; i < termsAfter.length; i++) {
                 let operandFromVarTerm = termsAfter[i];
@@ -136,9 +144,9 @@ class Term {
             }
             return true;
         }
-        console.log(`{ => try match: ${this.toTermString()} ~ ${term.toTermString()}...`);
+        //console.log(`{ => try match: ${this.toTermString()} ~ ${term.toTermString()}...`);
         if (this._isVariableMatch(term)) {
-            console.log(`    => match succeeded (isVariableMatch): ${this.toTermString()} ~ ${term.toTermString()}!}`);
+            //console.log(`    => match succeeded (isVariableMatch): ${this.toTermString()} ~ ${term.toTermString()}!}`);
             return this._variableMatch(term);
         }
         if (this._functorMatch(term)) {
@@ -149,7 +157,7 @@ class Term {
             return false;
         }
         if (_matchListVariablesApplicable()) {
-            console.log('match term containing list variables...');
+            //console.log('match term containing list variables...');
             return _matchListVariables();
         }
         if (this.operands.length !== term.operands.length) {
@@ -165,7 +173,7 @@ class Term {
             addReasonInfo(`=> match failed at operand #${i}: ${this.toTermString()} ~ ${term.toTermString()}}`);
             return false;
         }
-        console.log.yellow(`    => match succeeded: ${this.toTermString()} ~ ${term.toTermString()}!}`);
+        //console.log.yellow(`    => match succeeded: ${this.toTermString()} ~ ${term.toTermString()}!}`);
         return true;
     }
 
@@ -178,7 +186,7 @@ class Term {
         for (let i = 0; i < this.operands.length; i++) {
             let t = this.operands[i];
             if (t.pmatch(term)) {
-                console.log(`partialMatch succeeded for term ${t.toTermString()}`);
+                //console.log(`partialMatch succeeded for term ${t.toTermString()}`);
                 return true;
             }
             t.reset();
@@ -303,7 +311,12 @@ class Term {
         const ParseContext = require('./parse-context');
         const ctxt = new ParseContext(this._internalVariableId);
         this._internalVariableId += 50;
-        return this._clone(ctxt);
+        const obj = this._clone(ctxt);
+        if (!obj.parentTerm) {
+            obj.parentTerm = this.parentTerm;
+            obj.positionInParentTerm = this.positionInParentTerm;
+        }
+        return obj;
     }
 
 
@@ -318,10 +331,10 @@ class Term {
     getVariableSubstitutions(asJson = false) {
         const substMap = {};
         this._addVariableSubstitutions(substMap);
-            Object.keys(substMap).forEach(varname => {
-                const term = substMap[varname].substituteInstantiatedVariables().$eval();
-                substMap[varname] = asJson ? term.toJson() : term;
-            });
+        Object.keys(substMap).forEach(varname => {
+            const term = substMap[varname].substituteInstantiatedVariables().$eval();
+            substMap[varname] = asJson ? term.toJson() : term;
+        });
         return substMap;
     }
 
@@ -371,7 +384,7 @@ class Term {
             let fops = _flattenListTerms(this.operands);
             const evaledOperands = fops.map(t => t.$eval());
             const evaledTerm = this.$evalOp(evaledOperands);
-            console.log.grey(`$eval(${this.toTermString()}) = ${evaledTerm.toTermString()}`)
+            //console.log.grey(`$eval(${this.toTermString()}) = ${evaledTerm.toTermString()}`)
             return evaledTerm;
         }
         return this;
@@ -393,10 +406,66 @@ class Term {
         const t0 = this.$eval();
         const t1 = term.$eval();
         if ((t0 instanceof Num) && (t1 instanceof Num)) {
-            console.log(`${t0.value.equals(t1.value)}`);
+            //console.log(`${t0.value.equals(t1.value)}`);
             return t0.value > t1.value ? TrueTerm : FalseTerm;
         }
         return FalseTerm;
+    }
+
+    matchWith(term) {
+        this.reset();
+        const success = this.match(term);
+        var subst = null;
+        if (success) {
+            subst = this.getVariableSubstitutions(false);
+        }
+        return { success, subst };
+    }
+
+    /**
+     * convenience methods to apply a function recursively to the term
+     * If there is 1 function given then, this one will be recursively applied to the term (depth-first).
+     * If 2 functions are given then the first one is used to prevent recursion; if it returns false,
+     * the recursion is stopped and the term is returned.
+     * @param  {...any} functions 
+     * @returns 
+     */
+    applyRecursive(...functions) {
+        var preventRecursionFunction = () => true;
+        var applyFunction;
+        if (functions.length === 2) {
+            preventRecursionFunction = functions[0];
+            applyFunction = functions[1];
+        }
+        else if (functions.length === 1) {
+            applyFunction = functions[0];
+        }
+        else {
+            return this;
+        }
+        if (!preventRecursionFunction.call(null, this)) {
+            return this;
+        }
+        var term;
+        if (!(Array.isArray(this.operands))) {
+            term = this;
+        } else {
+            const newOperands = this.operands.map(t => t.applyRecursive(applyFunction));
+            const Cls = this.constructor;
+            term = new Cls(newOperands);
+        }
+        return applyFunction.call(null, term);
+    }
+
+    _(...functions) {
+        return this.applyRecursive(...functions);
+    }
+
+    traverse(traverseFunction) {
+        if (Array.isArray(this.operands)) {
+            this.operands.forEach(t => t.traverse(traverseFunction));
+        }
+        traverseFunction.call(null, this);
     }
 
 }
@@ -433,6 +502,7 @@ class Functor extends Term {
         super(operands);
         this._assertOperandCountGreaterEqualThan(1);
         const [functorNameTerm, ...restOperands] = operands;
+        functorNameTerm.isFunctorId = true;
         assert.ok(functorNameTerm instanceof Identifier,
             `first argument to Functor term must be an Identifier`);
     }
@@ -519,7 +589,7 @@ class Difference extends Term {
     }
 
     $evalOp(operands) {
-        console.log.blue('quotient $evalOp...');
+        //console.log.blue('quotient $evalOp...');
         const [operand1, ...restOperands] = operands;
         var num = new Num(_d(0));
         var hasNumOperands = false;
@@ -600,7 +670,7 @@ class Quotient extends Term {
     }
 
     $evalOp(operands) {
-        console.log.blue('quotient $evalOp...');
+        //console.log.blue('quotient $evalOp...');
         const [operand1, ...restOperands] = operands;
         var num = new Num(_d(1));
         var hasNumOperands = false;
@@ -714,7 +784,9 @@ class ListTerm extends Term {
         super(operands);
     }
 
-    
+    findTerm(cond) {
+        return this.operands.find(cond);
+    }
 
     toTermString() {
         return `[${this.operands.map(t => t.toTermString()).join(", ")}]`;
@@ -776,6 +848,8 @@ class Num extends Term {
     toTermString() {
         return String(this.value);
     }
+
+    get isNumTerm() { return true; }
 
     toJson() {
         return this.value;
@@ -855,6 +929,10 @@ class Identifier extends Symbol {
         return this.name;
     }
 
+    set id(val) {
+        this.name = val;
+    }
+
     match(term) {
         if (this._isVariableMatch(term)) {
             return this._variableMatch(term);
@@ -865,7 +943,7 @@ class Identifier extends Symbol {
         }
         const retValue = this.name === term.name;
         if (!retValue) {
-            console.log(`match failed, because identifiers are different: ${this.name} != ${term.name}`);
+            //console.log(`match failed, because identifiers are different: ${this.name} != ${term.name}`);
         }
         return retValue;
     }
@@ -878,7 +956,9 @@ class Identifier extends Symbol {
     }
 
     _clone(ctxt) {
-        return new Identifier(this.name);
+        const obj = new Identifier(this.name);
+        obj.isFunctorId = this.isFunctorId;
+        return obj;
     }
 
 }
@@ -913,16 +993,16 @@ class Variable extends Symbol {
 
     instantiate(term) {
         const iterm = term.getInstantiatedTerm();
-        console.log.magenta(`[instantiating variable ${this.toTermString()} with ${iterm.toTermString()}...]`);
+        //console.log.magenta(`[instantiating variable ${this.toTermString()} with ${iterm.toTermString()}...]`);
         this.instantiatedTerm = iterm;
         return true;
     }
 
     match(term) {
-        console.log.magenta(`[matching variable ${this.toTermString()} with term ${term.toTermString()}...]`)
+        //console.log.magenta(`[matching variable ${this.toTermString()} with term ${term.toTermString()}...]`)
         if (this.instantiatedTerm) {
-            console.log(`variable ${this.toTermString()} is instantiated with ${this.instantiatedTerm.toTermString()}`);
-            console.log(`   matching it with ${term.toTermString()}...`);
+            //console.log(`variable ${this.toTermString()} is instantiated with ${this.instantiatedTerm.toTermString()}`);
+            //console.log(`   matching it with ${term.toTermString()}...`);
             return this.instantiatedTerm.match(term);
         }
         this.instantiate(term);
@@ -972,7 +1052,7 @@ class NumberVariable extends Variable {
         if (this.isInstantiated()) {
             const iterm = term.getInstantiatedTerm();
             if (!(term instanceof Num)) {
-                console.log(`match failed: number variable ${this.name} cannot be instantiated with ${iterm.toTermString()}`);
+                //console.log(`match failed: number variable ${this.name} cannot be instantiated with ${iterm.toTermString()}`);
                 return false;
             }
         }
@@ -993,7 +1073,7 @@ class ListVariable extends Variable {
 
     instantiate(listTerm) {
         if (!(listTerm instanceof ListTerm)) {
-            console.log(`match failed: a list variable can only be instantiated with a list terms ${this.toTermString()}`);
+            //console.log(`match failed: a list variable can only be instantiated with a list terms ${this.toTermString()}`);
             return false;
         }
         return super.instantiate(listTerm);
@@ -1131,6 +1211,7 @@ module.exports = {
     Sqrt,
     Abs,
     Num,
+    Symbol,
     Identifier,
     Variable,
     NumberVariable,

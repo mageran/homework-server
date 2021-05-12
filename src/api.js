@@ -8,12 +8,12 @@ const { processAst } = require('./ast');
 const { processTerm } = require('./solver');
 
 
-const parseRulesAndTerms = termsString => {
+const parseRulesAndTerms = (termsString, context) => {
     const { parse } = TermParser;
-    return _parseInternal(termsString, parse);
+    return _parseInternal(termsString, parse, context);
 }
 
-const parseLatexTerm = latexTerm => {
+const parseLatexTerm = (latexTerm, context) => {
     const { parse } = LatexParser;
     const lterm = latexTerm
         .replace(/\\ /g, ' ')
@@ -21,13 +21,13 @@ const parseLatexTerm = latexTerm => {
         .replace(/\\right/g, '')
         .replace(/\\cdot/g,'*');
     console.log(lterm);
-    const ast = _parseInternal(lterm, parse);
+    const ast = _parseInternal(lterm, parse, context);
     return processAst(ast);
 }
 
-const _parseInternal = (string, parse) => {
+const _parseInternal = (string, parse, contextIn) => {
     try {
-        const context = new ParseContext();
+        const context = contextIn || new ParseContext();
         const termsAndRules = parse(string, context);
         return termsAndRules;
     } catch (e) {

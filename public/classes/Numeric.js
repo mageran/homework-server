@@ -129,7 +129,7 @@ class Numeric {
         return { sign, numeratorRadicand, denominator, isRealFraction };
     }
 
-    static createFromValue(value, forceFraction = false) {
+    static createFromValue(value, forceFraction = false, returnAll = false) {
         if (value instanceof Numeric) {
             return value;
         }
@@ -168,6 +168,7 @@ class Numeric {
             let { numeratorRadicand, denominator, sign, isRealFraction, constant } = findFractionWithSquareRootResult;
             if (isRealFraction) {
                 let numerator = sqrt(numeratorRadicand, sign);
+                numerator.simplify();
                 if (denominator == 1) {
                     return retValue(numerator);
                 }

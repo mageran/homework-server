@@ -1,6 +1,8 @@
 const { parse } = require('../parser/term-parser');
 const Terms = require('../term');
 const ParseContext = require('../parse-context');
+const { _d } = require('../utils');
+const { flattenOperands, evalArithmetic, sortProductTerms } = require('../lib/base.js');
 
 const termString = () => {
     if (process.argv.length > 2) {
@@ -15,8 +17,41 @@ try {
     const s = termString();
     console.log(s);
     const context = new ParseContext();
-    const term = parse(s, context );
+    var term = null;
+    try {
+        term = context.parseTerm(s);
+    } catch(err) {
+
+    }
+    if (!term) {
+        try {
+            term = context.parseLatexTerm(s);
+        } catch (err) {
+
+        }
+    }
+    if (!term) {
+        console.error(`input string could not be parsed as latex or term`);
+    }
     console.log(term.toTermString())
+
+    /*
+    term.traverse(t => {
+        console.log(`term: ${t.toTermString()},
+        parentTerm: ${t.parentTerm && t.parentTerm.toTermString()},
+        position in parent term: ${t.positionInParentTerm}`);
+    })
+    */
+
+
+    const cterm = term
+    ._(flattenOperands)
+    ._(evalArithmetic)
+    ._(sortProductTerms)
+
+    console.log(`resulting term: ${cterm.toTermString()}`);
+
+
 } catch (e) {
     console.error(e);
 }

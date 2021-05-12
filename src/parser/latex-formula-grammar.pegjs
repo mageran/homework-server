@@ -84,6 +84,22 @@
 
   //console.log(`parser called with options: ${JSON.stringify(options)}`);
 
+  const { useSingleCharacterIdentifiers } = options || {};
+  //console.log(`useSingleCharacterIdentifiers: ${useSingleCharacterIdentifiers}`);
+
+  const parseIdentifier = inputString => {
+    if (!useSingleCharacterIdentifiers) {
+      return inputString;
+    }
+    const len = inputString.length;
+    if (len === 1) {
+      return inputString;
+    }
+    const op = "*";
+    const operands = inputString.split(/\s*/);
+    return { op, operands };
+  }
+
 }
 
 
@@ -187,16 +203,11 @@ Float "float"
   = [0-9]+ "." [0-9]+ { return new Decimal(text()); }
 
 Identifier "identifier"
-  = [A-Za-z][A-Za-z_0-9]* { return text(); }
+  = [A-Za-z][A-Za-z_0-9]* { return parseIdentifier(text()); }
 
 LatexIdentifier
 = "\\" [a-z]+ { return text(); }
 
-ChemicalElement
-= [A-Z][a-z]* {
-    const obj = { symbol: text(), chemicalElement: chemicalElement(text()) };
-    return obj; 
-  }
 
 _ "whitespace"
   = [ \t\n\r\u00A0]*

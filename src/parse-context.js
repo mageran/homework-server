@@ -1,13 +1,15 @@
 const Terms = require('./term');
-
+const { parse } = require('./parser/term-parser');
+const { parseLatexTerm } = require('./api');
 /**
- * context used during parsing a term
+ * context used during parsing of a term
  */
 class ParseContext {
 
     constructor(variableCounter = 0) {
         this.variableMap = {};
         this.variableCounter = variableCounter;
+        this.useSingleCharacterIdentifiers = true;
     }
 
     getNextVariableId() {
@@ -40,6 +42,20 @@ class ParseContext {
             console.log(`${varObj.name} => ${varObj.getInstantiatedTerm().toTermString()}`);
         })
 
+    }
+
+    static parseTerm(inputString) {
+        return new ParseContext().parseTerm(inputString);
+    }
+
+    parseTerm(inputString) {
+        const term = parse(inputString, this);
+        return term;
+    }
+
+    parseLatexTerm(inputString) {
+        const term = parseLatexTerm(inputString, this);
+        return term;
     }
 
 }

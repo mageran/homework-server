@@ -34,8 +34,13 @@ const _d = x => {
     return new Decimal(x);
 }
 
+const isNumeric = x => {
+    return x instanceof Decimal;
+}
+
 module.exports = {
     levelIndent,
     llog,
-    _d
+    _d,
+    isNumeric
 }
