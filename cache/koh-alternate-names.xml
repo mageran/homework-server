@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='2'
+    datatypes='Chemical'
+    timedout=''
+    timedoutpods=''
+    timing='0.746'
+    parsetiming='0.47400000000000003'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP11951667dgede84cabig00003h2eeh1f0ad91d39'
+    host='https://www4d.wolframalpha.com'
+    server='16'
+    related='https://www4d.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa11961667dgede84cabig000037hd644ga1555h221835519039383463781'
+    version='2.6'
+    inputstring='KOH alternate names'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP11971667dgede84cabig00005f526f1a088421c9?MSPStoreType=image/gif&amp;s=16'
+       alt='potassium hydroxide | alternate names'
+       title='potassium hydroxide | alternate names'
+       width='271'
+       height='23'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>potassium hydroxide | alternate names</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Result'
+     scanner='Data'
+     id='Result'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www4d.wolframalpha.com/Calculate/MSP/MSP11981667dgede84cabig0000437ci27b9dcfdcec?MSPStoreType=image/gif&amp;s=16'
+       alt='caustic potash | kaliumhydroxid | potassa | potassium hydrate'
+       title='caustic potash | kaliumhydroxid | potassa | potassium hydrate'
+       width='441'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>caustic potash | kaliumhydroxid | potassa | potassium hydrate</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <sources count='1'>
+  <source url='https://www4d.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+ </sources>
+</queryresult>

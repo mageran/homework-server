@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='false'
+    error='false'
+    xml:space='preserve'
+    numpods='0'
+    datatypes=''
+    timedout=''
+    timedoutpods=''
+    timing='0.625'
+    parsetiming='0.154'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP121318ih4173fa3964ie00002c14g4a1i5561ddh'
+    host='https://www4b.wolframalpha.com'
+    server='42'
+    related='https://www4b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa121418ih4173fa3964ie0000288d47h9he8gbhfe1465566624282479354'
+    version='2.6'
+    inputstring='Nitrate acid'>
+ <didyoumeans count='2'>
+  <didyoumean score='0.421024' level='medium'>nitrate</didyoumean>
+  <didyoumean score='0.333333' level='medium'>acid</didyoumean>
+ </didyoumeans>
+</queryresult>

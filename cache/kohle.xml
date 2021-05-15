@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='2'
+    datatypes='Translation'
+    timedout=''
+    timedoutpods=''
+    timing='0.427'
+    parsetiming='0.063'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP431d8b7c29ei91hh8600003g9543b5ihch891d'
+    host='https://www5a.wolframalpha.com'
+    server='47'
+    related='https://www5a.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa441d8b7c29ei91hh86000064eg3ge92878ce303940777145929605518'
+    version='2.6'
+    inputstring='Kohle'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP451d8b7c29ei91hh860000362c3ch9a7084cd7?MSPStoreType=image/gif&amp;s=47'
+       alt='translate | Kohle | to English'
+       title='translate | Kohle | to English'
+       width='246'
+       height='33'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>translate | Kohle | to English</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Results'
+     scanner='Data'
+     id='TranslationsToEnglish:TranslationData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>TranslationData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP461d8b7c29ei91hh860000354ie05fd6icac95?MSPStoreType=image/gif&amp;s=47'
+       alt='from German: | coal (mining)'
+       title='from German: | coal (mining)'
+       width='189'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>from German: | coal (mining)</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <sources count='1'>
+  <source url='https://www5a.wolframalpha.com/sources/TranslationDataSourceInformationNotes.html'
+      text='Translation data' />
+ </sources>
+</queryresult>

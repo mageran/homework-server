@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='2'
+    datatypes='Chemical'
+    timedout=''
+    timedoutpods=''
+    timing='1.044'
+    parsetiming='0.682'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP520611977a7c819he5a600001b7caa20d8c1cdb0'
+    host='https://www5a.wolframalpha.com'
+    server='39'
+    related='https://www5a.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa520711977a7c819he5a600003f0h14i1eihg9a263040043953688894679'
+    version='2.6'
+    inputstring='HCl alternate names'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP520811977a7c819he5a6000043925ed7bb1g1ed2?MSPStoreType=image/gif&amp;s=39'
+       alt='hydrogen chloride | alternate names'
+       title='hydrogen chloride | alternate names'
+       width='253'
+       height='23'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>hydrogen chloride | alternate names</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Result'
+     scanner='Data'
+     id='Result'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www5a.wolframalpha.com/Calculate/MSP/MSP520911977a7c819he5a600001bg3gf4bgefae5d3?MSPStoreType=image/gif&amp;s=39'
+       alt='anhydrous hydrochloric acid | anhydrous hydrogen chloride | chlorane'
+       title='anhydrous hydrochloric acid | anhydrous hydrogen chloride | chlorane'
+       width='482'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>anhydrous hydrochloric acid | anhydrous hydrogen chloride | chlorane</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <sources count='1'>
+  <source url='https://www5a.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+ </sources>
+</queryresult>

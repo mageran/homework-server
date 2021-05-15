@@ -73,6 +73,9 @@ const evalArithmetic = t => {
         if (isNumeric(neutralElement)) {
             inPlaceDeleteNeutralElement();
         }
+        if (operands.length === 1) {
+            return operands[0];
+        }
         const numOperands = operands.filter(t => t instanceof Terms.Num);
         const otherOperands = operands.filter(t => !(t instanceof Terms.Num));
         if (numOperands.length < 2) {
@@ -98,6 +101,9 @@ const evalArithmetic = t => {
             return t1;
         }
         inPlaceDeleteNums(firstNumberPosition + 1);
+        if (operands.length === 1) {
+            return operands[0];
+        }
         return term;
     }
     const _v = {};
@@ -121,7 +127,7 @@ const evalArithmetic = t => {
     if ((t instanceof Terms.Power)) {
         return applyArithmetics(t, (a, b) => a.pow(b));
     }
-    if ((t instanceof Terms.Quotient) || (t instanceof Terms.Fraction)) {
+    if (t instanceof Terms.Fraction) {
         return applyArithmetics(t, (a, b) => a.div(b));
     }
     return t;

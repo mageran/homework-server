@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='2'
+    datatypes='Chemical'
+    timedout=''
+    timedoutpods=''
+    timing='1.07'
+    parsetiming='0.716'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP5817118d20i4255ei1d900005chebh4i6g1achc4'
+    host='https://www4f.wolframalpha.com'
+    server='50'
+    related='https://www4f.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa5818118d20i4255ei1d900002967acgh82ihba461047509949900532972'
+    version='2.6'
+    inputstring='HNO3 alternate names'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP5819118d20i4255ei1d9000021d811e4gb7hf2fh?MSPStoreType=image/gif&amp;s=50'
+       alt='nitric acid | alternate names'
+       title='nitric acid | alternate names'
+       width='202'
+       height='23'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>nitric acid | alternate names</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Result'
+     scanner='Data'
+     id='Result'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <microsources>
+    <microsource>ChemicalData</microsource>
+   </microsources>
+   <img src='https://www4f.wolframalpha.com/Calculate/MSP/MSP5820118d20i4255ei1d900000d82a9a235d0986a?MSPStoreType=image/gif&amp;s=50'
+       alt='anhydrous nitric acid | azotic acid | hydrogen nitrate | nital | spirit of nitre'
+       title='anhydrous nitric acid | azotic acid | hydrogen nitrate | nital | spirit of nitre'
+       width='534'
+       height='19'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>anhydrous nitric acid | azotic acid | hydrogen nitrate | nital | spirit of nitre</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <sources count='1'>
+  <source url='https://www4f.wolframalpha.com/sources/ChemicalDataSourceInformationNotes.html'
+      text='Chemical data' />
+ </sources>
+</queryresult>

@@ -4,6 +4,22 @@ body {
     font-size: 14pt;
 }
 
+#topic-inputs .topic-input-label {
+    font-size: 14pt;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+#topic-inputs input {
+    font-size: 14pt;
+    vertical-align: middle;
+    padding: 12px;
+}
+
+#topic-inputs select {
+    font-size: 14pt;
+}
+
 input {
     padding: 3px;
 }

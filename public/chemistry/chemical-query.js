@@ -51,8 +51,24 @@ function chemicalQuery(queryString) {
 const chemicalQueryPromise = queryString => {
     const url = `/api/chemicalQuery?query=${escape(queryString)}`;
     return new Promise((resolve, reject) => {
-        
-    })
+        const success = response => {
+            var resObj = response;
+            try {
+                resObj = JSON.parse(response);
+                resolve(resObj);
+            } catch (err) {
+                //console.error(err);
+                reject(err);
+            }
+        }
+        console.log(`running query ${url}`);
+        $.ajax({
+            type: "get",
+            url: url,
+            success: success,
+            error: reject
+        });
+    });
 }
 
 function lewisStructureWidget() {

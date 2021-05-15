@@ -1602,8 +1602,12 @@ function peg$parse(input, options) {
         return inputString;
       }
       const op = "*";
-      const operands = inputString.split(/\s*/);
-      return { op, operands };
+      const m = inputString.match(/[a-z](_?[0-9]+|_[a-z])?/g);
+      if (Array.isArray(m)) {
+        return { op, operands: m };
+      } else {
+        return inputString
+      }
     }
 
 

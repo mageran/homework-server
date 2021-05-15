@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='false'
+    error='false'
+    xml:space='preserve'
+    numpods='0'
+    datatypes=''
+    timedout=''
+    timedoutpods=''
+    timing='2.911'
+    parsetiming='0.'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP3212a6idb5042f144g00005ae9i6dfc7b1eafc'
+    host='https://www4f.wolframalpha.com'
+    server='55'
+    related='https://www4f.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa3312a6idb5042f144g00002cgffh6i1h3g8g3h8707379056943765232'
+    version='2.6'
+    inputstring='HCl acid or base'>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='HCl'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='Thermodynamic'
+       desc='a thermodynamic material'
+       input='*C.HCl-_*Thermodynamic-' />
+   <value name='Chemical'
+       desc='a chemical compound'
+       input='*C.HCl-_*Chemical-' />
+  </assumption>
+ </assumptions>
+ <didyoumeans count='2'>
+  <didyoumean score='0.476196' level='medium'>acid or base</didyoumean>
+  <didyoumean score='0.37475' level='medium'>HCl base</didyoumean>
+ </didyoumeans>
+</queryresult>

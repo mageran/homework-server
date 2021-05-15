@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='false'
+    error='false'
+    xml:space='preserve'
+    numpods='0'
+    datatypes=''
+    timedout=''
+    timedoutpods=''
+    timing='1.377'
+    parsetiming='0.20700000000000002'
+    parsetimedout='false'
+    recalculate=''
+    id=''
+    parseidserver='10'
+    host='https://www4d.wolframalpha.com'
+    server='10'
+    related=''
+    version='2.6'
+    inputstring='HCl acid base'>
+ <didyoumeans count='3'>
+  <didyoumean score='0.452786' level='medium'>acid base</didyoumean>
+  <didyoumean score='0.421571' level='medium'>HCl base</didyoumean>
+  <didyoumean score='0.421571' level='medium'>HCl acid</didyoumean>
+ </didyoumeans>
+</queryresult>

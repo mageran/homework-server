@@ -257,7 +257,7 @@ const populate = tobj => {
                 if (param.type === 'dynamic') {
                     let fun = param.func;
                     if (typeof fun !== 'function') {
-                        console.error('ignoring parameter entry %o: "func" properties is missing.', param);
+                        console.error('ignoring parameter entry %o: "func" property is missing.', param);
                         return;
                     }
                     const subInputsObject = {
@@ -303,6 +303,7 @@ const populate = tobj => {
                 cont.style.display = 'inline-block';
                 cont.style.padding = '10px';
                 const label = document.createElement('div');
+                label.className = 'topic-input-label';
                 label.innerHTML = `${param.name}:`;
                 label.style.display = isTextarea ? 'block' : 'inline-block';
                 cont.appendChild(label);
@@ -327,46 +328,6 @@ const populate = tobj => {
     const parametersExist = inputElements.length > 0;
 
 
-    /*
-    const inputElements = [];
-    var parametersExist = false;
-    if (tobj.parameters && tobj.parameters.length > 0) {
-        parametersExist = true;
-        tobj.parameters.forEach(param => {
-            let isTextarea = !!param.rows;
-            const cont = document.createElement('div');
-            if (param.separator) {
-                cont.style.display = 'block';
-                inputs.appendChild(cont);
-                return;
-            }
-            if (param.html) {
-                if (typeof param.html === 'string') {
-                    cont.innerHTML = param.html;
-                } else {
-                    let { tag, style, className, innerHTML } = param.html;
-                }
-                inputs.appendChild(cont);
-                return;
-            }
-            cont.style.display = 'inline-block';
-            cont.style.padding = '10px';
-            const label = document.createElement('div');
-            label.innerHTML = `${param.name}:`;
-            label.style.display = isTextarea ? 'block' : 'inline-block';
-            cont.appendChild(label);
-            const inpElem = createInputElement(param);
-            cont.appendChild(inpElem);
-            inputs.appendChild(cont);
-            if (typeof inpElem.init === 'function') {
-                inpElem.init();
-            }
-            if (isTextarea) {
-                _htmlElement('div', inputs);
-            }
-        });
-    }
-    */
     const doExecute = (testValues) => {
         if (typeof tobj.func !== 'function') {
             return;
@@ -389,60 +350,7 @@ const populate = tobj => {
 
         let args = _getArgsFromInputElements(inputElements, hasTestValues, tvalues);
 
-        /*
-        let args = [];
-        inputElements.forEach(inpElem => {
-            const argsForInpElem = _getArgsFromInputElement(inpElem);
-            if (Array.isArray(argsForInpElem)) {
-                args.push(...argsForInpElem);
-            } else {
-                args.push(argsForInpElem);
-            }
-        })
-        */
-
-        /*
-        let args = inputElements.map(inpElem => {
-            let res;
-            if (inpElem.mathField) {
-                if (hasTestValues) {
-                    let latex = tvalues.shift();
-                    inpElem.mathField.latex(latex);
-                    return latex;
-                }
-                return inpElem.mathField.latex();
-            }
-            if (hasTestValues) {
-                res = tvalues.shift();
-                inpElem.value = res;
-                if (inpElem.tagName.toUpperCase() === 'SELECT') {
-                    inpElem.noEval = true;
-                    for (let i = 0; i < inpElem.children.length; i++) {
-                        let option = inpElem.children[i];
-                        if (option.tagName.toUpperCase() !== 'OPTION') continue;
-                        if (option.value === res) {
-                            option.selected = true;
-                            break;
-                        }
-                    }
-                }
-            } else {
-                res = inpElem.value;
-            }
-            if (!inpElem.noEval) {
-                try {
-                    res = eval(inpElem.value);
-                } catch (err) {
-                    //console.error(err);
-                }
-            }
-            if (inpElem.isDecimal) {
-                res = _d(res);
-            }
-            inpElem.style.background = "white";
-            return res;
-        });
-        */
+       
         console.log(args);
         //console.log(`#input elements: ${inputElements.length}`);
         let output = "no output generated";

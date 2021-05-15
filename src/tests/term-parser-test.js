@@ -34,6 +34,7 @@ try {
         console.error(`input string could not be parsed as latex or term`);
     }
     console.log(term.toTermString())
+    console.log(term.latex);
 
     /*
     term.traverse(t => {
@@ -49,7 +50,8 @@ try {
     ._(evalArithmetic)
     ._(sortProductTerms)
 
-    console.log(`resulting term: ${cterm.toTermString()}`);
+    //console.log(`resulting term: ${cterm.toTermString()}`);
+    console.log(`resulting term: ${cterm.toTermString()}, latex: ${cterm.latex}`);
 
 
 } catch (e) {

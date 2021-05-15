@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    xml:space='preserve'
+    numpods='6'
+    datatypes='Company'
+    timedout=''
+    timedoutpods=''
+    timing='3.451'
+    parsetiming='0.077'
+    parsetimedout='false'
+    recalculate=''
+    id='MSP7311gf647300a1973ae00004i05gbdffgc1iefi'
+    host='https://www5b.wolframalpha.com'
+    server='5'
+    related='https://www5b.wolframalpha.com/api/v1/relatedQueries.jsp?id=MSPa7321gf647300a1973ae0000216212gghdcabi867625896684610282428'
+    version='2.6'
+    inputstring='KNO'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7331gf647300a1973ae00005811aegb1c1gegi0?MSPStoreType=image/gif&amp;s=5'
+       alt='Kno'
+       title='Kno'
+       width='26'
+       height='19'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Kno</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Company information'
+     scanner='Data'
+     id='CompanyInformation:CompanyData'
+     position='200'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>CompanyData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7341gf647300a1973ae00002bfb65fg47052he3?MSPStoreType=image/gif&amp;s=5'
+       alt='name | Kno
+company type | privately held subsidiary
+status | acquired
+defunct date | November 21, 2013
+location | Santa Clara, California, United States
+website | kno.com'
+       title='name | Kno
+company type | privately held subsidiary
+status | acquired
+defunct date | November 21, 2013
+location | Santa Clara, California, United States
+website | kno.com'
+       width='384'
+       height='202'
+       type='Grid'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>name | Kno
+company type | privately held subsidiary
+status | acquired
+defunct date | November 21, 2013
+location | Santa Clara, California, United States
+website | kno.com</plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Grid' />
+  </expressiontypes>
+ </pod>
+ <pod title='Map'
+     scanner='Data'
+     id='WolframMap:CompanyData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <microsources>
+    <microsource>CompanyData</microsource>
+    <microsource>OpenStreetMap</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7351gf647300a1973ae00003h29i1gidf31h2ei?MSPStoreType=image/gif&amp;s=5'
+       alt='Map'
+       title=''
+       width='550'
+       height='279'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+  <states count='2'>
+   <statelist count='13'
+       value='10 miles across'
+       delimiters=''>
+    <state name='5 miles across'
+        input='WolframMap:CompanyData__5 miles across' />
+    <state name='10 miles across'
+        input='WolframMap:CompanyData__10 miles across' />
+    <state name='20 miles across'
+        input='WolframMap:CompanyData__20 miles across' />
+    <state name='40 miles across'
+        input='WolframMap:CompanyData__40 miles across' />
+    <state name='80 miles across'
+        input='WolframMap:CompanyData__80 miles across' />
+    <state name='170 miles across'
+        input='WolframMap:CompanyData__170 miles across' />
+    <state name='330 miles across'
+        input='WolframMap:CompanyData__330 miles across' />
+    <state name='670 miles across'
+        input='WolframMap:CompanyData__670 miles across' />
+    <state name='1300 miles across'
+        input='WolframMap:CompanyData__1300 miles across' />
+    <state name='2700 miles across'
+        input='WolframMap:CompanyData__2700 miles across' />
+    <state name='5200 miles across'
+        input='WolframMap:CompanyData__5200 miles across' />
+    <state name='8700 miles across'
+        input='WolframMap:CompanyData__8700 miles across' />
+    <state name='17000 miles across'
+        input='WolframMap:CompanyData__17000 miles across' />
+   </statelist>
+   <state name='Metric'
+       input='WolframMap:CompanyData__Metric' />
+  </states>
+ </pod>
+ <pod title='Logo'
+     scanner='Data'
+     id='Image:CompanyData'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <imagesource>http://www.crunchbase.com/company/kno</imagesource>
+   <microsources>
+    <microsource>CompanyData</microsource>
+   </microsources>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7361gf647300a1973ae00003bd4d71h0b3d3h43?MSPStoreType=image/gif&amp;s=5'
+       alt='Logo'
+       title=''
+       width='64'
+       height='55'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='false' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Wikipedia summary'
+     scanner='Data'
+     id='WikipediaSummary:CompanyData'
+     position='500'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7371gf647300a1973ae000014d50c3db6658a32?MSPStoreType=image/gif&amp;s=5'
+       alt='Kno, Inc. was a software company that worked with publishers to offer digital textbooks and other educational materials. In November 2013, after raising nearly $100 million in venture capital, the company was acquired by Intel. The website was stopped and the service renamed to Intel Education Study later on.'
+       title='Kno, Inc. was a software company that worked with publishers to offer digital textbooks and other educational materials. In November 2013, after raising nearly $100 million in venture capital, the company was acquired by Intel. The website was stopped and the service renamed to Intel Education Study later on.'
+       width='538'
+       height='80'
+       type='Default'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext>Kno, Inc. was a software company that worked with publishers to offer digital textbooks and other educational materials. In November 2013, after raising nearly $100 million in venture capital, the company was acquired by Intel. The website was stopped and the service renamed to Intel Education Study later on.</plaintext>
+   <infos count='1'>
+    <info>
+     <link url='http://en.wikipedia.org/wiki?curid=12743409'
+         text='Full entry' />
+    </info>
+   </infos>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='Default' />
+  </expressiontypes>
+ </pod>
+ <pod title='Wikipedia page hits history'
+     scanner='Data'
+     id='PopularityPod:WikipediaStatsData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='https://www5b.wolframalpha.com/Calculate/MSP/MSP7381gf647300a1973ae00004hh2b36b485i6094?MSPStoreType=image/gif&amp;s=5'
+       alt='Wikipedia page hits history'
+       title=''
+       width='546'
+       height='171'
+       type='TimeSeriesPlot_1'
+       themes='1,2,3,4,5,6,7,8,9,10,11,12'
+       colorinvertable='true' />
+   <plaintext></plaintext>
+  </subpod>
+  <expressiontypes count='1'>
+   <expressiontype name='TimeSeriesPlot' />
+  </expressiontypes>
+  <states count='1'>
+   <state name='Log scale'
+       input='PopularityPod:WikipediaStatsData__Log scale' />
+  </states>
+ </pod>
+ <assumptions count='1'>
+  <assumption type='Clash'
+      word='KNO'
+      template='Assuming &quot;${word}&quot; is ${desc1}. Use as ${desc2} instead'
+      count='2'>
+   <value name='Company'
+       desc='a company'
+       input='*C.KNO-_*Company-' />
+   <value name='Gene'
+       desc='a gene'
+       input='*C.KNO-_*Gene-' />
+  </assumption>
+ </assumptions>
+ <sources count='2'>
+  <source url='https://www5b.wolframalpha.com/sources/CompanyDataSourceInformationNotes.html'
+      text='Company data' />
+  <source url='https://www5b.wolframalpha.com/sources/OpenStreetMapSourceInformationNotes.html'
+      text='Open street map' />
+ </sources>
+</queryresult>

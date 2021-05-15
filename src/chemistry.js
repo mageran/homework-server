@@ -12,6 +12,7 @@ const _buildWolframAlphaQueryUrl = queryString => {
 
 const processXmlResponse = data => {
     const xmlDoc = parseXml(data);
+    //console.log(data);
     const obj = {};
     const queryResult = xmlDoc.root();
     if (!queryResult) {
@@ -21,11 +22,14 @@ const processXmlResponse = data => {
     if (queryResult.attr('success').value() !== "true") {
         throw "unsuccessful query"
     }
+    const plaintextList = [];
     xmlDoc.find('//pod').forEach(elem => {
         const id = elem.attr('id');
         if (id) {
+            console.log(`found pod with id ${id}...`)
             elem.find('//plaintext').forEach(plaintextElem => {
                 const text = plaintextElem.text();
+                plaintextList.push(...text.split(/\s*\|\s*/));
                 const parts = text.split(/\s*\n\s*/);
                 for (let i = 0; i < parts.length; i++) {
                     let keyValue = parts[i].split(/\s*\|\s*/);
@@ -49,6 +53,9 @@ const processXmlResponse = data => {
             })
         }
     });
+    if (plaintextList.length > 0) {
+        obj.plaintext = plaintextList;
+    }
     console.log(obj);
     return obj;
 }

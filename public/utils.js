@@ -282,6 +282,26 @@ const _htmlElement = (tag, parent, content, cssClass, style) => {
     return elem;
 }
 
+/**
+ * fixed width label (used for topic parameter names)
+ * @param {} text 
+ * @param {*} width 
+ * @returns 
+ */
+const _fwl = (text, width) => {
+    if (typeof width === 'number') {
+        __fwl_width = width;
+    }
+    else if (typeof __fwl_width === 'number') {
+        width = __fwl_width;
+    }
+    else {
+        width = 200;
+    }
+    return `<div style="display:inline-block;width:${width}px;text-align:right">${text}</div>`;
+}
+
+
 const _d = x => {
     if (x === null || ((typeof x === 'string') && x.trim().length === 0)) {
         return null;

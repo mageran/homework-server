@@ -178,7 +178,58 @@ const _equilibrium = {
     ]
 }
 
+const _pHpOHCalculations = {
+    title: 'pH/pOH from molarity of acid/base',
+    description: 'Determine missing values between molarity of a acid or base, ph, or pOH value',
+    parameters: [
+        { name: _fwl('Name/Formula', 150), value: '', cssClass: 'width500' },
+        { separator: true },
+        { 
+            name: _fwl('Acid or Base'), 
+            type: 'select', 
+            options: [
+                { label: 'Auto detect using name/formula', value: 'auto' },
+                { label: 'Acid', value: 'acid' },
+                { label: 'Base', value: 'base' },
+            ]
+        },
+        { separator: true },
+        { name: _fwl('Molarity'), value: '', cssClass: 'big-input', noEval: true },
+        { separator: true },
+        { name: _fwl('pH'), value: '' },
+        { separator: true },
+        { name: _fwl('pOH'), value: '' },
+        { separator: true },
+    ],
+    func: pHpOHCalculations,
+    testValues: [
+        ['Hydrochloric acid', 'auto', '0.023']
+    ]
+}
+
+const _pHFromToConcentration = {
+    title: 'pH/pOH <-> [H3O+]/[OH-]',
+    description: 'determine H3O+ and OH- concentration from pH/pOH and vice versa; enter only one of the values, the rest will be calculated.',
+    parameters: [
+        { name: _fwl('pH', 80), value: '', noEval: true },
+        { separator: true },
+        { name: _fwl('pOH'), value: '', noEval: true },
+        { separator: true },
+        { name: _fwl('[H3O+]'), value: '', noEval: true },
+        { separator: true },
+        { name: _fwl('[OH-]'), value: '', noEval: true },
+        { separator: true },
+    ],
+    func: pHFromToConcentration,
+    testValues: [
+        ['', '', '0.0032', '']
+    ]
+}
+
 const topicObjects = [
+    _pHFromToConcentration,
+    _pHpOHCalculations,
+    '-------------',
     _equilibrium,
     '-------------',
     _solutionConcentration,

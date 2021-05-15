@@ -38,6 +38,43 @@ class Term {
         return `${functor}(${operands.map(t => t.toTermString()).join(',')})`;
     }
 
+    /**
+     *  Used for creating string representation of infix operations (sum, product, etc).
+     *  The higher the precedence, the stronger the binding of the operation.
+     *  E.g. sum.precedence is 1, product.precedence is 2
+     */
+    get precedence() {
+        return -1;
+    }
+
+    get latex() {
+        //throw `latex getter not yet implemented for class ${this.constructor.name}`;
+        return `${this.className}(${this.operands ? this.operands.map(t => t.latex).join(", ") : ""})`;
+    }
+
+    /**
+     * aux. method to return the parenthesis pair for latex representation if needed.
+     */
+    get _pp() {
+        return (this.parentTerm && this.parentTerm.precedence > this.precedence)
+            ? ["(", ")"]
+            : ["", ""];
+    }
+
+    set precision(val) {
+        this.$precision = val;
+    }
+
+    get precision() {
+        if (typeof this.$precision === 'number') {
+            return this.$precision;
+        }
+        if (this.parentTerm) {
+            return this.parentTerm.precision;
+        }
+        return -1;
+    }
+
     toJson() {
         const { operands } = this;
         return {
@@ -494,6 +531,11 @@ class Rule extends Term {
         return `${lhs.toTermString()} => ${rhs.toTermString()}`;
     }
 
+    get latex() {
+        const { lhs, rhs } = this;
+        return `${lhs.latex} \\Rightarrow ${rhs.latex}`;
+    }
+
 }
 
 class Functor extends Term {
@@ -520,6 +562,11 @@ class Functor extends Term {
         return `${functor.toTermString()}(${operands.map(t => t.toTermString()).join(',')})`;
     }
 
+    get latex() {
+        const [functor, ...operands] = this.operands;
+        return `${functor.latex}(${operands.map(t => t.latex).join(',')})`;
+    }
+
     toJson() {
         const [functor, ...operands] = this.operands;
         return {
@@ -543,6 +590,11 @@ class Equation extends Term {
 
     get rhs() {
         return this.operands[1];
+    }
+
+    get latex() {
+        const { lhs, rhs } = this;
+        return `${lhs.latex} = ${rhs.latex}`;
     }
 
 }
@@ -580,8 +632,25 @@ class Sum extends Term {
         return new Sum(newOperands);
     }
 
+    get precedence() {
+        return 1;
+    }
+    get latex() {
+        const l = this.operands.reduce((s, t, index) => {
+            var sym = index === 0 ? '' : ' + ';
+            var lx = t.latex;
+            if (lx.match(/^\-/)) {
+                sym = '';
+                //lx = `(${lx})`;
+            }
+            return s + sym + lx;
+        }, '')
+        const [o, c] = this._pp;
+        return o + l + c;
+    }
 }
 
+/*
 class Difference extends Term {
     constructor(operands) {
         super(operands);
@@ -622,10 +691,11 @@ class Difference extends Term {
         if (newOperands.length === 1) {
             return newOperands[0];
         }
-        return new Quotient(newOperands);
+        return new Difference(newOperands);
     }
 
 }
+*/
 
 class Product extends Term {
 
@@ -659,8 +729,29 @@ class Product extends Term {
         }
         return new Product(newOperands);
     }
+
+    get precedence() {
+        return 2;
+    }
+
+    get latex() {
+        const l = this.operands.reduce((s, t) => {
+            var sym = ' ';
+            var lx = t.latex;
+            if (lx.match(/^\-/)) {
+                lx = `(${lx})`;
+            }
+            if (s.match(/[0-9]$/) && lx.match(/^[0-9]/)) {
+                sym = ' \\cdot '
+            }
+            return s + sym + lx;
+        }, '')
+        const [o, c] = this._pp;
+        return o + l + c;
+    }
 }
 
+/*
 class Quotient extends Term {
 
     constructor(operands) {
@@ -707,6 +798,7 @@ class Quotient extends Term {
     }
 
 }
+*/
 
 class UMinus extends Product {
 
@@ -745,6 +837,15 @@ class Power extends Term {
             }
         }
         return new Power([base, exponent]);
+    }
+
+    get precedence() {
+        return 3;
+    }
+
+    get latex() {
+        const [base, exp] = this.operands;
+        return `${base.latex}^{${exp.latex}}`;
     }
 
 }
@@ -792,6 +893,10 @@ class ListTerm extends Term {
         return `[${this.operands.map(t => t.toTermString()).join(", ")}]`;
     }
 
+    get latex() {
+        return `[${this.operands.map(t => t.latex).join(", ")}]`;
+    }
+
 }
 
 class Fraction extends Term {
@@ -806,7 +911,18 @@ class Fraction extends Term {
     }
 
     get denominator() {
-        return this.operator[1];
+        return this.operands[1];
+    }
+
+    get precedence() {
+        return 2;
+    }
+
+    get latex() {
+        const l1 = this.numerator.latex;
+        const l2 = this.denominator.latex;
+        return `\\frac{${l1}}{${l2}}`
+
     }
 
 }
@@ -824,6 +940,15 @@ class Sqrt extends Term {
 
     get radicand() {
         return this.operands[1];
+    }
+
+    get latex() {
+        var s = '\\sqrt{';
+        if (this.degree != 2) {
+            s += `[${this.degree.latex}]`;
+        }
+        s += this.radicand.latex;
+        s += '}'
     }
 
 }
@@ -847,6 +972,11 @@ class Num extends Term {
 
     toTermString() {
         return String(this.value);
+    }
+
+    get latex() {
+        const p = this.precision;
+        return p < 0 ? String(this.value) : this.value.toPrecision(p);
     }
 
     get isNumTerm() { return true; }
@@ -915,6 +1045,16 @@ class Symbol extends Term {
 
     _addVariableSubstitutions(substMap) {
 
+    }
+
+    get latex() {
+        const { name } = this;
+        const parts = name.split('_');
+        var s = parts[0];
+        if (parts.length > 1) {
+            s += `_{${parts[1]}}`
+        }
+        return s;
     }
 
 }
@@ -1088,6 +1228,10 @@ class ListVariable extends Variable {
         return ctxt.findVariableInContext(this.name, false, true);
     }
 
+    get latex() {
+        return `...${super.latex}`
+    }
+
 }
 
 class AnyVariable extends Variable {
@@ -1109,6 +1253,10 @@ class AnyVariable extends Variable {
 
     toTermString() {
         return `_${this.uniqueId}`;
+    }
+
+    get latex() {
+        return '\\_'
     }
 
 }
@@ -1168,6 +1316,10 @@ class Boolean extends Term {
         return String(this.booleanValue);
     }
 
+    get latex() {
+        return String(this.booleanValue);
+    }
+
 }
 
 class True extends Boolean {
@@ -1176,12 +1328,20 @@ class True extends Boolean {
         super(true);
     }
 
+    get latex() {
+        return "true";
+    }
+
 }
 
 class False extends Boolean {
 
     constructor() {
         super(false);
+    }
+
+    get latex() {
+        return "false";
     }
 
 }
@@ -1200,9 +1360,9 @@ module.exports = {
     Functor,
     Equation,
     Sum,
-    Difference,
+    //Difference,
     Product,
-    Quotient,
+    //Quotient,
     UMinus,
     Power,
     Seq,
