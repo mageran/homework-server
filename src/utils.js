@@ -1,5 +1,6 @@
 const Decimal = require('./decimal');
 const colors = require('colors/safe');
+const Terms = require('./term');
 
 const levelIndent = (level = 0, multiplier = 4) => {
     if (level === 0) return "";
@@ -38,9 +39,29 @@ const isNumeric = x => {
     return x instanceof Decimal;
 }
 
+const logTerm = (...args) => {
+    var str = "";
+    if (args.length === 2) {
+        str = args.shift() + " ";
+    }
+    term = args.shift();
+    console.log(str + term.toTermString());
+}
+
+const logTerms = (...args) => {
+    var str = "";
+    if (args.length === 2) {
+        str = args.shift() + " ";
+    }
+    terms = args.shift();
+    console.log(str + terms.map(t => t.toTermString()).join(", "));
+}
+
 module.exports = {
     levelIndent,
     llog,
+    logTerm,
+    logTerms,
     _d,
     isNumeric
 }

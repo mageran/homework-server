@@ -13,6 +13,8 @@ app.use(express.static('public'));
 
 const bodyParser = require('body-parser');
 const termParser = require('./parser/term-parser');
+const ParseContext = require('./parse-context');
+const { logTerm } = require('./utils');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
@@ -85,7 +87,7 @@ app.post('/api/parse_match_latex', (req, res) => {
 })
 
 
-
+/*
 services.forEach(({ service, rules, functor, resultVariable }) => {
   const uri = `/api/${service}`;
   app.post(uri, (req, res) => {
@@ -108,6 +110,35 @@ services.forEach(({ service, rules, functor, resultVariable }) => {
   });
   console.log(`registered service: uri: ${uri}, rules: ${rules}, functor: ${functor}`);
 });
+*/
+services.forEach(({ service, func, parameters }) => {
+  const uri = `/api/${service}`;
+  app.post(uri, (req, res) => {
+    //const latex = req.body.latex;
+    try {
+      const args = parameters.map(param => {
+        const pname = param.name;
+        if (!pname) return;
+        var paramValue = req.body[pname];
+        if (paramValue && param.parseIntoTerm) {
+          paramValue = api.parseLatexTerm(paramValue);
+          logTerm(paramValue);
+        }
+        return paramValue;
+      });
+      res.status(200);
+      const resObj = func(...args);
+      res.send(JSON.stringify(resObj, null, 2));
+    } catch (err) {
+      res.status(404);
+      const errObj = { error: err };
+      console.log(err);
+      res.send(JSON.stringify(errObj));
+    }
+  });
+  console.log(`registered service: uri: ${uri}`);
+});
+
 
 app.get('/api/chemicalquery', (req, res) => {
   const query = req.query.query;

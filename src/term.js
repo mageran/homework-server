@@ -88,6 +88,7 @@ class Term {
     }
 
     get isNumTerm() { return false; }
+    get isIdentifierTerm() { return true; }
 
     _variableMatch(variableTerm) {
         assert.ok(variableTerm instanceof Variable, `_variableMatch called on ${variableTerm.className} instance`);
@@ -380,7 +381,7 @@ class Term {
     }
 
     isNum() {
-        return false;
+        return this.isNumTerm;
     }
 
     reset() {
@@ -503,6 +504,10 @@ class Term {
             this.operands.forEach(t => t.traverse(traverseFunction));
         }
         traverseFunction.call(null, this);
+    }
+
+    static uminusTerm(t) {
+        return new Product([new Num(_d(-1)), t]);
     }
 
 }
@@ -639,7 +644,7 @@ class Sum extends Term {
         const l = this.operands.reduce((s, t, index) => {
             var sym = index === 0 ? '' : ' + ';
             var lx = t.latex;
-            if (lx.match(/^\-/)) {
+            if (lx.match(/^\s*\-/)) {
                 sym = '';
                 //lx = `(${lx})`;
             }
@@ -739,7 +744,7 @@ class Product extends Term {
             var sym = ' ';
             var lx = t.latex;
             if (lx.match(/^\-/)) {
-                lx = `(${lx})`;
+                //lx = `(${lx})`;
             }
             if (s.match(/[0-9]$/) && lx.match(/^[0-9]/)) {
                 sym = ' \\cdot '
@@ -942,6 +947,14 @@ class Sqrt extends Term {
         return this.operands[1];
     }
 
+    get isSqrtRoot() {
+        return this.degree == 2;
+    }
+
+    get isCubeRoot() {
+        return this.degree == 3;
+    }
+
     get latex() {
         var s = '\\sqrt{';
         if (this.degree != 2) {
@@ -949,6 +962,7 @@ class Sqrt extends Term {
         }
         s += this.radicand.latex;
         s += '}'
+        return s;
     }
 
 }
@@ -1015,10 +1029,6 @@ class Num extends Term {
         return new Num(this.value);
     }
 
-    isNum() {
-        return true;
-    }
-
     reset() {
     }
 }
@@ -1072,6 +1082,8 @@ class Identifier extends Symbol {
     set id(val) {
         this.name = val;
     }
+
+    get isIdentifierTerm() { return true; }
 
     match(term) {
         if (this._isVariableMatch(term)) {

@@ -1,3 +1,7 @@
+
+const { circleEquation } = require('../lib/conics');
+
+/*
 module.exports = [{
     service: "extractParametersExponentialFunction",
     rules: "extract-exponential-transformation-parameters",
@@ -5,3 +9,13 @@ module.exports = [{
     resultVariable: 'RESULT'
 }
 ]
+*/
+
+
+module.exports = [{
+    service: 'circleEquation',
+    func: circleEquation,
+    parameters: [
+        { name: 'equation', parseIntoTerm: true }
+    ]
+}]

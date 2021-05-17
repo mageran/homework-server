@@ -1,6 +1,6 @@
 const Terms = require('../term');
 const ParseContext = require('../parse-context');
-const { _d, isNumeric } = require('../utils');
+const { _d, isNumeric, logTerm } = require('../utils');
 
 const termCache = {};
 
@@ -130,8 +130,20 @@ const evalArithmetic = t => {
     if (t instanceof Terms.Fraction) {
         return applyArithmetics(t, (a, b) => a.div(b));
     }
+    if (t instanceof Terms.Sqrt) {
+        return applyArithmetics(t, (a, b) => {
+            return (a == 2) ? b.sqrt() : (a == 3) ? b.cubeRoot() : b.pow(numTerm1.div(a));
+        })
+    }
     return t;
 };
+
+const basicEval = t => {
+    return t
+        ._(flattenOperands)
+        ._(evalArithmetic)
+        ._(sortProductTerms);
+}
 
 const sortProductTerms = t => {
     const sortFunction = (t1, t2) => {
@@ -152,8 +164,94 @@ const sortProductTerms = t => {
     return t;
 }
 
+/**
+ * Runs complete the square for the given term and the given variable. The factor for the squared term must be 1.
+ * Returns update (sum) term and the number term added for completing the square.
+ * @param {Term} term
+ * @param {String} x
+ */
+const _completeTheSquare = (term, x) => {
+    const sumTerms = getSumTerms(term);
+    var xsquareTerm = null;
+    var bvalue = _d(0);
+    var restTerms = [];
+    const _v = {};
+    for (let i = 0; i < sumTerms.length; i++) {
+        let t = sumTerms[i];
+        console.log(`completeTheSquare: summand: ${t.toTermString()}`);
+        if (_M(`power(${x},2)`, t)) {
+            if (xsquareTerm) {
+                // another x^2 term found, not supported
+                return { term, addedTerm: numTerm0, completedSquareDone: false };
+            }
+            xsquareTerm = t;
+        }
+        else if (_M(`product(B#,${x})`, t, _v)) {
+            let nterm = _v['B#'];
+            bvalue = bvalue.add(nterm.value);
+        }
+        else {
+            restTerms.push(t);
+        }
+    }
+    if (bvalue == 0) {
+        console.log('bvalue is 0');
+        return { term, addedTerm: numTerm0, completedSquareDone: false };
+    }
+    if (!xsquareTerm) {
+        console.log('no xsquareTerm found');
+        return { term, addedTerm: numTerm0, completedSquareDone: false };
+    }
+    // calculate the value to complete the square:
+    const cvalue = bvalue.div(_d(2));
+    const cvalueSquared = cvalue.pow(_d(2));
+    const cterm = new Terms.Num(cvalueSquared);
+    const completedTerm = new Terms.Sum([xsquareTerm,
+        new Terms.Product([new Terms.Num(bvalue), new Terms.Identifier(x)]),
+        cterm
+    ])
+    const termString = `power(sum(${x},${cvalue}),2)`;
+    //console.log(`termString: ${termString}`);
+    const squaredTerm = _T(termString);
+    const newTerm = (restTerms.length === 0) ? squaredTerm : new Terms.Sum([squaredTerm, ...restTerms]);
+    return { term: newTerm, completedTerm, addedTerm: cterm, completedSquareDone: true };
+}
+
+const completeTheSquare = (term, x) => {
+    const _v = {};
+    if (_M('equation(Lhs,Rhs)', term, _v)) {
+        const cinfo = _completeTheSquare(_v.Lhs, x);
+        logTerm('equation lhs:', _v.Lhs);
+        const { term, completedTerm, addedTerm, completedSquareDone } = cinfo;
+        if (!completedSquareDone) {
+            return cinfo;
+        }
+        console.log(`square completed for ${x}`);
+        const lhs = term;
+        const rhs = new Terms.Sum([_v.Rhs, addedTerm]);
+        const newTerm = new Terms.Equation([lhs, rhs]);
+        return { term: newTerm, completedTerm, addedTerm, completedSquareDone };
+    }
+    return _completeTheSquare(term, x);
+}
+
+const getSumTerms = term => {
+    const _v = {};
+    if (_M('sum(...A)', term, _v)) {
+        return _v.A.operands;
+    }
+    return [term];
+}
+
 module.exports = {
     flattenOperands,
     evalArithmetic,
-    sortProductTerms
+    sortProductTerms,
+    basicEval,
+    getSumTerms,
+    completeTheSquare,
+    _M,
+    _T,
+    numTerm0,
+    numTerm1
 }

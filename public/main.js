@@ -198,6 +198,8 @@ const populate = tobj => {
                             break;
                         }
                     }
+                    let event = new Event('change', { bubbles: true });
+                    ielem.dispatchEvent(event);
                 }
             } else {
                 res = ielem.value;
@@ -263,12 +265,16 @@ const populate = tobj => {
                     const subInputsObject = {
                         inputElements: []
                     }
-                    const b = _htmlElement('input', cont, null, null, { marginBottom: '10px' });
-                    b.type = 'button';
-                    b.value = `Generate inputs for ${param.name}` || 'generate dynamic inputs';
-                    const clb = _htmlElement('input', cont, null, null, { marginLeft: '10px', marginBottom: '10px' });
-                    clb.type = 'button';
-                    clb.value = `Clear dynamic fields...`;
+                    var b = null;
+                    var clb = null;
+                    if (!param.hideButtons) {
+                        b = _htmlElement('input', cont, null, null, { marginBottom: '10px' });
+                        b.type = 'button';
+                        b.value = `Generate inputs for ${param.name}` || 'generate dynamic inputs';
+                        clb = _htmlElement('input', cont, null, null, { marginLeft: '10px', marginBottom: '10px' });
+                        clb.type = 'button';
+                        clb.value = `Clear dynamic fields...`;
+                    }
                     const inputElementsForDynamicField = inputElements.slice();
                     const dynamicSectionDiv = _htmlElement('div', cont);
                     const clearDynamicSection = () => {
@@ -287,8 +293,8 @@ const populate = tobj => {
                             console.log(`error generating dynamic section: ${err}`);
                         }
                     }
-                    b.addEventListener('click', populateDynamicSection);
-                    clb.addEventListener('click', clearDynamicSection);
+                    b && b.addEventListener('click', populateDynamicSection);
+                    clb && clb.addEventListener('click', clearDynamicSection);
                     inputElementsForDynamicField.forEach(ielem => {
                         let f = ielem.addChangeListenerFunction;
                         if (typeof f === 'function') {
@@ -350,7 +356,7 @@ const populate = tobj => {
 
         let args = _getArgsFromInputElements(inputElements, hasTestValues, tvalues);
 
-       
+
         console.log(args);
         //console.log(`#input elements: ${inputElements.length}`);
         let output = "no output generated";

@@ -1,5 +1,4 @@
 const Terms = require('./term');
-const ParseContext = require('./parse-context');
 const readline = require('readline');
 const fs = require('fs');
 const TermParser = require('./parser/term-parser');
@@ -27,7 +26,7 @@ const parseLatexTerm = (latexTerm, context) => {
 
 const _parseInternal = (string, parse, contextIn) => {
     try {
-        const context = contextIn || new ParseContext();
+        const context = contextIn;
         const termsAndRules = parse(string, context);
         return termsAndRules;
     } catch (e) {

@@ -65,7 +65,7 @@ const getCacheFilenameFromQueryString = queryString => {
     return `${CacheFolder}/${filename}.xml`;
 }
 
-const chemicalQuery = (queryString, options = { debug: true, useCache: true }) => {
+const chemicalQuery = (queryString, options = { debug: true, useCache: false }) => {
     const { debug, useCache } = options;
     console.log(options);
     queryString = (typeof queryString === 'string') ? queryString.trim() : queryString;

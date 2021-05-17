@@ -629,7 +629,34 @@ flattenSum(X5,X5).`, 'x + 4 = 9', 'applyRules', 'solve']
     ]
 }
 
+const conicsCircleProblems = [
+    { label: 'Given circle equation, find center and radius', value: 'findCenterRadiusFromEquation' },
+    { label: 'Given center and radius, find circle equation', value: 'findEquationFromCenterRadius' },
+    { label: 'Given center and point on circle, find circle equation', value: 'findEquationFromCenterAndPointOnCircle' },
+    { label: 'Given diameter endpoint, find circle equation', value: 'findEquationFromDiameterEndPoints' }
+
+]
+
+const _conicsCircle = {
+    title: 'Conics: Circle',
+    description: 'Problems regarding circle equations (x-h)^2 + (y-k)^2 = r^2',
+    parameters: [
+        { name: 'Problem', type: 'select', options: [{ label: 'Select Problem', value: '' }, ...conicsCircleProblems] },
+        { name: '', type: 'dynamic', hideButtons: true, func: createConicsInputFields }
+    ],
+    func: conicsCircle,
+    testValues: [
+        ['findCenterRadiusFromEquation', '(x+2)^2 + (y-1)^2 = 12'],
+        ['findCenterRadiusFromEquation', '(x+2)^2 + (y-1)^2 - 12 = 0'],
+        ['findCenterRadiusFromEquation', '(x+2)^2-12=4 -(y + 3)^2'],
+        ['findCenterRadiusFromEquation', '(y+2)^2-12= -(x+\\frac{3}{5})^2'],
+        ['findCenterRadiusFromEquation', 'x^2+y^2-2x-8y-8=0']
+    ]
+}
+
 const topicObjects = [
+    _conicsCircle,
+    '<b>---------------------</b>',
     _areaOfComposedShapes,
     _bearingAngleNavigationQuestions,
     _triangleQuestionsOneLineInput,

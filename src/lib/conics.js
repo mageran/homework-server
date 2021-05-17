@@ -1,15 +1,8 @@
 const Terms = require('../term');
 const { Term } = Terms;
-const { basicEval, _M, _T, numTerm0 } = require('./base');
+const { basicEval, getSumTerms, _M, _T, numTerm0, completeTheSquare } = require('./base');
 const { logTerm, logTerms, _d, uminusTerm } = require('../utils');
 
-const getSumTerms = term => {
-    const _v = {};
-    if (_M('sum(...A)', term, _v)) {
-        return _v.A.operands;
-    }
-    return [term];
-}
 
 const bringConstantTermsToRhs = term => {
     const _v = {};
@@ -41,34 +34,50 @@ const bringConstantTermsToRhs = term => {
 }
 
 const checkIfCircleEquation = (term, _v) => {
-    const _getSummandForXOrY = (xyterm, xy) => {
+    const _getSummandForXOrY = (xyterm, xyHash) => {
+        var summand = null;
         const _v0 = {};
-         if (_M(`sum(${xy},N#)`, xyterm, _v0)) {
+         if (_M(`sum(XY,N#)`, xyterm, _v0)) {
             let nterm = _v0['N#'];
-            logTerm(`number term for ${xy}:`, nterm);
-            return nterm;
+            logTerm(`number term for ${_v0.XY.toTermString()}:`, nterm);
+            summand = nterm;
         }
-        else if (_M(xy, term)) {
-            return numTerm0;
+        else if (_M('XY', xyterm, _v0)) {
+            summand = numTerm0;
         }
         else {
             throw `not a circle equation (can't find num term for ${xy})`
         }
+        const xyTerm = _v0.XY;
+        const xy = xyTerm.name;
+        if (!xyTerm.isIdentifierTerm || !(['x','y'].includes(xy))) {
+            throw `not a circle equation ("${xyTerm.toTermString()}" should be "x" or "y")`;
+        }
+        console.log('x or y: %s', xy);
+        //return summand;
+        xyHash[xy] = summand.value.negated();
     }
     const _v0 = {};
-    if (_M('equation(sum(power(XTerm,2), power(YTerm,2)), Num#)', term, _v0)) {
-        let { XTerm, YTerm } = _v0;
+    if (_M('equation(sum(power(Term1,2), power(Term2,2)), Num#)', term, _v0)) {
+        let { Term1, Term2 } = _v0;
         console.log(_v0);
-        logTerm('Xterm:', XTerm);
-        logTerm('Yterm:', YTerm);
+        logTerm('Xterm:', Term1);
+        logTerm('Yterm:', Term2);
         logTerm('#Num:', _v0['Num#']);
+        const xyHash = {};
         const rsquareValue = _v0['Num#'].value;
-        const hvalue = _getSummandForXOrY(XTerm, 'x').value.negated();
-        const kvalue = _getSummandForXOrY(YTerm, 'y').value.negated();
+        _getSummandForXOrY(Term1, xyHash);
+        _getSummandForXOrY(Term2, xyHash);
+        const hvalue = xyHash.x;
+        const kvalue = xyHash.y;
+
+        if (!hvalue) throw `there is no "x" in ${term.toTermString()}`;
+        if (!kvalue) throw `there is no "y" in ${term.toTermString()}`;
+
         console.log(`h = ${hvalue}, k = ${kvalue}, r^2 = ${rsquareValue}, r = ${rsquareValue.sqrt()}`);
         return { h: hvalue, k: kvalue, rSquare: rsquareValue, r: rsquareValue.sqrt() }
     } else {
-        throw `not a circle equation: ${term.toTermString()}`
+        throw `not a circle equation: ${term.latex}`
     }
 }
 
@@ -83,8 +92,34 @@ const circleEquation = term => {
     if (_M('equation(Lhs,Rhs)', cterm, _v)) {
         let [steps0, rterm ] = bringConstantTermsToRhs(cterm);
         steps.push(...steps0);
-        steps.push(rterm.toTermString());
-        circleParameters = checkIfCircleEquation(rterm);
+        //steps.push(rterm.toTermString());
+        var circleEquation = rterm;
+        const info1 = completeTheSquare(circleEquation, 'y');
+        if (info1.completedSquareDone) {
+            circleEquation = info1.term;
+            console.log('complete the square for "y":' + circleEquation.toTermString());
+            steps.push('complete the square for "y":');
+            steps.push({ latex: circleEquation.latex })
+        }
+        const info2 = completeTheSquare(circleEquation, 'x');
+        if (info2.completedSquareDone) {
+            circleEquation = info2.term;
+            console.log('complete the square for "x":' + circleEquation.toTermString());
+            steps.push('complete the square for "x":');
+            steps.push({ latex: circleEquation.latex })
+        }
+        if (info1.completedSquareDone || info2.completedSquareDone) {
+            circleEquation = basicEval(circleEquation);
+            steps.push( {
+                text: 'Simplified:',
+                latex: circleEquation.latex
+            });
+        }
+        try {
+        circleParameters = checkIfCircleEquation(circleEquation);
+        } catch(err) {
+            steps.push(String(err));
+        }
 
     } else {
         throw "input formula is not an equation";
