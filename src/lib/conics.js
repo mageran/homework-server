@@ -1,6 +1,6 @@
 const Terms = require('../term');
 const { Term } = Terms;
-const { basicEval, getSumTerms, _M, _T, numTerm0, completeTheSquare, numTerm1 } = require('./base');
+const { basicEval, getSumTerms, _M, _T, numTerm0, completeTheSquare, numTerm1, negateTerm } = require('./base');
 const { logTerm, logTerms, _d, uminusTerm } = require('../utils');
 
 // parabola variants
@@ -259,11 +259,139 @@ const checkParabolaEquation = equation => {
     const isNegative = rhsFactor.isNegative();
     const a = rhsFactor.abs().div(_d(4));
     const pvariant = isNegative
-    ? ((lhsVar === 'x') ? VERTICAL_DOWN : HORIZONTAL_LEFT)
-    : ((lhsVar === 'x') ? VERTICAL_UP : HORIZONTAL_RIGHT);
+        ? ((lhsVar === 'x') ? VERTICAL_DOWN : HORIZONTAL_LEFT)
+        : ((lhsVar === 'x') ? VERTICAL_UP : HORIZONTAL_RIGHT);
     const resObj = { h, k, a, pvariant };
     console.log(`parabola parameters from equation: ${JSON.stringify(resObj)}`);
     return resObj;
+}
+
+const _extractFactorOfX = (term, x) => {
+    const terms = getSumTerms(basicEval(term));
+    logTerms(`input terms for getting factor of ${x}:`, terms);
+    const xFactorTerms= terms.map(t => {
+        const _v = {};
+        if (_M(`product(F#,${x})`, t, _v)) {
+            return _v['F#'];
+        }
+        if (t.isIdentifierTerm && t.name === x) {
+            return numTerm1.clone();
+        }
+        return null;
+    }).filter(t => !!t);
+    logTerms(`xFactorTerms for ${x}:`, xFactorTerms);
+    if (xFactorTerms.length !== 1) {
+        throw `factor for ${x} term not found`
+    }
+    const factorTerm = xFactorTerms[0];
+    logTerm('factor term:', factorTerm);
+    const factor = _d(1).div(factorTerm.value);
+    const newSumTerms = terms.map(t => {
+        const qterm = new Terms.Num(factor);
+        logTerm('qterm:', qterm);
+        return basicEval(new Terms.Product([qterm, t]));
+    })
+    var res = basicEval(new Terms.Product([factorTerm, new Terms.Sum(newSumTerms)]));
+    if (!(res instanceof Terms.Product)) {
+        res = new Terms.Product([numTerm1.clone(), res]);
+    }
+    logTerm('extractFactorOfX result:', res);
+    return res;
+}
+
+const checkGeneralParabolaEquation = equation => {
+    if (!(equation instanceof Terms.Equation)) {
+        throw `checkGeneralParabolaEquation must be called on an equation, not ${equation.getTermString()}`;
+    }
+    const steps = [];
+    const _getSquaredVar = (terms, isLhs) => {
+        const sterms = terms.map(t => {
+            const _v = {};
+            if (_M('power(XY,2)', t, _v)) {
+                return _v.XY;
+            }
+            return null
+        }).filter(t => !!t);
+        if (sterms.length > 1) {
+            throw `format not supported: more than one squared term found.`
+        }
+        if (sterms.length === 0) {
+            return null;
+        }
+        const sterm = sterms[0];
+        if (!sterm.isIdentifierTerm) {
+            throw `squared term must be either x^2 or y^2`;
+        }
+        return sterm.name;
+    }
+    const _filterTermsForSquaredVariable = (terms, squaredVar) => {
+        const termsContainingSquaredVar = [];
+        const otherTerms = [];
+        for (let t of terms) {
+            let _v = {};
+            if (_M('power(_,_)', t)) {
+                termsContainingSquaredVar.push(t);
+                continue;
+            }
+            else if (_M('product(_,XY)', t, _v)) {
+                if (_v.XY.isIdentifierTerm && _v.XY.name === squaredVar) {
+                    termsContainingSquaredVar.push(t);
+                    continue;
+                }
+            }
+            else if (t.isIdentifierTerm && t.name === squaredVar) {
+                termsContainingSquaredVar.push(t);
+                continue;
+            }
+            otherTerms.push(t);
+        }
+        return [termsContainingSquaredVar, otherTerms];
+    }
+    var lterms = getSumTerms(equation.lhs);
+    var rterms = getSumTerms(equation.rhs);
+    const lhsSquaredVar = _getSquaredVar(lterms);
+    const rhsSquaredVar = _getSquaredVar(rterms);
+    console.log(`lhsSquaredVar: ${lhsSquaredVar}`);
+    console.log(`rhsSquaredVar: ${rhsSquaredVar}`);
+    if (lhsSquaredVar && rhsSquaredVar) {
+        throw `only one of x^2 or y^2 can occur in the equation`;
+    }
+    if (rhsSquaredVar) {
+        // swap lhs and rhs
+        equation = new Terms.Equation([equation.rhs, equation.lhs]);
+        logTerm('rhs and lhs swapped in equation, so that squared term is in lhs: ', equation);
+    }
+    const squaredVar = lhsSquaredVar ? lhsSquaredVar : rhsSquaredVar;
+    if (!squaredVar) {
+        throw `couldn't find x^2 or y^2 in equation`;
+    }
+    if (squaredVar !== 'x' && squaredVar !== 'y') {
+        throw `please use only "x" or "y" in equation`;
+    }
+    const otherVar = squaredVar === 'x' ? 'y' : 'x';
+    lterms = getSumTerms(equation.lhs);
+    rterms = getSumTerms(equation.rhs);
+    const [lhsTermsContainingSquaredVar, lhsOtherTerms] = _filterTermsForSquaredVariable(lterms, squaredVar);
+    const [rhsTermsContainingSquaredVar, rhsOtherTerms] = _filterTermsForSquaredVariable(rterms, squaredVar);
+    logTerms(`lhs terms containing ${squaredVar}:`, lhsTermsContainingSquaredVar);
+    logTerms(`lhs other terms:`, lhsOtherTerms);
+    logTerms(`rhs terms containing ${squaredVar}:`, rhsTermsContainingSquaredVar);
+    logTerms(`rhs other terms:`, rhsOtherTerms);
+    const newLhsTerms = [...lhsTermsContainingSquaredVar, ...rhsTermsContainingSquaredVar.map(t => negateTerm(t))];
+    const newRhsTerms = [...rhsOtherTerms, ...lhsOtherTerms.map(t => negateTerm(t))];
+    equation = basicEval(new Terms.Equation([new Terms.Sum(newLhsTerms), new Terms.Sum(newRhsTerms)]));
+    logTerm(`new equation after putting all terms containing ${squaredVar} to lhs: `, equation);
+    steps.push(`rearranged equation:`);
+    steps.push({ latex: equation.latex });
+    const cinfo = completeTheSquare(equation, squaredVar);
+    if (cinfo.completedSquareDone) {
+        equation = cinfo.term;
+        steps.push(`complete the square for "${squaredVar}":`);
+        steps.push({ latex: equation.latex })
+    }
+    const newRhs = _extractFactorOfX(equation.rhs, otherVar);
+    equation = new Terms.Equation([equation.lhs, newRhs]);
+    return { steps, term: equation };
 }
 
 const parabolaEquation = term => {
@@ -272,8 +400,17 @@ const parabolaEquation = term => {
     const cterm = basicEval(term);
     steps.push({ text: `input term:`, latex: term.latex })
     steps.push({ text: `input term simplified:`, latex: cterm.latex });
+    var parabolaEquation = cterm;
     try {
-        parabolaParameters = checkParabolaEquation(cterm);
+        const info = checkGeneralParabolaEquation(parabolaEquation);
+        console.log(info);
+        steps.push(...info.steps);
+        parabolaEquation = info.term;
+    } catch (err) {
+        console.error(`not in general form: ${err}`)
+    }
+    try {
+        parabolaParameters = checkParabolaEquation(parabolaEquation);
     } catch (err) {
         steps.push(String(err));
     }

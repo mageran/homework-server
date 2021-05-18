@@ -165,6 +165,11 @@ const sortProductTerms = t => {
     return t;
 }
 
+const negateTerm = t => {
+    const minusOne = new Terms.Num(_d(-1));
+    return new Terms.Product([minusOne, t]);
+}
+
 /**
  * Runs complete the square for the given term and the given variable. The factor for the squared term must be 1.
  * Returns update (sum) term and the number term added for completing the square.
@@ -249,6 +254,7 @@ module.exports = {
     evalArithmetic,
     sortProductTerms,
     basicEval,
+    negateTerm,
     getSumTerms,
     completeTheSquare,
     _M,
