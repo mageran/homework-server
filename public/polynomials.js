@@ -331,7 +331,7 @@ const appendGraphingCalculator = (elem, { width, height, xAxisStep, yAxisStep } 
     checkbox.setAttribute('type', 'checkbox');
     checkbox.setAttribute('checked', true);
 
-    elem.appendChild(checkbox);
+    //elem.appendChild(checkbox);
 
     const options = { autosize: false, expressions: true, expressionsCollapsed: true };
     if (typeof xAxisStep === 'number') {

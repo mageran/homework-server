@@ -637,12 +637,19 @@ const conicsCircleProblems = [
 
 ]
 
+const conicsParabolaProblems = [
+    { label: 'Given Equation, find parabola parameters', value: 'fromEquation' },
+    { label: 'Given Vertex and Focus, find parabola equation', value: 'fromVertexAndFocus' },
+    { label: 'Given Vertex and Directrix, find parabola equation', value: 'fromVertexAndDirectrix' },
+    { label: 'Given Vertex, graph variant, and value for "a"', value: 'fromVertexVariantAndA' }
+]
+
 const _conicsCircle = {
     title: 'Conics: Circle',
     description: 'Problems regarding circle equations (x-h)^2 + (y-k)^2 = r^2',
     parameters: [
         { name: 'Problem', type: 'select', options: [{ label: 'Select Problem', value: '' }, ...conicsCircleProblems] },
-        { name: '', type: 'dynamic', hideButtons: true, func: createConicsInputFields }
+        { name: '', type: 'dynamic', hideButtons: true, func: createCircleInputFields }
     ],
     func: conicsCircle,
     testValues: [
@@ -665,7 +672,24 @@ const _conicsCircle = {
     ]
 }
 
+const _conicsParabola = {
+    title: 'Conics Parbola',
+    description: 'Problems ragarding parabola equations (x-h)^2 = 4a(y-k) or x and y swapped',
+    parameters: [
+        { name: 'Problem', type: 'select', options: [{ label: 'Select Problem', value: '' }, ...conicsParabolaProblems] },
+        { name: '', type: 'dynamic', hideButtons: true, func: createParabolaInputFields }
+    ],
+    func: conicsParabola,
+    testValues: [
+        { values: ['fromVertexAndFocus', '2', '-1', '2', '-4'], label: 'Vertex+Focus 1' },
+        { values: ['fromVertexAndFocus', '-4', '-5', '-4', '-\\frac{9}{2}'], label: 'Vertex+Focus 2' },
+        { values: ['fromVertexAndDirectrix', '-3', '1', 'x', '1'], label: 'Vertex+Directrix 1' },
+        { values: ['fromVertexVariantAndA', '3', '-1', VERTICAL_DOWN, '1'], label: 'Vertex+Variant+A 1' },
+    ]
+}
+
 const topicObjects = [
+    _conicsParabola,
     _conicsCircle,
     '<b>---------------------</b>',
     _areaOfComposedShapes,

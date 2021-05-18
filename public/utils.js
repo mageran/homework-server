@@ -40,7 +40,7 @@ const productToString = (a, b) => {
 
 const isSorted = list => {
     var previousValue;
-    for(let i = 0; i < list.length; i++) {
+    for (let i = 0; i < list.length; i++) {
         let val = list[i];
         if (i === 0) {
             previousValue = val;
@@ -358,6 +358,24 @@ const exponentialNumStringToLatex = numStr => {
     }
     return `${parts[0]}\\times 10^{${parts[1]}}`;
 }
+
+const _latexToDecimal = formulaLatex => {
+    const { value } = evalLatexFormulaWithContext(formulaLatex);
+    return value;
+}
+const _decimalToLatex = decimal => numericToLatex(Numeric.createFromValue(decimal));
+
+const _valueAsSummandLatex = decimal => {
+    const d = _d(decimal);
+    if (d == 0) {
+        return "";
+    }
+    const op = d.isNegative() ? ' - ' : ' + '
+    const decimalAbs = d.abs();
+    const lx = numericToLatex(Numeric.createFromValue(decimalAbs));
+    return `${op} ${lx}`;
+}
+
 
 const removeCommentLines = inputString => {
     const lines = inputString.split(/\n/);

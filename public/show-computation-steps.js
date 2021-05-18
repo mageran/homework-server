@@ -18,11 +18,11 @@ const _showComputationSteps = (o, steps, options = {}) => {
             addLatexElement(o, latex0);
         }
         if (triangle) {
-             triangle.draw(_htmlElement('div', o));
+            triangle.draw(_htmlElement('div', o));
         }
         if (desmos) {
-            let { equations, points } = desmos;
-            addDesmosGraph(o, equations, points);
+            let { equations, points, dashedLines } = desmos;
+            addDesmosGraph(o, equations, points, dashedLines);
         }
         if (collapsibleSection0) {
             let { steps, title } = collapsibleSection0;
@@ -36,3 +36,27 @@ const _showComputationSteps = (o, steps, options = {}) => {
     });
     return steps;
 }
+
+const addDesmosGraph = (outputElem, equations = [], points = [], dashedLines = []) => {
+    const div = document.createElement('div');
+    outputElem.appendChild(div);
+    const width = "1000px";
+    const calc = appendGraphingCalculator(div, { width });
+    const eqs = Array.isArray(equations) ? equations : [equations];
+    eqs.forEach(eq => {
+        calc.setExpression({ latex: eq });
+    })
+    if (Array.isArray(dashedLines)) {
+        dashedLines.forEach(lineEquation => {
+            //calc.setExpression({ latex: `y = ${k}`, lineStyle: "DASHED", showLabel: true });
+            calc.setExpression({ latex: lineEquation, lineStyle: "DASHED", showLabel: true });
+        })
+    }
+    if (Array.isArray(points)) {
+        points.forEach(({ x, y }) => {
+            calc.setExpression({ latex: `(${x}, ${y})`, showLabel: true });
+        });
+    }
+    return calc;
+}
+

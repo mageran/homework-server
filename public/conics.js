@@ -1,4 +1,4 @@
-function createConicsInputFields(problemClass) {
+function createCircleInputFields(problemClass) {
     if (problemClass === 'findCenterRadiusFromEquation') {
         return [{ name: 'Circle Equation', type: 'formula', cssClass: 'width700' }];
     }
@@ -38,11 +38,6 @@ function createConicsInputFields(problemClass) {
 function conicsCircle(problemClass, ...args) {
     const o = this;
     elemStyle(o, { fontSize: '16pt' });
-    const _latexToDecimal = formulaLatex => {
-        const { value } = evalLatexFormulaWithContext(formulaLatex);
-        return value;
-    }
-    const _decimalToLatex = decimal => numericToLatex(Numeric.createFromValue(decimal));
     const findEquationFromCenterRadius = (hLatex, kLatex, rLatex) => {
         const hvalue = _latexToDecimal(hLatex).negated();
         const kvalue = _latexToDecimal(kLatex).negated();
@@ -106,35 +101,6 @@ function conicsCircle(problemClass, ...args) {
         _addErrorElement(o, JSON.stringify(err, null, 2));
         throw err
     }
-}
-
-const addDesmosGraph = (outputElem, equations, points, dashedLines) => {
-    const div = document.createElement('div');
-    outputElem.appendChild(div);
-    const width = "1000px";
-    const calc = appendGraphingCalculator(div, { width });
-    const eqs = Array.isArray(equations) ? equations : [equations];
-    eqs.forEach(eq => {
-        calc.setExpression({ latex: eq });
-    })
-    //calc.setExpression({ latex: `y = ${k}`, lineStyle: "DASHED", showLabel: true });
-    if (Array.isArray(points)) {
-        points.forEach(({ x, y }) => {
-            calc.setExpression({ latex: `(${x}, ${y})`, showLabel: true });
-        });
-    }
-    return calc;
-}
-
-const _valueAsSummandLatex = decimal => {
-    const d = _d(decimal);
-    if (d == 0) {
-        return "";
-    }
-    const op = d.isNegative() ? ' - ' : ' + '
-    const decimalAbs = d.abs();
-    const lx = numericToLatex(Numeric.createFromValue(decimalAbs));
-    return `${op} ${lx}`;
 }
 
 const getStepsForCircleGraph = ({ h, k, r, rSquare }, originalEquation, morePoints = []) => {
