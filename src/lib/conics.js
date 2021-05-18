@@ -1,6 +1,6 @@
 const Terms = require('../term');
 const { Term } = Terms;
-const { basicEval, getSumTerms, _M, _T, numTerm0, completeTheSquare } = require('./base');
+const { basicEval, getSumTerms, _M, _T, numTerm0, completeTheSquare, numTerm1 } = require('./base');
 const { logTerm, logTerms, _d, uminusTerm } = require('../utils');
 
 
@@ -81,6 +81,57 @@ const checkIfCircleEquation = (term, _v) => {
     }
 }
 
+const getFactorOfSquareTerm = (equation, x) => {
+    if (!(equation instanceof Terms.Equation)) {
+        throw `getFactorOfSquareTerm must be called on an equation, not ${equation.getTermString()}`;
+    }
+    const sumTerms = [...getSumTerms(equation.lhs), ...getSumTerms(equation.rhs)];
+    for(let t of sumTerms)  {
+        const _v = {};
+        if (_M(`power(${x},2)`, t)) {
+            return numTerm1;
+        }
+        if (_M(`product(A#,power(${x}, 2))`, t, _v)) {
+            return _v['A#'];
+        }
+    }
+    return null;
+}
+
+const divideEquation = (equation, decimal) => {
+    if (!(equation instanceof Terms.Equation)) {
+        throw `divideEquation must be called on an equation, not ${equation.getTermString()}`;
+    }
+    const lterms = getSumTerms(equation.lhs);
+    const rterms = getSumTerms(equation.rhs);
+    const factor = _d(1).div(decimal);
+    const factorTerm = new Terms.Num(factor);
+    const newLterms = lterms.map(t => basicEval(new Terms.Product([factorTerm.clone(), t])));
+    const newRterms = rterms.map(t => basicEval(new Terms.Product([factorTerm.clone(), t])));
+    const newLhs = newLterms.length === 1 ? newLterms[0] : new Terms.Sum(newLterms);
+    const newRhs = newRterms.length === 1 ? newRterms[0] : new Terms.Sum(newRterms);
+    return basicEval(new Terms.Equation([newLhs, newRhs]));
+}
+
+const eliminateSquareFactors = equation => {
+    const xSquareFactor = getFactorOfSquareTerm(equation, 'x');
+    xSquareFactor && logTerm('factor of x^2:', xSquareFactor);
+    const ySquareFactor = getFactorOfSquareTerm(equation, 'y');
+    ySquareFactor && logTerm('factor of y^2:', ySquareFactor);
+    var eliminationDone = false;
+    var term = null;
+    var factor = null;
+    if (xSquareFactor && ySquareFactor) {
+        if (xSquareFactor.value.toNumber() === ySquareFactor.value.toNumber()) {
+            eliminationDone = true;
+            factor = xSquareFactor.value;
+            term = divideEquation(equation, factor);
+            logTerm(`equation after dividing by ${factor}:`, term);
+        }
+    }
+    return { eliminationDone, term, factor };
+}
+
 const circleEquation = term => {
     const latex0 = term.latex;
     const cterm = basicEval(term.clone());
@@ -94,6 +145,12 @@ const circleEquation = term => {
         steps.push(...steps0);
         //steps.push(rterm.toTermString());
         var circleEquation = rterm;
+        const info0 = eliminateSquareFactors(circleEquation);
+        if (info0.eliminationDone) {
+            circleEquation = info0.term;
+            steps.push(`Dividing both sides of the equation by ${info0.factor}:`);
+            steps.push({ latex: circleEquation.latex });
+        }
         const info1 = completeTheSquare(circleEquation, 'y');
         if (info1.completedSquareDone) {
             circleEquation = info1.term;

@@ -1,6 +1,6 @@
 const _showComputationSteps = (o, steps, options = {}) => {
     steps.forEach(step => {
-        var text0, latex0, triangle, collapsibleSection0;
+        var text0, latex0, triangle, collapsibleSection0, desmos;
         if (typeof step === 'string') {
             text0 = step;
         } else {
@@ -9,6 +9,7 @@ const _showComputationSteps = (o, steps, options = {}) => {
             latex0 = latex;
             triangle = drawTriangle;
             collapsibleSection0 = collapsibleSection;
+            desmos = step.desmos
         }
         if (text0) {
             _htmlElement('div', o, text0);
@@ -18,6 +19,10 @@ const _showComputationSteps = (o, steps, options = {}) => {
         }
         if (triangle) {
              triangle.draw(_htmlElement('div', o));
+        }
+        if (desmos) {
+            let { equations, points } = desmos;
+            addDesmosGraph(o, equations, points);
         }
         if (collapsibleSection0) {
             let { steps, title } = collapsibleSection0;

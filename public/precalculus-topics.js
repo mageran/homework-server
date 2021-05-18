@@ -646,11 +646,22 @@ const _conicsCircle = {
     ],
     func: conicsCircle,
     testValues: [
-        ['findCenterRadiusFromEquation', '(x+2)^2 + (y-1)^2 = 12'],
-        ['findCenterRadiusFromEquation', '(x+2)^2 + (y-1)^2 - 12 = 0'],
-        ['findCenterRadiusFromEquation', '(x+2)^2-12=4 -(y + 3)^2'],
-        ['findCenterRadiusFromEquation', '(y+2)^2-12= -(x+\\frac{3}{5})^2'],
-        ['findCenterRadiusFromEquation', 'x^2+y^2-2x-8y-8=0']
+        { values: ['findCenterRadiusFromEquation', '(x+2)^2 + (y-1)^2 = 12'], label: 'Eq1' },
+        { values: ['findCenterRadiusFromEquation', '(x+2)^2 + (y-1)^2 - 12 = 0'], label: 'Eq2' },
+        { values: ['findCenterRadiusFromEquation', '(x+2)^2-12=4 -(y + 3)^2'], label: 'Eq3' },
+        { values: ['findCenterRadiusFromEquation', '(y+2)^2-12= -(x+\\frac{3}{5})^2'], label: 'Eq4' },
+        { values: ['findCenterRadiusFromEquation', '(x+3)^2 + (y-1)^2 = 4'], label: 'Eq5' },
+        { values: ['findCenterRadiusFromEquation', 'x^2 + (y+2)^2 = 36'], label: 'Eq6' },
+        { values: ['findCenterRadiusFromEquation', 'x^2 - 4x + y^2 + 6y = 3'], label: 'Eq7' },
+        { values: ['findCenterRadiusFromEquation', 'x^2+y^2-2x-8y-8=0'], label: 'Eq8' },
+        { values: ['findCenterRadiusFromEquation', 'x^2+y^2-6x+2y+9=36'], label: 'Eq9' },
+        { values: ['findCenterRadiusFromEquation', '4x^2 + 4y^2 - 16x + 24y = 12'], label: 'Eq10' },
+        { values: ['findEquationFromCenterRadius', '0','0', '4'], label: 'Center+Radius1'},
+        { values: ['findEquationFromCenterRadius', '2','-5', '3'], label: 'Center+Radius2'},
+        { values: ['findEquationFromCenterAndPointOnCircle', '1', '2', '1', '0'], label: 'Center+Point1' },
+        { values: ['findEquationFromCenterAndPointOnCircle', '0', '0', '-2', '-3'], label: 'Center+Point2' },
+        { values: ['findEquationFromDiameterEndPoints', '2', '16', '-2', '-2'], label: 'Diameter1' },
+        { values: ['findEquationFromDiameterEndPoints', '-2', '-3', '-1', '5'], label: 'Diameter2' },
     ]
 }
 
