@@ -107,7 +107,7 @@ function conicsParabola(problemClass, ...args) {
     try {
         const steps = [];
         if (problemClass === 'fromEquation') {
-            //conicsCircleFindCenterRadiusFromEquation(o, ...args);
+            parabolaFromEquation(o, ...args);
         }
         else if (problemClass === 'fromVertexAndDirectrix') {
             steps.push(...fromVertexAndDirectrix(...args));
@@ -128,7 +128,7 @@ function conicsParabola(problemClass, ...args) {
 /**
  * 
  */
-const parabolaSteps = (pvariant, h, k, a) => {
+const parabolaSteps = (pvariant, h, k, a, otherEquations = []) => {
     const steps = [];
     const _dl = _decimalToLatex;
     const hvalue = _d(h);
@@ -138,7 +138,7 @@ const parabolaSteps = (pvariant, h, k, a) => {
     const a4 = avalue.mul(4);
     const minush = hvalue.negated();
     const minusk = kvalue.negated();
-    const vertex = { x: _decimalToLatex(hvalue), y: _decimalToLatex(kvalue) };
+    const vertex = { x: _dl(hvalue), y: _dl(kvalue) };
     var equation, focus, directrix, lrs;
     if (pvariant === VERTICAL_UP) {
         equation = `(x ${_valueAsSummandLatex(minush)})^2 = ${_dl(a4)}(y ${_valueAsSummandLatex(minusk)})`;
@@ -178,23 +178,25 @@ const parabolaSteps = (pvariant, h, k, a) => {
     }
     var latex = equation;
     steps.push({ latex });
+    latex = `\\text{<b>Vertex:</b>&nbsp;} \\left(${vertex.x},${vertex.y}\\right)`;
+    steps.push({ latex });
     latex = `a = ${_decimalToLatex(avalue)}`;
     steps.push({ latex });
-    latex = `\\text{focus:} \\left(${focus.x},${focus.y}\\right)`;
+    latex = `\\text{<b>Focus:</b>&nbsp;} \\left(${focus.x},${focus.y}\\right)`;
     steps.push({ latex });
-    latex = `\\text{directrix:} ${directrix}`;
+    latex = `\\text{<b>Directrix:</b>&nbsp;} ${directrix}`;
     steps.push({ latex });
-    latex = '\\text{Latus rectum endpoints:} '
+    latex = '\\text{<b>Latus rectum endpoints:</b>&nbsp;} '
     latex += lrs.map(p => `(${p.x}, ${p.y})`).join(",");
     steps.push({ latex });
-    latex = `\\text{Length of Latus rectum:} ${_dl(a4)}`;
+    latex = `\\text{<b>Length of Latus rectum:</b>&nbsp;' ${_dl(a4)}`;
     steps.push({ latex });
     steps.push({
         collapsibleSection: {
             title: "Graph",
             steps: [{
                 desmos: {
-                    equations: [equation],
+                    equations: [...otherEquations,equation],
                     points: [vertex, focus, ...lrs],
                     dashedLines: [directrix]
                 }
@@ -202,4 +204,37 @@ const parabolaSteps = (pvariant, h, k, a) => {
         }
     })
     return steps;
+}
+
+const parabolaFromEquation = (o, equation) => {
+    console.log(`find parabola parameters from equation: ${equation}`);
+    const url = '/api/parabolaEquation';
+    const data = { equation };
+    const success = response => {
+        const steps = [];
+        //console.log(`response: ${JSON.stringify(response, null, 2)}`);
+        var resObj = response;
+        try {
+            resObj = JSON.parse(response);
+        } catch (err) {
+            console.error(err);
+        }
+        //_htmlElement('pre', o, JSON.stringify(resObj, null, 2));
+        console.log(`response returned from server: %o`, resObj);
+        if (Array.isArray(resObj.steps)) {
+            steps.push(...resObj.steps);
+        }
+        if (resObj.parabolaParameters) {
+            let { h, k, a, pvariant } = resObj.parabolaParameters;
+            steps.push(...parabolaSteps(pvariant, h, k, a, [equation]));
+        }
+        _showComputationSteps(o, steps);
+    }
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: success,
+        error: ajaxErrorFunction(o)
+    });
 }

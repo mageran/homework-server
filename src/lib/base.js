@@ -140,6 +140,7 @@ const evalArithmetic = t => {
 
 const basicEval = t => {
     return t
+        .clone()
         ._(flattenOperands)
         ._(evalArithmetic)
         ._(sortProductTerms);

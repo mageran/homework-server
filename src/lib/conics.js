@@ -3,6 +3,11 @@ const { Term } = Terms;
 const { basicEval, getSumTerms, _M, _T, numTerm0, completeTheSquare, numTerm1 } = require('./base');
 const { logTerm, logTerms, _d, uminusTerm } = require('../utils');
 
+// parabola variants
+const VERTICAL_UP = 0;
+const VERTICAL_DOWN = 1;
+const HORIZONTAL_RIGHT = 2;
+const HORIZONTAL_LEFT = 3;
 
 const bringConstantTermsToRhs = term => {
     const _v = {};
@@ -29,15 +34,15 @@ const bringConstantTermsToRhs = term => {
     logTerm('newLhs:', newLhs);
     logTerm('newRhs:', newRhs);
     const rterm = basicEval(new Terms.Equation([newLhs, newRhs]));
-    const steps = [ { text: `Bringing constant terms to rhs:`, latex: rterm.latex }];
-    return [ steps, rterm ];
+    const steps = [{ text: `Bringing constant terms to rhs:`, latex: rterm.latex }];
+    return [steps, rterm];
 }
 
 const checkIfCircleEquation = (term, _v) => {
     const _getSummandForXOrY = (xyterm, xyHash) => {
         var summand = null;
         const _v0 = {};
-         if (_M(`sum(XY,N#)`, xyterm, _v0)) {
+        if (_M(`sum(XY,N#)`, xyterm, _v0)) {
             let nterm = _v0['N#'];
             logTerm(`number term for ${_v0.XY.toTermString()}:`, nterm);
             summand = nterm;
@@ -50,7 +55,7 @@ const checkIfCircleEquation = (term, _v) => {
         }
         const xyTerm = _v0.XY;
         const xy = xyTerm.name;
-        if (!xyTerm.isIdentifierTerm || !(['x','y'].includes(xy))) {
+        if (!xyTerm.isIdentifierTerm || !(['x', 'y'].includes(xy))) {
             throw `not a circle equation ("${xyTerm.toTermString()}" should be "x" or "y")`;
         }
         console.log('x or y: %s', xy);
@@ -86,7 +91,7 @@ const getFactorOfSquareTerm = (equation, x) => {
         throw `getFactorOfSquareTerm must be called on an equation, not ${equation.getTermString()}`;
     }
     const sumTerms = [...getSumTerms(equation.lhs), ...getSumTerms(equation.rhs)];
-    for(let t of sumTerms)  {
+    for (let t of sumTerms) {
         const _v = {};
         if (_M(`power(${x},2)`, t)) {
             return numTerm1;
@@ -134,14 +139,14 @@ const eliminateSquareFactors = equation => {
 
 const circleEquation = term => {
     const latex0 = term.latex;
-    const cterm = basicEval(term.clone());
+    const cterm = basicEval(term);
     const steps = [];
     steps.push({ text: `input term:`, latex: term.latex })
     steps.push({ text: `input term simplified:`, latex: cterm.latex });
     const _v = {};
     var circleParameters = null;
     if (_M('equation(Lhs,Rhs)', cterm, _v)) {
-        let [steps0, rterm ] = bringConstantTermsToRhs(cterm);
+        let [steps0, rterm] = bringConstantTermsToRhs(cterm);
         steps.push(...steps0);
         //steps.push(rterm.toTermString());
         var circleEquation = rterm;
@@ -167,14 +172,14 @@ const circleEquation = term => {
         }
         if (info1.completedSquareDone || info2.completedSquareDone) {
             circleEquation = basicEval(circleEquation);
-            steps.push( {
+            steps.push({
                 text: 'Simplified:',
                 latex: circleEquation.latex
             });
         }
         try {
-        circleParameters = checkIfCircleEquation(circleEquation);
-        } catch(err) {
+            circleParameters = checkIfCircleEquation(circleEquation);
+        } catch (err) {
             steps.push(String(err));
         }
 
@@ -184,6 +189,98 @@ const circleEquation = term => {
     return { steps, circleParameters }
 }
 
+const checkParabolaEquation = equation => {
+    if (!(equation instanceof Terms.Equation)) {
+        throw `checkParabolaEquation must be called on an equation, not ${equation.getTermString()}`;
+    }
+    const lterms = getSumTerms(equation.lhs);
+    const rterms = getSumTerms(equation.rhs);
+    if (lterms.length !== 1) {
+        throw `not a parabola equation: too many terms on lhs`;
+    }
+    if (rterms.length !== 1) {
+        throw `not a parabola equation: too many terms on rhs`;
+    }
+    const [lterm] = lterms;
+    var [rterm] = rterms;
+    // ensure rterm is a product to simplify matching
+    if (!_M('product(_,_)', rterm)) {
+        rterm = new Terms.Product([numTerm0.clone(), rterm]);
+    }
+    const _v = {};
+    if (!_M('power(BaseTerm,2)', lterm, _v)) {
+        throw `Term on lhs must be squared`
+    }
+    const { BaseTerm } = _v;
+    var lhsVarTerm, rhsVarTerm, lhsValue, rhsValue, rhsFactor;
+    if (_M('sum(XY, HK#)', BaseTerm, _v)) {
+        lhsVarTerm = _v.XY;
+        lhsValue = _v['HK#'].value;
+    } else {
+        lhsVarTerm = BaseTerm;
+        lhsValue = _d(0);
+    }
+    if (!lhsVarTerm.isIdentifierTerm) {
+        throw `lhs term doesn't have the right format; can't find "x" or "y"`;
+    }
+    if (_M('product(RhsFactor#,sum(XY,HK#))', rterm, _v)) {
+        rhsVarTerm = _v.XY;
+        rhsFactor = _v['RhsFactor#'].value;
+        rhsValue = _v['HK#'].value;
+    }
+    else if (_M('product(RhsFactor#,XY)', rterm, _v)) {
+        rhsVarTerm = _v.XY;
+        rhsFactor = _v['RhsFactor#'].value;
+        rhsValue = _d(0);
+    }
+    else {
+        throw `rhs term doesn't have the right format`;
+    }
+    if (!rhsVarTerm.isIdentifierTerm) {
+        throw `rhs term doesn't have the right format; can't find "x" or "y"`;
+    }
+    const lhsVar = lhsVarTerm.name;
+    const rhsVar = rhsVarTerm.name;
+    console.log(`lhsVar: ${lhsVar}, lhsValue: ${lhsValue}`);
+    console.log(`rhsVar: ${rhsVar}, rhsValue: ${rhsValue}`);
+    console.log(`rhsFactor: ${rhsFactor}`);
+    const xyHash = {};
+    xyHash[lhsVar] = lhsValue;
+    xyHash[rhsVar] = rhsValue;
+    if (!xyHash.x || !xyHash.y) {
+        var just = "";
+        if (Object.keys(xyHash).length === 1) {
+            just = " just";
+        }
+        throw `please use "x" and "y" as variable names, not${just} "${Object.keys(xyHash).join("\" and \"")}"`;
+    }
+    const h = xyHash.x.negated();
+    const k = xyHash.y.negated();
+    const isNegative = rhsFactor.isNegative();
+    const a = rhsFactor.abs().div(_d(4));
+    const pvariant = isNegative
+    ? ((lhsVar === 'x') ? VERTICAL_DOWN : HORIZONTAL_LEFT)
+    : ((lhsVar === 'x') ? VERTICAL_UP : HORIZONTAL_RIGHT);
+    const resObj = { h, k, a, pvariant };
+    console.log(`parabola parameters from equation: ${JSON.stringify(resObj)}`);
+    return resObj;
+}
+
+const parabolaEquation = term => {
+    const steps = [];
+    var parabolaParameters = null;
+    const cterm = basicEval(term);
+    steps.push({ text: `input term:`, latex: term.latex })
+    steps.push({ text: `input term simplified:`, latex: cterm.latex });
+    try {
+        parabolaParameters = checkParabolaEquation(cterm);
+    } catch (err) {
+        steps.push(String(err));
+    }
+    return { steps, parabolaParameters }
+}
+
 module.exports = {
-    circleEquation
+    circleEquation,
+    parabolaEquation
 }

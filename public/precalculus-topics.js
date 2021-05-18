@@ -681,6 +681,13 @@ const _conicsParabola = {
     ],
     func: conicsParabola,
     testValues: [
+        { values: ['fromEquation', '(x-3)^2=-4(y+1)'], label: 'Eq1'},
+        { values: ['fromEquation', '(y-4)^2=12(x+1)'], label: 'Eq2'},
+        { values: ['fromEquation', '(x+5)^2=4y'], label: 'Eq3' },
+        { values: ['fromEquation', '(y+2)^2=-8(x-1)'], label: 'Eq4' },
+        { values: ['fromEquation', 'y^2-6y+16x+25=0'], label: 'Eq10' },
+        { values: ['fromEquation', 'x^2-8x-4y+12=0'], label: 'Eq11' },
+        { values: ['fromEquation', 'y^2-2y-5=x'], label: 'Eq12' },
         { values: ['fromVertexAndFocus', '2', '-1', '2', '-4'], label: 'Vertex+Focus 1' },
         { values: ['fromVertexAndFocus', '-4', '-5', '-4', '-\\frac{9}{2}'], label: 'Vertex+Focus 2' },
         { values: ['fromVertexAndDirectrix', '-3', '1', 'x', '1'], label: 'Vertex+Directrix 1' },

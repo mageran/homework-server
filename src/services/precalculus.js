@@ -1,5 +1,5 @@
 
-const { circleEquation } = require('../lib/conics');
+const { circleEquation, parabolaEquation } = require('../lib/conics');
 
 /*
 module.exports = [{
@@ -17,5 +17,11 @@ module.exports = [{
     func: circleEquation,
     parameters: [
         { name: 'equation', parseIntoTerm: true }
-    ]
+    ],
+},{
+    service: 'parabolaEquation',
+    func: parabolaEquation,
+    parameters: [
+        { name: 'equation', parseIntoTerm: true }
+    ],
 }]
