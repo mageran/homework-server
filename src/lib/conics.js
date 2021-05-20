@@ -134,6 +134,12 @@ const eliminateSquareFactors = equation => {
             logTerm(`equation after dividing by ${factor}:`, term);
         }
     }
+    else if (xSquareFactor || ySquareFactor) {
+        let squareFactor = xSquareFactor || ySquareFactor;
+        factor = squareFactor.value;
+        term = divideEquation(equation, factor);
+        eliminationDone = true;
+    }
     return { eliminationDone, term, factor };
 }
 
@@ -160,14 +166,16 @@ const circleEquation = term => {
         if (info1.completedSquareDone) {
             circleEquation = info1.term;
             console.log('complete the square for "y":' + circleEquation.toTermString());
-            steps.push('complete the square for "y":');
+            //steps.push('complete the square for "y":');
+            steps.push(...info1.steps);
             steps.push({ latex: circleEquation.latex })
         }
         const info2 = completeTheSquare(circleEquation, 'x');
         if (info2.completedSquareDone) {
             circleEquation = info2.term;
             console.log('complete the square for "x":' + circleEquation.toTermString());
-            steps.push('complete the square for "x":');
+            //steps.push('complete the square for "x":');
+            steps.push(...info2.steps);
             steps.push({ latex: circleEquation.latex })
         }
         if (info1.completedSquareDone || info2.completedSquareDone) {
@@ -269,7 +277,7 @@ const checkParabolaEquation = equation => {
 const _extractFactorOfX = (term, x) => {
     const terms = getSumTerms(basicEval(term));
     logTerms(`input terms for getting factor of ${x}:`, terms);
-    const xFactorTerms= terms.map(t => {
+    const xFactorTerms = terms.map(t => {
         const _v = {};
         if (_M(`product(F#,${x})`, t, _v)) {
             return _v['F#'];
@@ -386,7 +394,8 @@ const checkGeneralParabolaEquation = equation => {
     const cinfo = completeTheSquare(equation, squaredVar);
     if (cinfo.completedSquareDone) {
         equation = cinfo.term;
-        steps.push(`complete the square for "${squaredVar}":`);
+        //steps.push(`complete the square for "${squaredVar}":`);
+        steps.push(...cinfo.steps);
         steps.push({ latex: equation.latex })
     }
     const newRhs = _extractFactorOfX(equation.rhs, otherVar);
@@ -401,6 +410,12 @@ const parabolaEquation = term => {
     steps.push({ text: `input term:`, latex: term.latex })
     steps.push({ text: `input term simplified:`, latex: cterm.latex });
     var parabolaEquation = cterm;
+    const info0 = eliminateSquareFactors(parabolaEquation);
+    if (info0.eliminationDone) {
+        parabolaEquation = info0.term;
+        steps.push(`Dividing both sides of the equation by ${info0.factor}:`);
+        steps.push({ latex: parabolaEquation.latex });
+    }
     try {
         const info = checkGeneralParabolaEquation(parabolaEquation);
         console.log(info);

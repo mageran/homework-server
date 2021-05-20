@@ -76,6 +76,9 @@ const evalArithmetic = t => {
         if (operands.length === 1) {
             return operands[0];
         }
+        if (operands.length === 0) {
+            return new Terms.Num(neutralElement);
+        }
         const numOperands = operands.filter(t => t instanceof Terms.Num);
         const otherOperands = operands.filter(t => !(t instanceof Terms.Num));
         if (numOperands.length < 2) {
@@ -177,20 +180,26 @@ const negateTerm = t => {
  * @param {String} x
  */
 const _completeTheSquare = (term, x) => {
+    console.log(`completing the square for "${x}" in ${term.toTermString()}...`);
+    const steps = [];
     const sumTerms = getSumTerms(term);
     var xsquareTerm = null;
     var bvalue = _d(0);
     var restTerms = [];
+    var xsquareFactor = _d(1);
     const _v = {};
     for (let i = 0; i < sumTerms.length; i++) {
         let t = sumTerms[i];
-        console.log(`completeTheSquare: summand: ${t.toTermString()}`);
         if (_M(`power(${x},2)`, t)) {
             if (xsquareTerm) {
                 // another x^2 term found, not supported
                 return { term, addedTerm: numTerm0, completedSquareDone: false };
             }
             xsquareTerm = t;
+        }
+        else if (_M(`product(XF#,power(${x},2))`, t, _v)) {
+            xsquareTerm = t.operands[1];
+            xsquareFactor = _v['XF#'].value;
         }
         else if (_M(`product(B#,${x})`, t, _v)) {
             let nterm = _v['B#'];
@@ -208,19 +217,38 @@ const _completeTheSquare = (term, x) => {
         console.log('no xsquareTerm found');
         return { term, addedTerm: numTerm0, completedSquareDone: false };
     }
+    // divide b by xsquareFactor in cases you have something like this: 4x^2 + 12x; we then
+    // complete the square for (x^2 + 3x)
+    bvalue = bvalue.div(xsquareFactor);
     // calculate the value to complete the square:
     const cvalue = bvalue.div(_d(2));
     const cvalueSquared = cvalue.pow(_d(2));
     const cterm = new Terms.Num(cvalueSquared);
-    const completedTerm = new Terms.Sum([xsquareTerm,
+    const xsquareFactorTerm = t => basicEval(new Terms.Product([new Terms.Num(xsquareFactor), t]));
+    const completedTerm = xsquareFactorTerm(new Terms.Sum([xsquareTerm,
         new Terms.Product([new Terms.Num(bvalue), new Terms.Identifier(x)]),
         cterm
-    ])
+    ]));
+    //const addedTerm = cterm;
+    const addedTerm = xsquareFactorTerm(cterm);
+    console.log(`completeTheSquare: factor with ${x}^2: ${xsquareFactor}`);
     const termString = `power(sum(${x},${cvalue}),2)`;
     //console.log(`termString: ${termString}`);
-    const squaredTerm = _T(termString);
+    const squaredTerm = xsquareFactorTerm(_T(termString));
     const newTerm = (restTerms.length === 0) ? squaredTerm : new Terms.Sum([squaredTerm, ...restTerms]);
-    return { term: newTerm, completedTerm, addedTerm: cterm, completedSquareDone: true };
+    const factorTimesStr = xsquareFactor == 1 ? '' : `${xsquareFactor}*`;
+    steps.push(`Completing the square for ${x} by adding ${factorTimesStr}${cvalueSquared}:`)
+    steps.push({ latex: `${completedTerm.latex} = ${squaredTerm.latex}`});
+    return { 
+        term: newTerm,
+        completedTerm,
+        addedTerm,
+        completedSquareDone: true,
+        steps: [ { collapsibleSection: {
+            title: `Completing the square for ${x}...`,
+            steps
+        }}]
+    };
 }
 
 const completeTheSquare = (term, x) => {
@@ -228,7 +256,7 @@ const completeTheSquare = (term, x) => {
     if (_M('equation(Lhs,Rhs)', term, _v)) {
         const cinfo = _completeTheSquare(_v.Lhs, x);
         logTerm('equation lhs:', _v.Lhs);
-        const { term, completedTerm, addedTerm, completedSquareDone } = cinfo;
+        const { term, completedTerm, addedTerm, steps, completedSquareDone } = cinfo;
         if (!completedSquareDone) {
             return cinfo;
         }
@@ -236,7 +264,7 @@ const completeTheSquare = (term, x) => {
         const lhs = term;
         const rhs = new Terms.Sum([_v.Rhs, addedTerm]);
         const newTerm = new Terms.Equation([lhs, rhs]);
-        return { term: newTerm, completedTerm, addedTerm, completedSquareDone };
+        return { term: newTerm, completedTerm, addedTerm, steps, completedSquareDone };
     }
     return _completeTheSquare(term, x);
 }

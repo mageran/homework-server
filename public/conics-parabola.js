@@ -7,7 +7,7 @@ const HORIZONTAL_LEFT = 3;
 
 function createParabolaInputFields(problemClass) {
     if (problemClass === 'fromEquation') {
-        return [{ name: 'Circle Equation', type: 'formula', cssClass: 'width500' }];
+        return [{ name: 'Parabola Equation', type: 'formula', cssClass: 'width500' }];
     }
     else if (problemClass === 'fromVertexAndDirectrix') {
         return [

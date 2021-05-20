@@ -178,7 +178,7 @@ const _equilibrium = {
     ]
 }
 
-const _pHpOHCalculations = {
+const _pHpOHCalculations_ = {
     title: 'pH/pOH from molarity of acid/base',
     description: 'Determine missing values between molarity of a acid or base, ph, or pOH value',
     parameters: [
@@ -204,6 +204,49 @@ const _pHpOHCalculations = {
     func: pHpOHCalculations,
     testValues: [
         ['Hydrochloric acid', 'auto', '0.023']
+    ]
+}
+
+const _pHpOHCalculations = {
+    title: 'pH/pOH from molarity of acid/base',
+    description: 'Determine missing values between molarity of a acid or base, ph, or pOH value',
+    parameters: [
+        { name: _fwl('Formula', 150), value: '', cssClass: 'width500' },
+        { separator: true },
+        /*{ 
+            name: _fwl('Acid or Base'), 
+            type: 'select', 
+            options: [
+                { label: 'Auto detect using name/formula', value: 'auto' },
+                { label: 'Acid', value: 'acid' },
+                { label: 'Base', value: 'base' },
+            ]
+        },*/
+        { separator: true },
+        { name: _fwl('Molarity'), value: '', cssClass: 'big-input', noEval: true },
+        { separator: true },
+        { name: _fwl('pH'), value: '' },
+        { separator: true },
+        { name: _fwl('pOH'), value: '' },
+        { separator: true },
+    ],
+    func: pHpOHCalculations,
+    testValues: [
+        ['HCl', '0.023'],
+        ['HNO3', '6.6e-6'],
+        ['KOH', '0.0334'],
+        ['H3As','1e-5'],
+        ['Al(OH)3','2.23e-2'],
+        ['Mg(OH)2','0.000901'],
+        ['H2S','7.23e-5'],
+        ['HCl','2.58e-6'],
+        ['NaOH','0.000469'],
+        ['H2SO4','0.000896'],
+        ['Sr(OH)2','0.0010'],
+        ['Al(OH)3','0.0050'],
+        ['Ca(OH)2','0.000675'],
+        ['Ca(OH)2','', '', '2.87'],
+        ['Ca(OH)2','', '11.13', ''],
     ]
 }
 

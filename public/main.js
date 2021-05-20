@@ -323,6 +323,9 @@ const populate = tobj => {
                     // insert a "newline"
                     _htmlElement('div', inputsContainer);
                 }
+                if (param.placeholder) {
+                    inpElem.placeholder = param.placeholder;
+                }
                 inputElements.push(inpElem);
             });
         }

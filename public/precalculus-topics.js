@@ -644,6 +644,11 @@ const conicsParabolaProblems = [
     { label: 'Given Vertex, graph variant, and value for "a"', value: 'fromVertexVariantAndA' }
 ]
 
+const conicsEllipseProblems = [
+    { label: 'From Equation', value: 'fromEquation' },
+    { label: 'From Parameters (Vertices, Covertices, Center, Foci)', value: 'fromParameters' }
+]
+
 const _conicsCircle = {
     title: 'Conics: Circle',
     description: 'Problems regarding circle equations (x-h)^2 + (y-k)^2 = r^2',
@@ -663,6 +668,7 @@ const _conicsCircle = {
         { values: ['findCenterRadiusFromEquation', 'x^2+y^2-2x-8y-8=0'], label: 'Eq8' },
         { values: ['findCenterRadiusFromEquation', 'x^2+y^2-6x+2y+9=36'], label: 'Eq9' },
         { values: ['findCenterRadiusFromEquation', '4x^2 + 4y^2 - 16x + 24y = 12'], label: 'Eq10' },
+        { values: ['findCenterRadiusFromEquation', '4x^2+y^2+8x+4y+17=0'], label: 'Eq11' },
         { values: ['findEquationFromCenterRadius', '0','0', '4'], label: 'Center+Radius1'},
         { values: ['findEquationFromCenterRadius', '2','-5', '3'], label: 'Center+Radius2'},
         { values: ['findEquationFromCenterAndPointOnCircle', '1', '2', '1', '0'], label: 'Center+Point1' },
@@ -674,7 +680,7 @@ const _conicsCircle = {
 
 const _conicsParabola = {
     title: 'Conics Parbola',
-    description: 'Problems ragarding parabola equations (x-h)^2 = 4a(y-k) or x and y swapped',
+    description: 'Problems regarding parabola equations (x-h)^2 = 4a(y-k) or x and y swapped',
     parameters: [
         { name: 'Problem', type: 'select', options: [{ label: 'Select Problem', value: '' }, ...conicsParabolaProblems] },
         { name: '', type: 'dynamic', hideButtons: true, func: createParabolaInputFields }
@@ -695,7 +701,22 @@ const _conicsParabola = {
     ]
 }
 
+const _conicsEllipse = {
+    title: 'Conics Ellipse',
+    description: 'Find ellipse equation/parameters',
+    parameters: [
+        { name: 'Problem', type: 'select', options: [{ label: 'Select Problem', value: '' }, ...conicsEllipseProblems] },
+        { name: '', type: 'dynamic', hideButtons: true, func: createEllipseInputFields }
+    ],
+    func: conicsEllipse,
+    testValues: [
+        { values: ['fromParameters', '(2,-2)', '(2,2)', '', '', '', '(2,-4)', ''], label: 'Q10 P:C+Vx+F' },
+        { values: ['fromParameters', '', '(-4,2)', '', '', '', '(1,2)', '(-3,2)'], label: 'Q11 P:Vx+F+F' },
+    ]
+}
+
 const topicObjects = [
+    _conicsEllipse,
     _conicsParabola,
     _conicsCircle,
     '<b>---------------------</b>',

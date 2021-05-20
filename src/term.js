@@ -38,6 +38,10 @@ class Term {
         return `${functor}(${operands.map(t => t.toTermString()).join(',')})`;
     }
 
+    toString() {
+        return this.toTermString();
+    }
+
     /**
      *  Used for creating string representation of infix operations (sum, product, etc).
      *  The higher the precedence, the stronger the binding of the operation.

@@ -165,9 +165,13 @@ class ChemicalEquation {
         return termsWithStateCnt === 0 || termsWithStateCnt === terms.length;
     }
 
-    toString(includeBalancingFactor) {
+    toString(includeBalancingFactor, latex) {
         const { lhs, rhs } = this;
-        return `${lhs.toString(includeBalancingFactor)} = ${rhs.toString(includeBalancingFactor)}`;
+        return `${lhs.toString(includeBalancingFactor, latex)} = ${rhs.toString(includeBalancingFactor)}`;
+    }
+
+    toLatex(includeBalancingFactor) {
+        return this.toString(includeBalancingFactor, true);
     }
 
     static createFromString = inputString => {

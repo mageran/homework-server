@@ -60,8 +60,12 @@ class ChemicalEquationSide {
         return res;
     }
 
-    toString(includeBalancingFactor = false) {
-        return this.terms.map(t => t.toString(includeBalancingFactor)).join(' + ');
+    toString(includeBalancingFactor = false, latex) {
+        return this.terms.map(t => t.toString(includeBalancingFactor, latex)).join(' + ');
+    }
+
+    toLatex(includeBalancingFactor = false) {
+        return this.toString(includeBalancingFactor, true);
     }
 
     static createFromString(inputString) {
