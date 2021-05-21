@@ -110,7 +110,7 @@ class Numeric {
         return Numeric.findFractionWithConstant(num, Math.PI);
     }
 
-    static findFractionWithSquareRoot(num) {
+    static _findFractionWithSquareRoot(num) {
         var numx = _d(num);
         var sign = Math.sign(num);
         var numeratorRadicand = numx.pow(_d(2));
@@ -129,7 +129,49 @@ class Numeric {
         return { sign, numeratorRadicand, denominator, isRealFraction };
     }
 
-    static createFromValue(value, forceFraction = false, returnAll = false) {
+    static findFractionWithSquareRoot(num) {
+        const candidates = [];
+        const res0 = Numeric._findFractionWithSquareRoot(num);
+        if (res0.isRealFraction) {
+            //return res0;
+            candidates.push(shallowCopy(res0));
+        }
+        console.log(`findFractionWithSquareRoot(${num})...`);
+        for(let smd = -100; smd <= 100; smd++) {
+            if (smd === 0) continue;
+            let summand = smd;
+            let num0 = summand - Number(num);
+            //console.log(`${summand} - (${num}): num0 = ${num0}`);
+            let res = Numeric._findFractionWithSquareRoot(num0);
+            if (res.isRealFraction) {
+                res.summand = summand;
+                res.operation = '-';
+                //return res;
+                candidates.push(shallowCopy(res));
+            }
+            num0 = Number(num) - summand;
+            //console.log(`${num} - (${summand}): num0 = ${num0}`);
+            res = Numeric._findFractionWithSquareRoot(num0);
+            if (res.isRealFraction) {
+                res.summand = summand;
+                res.operation = '+';
+                candidates.push(shallowCopy(res));
+                //return res;
+            }
+        }
+        if (candidates.length === 0) {
+            return res0;
+        }
+        candidates.sort((a, b) => {
+            const aq = Math.abs(a.numeratorRadicand) + Math.abs(a.denominator);
+            const bq = Math.abs(b.numeratorRadicand) + Math.abs(b.denominator);
+            return aq < bq ? -1 : bq < aq ? 1 : 0;
+        })
+        //console.log('candidates: %o', candidates);
+        return candidates[0];
+    }
+
+    static createFromValue(value, forceFraction = false, returnAll = false, info = {}) {
         if (value instanceof Numeric) {
             return value;
         }
@@ -143,11 +185,13 @@ class Numeric {
         }
         const valx = Numeric._p(value);
         if (valx.eq(Math.trunc(valx))) {
+            info.success = true;
             return retValue(new Decimal(valx));
         }
         {
             let { numerator, denominator, isRealFraction } = Numeric.findFraction(valx);
             if (isRealFraction) {
+                info.success = true;
                 return retValue(fraction(numerator, denominator));
             }
         }
@@ -156,25 +200,35 @@ class Numeric {
             if (isRealFraction) {
                 let numerator0 = new Product(numerator, PI);
                 let res = retValue(fraction(numerator0, denominator));
-                console.log(`returning fraction of PI: ${JSON.stringify(res, null, 2)}`);
-                console.log(res.toLatex());
-                console.log('----');
+                //console.log(`returning fraction of PI: ${JSON.stringify(res, null, 2)}`);
+                //console.log(res.toLatex());
+                //console.log('----');
+                info.success = true;
                 return res;
             }
         }
         {
             let findFractionWithSquareRootResult = Numeric.findFractionWithSquareRoot(valx);
             console.log(JSON.stringify(findFractionWithSquareRootResult, null, 2));
-            let { numeratorRadicand, denominator, sign, isRealFraction, constant } = findFractionWithSquareRootResult;
+            let { numeratorRadicand, denominator, sign, isRealFraction, constant, summand, operation } = findFractionWithSquareRootResult;
             if (isRealFraction) {
                 let numerator = sqrt(numeratorRadicand, sign);
                 numerator.simplify();
-                if (denominator == 1) {
-                    return retValue(numerator);
+                info.success = true;
+                const _mayAddSummand = v => {
+                    if (typeof summand === 'number') {
+                        const vv = operation === '-' ? v.negate() : v;
+                        return new Sum(summand, vv);
+                    }
+                    return v;
                 }
-                return retValue(fraction(numerator, denominator).simplify());
+                if (denominator == 1) {
+                    return retValue(_mayAddSummand(numerator));
+                }
+                return retValue(_mayAddSummand(fraction(numerator, denominator).simplify()));
             } 
         }
+        info.success = false;
         return retValue(new Decimal(value));
     }
 
@@ -325,13 +379,22 @@ class Sum extends Numeric {
 
     toString(context) {
         const { open, close } = this.getParenthesis(context);
-        const sumString = this.operands.map(operand => operand.toString(this)).join(" + ");
+        const sumString = this.operands.map(operand => ensureNumeric(operand).toString(this)).join(" + ");
         return open + sumString + close;
     }
 
     toLatex(context) {
         const { open, close } = this.getParenthesis(context);
-        const sumString = this.operands.map(operand => ensureNumeric(operand).toLatex(this)).join(" + ");
+        //const sumString = this.operands.map(operand => ensureNumeric(operand).toLatex(this)).join(" + ");
+        var stringParts = [];
+        this.operands.forEach(operand => {
+            const operandLatex = ensureNumeric(operand).toLatex(this).trim();
+            if (stringParts.length !== 0 && (operandLatex[0] !== '-')) {
+                stringParts.push('+');
+            }
+            stringParts.push(operandLatex);
+        })
+        const sumString = stringParts.join('');
         return open + sumString + close;
     }
 }
@@ -722,7 +785,7 @@ const numericToString = (obj, latex = false) => {
         return latex ? obj.toLatex(true) : obj.toString();
     }
     if (obj instanceof Numeric) {
-        return obj.toString(latex);
+        return latex ? obj.toLatex() : obj.toString();
     }
     if (latex && (obj instanceof FactorOfPi)) {
         return obj.toLatex();

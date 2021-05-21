@@ -646,7 +646,8 @@ const conicsParabolaProblems = [
 
 const conicsEllipseProblems = [
     { label: 'From Equation', value: 'fromEquation' },
-    { label: 'From Parameters (Vertices, Covertices, Center, Foci)', value: 'fromParameters' }
+    { label: 'From Parameters (Vertices, Covertices, Center, Foci)', value: 'fromParameters' },
+    { label: 'From Major Axis Direction, values for "a" and "b"', value: 'fromAxisAB' },
 ]
 
 const _conicsCircle = {
@@ -669,8 +670,8 @@ const _conicsCircle = {
         { values: ['findCenterRadiusFromEquation', 'x^2+y^2-6x+2y+9=36'], label: 'Eq9' },
         { values: ['findCenterRadiusFromEquation', '4x^2 + 4y^2 - 16x + 24y = 12'], label: 'Eq10' },
         { values: ['findCenterRadiusFromEquation', '4x^2+y^2+8x+4y+17=0'], label: 'Eq11' },
-        { values: ['findEquationFromCenterRadius', '0','0', '4'], label: 'Center+Radius1'},
-        { values: ['findEquationFromCenterRadius', '2','-5', '3'], label: 'Center+Radius2'},
+        { values: ['findEquationFromCenterRadius', '0', '0', '4'], label: 'Center+Radius1' },
+        { values: ['findEquationFromCenterRadius', '2', '-5', '3'], label: 'Center+Radius2' },
         { values: ['findEquationFromCenterAndPointOnCircle', '1', '2', '1', '0'], label: 'Center+Point1' },
         { values: ['findEquationFromCenterAndPointOnCircle', '0', '0', '-2', '-3'], label: 'Center+Point2' },
         { values: ['findEquationFromDiameterEndPoints', '2', '16', '-2', '-2'], label: 'Diameter1' },
@@ -687,8 +688,8 @@ const _conicsParabola = {
     ],
     func: conicsParabola,
     testValues: [
-        { values: ['fromEquation', '(x-3)^2=-4(y+1)'], label: 'Eq1'},
-        { values: ['fromEquation', '(y-4)^2=12(x+1)'], label: 'Eq2'},
+        { values: ['fromEquation', '(x-3)^2=-4(y+1)'], label: 'Eq1' },
+        { values: ['fromEquation', '(y-4)^2=12(x+1)'], label: 'Eq2' },
         { values: ['fromEquation', '(x+5)^2=4y'], label: 'Eq3' },
         { values: ['fromEquation', '(y+2)^2=-8(x-1)'], label: 'Eq4' },
         { values: ['fromEquation', 'y^2-6y+16x+25=0'], label: 'Eq10' },
@@ -712,6 +713,14 @@ const _conicsEllipse = {
     testValues: [
         { values: ['fromParameters', '(2,-2)', '(2,2)', '', '', '', '(2,-4)', ''], label: 'Q10 P:C+Vx+F' },
         { values: ['fromParameters', '', '(-4,2)', '', '', '', '(1,2)', '(-3,2)'], label: 'Q11 P:Vx+F+F' },
+        { values: ['fromParameters', '(2,-3)', '(5,-3)', '', '', '', '(3,-3)', ''], label: 'Q11 P:C+Vx+F' },
+        { values: ['fromParameters', '(2,-1)', '(-2,-1)', '', '(2,2)', '', '', ''], label: 'Q11 P:C+Vx+Cx' },
+        { values: ['fromAxisAB', MAJOR_AXIS_VERTICAL, '0', '0', '6', '3'], label: 'Q4' },
+        { values: ['fromAxisAB', MAJOR_AXIS_HORIZONTAL, '4', '5', '6', '2'], label: 'Q5' },
+        { values: ['fromAxisAB', MAJOR_AXIS_VERTICAL, '-4', '-2', '7', '5'], label: 'Q6' },
+        { values: ['fromEquation', '16x^2 + y^2-160x-4y+388 = 0'], label: 'Q7' },
+        { values: ['fromEquation', '4x^2+9y^2+32x+90y+253 = 0'], label: 'Q8' },
+        { values: ['fromEquation', '25x^2+36y^2-50x-144y-731=0'], label: 'Q9' },
     ]
 }
 

@@ -376,6 +376,16 @@ const _valueAsSummandLatex = decimal => {
     return `${op} ${lx}`;
 }
 
+const _pointToString = ({ x, y }) => {
+    return `(${x}, ${y})`;
+}
+
+const _pointToLatex = ({ x, y }) => {
+    const xLatex = numericToLatex(Numeric.createFromValue(x));
+    const yLatex = numericToLatex(Numeric.createFromValue(y));
+    return `\\left(${xLatex},${yLatex}\\right)`;
+}
+
 
 const removeCommentLines = inputString => {
     const lines = inputString.split(/\n/);

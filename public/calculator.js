@@ -19,5 +19,6 @@ function calculator(formulaLatex) {
         }
     } catch(err) {
         _addErrorElement(o, err);
+        throw err;
     }
 }
