@@ -9,6 +9,10 @@ const VERTICAL_DOWN = 1;
 const HORIZONTAL_RIGHT = 2;
 const HORIZONTAL_LEFT = 3;
 
+// ellipse variants
+const MAJOR_AXIS_HORIZONTAL = 0;
+const MAJOR_AXIS_VERTICAL = 1;
+
 const bringConstantTermsToRhs = term => {
     const _v = {};
     if (!_M('equation(Lhs, Rhs)', term, _v)) {
@@ -103,16 +107,31 @@ const getFactorOfSquareTerm = (equation, x) => {
     return null;
 }
 
-const divideEquation = (equation, decimal) => {
+const divideEquation = (equation, decimal, options = {}) => {
     if (!(equation instanceof Terms.Equation)) {
         throw `divideEquation must be called on an equation, not ${equation.getTermString()}`;
     }
+    const { useFractions } = options;
+    const _createTerm = t => {
+        var t0;
+        if (useFractions) {
+            const quotientTerm = new Terms.Num(decimal);
+            t0 = new Terms.Fraction([t, quotientTerm]);
+        } else {
+            const factor = _d(1).div(decimal);
+            const factorTerm = new Terms.Num(factor);
+            t0 = new Terms.Product([factorTerm.clone(), t]);
+        }
+        return basicEval(t0);
+    }
     const lterms = getSumTerms(equation.lhs);
     const rterms = getSumTerms(equation.rhs);
-    const factor = _d(1).div(decimal);
-    const factorTerm = new Terms.Num(factor);
-    const newLterms = lterms.map(t => basicEval(new Terms.Product([factorTerm.clone(), t])));
-    const newRterms = rterms.map(t => basicEval(new Terms.Product([factorTerm.clone(), t])));
+    //const factor = _d(1).div(decimal);
+    //const factorTerm = new Terms.Num(factor);
+    //const newLterms = lterms.map(t => basicEval(new Terms.Product([factorTerm.clone(), t])));
+    //const newRterms = rterms.map(t => basicEval(new Terms.Product([factorTerm.clone(), t])));
+    const newLterms = lterms.map(_createTerm);
+    const newRterms = rterms.map(_createTerm);
     const newLhs = newLterms.length === 1 ? newLterms[0] : new Terms.Sum(newLterms);
     const newRhs = newRterms.length === 1 ? newRterms[0] : new Terms.Sum(newRterms);
     return basicEval(new Terms.Equation([newLhs, newRhs]));
@@ -432,7 +451,128 @@ const parabolaEquation = term => {
     return { steps, parabolaParameters }
 }
 
+const checkEllipseEquation = equation => {
+    const _getXYHK = (t, xyHash) => {
+        const _v = {};
+        var xyterm;
+        var hkvalue;
+        if (_M('sum(XY, HK#)', t, _v)) {
+            xyterm = _v.XY;
+            hkvalue = _v['HK#'].value;
+        } else {
+            xyterm = t;
+            hkvalue = _d(0);
+        }
+        const xy = xyterm.name;
+        if (!xyterm.isIdentifierTerm || !['x', 'y'].includes(xy)) {
+            throw `not an ellipse equation; expected "x" or "y", but found ${xyterm}`;
+        }
+        xyHash[xy] = { hkvalue };
+        return xy;
+    }
+    if (!(equation instanceof Terms.Equation)) {
+        throw `checkParabolaEquation must be called on an equation, not ${equation.getTermString()}`;
+    }
+    const steps = [];
+    var isEllipseEquation = true;
+    const [steps0, term0] = bringConstantTermsToRhs(equation);
+    steps.push(...steps0);
+    equation = term0;
+    if (!equation.rhs.value.equals(_d(1))) {
+        const dvalue = equation.rhs.value;
+        console.log(`rhs of equation is not 1 but ${dvalue}`);
+        steps.push(`Dividing both side by ${dvalue}:`);
+        equation = divideEquation(equation, dvalue, { useFractions: true });
+        logTerm(`Equation after division by ${dvalue}: `, equation);
+        steps.push({ latex: equation.latex });
+    }
+    const lterms = getSumTerms(equation.lhs);
+    logTerms('lterms: ', lterms);
+    const xyHash = {};
+    lterms.forEach(t => {
+        const _v = {};
+        let quotientValue = null;
+        let xy = null;
+        if (_M('fraction(power(XTerm,2),Quotient#)', t, _v)) {
+            quotientValue = _v['Quotient#'].value;
+            xy = _getXYHK(_v.XTerm, xyHash);
+        }
+        else if (_M('product(Factor#,power(XTerm,2))', t, _v)) {
+            let factorValue = _v['Factor#'].value;
+            quotientValue = _d(1).div(factorValue);
+            xy = _getXYHK(_v.XTerm, xyHash);
+        }
+        else if (_M('power(XTerm,2)', t, _v)) {
+            quotientValue = _d(1);
+            xy = _getXYHK(_v.XTerm, xyHash);
+        }
+        else {
+            isEllipseEquation = false;
+            throw `This isn't an ellipse equation, found unrecognized term "${t}"`;
+        }
+        xyHash[xy].quotientValue = quotientValue;
+        console.log(`quotientValue for ${t}: ${quotientValue}`);
+    })
+    console.log('xyHash: %o', xyHash);
+    if (!(xyHash.x && xyHash.y)) {
+        throw `please use "x" and "y" in ellipse formula; found "${Object.keys(xyHash).join('" and "')}"`;
+    }
+    const majorAxis = xyHash.x.quotientValue.gt(xyHash.y.quotientValue) ? MAJOR_AXIS_HORIZONTAL : MAJOR_AXIS_VERTICAL;
+    console.log(`xyHash.x.hkvalue: ${xyHash.x.hkvalue.constructor.name}`)
+    const h = Number(xyHash.x.hkvalue.negated());
+    const k = Number(xyHash.y.hkvalue.negated());
+    const a = Number((xyHash.x.quotientValue.gt(xyHash.y.quotientValue) ? xyHash.x.quotientValue : xyHash.y.quotientValue).sqrt());
+    const b = Number((xyHash.x.quotientValue.gt(xyHash.y.quotientValue) ? xyHash.y.quotientValue : xyHash.x.quotientValue).sqrt());
+    const ellipseParameters = { majorAxis, h, k, a, b }
+    return { steps, term: equation, isEllipseEquation, ellipseParameters };
+}
+
+const checkEllispeEquationGeneralForm = equation => {
+    const steps = [];
+    const [steps0, term0] = bringConstantTermsToRhs(equation);
+    steps.push(...steps0);
+    equation = term0;
+    var done = false;
+    var xinfo = completeTheSquare(equation, 'x');
+    if (xinfo.completedSquareDone) {
+        steps.push(...xinfo.steps);
+        logTerm('equation after completing the square for "x":', xinfo.term);
+        equation = xinfo.term;
+        done = true;
+    }
+    var yinfo = completeTheSquare(equation, 'y');
+    if (yinfo.completedSquareDone) {
+        steps.push(...yinfo.steps);
+        logTerm('equation after completing the square for "y":', yinfo.term);
+        equation = yinfo.term;
+        done = true;
+    }
+    return { steps, done, term: equation };
+}
+
+const ellipseEquation = term => {
+    const steps = [];
+    var ellipseParameters = null;
+    const cterm = basicEval(term, { fractionsToProducts: false });
+    steps.push({ text: `input term:`, latex: term.latex })
+    steps.push({ text: `input term simplified:`, latex: cterm.latex });
+    var ellipseEquation = cterm;
+    var info = checkEllispeEquationGeneralForm(ellipseEquation);
+    if (info.steps) steps.push(...info.steps);
+    if (info.done) {
+        ellipseEquation = info.term;
+    }
+    info = checkEllipseEquation(ellipseEquation);
+    if (info.steps) steps.push(...info.steps);
+    if (info.isEllipseEquation) {
+        ({ ellipseParameters } = info);
+    }
+    //ellipseParameters = { h: -4, k: -2, a: 7, b: 5, majorAxis: MAJOR_AXIS_VERTICAL }
+    return { steps, ellipseParameters };
+}
+
 module.exports = {
     circleEquation,
-    parabolaEquation
+    parabolaEquation,
+    ellipseEquation
 }

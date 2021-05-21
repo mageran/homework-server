@@ -27,12 +27,12 @@ function createEllipseInputFields(problemClass) {
     }
     else if (problemClass === 'fromAxisAB') {
         return [
-            { 
+            {
                 name: _fwl('Major Axis Direction'),
-                type: 'select', 
+                type: 'select',
                 options: [
-                    {label: 'Horizontal', value: MAJOR_AXIS_HORIZONTAL },
-                    {label: 'Vertical', value: MAJOR_AXIS_VERTICAL },
+                    { label: 'Horizontal', value: MAJOR_AXIS_HORIZONTAL },
+                    { label: 'Vertical', value: MAJOR_AXIS_VERTICAL },
                 ]
             },
             { separator: true },
@@ -223,9 +223,10 @@ function conicsEllipse(problemClass, ...args) {
         return steps;
     }
     try {
+        Numeric.doNotAttemptToCreateValueWithPi = true;
         const steps = [];
         if (problemClass === 'fromEquation') {
-            //parabolaFromEquation(o, ...args);
+            ellipseFromEquation(o, ...args);
         }
         else if (problemClass === 'fromParameters') {
             steps.push(...fromParameters(...args));
@@ -242,15 +243,32 @@ function conicsEllipse(problemClass, ...args) {
 
 
 const ellipseSteps = (majorAxis, h, k, a, b, c, otherEquations = []) => {
+    const _p2l = points => {
+        if (!points) return '';
+        if (!Array.isArray(points)) {
+            points = [points];
+        }
+        return points.map(p => {
+            const { x, y } = p;
+            if ((x instanceof Decimalx) && (y instanceof Decimalx)) {
+                return _pointToLatex(p)
+            }
+            return `(${x}, ${y})`;
+        }).join(' = ');
+    }
     const steps = [];
+    steps.push(`<div style="padding:10px">Major Axis direction: ${majorAxis === MAJOR_AXIS_HORIZONTAL ? "horizontal" : "vertical"}</div>`);
     const hvalue = _d(h);
     const kvalue = _d(k);
     const avalue = _d(a);
     const bvalue = _d(b);
+    const aLatex = _decimalToLatex(avalue);
+    const bLatex = _decimalToLatex(bvalue);
+    steps.push({ latex: `a = ${aLatex}, b = ${bLatex}` });
+    steps.push({ latex: `\\text{Length of major axis:&nbsp;&nbsp;} ${_decimalToLatex(avalue.mul(2))}` });
+    steps.push({ latex: `\\text{Length of minor axis:&nbsp;&nbsp;} ${_decimalToLatex(bvalue.mul(2))}` });
     if (!c) {
         let csquare = (avalue.pow(2).sub(bvalue.pow(2)));
-        let aLatex = _decimalToLatex(avalue);
-        let bLatex = _decimalToLatex(bvalue);
         c = csquare.sqrt();
         let csquareLatex = _decimalToLatex(csquare);
         let cLatex = _decimalToLatex(c);
@@ -265,28 +283,28 @@ const ellipseSteps = (majorAxis, h, k, a, b, c, otherEquations = []) => {
     const covertices = [];
     const foci = [];
     if (majorAxis === MAJOR_AXIS_HORIZONTAL) {
-        vertices.push({ x: hvalue.sub(avalue), y: kvalue });
-        vertices.push({ x: hvalue.add(avalue), y: kvalue });
-        covertices.push({ x: hvalue, y: kvalue.add(bvalue) });
-        covertices.push({ x: hvalue, y: kvalue.sub(bvalue) });
-        foci.push({ x: hvalue.sub(cvalue), y: kvalue });
-        foci.push({ x: hvalue.add(cvalue), y: kvalue });
+        vertices.push([{ x: 'h-a', y: 'k' }, { x: hvalue.sub(avalue), y: kvalue }]);
+        vertices.push([{x:'h+a', y:'k'},{ x: hvalue.add(avalue), y: kvalue }]);
+        covertices.push([{x:'h', y:'k+b'},{ x: hvalue, y: kvalue.add(bvalue) }]);
+        covertices.push([{x:'h', y:'k-b'},{ x: hvalue, y: kvalue.sub(bvalue) }]);
+        foci.push([{x:'h-c', y:'k'},{ x: hvalue.sub(cvalue), y: kvalue }]);
+        foci.push([{x:'h+c', y:'k'},{ x: hvalue.add(cvalue), y: kvalue }]);
     } else {
-        vertices.push({ x: hvalue, y: kvalue.add(avalue) });
-        vertices.push({ x: hvalue, y: kvalue.sub(avalue) });
-        covertices.push({ x: hvalue.sub(bvalue), y: kvalue });
-        covertices.push({ x: hvalue.add(bvalue), y: kvalue });
-        foci.push({ x: hvalue, y: kvalue.add(cvalue) });
-        foci.push({ x: hvalue, y: kvalue.sub(cvalue) });
+        vertices.push([{x:'h', y:'k+a'},{ x: hvalue, y: kvalue.add(avalue) }]);
+        vertices.push([{x:'h', y:'k-a'},{ x: hvalue, y: kvalue.sub(avalue) }]);
+        covertices.push([{x:'h-b', y:'k'},{ x: hvalue.sub(bvalue), y: kvalue }]);
+        covertices.push([{x:'h+b', y:'k'},{ x: hvalue.add(bvalue), y: kvalue }]);
+        foci.push([{x:'h', y:'k+c'},{ x: hvalue, y: kvalue.add(cvalue) }]);
+        foci.push([{x:'h', y:'k-c'},{ x: hvalue, y: kvalue.sub(cvalue) }]);
     }
     steps.push('Center:');
-    steps.push({ latex: _pointToLatex(center) });
+    steps.push({ latex: _p2l([{x:'h', y:'k'},center]) });
     steps.push(`Vertices:`);
-    steps.push(...vertices.map(v => ({ latex: _pointToLatex(v) })));
+    steps.push(...vertices.map(v => ({ latex: _p2l(v) })));
     steps.push(`Covertices:`);
-    steps.push(...covertices.map(v => ({ latex: _pointToLatex(v) })));
+    steps.push(...covertices.map(v => ({ latex: _p2l(v) })));
     steps.push(`Foci:`);
-    steps.push(...foci.map(v => ({ latex: _pointToLatex(v) })));
+    steps.push(...foci.map(v => ({ latex: _p2l(v) })));
 
     const allPoints = [center, ...vertices, ...covertices, ...foci];
 
@@ -313,4 +331,37 @@ const ellipseSteps = (majorAxis, h, k, a, b, c, otherEquations = []) => {
     })
     return steps;
     return steps;
+}
+
+const ellipseFromEquation = (o, equation) => {
+    console.log(`find ellipse parameters from equation: ${equation}`);
+    const url = '/api/ellipseEquation';
+    const data = { equation };
+    const success = response => {
+        const steps = [];
+        //console.log(`response: ${JSON.stringify(response, null, 2)}`);
+        var resObj = response;
+        try {
+            resObj = JSON.parse(response);
+        } catch (err) {
+            console.error(err);
+        }
+        //_htmlElement('pre', o, JSON.stringify(resObj, null, 2));
+        console.log(`response returned from server: %o`, resObj);
+        if (Array.isArray(resObj.steps)) {
+            steps.push(...resObj.steps);
+        }
+        if (resObj.ellipseParameters) {
+            let { majorAxis, h, k, a, b, c } = resObj.ellipseParameters;
+            steps.push(...ellipseSteps(majorAxis, h, k, a, b, c, [equation]));
+        }
+        _showComputationSteps(o, steps);
+    }
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: success,
+        error: ajaxErrorFunction(o)
+    });
 }

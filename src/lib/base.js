@@ -121,6 +121,22 @@ const evalArithmetic = t => {
             return numTerm0;
         }
     }
+    if (_M('fraction(product(...A), Q#)', t, _v)) {
+        let [numTerm0, ...restProductTerms] = _v.A.operands;
+        if (numTerm0.isNumTerm) {
+            let qvalue = _v['Q#'].value.div(numTerm0.value);
+            let pterm = new Terms.Product(restProductTerms);
+            return new Terms.Fraction([pterm, Terms.Term.numTerm(qvalue)]);
+        }
+    }
+    if (_M('product(F#, fraction(D, Q#))', t, _v)) {
+        console.log(`matched product of fraction...${t}`);
+        let fvalue = _v['F#'].value;
+        let qvalue = _v['Q#'].value.div(fvalue);
+        const res = new Terms.Fraction([_v.D, Terms.Term.numTerm(qvalue)]);
+        logTerm('product of fraction simplified: ', res);
+        return res;
+    }
     if ((t instanceof Terms.Sum)) {
         return applyArithmetics(t, (a, b) => a.add(b), _d(0));
     }
@@ -141,10 +157,26 @@ const evalArithmetic = t => {
     return t;
 };
 
-const basicEval = t => {
+const identityTransform = t => t;
+
+const fractionsToProducts = t => {
+    const _v = {};
+    if (_M('fraction(N, D#)', t, _v)) {
+        let quotient = _v['D#'].value;
+        let factor = _d(1).div(quotient);
+        let factorTerm = Terms.Term.numTerm(factor);
+        let productTerm = new Terms.Product([factorTerm, _v.N]);
+        return productTerm;
+    }
+    return t;
+}
+
+const basicEval = (t, options = {}) => {
+    fractionToProductsFunction = options.fractionsToProducts ? fractionsToProducts : identityTransform;
     return t
         .clone()
         ._(flattenOperands)
+        ._(fractionToProductsFunction)
         ._(evalArithmetic)
         ._(sortProductTerms);
 }
@@ -237,7 +269,8 @@ const _completeTheSquare = (term, x) => {
     const squaredTerm = xsquareFactorTerm(_T(termString));
     const newTerm = (restTerms.length === 0) ? squaredTerm : new Terms.Sum([squaredTerm, ...restTerms]);
     const factorTimesStr = xsquareFactor == 1 ? '' : `${xsquareFactor}*`;
-    steps.push(`Completing the square for ${x} by adding ${factorTimesStr}${cvalueSquared}:`)
+    const resultString = xsquareFactor == 1 ? '' : ` = ${xsquareFactor.mul(cvalueSquared)}`
+    steps.push(`Completing the square for ${x} by adding ${factorTimesStr}${cvalueSquared}${resultString}:`)
     steps.push({ latex: `${completedTerm.latex} = ${squaredTerm.latex}`});
     return { 
         term: newTerm,

@@ -195,7 +195,7 @@ class Numeric {
                 return retValue(fraction(numerator, denominator));
             }
         }
-        {
+        if (!Numeric.doNotAttemptToCreateValueWithPi) {
             let { numerator, denominator, isRealFraction } = Numeric.findFractionWithPi(valx);
             if (isRealFraction) {
                 let numerator0 = new Product(numerator, PI);

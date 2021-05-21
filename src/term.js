@@ -514,6 +514,10 @@ class Term {
         return new Product([new Num(_d(-1)), t]);
     }
 
+    static numTerm(n) {
+        return new Num(_d(n));
+    }
+
 }
 
 class Rule extends Term {
