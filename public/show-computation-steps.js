@@ -1,43 +1,57 @@
 const _showComputationSteps = (o, steps, options = {}) => {
     steps.forEach(step => {
-        var text0, latex0, triangle, collapsibleSection0, desmos;
+        var text, latex, triangle, collapsibleSection, section, desmos;
         if (typeof step === 'string') {
-            text0 = step;
+            text = step;
         } else {
-            let { text, latex, drawTriangle, collapsibleSection } = step;
-            text0 = text;
-            latex0 = latex;
+            ({ text, latex, drawTriangle, collapsibleSection, section, desmos } = step);
+            //text0 = text;
+            //latex0 = latex;
             triangle = drawTriangle;
-            collapsibleSection0 = collapsibleSection;
-            desmos = step.desmos
+            //collapsibleSection0 = collapsibleSection;
         }
-        if (text0) {
-            _htmlElement('div', o, text0);
+        if (text) {
+            _htmlElement('div', o, text);
         }
-        if (latex0) {
-            addLatexElement(o, latex0);
+        if (latex) {
+            addLatexElement(o, latex);
         }
         if (triangle) {
             triangle.draw(_htmlElement('div', o));
         }
         if (desmos) {
-            let { equations, points, dashedLines } = desmos;
-            addDesmosGraph(o, equations, points, dashedLines);
+            let { equations, points, dashedLines, expressions } = desmos;
+            addDesmosGraph(o, equations, points, dashedLines, expressions);
         }
-        if (collapsibleSection0) {
-            let { steps, title } = collapsibleSection0;
+        if (section) {
+            let { steps, style, collapsible } = section;
+            if (collapsible) {
+                collapsibleSection = section;
+            } else {
+                let div = _htmlElement('div', o);
+                if (style) {
+                    elemStyle(div, style);
+                }
+                return _showComputationSteps(div, steps, options);
+            }
+        }
+        if (collapsibleSection) {
+            let { steps, title, style } = collapsibleSection;
             let cdiv = _collapsibleSection(o, title, {
                 noBorder: true,
                 initialStateCollapsed: true,
                 width: "100%"
             });
-            _showComputationSteps(cdiv, steps, options)
+            if (style) {
+                elemStyle(cdiv.parentElement, style);
+            }
+            return _showComputationSteps(cdiv, steps, options)
         }
     });
     return steps;
 }
 
-const addDesmosGraph = (outputElem, equations = [], points = [], dashedLines = []) => {
+const addDesmosGraph = (outputElem, equations = [], points = [], dashedLines = [], expressions) => {
     const div = document.createElement('div');
     outputElem.appendChild(div);
     const width = "1000px";
@@ -56,6 +70,11 @@ const addDesmosGraph = (outputElem, equations = [], points = [], dashedLines = [
         points.forEach(({ x, y }) => {
             calc.setExpression({ latex: `(${x}, ${y})`, showLabel: true });
         });
+    }
+    if (Array.isArray(expressions)) {
+        expressions.forEach(expr => {
+            calc.setExpression(expr);
+        })
     }
     return calc;
 }

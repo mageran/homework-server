@@ -306,7 +306,7 @@ const ellipseSteps = (majorAxis, h, k, a, b, c, otherEquations = []) => {
     steps.push(`Foci:`);
     steps.push(...foci.map(v => ({ latex: _p2l(v) })));
 
-    const allPoints = [center, ...vertices, ...covertices, ...foci];
+    const allPoints = [center, ...vertices.map(pl=>pl[1]), ...covertices.map(pl=>pl[1]), ...foci.map(pl=>pl[1])];
 
     const xdenominator = majorAxis === MAJOR_AXIS_HORIZONTAL ? _decimalToLatex(avalue.pow(2)) : _decimalToLatex(bvalue.pow(2));
     const ydenominator = majorAxis === MAJOR_AXIS_HORIZONTAL ? _decimalToLatex(bvalue.pow(2)) : _decimalToLatex(avalue.pow(2));
@@ -318,8 +318,9 @@ const ellipseSteps = (majorAxis, h, k, a, b, c, otherEquations = []) => {
     steps.push({ latex: equation });
 
     steps.push({
-        collapsibleSection: {
+        section: {
             title: "Ellipse Graph",
+            style: { position: 'absolute', top: 0, left: '500px' },
             steps: [{
                 desmos: {
                     equations: [...otherEquations, equation],

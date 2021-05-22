@@ -13,6 +13,10 @@ const HORIZONTAL_LEFT = 3;
 const MAJOR_AXIS_HORIZONTAL = 0;
 const MAJOR_AXIS_VERTICAL = 1;
 
+// hyperbola variants
+const TRANSVERSE_AXIS_PARALLEL_TO_X_AXIS = 0;
+const TRANSVERSE_AXIS_PARALLEL_TO_Y_AXIS = 1;
+
 const bringConstantTermsToRhs = term => {
     const _v = {};
     if (!_M('equation(Lhs, Rhs)', term, _v)) {
@@ -517,13 +521,16 @@ const checkEllipseEquation = equation => {
     if (!(xyHash.x && xyHash.y)) {
         throw `please use "x" and "y" in ellipse formula; found "${Object.keys(xyHash).join('" and "')}"`;
     }
+    if (xyHash.x.quotientValue.lessThanOrEqualTo(0) || xyHash.y.quotientValue.lessThanOrEqualTo(0)) {
+        throw `This isn't an ellipse equation, found a negative denominator`;
+    }
     const majorAxis = xyHash.x.quotientValue.gt(xyHash.y.quotientValue) ? MAJOR_AXIS_HORIZONTAL : MAJOR_AXIS_VERTICAL;
-    console.log(`xyHash.x.hkvalue: ${xyHash.x.hkvalue.constructor.name}`)
     const h = Number(xyHash.x.hkvalue.negated());
     const k = Number(xyHash.y.hkvalue.negated());
     const a = Number((xyHash.x.quotientValue.gt(xyHash.y.quotientValue) ? xyHash.x.quotientValue : xyHash.y.quotientValue).sqrt());
     const b = Number((xyHash.x.quotientValue.gt(xyHash.y.quotientValue) ? xyHash.y.quotientValue : xyHash.x.quotientValue).sqrt());
     const ellipseParameters = { majorAxis, h, k, a, b }
+    console.log(`ellipseParameters: %o`, ellipseParameters);
     return { steps, term: equation, isEllipseEquation, ellipseParameters };
 }
 
@@ -537,6 +544,7 @@ const checkEllispeEquationGeneralForm = equation => {
     if (xinfo.completedSquareDone) {
         steps.push(...xinfo.steps);
         logTerm('equation after completing the square for "x":', xinfo.term);
+        console.log(xinfo.term.latex);
         equation = xinfo.term;
         done = true;
     }
@@ -544,6 +552,7 @@ const checkEllispeEquationGeneralForm = equation => {
     if (yinfo.completedSquareDone) {
         steps.push(...yinfo.steps);
         logTerm('equation after completing the square for "y":', yinfo.term);
+        console.log(yinfo.term.latex);
         equation = yinfo.term;
         done = true;
     }

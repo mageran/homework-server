@@ -650,6 +650,12 @@ const conicsEllipseProblems = [
     { label: 'From Major Axis Direction, values for "a" and "b"', value: 'fromAxisAB' },
 ]
 
+const conicsHyperbolaProblems = [
+    { label: 'From Equation', value: 'fromEquation' },
+    //{ label: 'From Parameters (Vertices, Covertices, Center, Foci)', value: 'fromParameters' },
+    { label: 'From Transverse Axis Direction, values for center, "a" and "b"', value: 'fromCenterVariantAB' },
+]
+
 const _conicsCircle = {
     title: 'Conics: Circle',
     description: 'Problems regarding circle equations (x-h)^2 + (y-k)^2 = r^2',
@@ -727,7 +733,21 @@ const _conicsEllipse = {
     ]
 }
 
+const _conicsHyperbola = {
+    title: 'Conics Hyperbola',
+    description: 'Find hyperbola equation/parameters',
+    parameters: [
+        { name: 'Problem', type: 'select', options: [{ label: 'Select Problem', value: '' }, ...conicsHyperbolaProblems] },
+        { name: '', type: 'dynamic', hideButtons: true, func: createHyperbolaInputFields }
+    ],
+    func: conicsHyperbola,
+    testValues: [
+        { values: ['fromCenterVariantAB', TRANSVERSE_AXIS_PARALLEL_TO_X_AXIS, '0', '0', '4', '5'], label: 'Ex1' },
+    ]
+}
+
 const topicObjects = [
+    _conicsHyperbola,
     _conicsEllipse,
     _conicsParabola,
     _conicsCircle,

@@ -123,8 +123,9 @@ const getStepsForCircleGraph = ({ h, k, r, rSquare }, originalEquation, morePoin
     const equations = originalEquation ? [originalEquation, derivedEquation] : [derivedEquation];
     const points = [{ x: hx, y: kx }, ...morePoints]
     steps.push({
-        collapsibleSection: {
+        section: {
             title: "Graph",
+            style: { position: 'absolute', top: 0, left: '500px' },
             steps: [{ desmos: { equations, points } }]
         }
     })

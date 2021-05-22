@@ -129,6 +129,19 @@ function conicsParabola(problemClass, ...args) {
  * 
  */
 const parabolaSteps = (pvariant, h, k, a, otherEquations = []) => {
+    const _p2l = points => {
+        if (!points) return '';
+        if (!Array.isArray(points)) {
+            points = [points];
+        }
+        return points.map(p => {
+            const { x, y } = p;
+            if ((x instanceof Decimalx) && (y instanceof Decimalx)) {
+                return _pointToLatex(p)
+            }
+            return `(${x}, ${y})`;
+        }).join(' = ');
+    }
     const steps = [];
     const _dl = _decimalToLatex;
     const hvalue = _d(h);
@@ -139,66 +152,75 @@ const parabolaSteps = (pvariant, h, k, a, otherEquations = []) => {
     const minush = hvalue.negated();
     const minusk = kvalue.negated();
     const vertex = { x: _dl(hvalue), y: _dl(kvalue) };
-    var equation, focus, directrix, lrs;
+    var equation, focus, directrix, directrixEquation, lrs;
     if (pvariant === VERTICAL_UP) {
         equation = `(x ${_valueAsSummandLatex(minush)})^2 = ${_dl(a4)}(y ${_valueAsSummandLatex(minusk)})`;
-        focus = { x: _dl(hvalue), y: _dl(kvalue.add(avalue)) };
-        directrix = `y = ${_dl(kvalue.sub(avalue))}`;
+        focus = [{ x:'h', y:'k+a' }, { x: _dl(hvalue), y: _dl(kvalue.add(avalue)) }];
+        directrix = `y = k - a = ${_dl(kvalue.sub(avalue))}`;
+        directrixEquation = `y = ${_dl(kvalue.sub(avalue))}`;
         lrs = [
-            { x: _dl(hvalue.sub(a2)), y: _dl(kvalue.add(avalue)) },
-            { x: _dl(hvalue.add(a2)), y: _dl(kvalue.add(avalue)) },
+            [{ x:'h-2a', y:'k+a' }, { x: _dl(hvalue.sub(a2)), y: _dl(kvalue.add(avalue)) }],
+            [{ x:'h+2a', y:'k+a' }, { x: _dl(hvalue.add(a2)), y: _dl(kvalue.add(avalue)) }],
         ]
     }
     else if (pvariant === VERTICAL_DOWN) {
         equation = `(x ${_valueAsSummandLatex(minush)})^2 = -${_dl(a4)}(y ${_valueAsSummandLatex(minusk)})`;
-        focus = { x: _dl(hvalue), y: _dl(kvalue.sub(avalue)) };
-        directrix = `y = ${_dl(kvalue.add(avalue))}`;
+        focus = [{ x:'h', y:'k-a' }, { x: _dl(hvalue), y: _dl(kvalue.sub(avalue)) }];
+        directrix = `y = k + a = ${_dl(kvalue.add(avalue))}`;
+        directrixEquation = `y = ${_dl(kvalue.add(avalue))}`;
         lrs = [
-            { x: _dl(hvalue.sub(a2)), y: _dl(kvalue.sub(avalue)) },
-            { x: _dl(hvalue.add(a2)), y: _dl(kvalue.sub(avalue)) },
+            [{ x:'h - 2a', y:'k-a' }, { x: _dl(hvalue.sub(a2)), y: _dl(kvalue.sub(avalue)) }],
+            [{ x:'h+2a', y:'k-a' }, { x: _dl(hvalue.add(a2)), y: _dl(kvalue.sub(avalue)) }],
         ]
     }
     else if (pvariant === HORIZONTAL_RIGHT) {
         equation = `(y ${_valueAsSummandLatex(minusk)})^2 = ${_dl(a4)}(x ${_valueAsSummandLatex(minush)})`;
-        focus = { x: _dl(hvalue.add(avalue)), y: _dl(kvalue) };
-        directrix = `x = ${_dl(hvalue.sub(avalue))}`;
+        focus = [{ x:'h+a', y:'k' }, { x: _dl(hvalue.add(avalue)), y: _dl(kvalue) }];
+        directrix = `x = h - a = ${_dl(hvalue.sub(avalue))}`;
+        directrixEquation = `x = ${_dl(hvalue.sub(avalue))}`;
         lrs = [
-            { x: _dl(hvalue.add(avalue)), y: _dl(kvalue.sub(a2)) },
-            { x: _dl(hvalue.add(avalue)), y: _dl(kvalue.add(a2)) },
+            [{ x:'h+a', y:'k-2a' }, { x: _dl(hvalue.add(avalue)), y: _dl(kvalue.sub(a2)) }],
+            [{ x:'h+a', y:'k+2a' }, { x: _dl(hvalue.add(avalue)), y: _dl(kvalue.add(a2)) }],
         ]
     }
     else if (pvariant === HORIZONTAL_LEFT) {
         equation = `(y ${_valueAsSummandLatex(minusk)})^2 = -${_dl(a4)}(x ${_valueAsSummandLatex(minush)})`;
-        focus = { x: _dl(hvalue.sub(avalue)), y: _dl(kvalue) };
-        directrix = `x = ${_dl(hvalue.add(avalue))}`;
+        focus = [{ x:'h-a', y:'k' }, { x: _dl(hvalue.sub(avalue)), y: _dl(kvalue) }];
+        directrix = `x = h + a = ${_dl(hvalue.add(avalue))}`;
+        directrixEquation = `x = ${_dl(hvalue.add(avalue))}`;
         lrs = [
-            { x: _dl(hvalue.sub(avalue)), y: _dl(kvalue.sub(a2)) },
-            { x: _dl(hvalue.sub(avalue)), y: _dl(kvalue.add(a2)) },
+            [{ x:'h-a', y:'k-2a' }, { x: _dl(hvalue.sub(avalue)), y: _dl(kvalue.sub(a2)) }],
+            [{ x:'h-a', y:'k+2a' }, { x: _dl(hvalue.sub(avalue)), y: _dl(kvalue.add(a2)) }],
         ]
     }
     var latex = equation;
     steps.push({ latex });
-    latex = `\\text{<b>Vertex:</b>&nbsp;} \\left(${vertex.x},${vertex.y}\\right)`;
+    latex = `\\text{<b>Vertex:</b>&nbsp;} (h,k) = \\left(${vertex.x},${vertex.y}\\right)`;
     steps.push({ latex });
     latex = `a = ${_decimalToLatex(avalue)}`;
     steps.push({ latex });
-    latex = `\\text{<b>Focus:</b>&nbsp;} \\left(${focus.x},${focus.y}\\right)`;
+    //latex = `\\text{<b>Focus:</b>&nbsp;} \\left(${focus.x},${focus.y}\\right)`;
+    latex = `\\text{<b>Focus:</b>&nbsp;} ${_p2l(focus)}`;
     steps.push({ latex });
     latex = `\\text{<b>Directrix:</b>&nbsp;} ${directrix}`;
     steps.push({ latex });
-    latex = '\\text{<b>Latus rectum endpoints:</b>&nbsp;} '
-    latex += lrs.map(p => `(${p.x}, ${p.y})`).join(",");
+    //latex += lrs.map(p => `(${p.x}, ${p.y})`).join(",");
+    steps.push('<b>Latus rectum endpoints:</b>');
+    latex = _p2l(lrs[0]);
+    steps.push({ latex });
+    latex = _p2l(lrs[1]);
     steps.push({ latex });
     latex = `\\text{<b>Length of Latus rectum:</b>&nbsp;' ${_dl(a4)}`;
     steps.push({ latex });
     steps.push({
-        collapsibleSection: {
+        section: {
             title: "Graph",
+            style: { position: 'absolute', top: 0, left: '400px' },
             steps: [{
                 desmos: {
                     equations: [...otherEquations,equation],
-                    points: [vertex, focus, ...lrs],
-                    dashedLines: [directrix]
+                    points: [vertex, focus[1], ...lrs.map(pl => pl[1])],
+                    dashedLines: [directrixEquation]
                 }
             }]
         }

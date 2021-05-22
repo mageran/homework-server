@@ -20,6 +20,10 @@ body {
     font-size: 14pt;
 }
 
+#topic-output {
+    position: relative;
+}
+
 input {
     padding: 3px;
 }

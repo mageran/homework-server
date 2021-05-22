@@ -395,15 +395,34 @@ const populate = tobj => {
         button.value = 'Clear Input Fields';
         button.style.marginLeft = "500px";
         button.addEventListener('click', () => {
-            inputElements.map(inpElem => {
-                if (inpElem.mathField) {
-                    inpElem.mathField.latex('');
-                }
-                else {
-                    inpElem.value = inpElem.initialValue ? inpElem.initialValue : '';
-                }
-                inpElem.style.background = "white";
-            });
+            const clearInputElements = inpElems => {
+                inpElems.map(inpElem => {
+                    console.log(`clearing input element %o`, inpElem);
+                    if (inpElem.mathField) {
+                        inpElem.mathField.latex('');
+                    }
+                    else if (inpElem.tagName && inpElem.tagName.toUpperCase() === 'SELECT') {
+                        /*
+                        let firstOption = inpElem.children[0];
+                        if (firstOption) {
+                            firstOption.selected = true;
+                            let event = new Event('change', { bubbles: true });
+                            inpElem.dispatchEvent(event);
+                        }
+                        */
+                    }
+                    else if (inpElem.inputElements) {
+                        clearInputElements(inpElem.inputElements);
+                    }
+                    else {
+                        inpElem.value = inpElem.initialValue ? inpElem.initialValue : '';
+                    }
+                    try {
+                        inpElem.style.background = "white";
+                    } catch (err) { }
+                });
+            };
+            clearInputElements(inputElements);
         });
     }
     if (tobj.testValues && parametersExist) {
