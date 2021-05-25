@@ -14,8 +14,8 @@ const MAJOR_AXIS_HORIZONTAL = 0;
 const MAJOR_AXIS_VERTICAL = 1;
 
 // hyperbola variants
-const TRANSVERSE_AXIS_PARALLEL_TO_X_AXIS = 0;
-const TRANSVERSE_AXIS_PARALLEL_TO_Y_AXIS = 1;
+const TRANSVERSE_AXIS_PARALLEL_TO_X_AXIS = MAJOR_AXIS_HORIZONTAL;
+const TRANSVERSE_AXIS_PARALLEL_TO_Y_AXIS = MAJOR_AXIS_VERTICAL;
 
 const bringConstantTermsToRhs = term => {
     const _v = {};
@@ -455,7 +455,7 @@ const parabolaEquation = term => {
     return { steps, parabolaParameters }
 }
 
-const checkEllipseEquation = equation => {
+const checkEllipseEquation = (equation, isHyperbola = false) => {
     const _getXYHK = (t, xyHash) => {
         const _v = {};
         var xyterm;
@@ -478,7 +478,7 @@ const checkEllipseEquation = equation => {
         throw `checkParabolaEquation must be called on an equation, not ${equation.getTermString()}`;
     }
     const steps = [];
-    var isEllipseEquation = true;
+    var isValidEquation = true;
     const [steps0, term0] = bringConstantTermsToRhs(equation);
     steps.push(...steps0);
     equation = term0;
@@ -511,7 +511,7 @@ const checkEllipseEquation = equation => {
             xy = _getXYHK(_v.XTerm, xyHash);
         }
         else {
-            isEllipseEquation = false;
+            isValidEquation = false;
             throw `This isn't an ellipse equation, found unrecognized term "${t}"`;
         }
         xyHash[xy].quotientValue = quotientValue;
@@ -521,17 +521,27 @@ const checkEllipseEquation = equation => {
     if (!(xyHash.x && xyHash.y)) {
         throw `please use "x" and "y" in ellipse formula; found "${Object.keys(xyHash).join('" and "')}"`;
     }
-    if (xyHash.x.quotientValue.lessThanOrEqualTo(0) || xyHash.y.quotientValue.lessThanOrEqualTo(0)) {
-        throw `This isn't an ellipse equation, found a negative denominator`;
+    if (isHyperbola) {
+        // hyperbola:
+        let xquotientIsNegative = xyHash.x.quotientValue.lessThanOrEqualTo(0);
+        let yquotientIsNegative = xyHash.y.quotientValue.lessThanOrEqualTo(0);
+        if ((xquotientIsNegative && yquotientIsNegative) || (!xquotientIsNegative && !yquotientIsNegative)) {
+            throw `This is not a hyperbola equation; term containing "x" and "y" can't both be positive or both be negative.`
+        }
+    } else {
+        // ellipse:
+        if (xyHash.x.quotientValue.lessThanOrEqualTo(0) || xyHash.y.quotientValue.lessThanOrEqualTo(0)) {
+            throw `This isn't an ellipse equation, found a negative denominator`;
+        }
     }
     const majorAxis = xyHash.x.quotientValue.gt(xyHash.y.quotientValue) ? MAJOR_AXIS_HORIZONTAL : MAJOR_AXIS_VERTICAL;
     const h = Number(xyHash.x.hkvalue.negated());
     const k = Number(xyHash.y.hkvalue.negated());
-    const a = Number((xyHash.x.quotientValue.gt(xyHash.y.quotientValue) ? xyHash.x.quotientValue : xyHash.y.quotientValue).sqrt());
-    const b = Number((xyHash.x.quotientValue.gt(xyHash.y.quotientValue) ? xyHash.y.quotientValue : xyHash.x.quotientValue).sqrt());
-    const ellipseParameters = { majorAxis, h, k, a, b }
-    console.log(`ellipseParameters: %o`, ellipseParameters);
-    return { steps, term: equation, isEllipseEquation, ellipseParameters };
+    const a = Number((xyHash.x.quotientValue.gt(xyHash.y.quotientValue) ? xyHash.x.quotientValue : xyHash.y.quotientValue).abs().sqrt());
+    const b = Number((xyHash.x.quotientValue.gt(xyHash.y.quotientValue) ? xyHash.y.quotientValue : xyHash.x.quotientValue).abs().sqrt());
+    const parameters = { majorAxis, h, k, a, b }
+    console.log(`parameters: %o`, parameters);
+    return { steps, term: equation, isValidEquation, parameters };
 }
 
 const checkEllispeEquationGeneralForm = equation => {
@@ -559,29 +569,43 @@ const checkEllispeEquationGeneralForm = equation => {
     return { steps, done, term: equation };
 }
 
-const ellipseEquation = term => {
+const ellipseEquation = (term, isHyperbola = false) => {
     const steps = [];
-    var ellipseParameters = null;
+    var parameters = null;
     const cterm = basicEval(term, { fractionsToProducts: false });
     steps.push({ text: `input term:`, latex: term.latex })
     steps.push({ text: `input term simplified:`, latex: cterm.latex });
     var ellipseEquation = cterm;
-    var info = checkEllispeEquationGeneralForm(ellipseEquation);
+    var info = checkEllispeEquationGeneralForm(ellipseEquation, isHyperbola);
     if (info.steps) steps.push(...info.steps);
     if (info.done) {
         ellipseEquation = info.term;
     }
-    info = checkEllipseEquation(ellipseEquation);
+    info = checkEllipseEquation(ellipseEquation, isHyperbola);
     if (info.steps) steps.push(...info.steps);
-    if (info.isEllipseEquation) {
-        ({ ellipseParameters } = info);
+    if (info.isValidEquation) {
+        ({ parameters } = info);
     }
-    //ellipseParameters = { h: -4, k: -2, a: 7, b: 5, majorAxis: MAJOR_AXIS_VERTICAL }
-    return { steps, ellipseParameters };
+    return { steps, parameters };
+}
+
+// ------------------------------ Hyperbola -------------------------------------
+
+const checkHyperbolaEquationGeneralForm = equation => {
+    return checkEllispeEquationGeneralForm(equation)
+}
+
+const checkHyperbolaEquation = equation => {
+    return checkEllipseEquation(equation, true);
+}
+
+const hyperbolaEquation = term => {
+    return ellipseEquation(term, true);
 }
 
 module.exports = {
     circleEquation,
     parabolaEquation,
-    ellipseEquation
+    ellipseEquation,
+    hyperbolaEquation
 }

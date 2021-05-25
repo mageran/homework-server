@@ -7,7 +7,9 @@ function createHyperbolaInputFields(problemClass) {
     if (problemClass === 'fromEquation') {
         return [{ name: 'Hyperbola Equation', type: 'formula', cssClass: 'width500' }];
     }
-    else if (problemClass === 'fromCenterVariantAB') {
+    else if (problemClass === 'fromParameters') {
+        return getEllipseHyperbolaFromParametersInputFields(true);
+    } else if (problemClass === 'fromCenterVariantAB') {
         return [
             {
                 name: _fwl('Transverse Axix parallel to', 250),
@@ -32,15 +34,16 @@ function createHyperbolaInputFields(problemClass) {
 function conicsHyperbola(problemClass, ...args) {
     const o = this;
     elemStyle(o, { fontSize: '16pt' });
+    const fromParameters = _fromParametersForEllipseAndHyperbola(true);
     try {
         Numeric.doNotAttemptToCreateValueWithPi = true;
         const steps = [];
         if (problemClass === 'fromEquation') {
             hyperbolaFromEquation(o, ...args);
         }
-        //else if (problemClass === 'fromParameters') {
-        //    steps.push(...fromParameters(...args));
-        //}
+        else if (problemClass === 'fromParameters') {
+            steps.push(...fromParameters(...args));
+        }
         else if (problemClass === 'fromCenterVariantAB') {
             steps.push(...hyperbolaSteps(...args));
         }
@@ -49,6 +52,40 @@ function conicsHyperbola(problemClass, ...args) {
         _addErrorElement(o, JSON.stringify(err, null, 2));
         throw err
     }
+}
+
+const hyperbolaFromEquation = (o, equation) => {
+    console.log(`find hyperbola parameters from equation: ${equation}`);
+    const url = '/api/hyperbolaEquation';
+    const data = { equation };
+    const success = response => {
+        const steps = [];
+        //console.log(`response: ${JSON.stringify(response, null, 2)}`);
+        var resObj = response;
+        try {
+            resObj = JSON.parse(response);
+        } catch (err) {
+            console.error(err);
+        }
+        //_htmlElement('pre', o, JSON.stringify(resObj, null, 2));
+        console.log(`response returned from server: %o`, resObj);
+        if (Array.isArray(resObj.steps)) {
+            steps.push(...resObj.steps);
+        }
+        if (resObj.parameters) {
+            let { majorAxis, h, k, a, b, c } = resObj.parameters;
+            steps.push(...hyperbolaSteps(majorAxis, h, k, a, b, c, [equation]));
+        }
+        _showComputationSteps(o, steps);
+    }
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: success,
+        error: ajaxErrorFunction(o)
+    });
+
 }
 
 const hyperbolaSteps = (transverseAxis, h, k, a, b, c, otherEquations = []) => {
@@ -72,7 +109,10 @@ const hyperbolaSteps = (transverseAxis, h, k, a, b, c, otherEquations = []) => {
     const bvalue = _d(b);
     const aLatex = _decimalToLatex(avalue);
     const bLatex = _decimalToLatex(bvalue);
-    steps.push({ latex: `a = ${aLatex}, b = ${bLatex}` });
+    steps.push({ latex: `a = ${aLatex}` });
+    steps.push({ latex: `b = ${bLatex}` });
+    steps.push(`Transverse Axis is parallel to ${transverseAxis === TRANSVERSE_AXIS_PARALLEL_TO_X_AXIS ? 'x' : 'y'}-axis`);
+    steps.push(`Conjugate Axis is parallel to ${transverseAxis === TRANSVERSE_AXIS_PARALLEL_TO_X_AXIS ? 'y' : 'x'}-axis`);
     steps.push({ latex: `\\text{Transverse Axis Length:&nbsp;&nbsp;} ${_decimalToLatex(avalue.mul(2))}` });
     steps.push({ latex: `\\text{Conjugate Axis length:&nbsp;&nbsp;} ${_decimalToLatex(bvalue.mul(2))}` });
     if (!c) {
@@ -140,15 +180,15 @@ const hyperbolaSteps = (transverseAxis, h, k, a, b, c, otherEquations = []) => {
     const asymptotes = transverseAxis === TRANSVERSE_AXIS_PARALLEL_TO_X_AXIS
         ? [
             'y - k = \\plusminus \\frac{b}{a}(x - h)',
-            `y - ${_decimalToLatex(kvalue)} = \\plusminus \\frac{${_decimalToLatex(bvalue)}}{${_decimalToLatex(avalue)}}(x - ${_decimalToLatex(hvalue)})`,
-            `y - ${_decimalToLatex(kvalue)} = \\frac{${_decimalToLatex(bvalue)}}{${_decimalToLatex(avalue)}}(x - ${_decimalToLatex(hvalue)})`,
-            `y - ${_decimalToLatex(kvalue)} = - \\frac{${_decimalToLatex(bvalue)}}{${_decimalToLatex(avalue)}}(x - ${_decimalToLatex(hvalue)})`
+            `y - (${_decimalToLatex(kvalue)}) = \\plusminus \\frac{${_decimalToLatex(bvalue)}}{${_decimalToLatex(avalue)}}(x - ${_decimalToLatex(hvalue)})`,
+            `y - (${_decimalToLatex(kvalue)}) = \\frac{${_decimalToLatex(bvalue)}}{${_decimalToLatex(avalue)}}(x - ${_decimalToLatex(hvalue)})`,
+            `y - (${_decimalToLatex(kvalue)}) = - \\frac{${_decimalToLatex(bvalue)}}{${_decimalToLatex(avalue)}}(x - ${_decimalToLatex(hvalue)})`
         ]
         : [
-            'y - k = \\plusminus \\frac{a}{b}(x - h)'
-            `y - ${_decimalToLatex(kvalue)} = \\plusminus \\frac{${_decimalToLatex(avalue)}}{${_decimalToLatex(bvalue)}}(x - ${_decimalToLatex(hvalue)})`,
-            `y - ${_decimalToLatex(kvalue)} = \\frac{${_decimalToLatex(avalue)}}{${_decimalToLatex(bvalue)}}(x - ${_decimalToLatex(hvalue)})`,
-            `y - ${_decimalToLatex(kvalue)} = - \\frac{${_decimalToLatex(avalue)}}{${_decimalToLatex(bvalue)}}(x - ${_decimalToLatex(hvalue)})`
+            'y - k = \\plusminus \\frac{a}{b}(x - h)',
+            `y - (${_decimalToLatex(kvalue)}) = \\plusminus \\frac{${_decimalToLatex(avalue)}}{${_decimalToLatex(bvalue)}}(x - ${_decimalToLatex(hvalue)})`,
+            `y - (${_decimalToLatex(kvalue)}) = \\frac{${_decimalToLatex(avalue)}}{${_decimalToLatex(bvalue)}}(x - ${_decimalToLatex(hvalue)})`,
+            `y - (${_decimalToLatex(kvalue)}) = - \\frac{${_decimalToLatex(avalue)}}{${_decimalToLatex(bvalue)}}(x - ${_decimalToLatex(hvalue)})`
         ]
 
     steps.push('Assymptotes:');
@@ -179,7 +219,7 @@ const hyperbolaSteps = (transverseAxis, h, k, a, b, c, otherEquations = []) => {
     steps.push({
         section: {
             title: "Hyperbola Graph",
-            style: { position: 'absolute', top: 0, left: '400px' },
+            style: { position: 'absolute', top: 0, left: '600px' },
             steps: [{
                 desmos: {
                     equations: [...otherEquations, equation],
@@ -189,7 +229,8 @@ const hyperbolaSteps = (transverseAxis, h, k, a, b, c, otherEquations = []) => {
                         { latex: rectPoints, lines: true, lineStyle: 'DASHED' },
                         { latex: asymptotes[2], lineStyle: 'DASHED' },
                         { latex: asymptotes[3], lineStyle: 'DASHED' },
-                    ]
+                    ],
+                    height: '800px'
                 }
             }]
         }

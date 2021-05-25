@@ -126,7 +126,8 @@ const getStepsForCircleGraph = ({ h, k, r, rSquare }, originalEquation, morePoin
         section: {
             title: "Graph",
             style: { position: 'absolute', top: 0, left: '500px' },
-            steps: [{ desmos: { equations, points } }]
+            steps: [{ desmos: { equations, points } }],
+            height: '800px'
         }
     })
     return steps;

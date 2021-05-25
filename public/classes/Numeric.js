@@ -136,7 +136,7 @@ class Numeric {
             //return res0;
             candidates.push(shallowCopy(res0));
         }
-        console.log(`findFractionWithSquareRoot(${num})...`);
+        //console.log(`findFractionWithSquareRoot(${num})...`);
         for(let smd = -100; smd <= 100; smd++) {
             if (smd === 0) continue;
             let summand = smd;
@@ -209,7 +209,7 @@ class Numeric {
         }
         {
             let findFractionWithSquareRootResult = Numeric.findFractionWithSquareRoot(valx);
-            console.log(JSON.stringify(findFractionWithSquareRootResult, null, 2));
+            //console.log(JSON.stringify(findFractionWithSquareRootResult, null, 2));
             let { numeratorRadicand, denominator, sign, isRealFraction, constant, summand, operation } = findFractionWithSquareRootResult;
             if (isRealFraction) {
                 let numerator = sqrt(numeratorRadicand, sign);

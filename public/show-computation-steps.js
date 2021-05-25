@@ -20,8 +20,9 @@ const _showComputationSteps = (o, steps, options = {}) => {
             triangle.draw(_htmlElement('div', o));
         }
         if (desmos) {
-            let { equations, points, dashedLines, expressions } = desmos;
-            addDesmosGraph(o, equations, points, dashedLines, expressions);
+            let { equations, points, dashedLines, expressions, width, height } = desmos;
+            let displayOptions = { width, height };
+            addDesmosGraph(o, equations, points, dashedLines, expressions, displayOptions);
         }
         if (section) {
             let { steps, style, collapsible } = section;
@@ -51,11 +52,12 @@ const _showComputationSteps = (o, steps, options = {}) => {
     return steps;
 }
 
-const addDesmosGraph = (outputElem, equations = [], points = [], dashedLines = [], expressions) => {
+const addDesmosGraph = (outputElem, equations = [], points = [], dashedLines = [], expressions, displayOptions = {}) => {
     const div = document.createElement('div');
     outputElem.appendChild(div);
-    const width = "1000px";
-    const calc = appendGraphingCalculator(div, { width });
+    const width = displayOptions.width || "1000px";
+    const height = displayOptions.height;
+    const calc = appendGraphingCalculator(div, { width, height });
     const eqs = Array.isArray(equations) ? equations : [equations];
     eqs.forEach(eq => {
         calc.setExpression({ latex: eq });

@@ -122,9 +122,9 @@ const evalArithmetic = t => {
         }
     }
     if (_M('fraction(product(...A), Q#)', t, _v)) {
-        let [numTerm0, ...restProductTerms] = _v.A.operands;
-        if (numTerm0.isNumTerm) {
-            let qvalue = _v['Q#'].value.div(numTerm0.value);
+        let [numTerm, ...restProductTerms] = _v.A.operands;
+        if (numTerm.isNumTerm) {
+            let qvalue = _v['Q#'].value.div(numTerm.value);
             let pterm = new Terms.Product(restProductTerms);
             return new Terms.Fraction([pterm, Terms.Term.numTerm(qvalue)]);
         }
@@ -135,6 +135,15 @@ const evalArithmetic = t => {
         let qvalue = _v['Q#'].value.div(fvalue);
         const res = new Terms.Fraction([_v.D, Terms.Term.numTerm(qvalue)]);
         logTerm('product of fraction simplified: ', res);
+        return res;
+    }
+    if (_M('fraction(fraction(D,Q1#),Q2#)', t, _v)) {
+        let q1value = _v['Q1#'].value;
+        let q2value = _v['Q2#'].value;
+        console.log(`found double fraction ${q1value}, ${q2value}`);
+        let qvalue = q1value.mul(q2value);
+        let qterm = new Terms.Num(qvalue);
+        let res = new Terms.Fraction([_v.D, qterm]);
         return res;
     }
     if ((t instanceof Terms.Sum)) {

@@ -652,6 +652,7 @@ class Sum extends Term {
         const l = this.operands.reduce((s, t, index) => {
             var sym = index === 0 ? '' : ' + ';
             var lx = t.latex;
+            //console.log(`in Sum.latex: lx=${lx}`);
             if (lx.match(/^\s*\-/)) {
                 sym = '';
                 //lx = `(${lx})`;
@@ -748,13 +749,18 @@ class Product extends Term {
     }
 
     get latex() {
-        const l = this.operands.reduce((s, t) => {
+        const l = this.operands.reduce((s, t, currentIndex, array) => {
             var sym = ' ';
-            var lx = t.latex;
-            if (lx.match(/^\-/)) {
-                //lx = `(${lx})`;
+            var lx = t.latex.trim();
+            const isAtLastOperand = currentIndex === array.length - 1;
+            //console.log(`lx=${lx}`);
+            if (lx === '-1' && !isAtLastOperand) {
+                lx = '-';
             }
-            if (s.match(/[0-9]$/) && lx.match(/^[0-9]/)) {
+            else if (lx.match(/^\-/)) {
+                lx = `(${lx})`;
+            }
+            if (s.match(/[0-9]$/) && lx.match(/^-?[0-9]/)) {
                 sym = ' \\cdot '
             }
             return s + sym + lx;
@@ -932,9 +938,23 @@ class Fraction extends Term {
     }
 
     get latex() {
-        const l1 = this.numerator.latex;
-        const l2 = this.denominator.latex;
-        return `\\frac{${l1}}{${l2}}`
+        var l1 = this.numerator.latex.trim();
+        var l2 = this.denominator.latex.trim();
+
+        const l1IsNegative = l1[0] === '-';
+        const l2IsNegative = l2[0] === '-';
+
+        var sign = '';
+        if (l1IsNegative && !l2IsNegative) {
+            l1 = l1.substr(1);
+            sign = '-';
+        }
+        else if (l2IsNegative && !l1IsNegative) {
+            l2 = l2.substr(1);
+            sign = '-';
+        }
+
+        return `${sign}\\frac{${l1}}{${l2}}`
 
     }
 
@@ -1165,8 +1185,8 @@ class Variable extends Symbol {
             //console.log(`   matching it with ${term.toTermString()}...`);
             return this.instantiatedTerm.match(term);
         }
-        this.instantiate(term);
-        return true;
+        return this.instantiate(term);
+        //return true;
     }
 
     reset() {
@@ -1192,9 +1212,9 @@ class Variable extends Symbol {
 
     toTermString() {
         const { name, uniqueId } = this;
-        const istr = this.isInstantiated() ? '!' : '';
-        return `${name}${uniqueId >= 0 ? `$${uniqueId}` : ''}${istr}`;
-        //return name;
+        //const istr = this.isInstantiated() ? '!' : '';
+        //return `${name}${uniqueId >= 0 ? `$${uniqueId}` : ''}${istr}`;
+        return name;
     }
 
 }
@@ -1216,7 +1236,10 @@ class NumberVariable extends Variable {
                 return false;
             }
         }
-        return super.instantiate(term);
+        if (term.isNumTerm) {
+            return super.instantiate(term);
+        }
+        return false;
     }
 
     _clone(ctxt) {

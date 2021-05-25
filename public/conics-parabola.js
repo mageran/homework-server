@@ -155,42 +155,42 @@ const parabolaSteps = (pvariant, h, k, a, otherEquations = []) => {
     var equation, focus, directrix, directrixEquation, lrs;
     if (pvariant === VERTICAL_UP) {
         equation = `(x ${_valueAsSummandLatex(minush)})^2 = ${_dl(a4)}(y ${_valueAsSummandLatex(minusk)})`;
-        focus = [{ x:'h', y:'k+a' }, { x: _dl(hvalue), y: _dl(kvalue.add(avalue)) }];
+        focus = [{ x: 'h', y: 'k+a' }, { x: _dl(hvalue), y: _dl(kvalue.add(avalue)) }];
         directrix = `y = k - a = ${_dl(kvalue.sub(avalue))}`;
         directrixEquation = `y = ${_dl(kvalue.sub(avalue))}`;
         lrs = [
-            [{ x:'h-2a', y:'k+a' }, { x: _dl(hvalue.sub(a2)), y: _dl(kvalue.add(avalue)) }],
-            [{ x:'h+2a', y:'k+a' }, { x: _dl(hvalue.add(a2)), y: _dl(kvalue.add(avalue)) }],
+            [{ x: 'h-2a', y: 'k+a' }, { x: _dl(hvalue.sub(a2)), y: _dl(kvalue.add(avalue)) }],
+            [{ x: 'h+2a', y: 'k+a' }, { x: _dl(hvalue.add(a2)), y: _dl(kvalue.add(avalue)) }],
         ]
     }
     else if (pvariant === VERTICAL_DOWN) {
         equation = `(x ${_valueAsSummandLatex(minush)})^2 = -${_dl(a4)}(y ${_valueAsSummandLatex(minusk)})`;
-        focus = [{ x:'h', y:'k-a' }, { x: _dl(hvalue), y: _dl(kvalue.sub(avalue)) }];
+        focus = [{ x: 'h', y: 'k-a' }, { x: _dl(hvalue), y: _dl(kvalue.sub(avalue)) }];
         directrix = `y = k + a = ${_dl(kvalue.add(avalue))}`;
         directrixEquation = `y = ${_dl(kvalue.add(avalue))}`;
         lrs = [
-            [{ x:'h - 2a', y:'k-a' }, { x: _dl(hvalue.sub(a2)), y: _dl(kvalue.sub(avalue)) }],
-            [{ x:'h+2a', y:'k-a' }, { x: _dl(hvalue.add(a2)), y: _dl(kvalue.sub(avalue)) }],
+            [{ x: 'h - 2a', y: 'k-a' }, { x: _dl(hvalue.sub(a2)), y: _dl(kvalue.sub(avalue)) }],
+            [{ x: 'h+2a', y: 'k-a' }, { x: _dl(hvalue.add(a2)), y: _dl(kvalue.sub(avalue)) }],
         ]
     }
     else if (pvariant === HORIZONTAL_RIGHT) {
         equation = `(y ${_valueAsSummandLatex(minusk)})^2 = ${_dl(a4)}(x ${_valueAsSummandLatex(minush)})`;
-        focus = [{ x:'h+a', y:'k' }, { x: _dl(hvalue.add(avalue)), y: _dl(kvalue) }];
+        focus = [{ x: 'h+a', y: 'k' }, { x: _dl(hvalue.add(avalue)), y: _dl(kvalue) }];
         directrix = `x = h - a = ${_dl(hvalue.sub(avalue))}`;
         directrixEquation = `x = ${_dl(hvalue.sub(avalue))}`;
         lrs = [
-            [{ x:'h+a', y:'k-2a' }, { x: _dl(hvalue.add(avalue)), y: _dl(kvalue.sub(a2)) }],
-            [{ x:'h+a', y:'k+2a' }, { x: _dl(hvalue.add(avalue)), y: _dl(kvalue.add(a2)) }],
+            [{ x: 'h+a', y: 'k-2a' }, { x: _dl(hvalue.add(avalue)), y: _dl(kvalue.sub(a2)) }],
+            [{ x: 'h+a', y: 'k+2a' }, { x: _dl(hvalue.add(avalue)), y: _dl(kvalue.add(a2)) }],
         ]
     }
     else if (pvariant === HORIZONTAL_LEFT) {
         equation = `(y ${_valueAsSummandLatex(minusk)})^2 = -${_dl(a4)}(x ${_valueAsSummandLatex(minush)})`;
-        focus = [{ x:'h-a', y:'k' }, { x: _dl(hvalue.sub(avalue)), y: _dl(kvalue) }];
+        focus = [{ x: 'h-a', y: 'k' }, { x: _dl(hvalue.sub(avalue)), y: _dl(kvalue) }];
         directrix = `x = h + a = ${_dl(hvalue.add(avalue))}`;
         directrixEquation = `x = ${_dl(hvalue.add(avalue))}`;
         lrs = [
-            [{ x:'h-a', y:'k-2a' }, { x: _dl(hvalue.sub(avalue)), y: _dl(kvalue.sub(a2)) }],
-            [{ x:'h-a', y:'k+2a' }, { x: _dl(hvalue.sub(avalue)), y: _dl(kvalue.add(a2)) }],
+            [{ x: 'h-a', y: 'k-2a' }, { x: _dl(hvalue.sub(avalue)), y: _dl(kvalue.sub(a2)) }],
+            [{ x: 'h-a', y: 'k+2a' }, { x: _dl(hvalue.sub(avalue)), y: _dl(kvalue.add(a2)) }],
         ]
     }
     var latex = equation;
@@ -218,9 +218,10 @@ const parabolaSteps = (pvariant, h, k, a, otherEquations = []) => {
             style: { position: 'absolute', top: 0, left: '400px' },
             steps: [{
                 desmos: {
-                    equations: [...otherEquations,equation],
+                    equations: [...otherEquations, equation],
                     points: [vertex, focus[1], ...lrs.map(pl => pl[1])],
-                    dashedLines: [directrixEquation]
+                    dashedLines: [directrixEquation],
+                    height: '800px'
                 }
             }]
         }

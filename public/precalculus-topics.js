@@ -652,7 +652,7 @@ const conicsEllipseProblems = [
 
 const conicsHyperbolaProblems = [
     { label: 'From Equation', value: 'fromEquation' },
-    //{ label: 'From Parameters (Vertices, Covertices, Center, Foci)', value: 'fromParameters' },
+    { label: 'From Parameters (Vertices, Covertices, Center, Foci)', value: 'fromParameters' },
     { label: 'From Transverse Axis Direction, values for center, "a" and "b"', value: 'fromCenterVariantAB' },
 ]
 
@@ -743,6 +743,20 @@ const _conicsHyperbola = {
     func: conicsHyperbola,
     testValues: [
         { values: ['fromCenterVariantAB', TRANSVERSE_AXIS_PARALLEL_TO_X_AXIS, '0', '0', '4', '5'], label: 'Ex1' },
+        { values: ['fromEquation', '\\frac{(y+2)^2}{9} - \\frac{(x-3)^2}{16} = 1'], label: 'Eq-1'},
+        { values: ['fromParameters', '(0,2)', '(5,2)', '', '(0,4)' ], label: 'Q2' },
+        { values: ['fromParameters', '(1,1)', '(1,4)', '', '(3,1)' ], label: 'Q3' },
+        { values: ['fromEquation', '\\frac{y^2}{9} - \\frac{x^2}{64} = 1'], label: 'Q4'},
+        { values: ['fromEquation', '\\frac{(x-3)^2}{4} - \\frac{(y+2)^2}{16} = 1'], label: 'Q5'},
+        { values: ['fromEquation', '\\frac{(y+1)^2}{25} - \\frac{(x+3)^2}{4} = 1'], label: 'Q6'},
+        { values: ['fromEquation', '\\frac{x^2}{9} - (y+4)^2 = 1'], label: 'Q7'},
+        { values: ['fromEquation', '4x^2-y^2-24x-4y+16=0'], label: 'Q8'},
+        { values: ['fromEquation', '-16x^2+9y^2+128x+180y+68=0'], label: 'Q9'},
+        { values: ['fromEquation', '-2x^2+13y^2-20x-104y+28=0'], label: 'Q10'},
+        { values: ['fromParameters', '(0,0)', '(1,0)', '', '', '', '(3,0)' ], label: 'Q11' },
+        { values: ['fromParameters', '', '(-4,4)', '(-4,2)', '', '', '(-4,0)' ], label: 'Q12' },
+        { values: ['fromParameters', '', '(-1,3)', '(-1,-9)', '', '', '', '', '', '10' ], label: 'Q13' },
+        { values: ['fromParameters', '', '', '', '-6,6', '4,6', '', '', '', '', 12], label: 'Q13-1' }
     ]
 }
 
