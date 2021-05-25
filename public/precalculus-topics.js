@@ -760,7 +760,17 @@ const _conicsHyperbola = {
     ]
 }
 
+const _conicsGeneric = {
+    title: 'Detect Conics from Equation',
+    description: 'Given an conics equation, detect and solve if it\'s a circle, parabola, ellipse, hyperbola equation',
+    parameters: [
+        { name: 'Conics equation', value: '', type: 'formula', cssClass: 'width500' }
+    ],
+    func: conicsGeneric
+}
+
 const topicObjects = [
+    _conicsGeneric,
     _conicsHyperbola,
     _conicsEllipse,
     _conicsParabola,

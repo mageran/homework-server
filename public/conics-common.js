@@ -124,6 +124,11 @@ const _fromParametersForEllipseAndHyperbola = (isHyperbola = false) => (...point
         || _tryCalc_abc('b', centerPoint, covertexPoint1, majorAxis, 'covertex');
     var c = abFromAxisLength(distanceBetweenFoci, 'c', 'Distance between Foci')
         || _tryCalc_abc('c', centerPoint, focusPoint1, majorAxis, 'focus');
+    if (isEllipse && a && b) {
+        if (b.gt(a)) {
+            throw `"b" can't be greater than "a" for an ellipse, please check your input`;
+        }
+    }
     var aLatex = a ? _decimalToLatex(a) : null;
     var bLatex = b ? _decimalToLatex(b) : null;
     var cLatex = c ? _decimalToLatex(c) : null;
@@ -184,4 +189,59 @@ const _parsePointString = pointString => {
     const x = _d(m[1]);
     const y = _d(m[2]);
     return { x, y };
+}
+
+const conicsFromEquation = (o, equation) => {
+    const url = '/api/conicsEquation';
+    const data = { equation };
+    const success = response => {
+        const steps = [];
+        //console.log(`response: ${JSON.stringify(response, null, 2)}`);
+        var resObj = response;
+        try {
+            resObj = JSON.parse(response);
+        } catch (err) {
+            console.error(err);
+        }
+        //_htmlElement('pre', o, JSON.stringify(resObj, null, 2));
+        console.log(`response returned from server: %o`, resObj);
+        if (Array.isArray(resObj.steps)) {
+            steps.push(...resObj.steps);
+        }
+        if (resObj.circleParameters) {
+            steps.push(...getStepsForCircleGraph(resObj.circleParameters, equation));
+        }
+        else if (resObj.parabolaParameters) {
+            let { h, k, a, pvariant } = resObj.parabolaParameters;
+            steps.push(...parabolaSteps(pvariant, h, k, a, [equation]));
+        }
+        if (resObj.ellipseParameters) {
+            let { majorAxis, h, k, a, b, c } = resObj.ellipseParameters;
+            steps.push(...ellipseSteps(majorAxis, h, k, a, b, c, [equation]));
+        }
+        else if (resObj.hyperbolaParameters) {
+            let { majorAxis, h, k, a, b, c } = resObj.hyperbolaParameters;
+            steps.push(...hyperbolaSteps(majorAxis, h, k, a, b, c, [equation]));
+        }
+        _showComputationSteps(o, steps);
+    }
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: success,
+        error: ajaxErrorFunction(o)
+    });
+
+}
+
+function conicsGeneric(formulaLatex) {
+    const o = this;
+    elemStyle(o, { fontSize: '16pt' });
+    try {
+        conicsFromEquation(o, formulaLatex);
+    } catch (err) {
+        _addErrorElement(o, JSON.stringify(err, null, 2));
+        throw err;
+    }
 }

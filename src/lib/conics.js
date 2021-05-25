@@ -211,7 +211,8 @@ const circleEquation = term => {
         try {
             circleParameters = checkIfCircleEquation(circleEquation);
         } catch (err) {
-            steps.push(String(err));
+            //steps.push(String(err));
+            throw err
         }
 
     } else {
@@ -219,6 +220,8 @@ const circleEquation = term => {
     }
     return { steps, circleParameters }
 }
+
+// ------------------------------ Parabola -------------------------------------
 
 const checkParabolaEquation = equation => {
     if (!(equation instanceof Terms.Equation)) {
@@ -450,10 +453,13 @@ const parabolaEquation = term => {
     try {
         parabolaParameters = checkParabolaEquation(parabolaEquation);
     } catch (err) {
-        steps.push(String(err));
+        //steps.push(String(err));
+        throw err;
     }
     return { steps, parabolaParameters }
 }
+
+// ------------------------------ Ellipse -------------------------------------
 
 const checkEllipseEquation = (equation, isHyperbola = false) => {
     const _getXYHK = (t, xyHash) => {
@@ -591,21 +597,60 @@ const ellipseEquation = (term, isHyperbola = false) => {
 
 // ------------------------------ Hyperbola -------------------------------------
 
-const checkHyperbolaEquationGeneralForm = equation => {
-    return checkEllispeEquationGeneralForm(equation)
-}
-
-const checkHyperbolaEquation = equation => {
-    return checkEllipseEquation(equation, true);
-}
-
 const hyperbolaEquation = term => {
     return ellipseEquation(term, true);
+}
+
+// ------------------------------ Common -------------------------------------
+
+const conicsEquation = term => {
+    const resultSteps = [];
+    const errorSteps = [];
+    const hilight = text => {
+        return `<div style="color:white;background:blue;padding:10px;font-size:18pt;margin:20px;display:inline-block">${text}</div>`;
+    }
+    try {
+        const { steps, circleParameters } = circleEquation(term);
+        resultSteps.push(hilight(`This is a circle equation!`));
+        resultSteps.push(...steps);
+        return { steps: resultSteps, circleParameters }
+    } catch (err) {
+        errorSteps.push(`not a circle equation: ${err}`)
+    }
+
+    try {
+        const { steps, parabolaParameters } = parabolaEquation(term);
+        resultSteps.push(hilight(`This is a parabola equation!`));
+        resultSteps.push(...steps);
+        return { steps: resultSteps, parabolaParameters };
+    } catch (err) {
+        errorSteps.push(`not a parabola equation: ${err}`);
+    }
+
+    try {
+        const { steps, parameters } = ellipseEquation(term);
+        resultSteps.push(hilight(`This is an ellipse equation!`));
+        resultSteps.push(...steps);
+        return { steps: resultSteps, ellipseParameters: parameters }
+    } catch (err) {
+        errorSteps.push(`not an ellipse equation: ${err}`);
+    }
+
+    try {
+        const { steps, parameters } = hyperbolaEquation(term);
+        resultSteps.push(hilight(`This is a hyperbola equation!`));
+        resultSteps.push(...steps);
+        return { steps: resultSteps, hyperbolaParameters: parameters }
+    } catch (err) {
+        errorSteps.push(`not a hyperbola equation: ${err}`);
+    }
+    return { steps: errorSteps };
 }
 
 module.exports = {
     circleEquation,
     parabolaEquation,
     ellipseEquation,
-    hyperbolaEquation
+    hyperbolaEquation,
+    conicsEquation
 }

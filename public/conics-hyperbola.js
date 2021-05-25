@@ -50,7 +50,7 @@ function conicsHyperbola(problemClass, ...args) {
         _showComputationSteps(o, steps);
     } catch (err) {
         _addErrorElement(o, JSON.stringify(err, null, 2));
-        throw err
+        throw err;
     }
 }
 
