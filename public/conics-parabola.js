@@ -215,7 +215,7 @@ const parabolaSteps = (pvariant, h, k, a, otherEquations = []) => {
     steps.push({
         section: {
             title: "Graph",
-            style: { position: 'absolute', top: 0, left: '400px' },
+            style: { position: 'absolute', top: 0, left: '600px' },
             steps: [{
                 desmos: {
                     equations: [...otherEquations, equation],

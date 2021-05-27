@@ -235,11 +235,13 @@ const checkParabolaEquation = equation => {
     if (rterms.length !== 1) {
         throw `not a parabola equation: too many terms on rhs`;
     }
-    const [lterm] = lterms;
+    var [lterm] = lterms;
+    lterm = basicEval(lterm);
     var [rterm] = rterms;
+    rterm = basicEval(rterm);
     // ensure rterm is a product to simplify matching
     if (!_M('product(_,_)', rterm)) {
-        rterm = new Terms.Product([numTerm0.clone(), rterm]);
+        rterm = new Terms.Product([numTerm1.clone(), rterm]);
     }
     const _v = {};
     if (!_M('power(BaseTerm,2)', lterm, _v)) {

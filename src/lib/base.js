@@ -280,16 +280,18 @@ const _completeTheSquare = (term, x) => {
     const factorTimesStr = xsquareFactor == 1 ? '' : `${xsquareFactor}*`;
     const resultString = xsquareFactor == 1 ? '' : ` = ${xsquareFactor.mul(cvalueSquared)}`
     steps.push(`Completing the square for ${x} by adding ${factorTimesStr}${cvalueSquared}${resultString}:`)
-    steps.push({ latex: `${completedTerm.latex} = ${squaredTerm.latex}`});
-    return { 
+    steps.push({ latex: `${completedTerm.latex} = ${squaredTerm.latex}` });
+    return {
         term: newTerm,
         completedTerm,
         addedTerm,
         completedSquareDone: true,
-        steps: [ { collapsibleSection: {
-            title: `Completing the square for ${x}...`,
-            steps
-        }}]
+        steps: [{
+            collapsibleSection: {
+                title: `Completing the square for ${x}...`,
+                steps
+            }
+        }]
     };
 }
 
@@ -319,6 +321,33 @@ const getSumTerms = term => {
     return [term];
 }
 
+const getSumTermsEquation = equation => {
+    if (!(equation instanceof Terms.Equation)) {
+        throw `getSumTermsEquation called with a term that is not an equation: ${equation}`
+    }
+    return { lterms: getSumTerms(equation.lhs), rterms: getSumTerms(equation.rhs) };
+}
+
+const getVarNames = term => {
+    const varnames = [];
+    term.traverse(t => {
+        if (t.isIdentifierTerm) {
+            varnames.push(t.name);
+        }
+    });
+    return varnames;
+}
+
+const substitute = (term, varname, substTerm) => {
+    return term.
+        _(t => {
+            if (t.isIdentifierTerm && t.name === varname) {
+                return substTerm.clone();
+            }
+            return t;
+        })
+}
+
 module.exports = {
     flattenOperands,
     evalArithmetic,
@@ -326,7 +355,10 @@ module.exports = {
     basicEval,
     negateTerm,
     getSumTerms,
+    getSumTermsEquation,
     completeTheSquare,
+    getVarNames,
+    substitute,
     _M,
     _T,
     numTerm0,

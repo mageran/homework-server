@@ -92,7 +92,7 @@ class Term {
     }
 
     get isNumTerm() { return false; }
-    get isIdentifierTerm() { return true; }
+    get isIdentifierTerm() { return false; }
 
     _variableMatch(variableTerm) {
         assert.ok(variableTerm instanceof Variable, `_variableMatch called on ${variableTerm.className} instance`);
