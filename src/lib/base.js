@@ -445,7 +445,7 @@ const substitute = (term, varname, substTerm) => {
         })
 }
 
-function *solveForIterator(equation, x, steps = [], options = {}) {
+function* solveForIterator(equation, x, steps = [], options = {}) {
     if (!(equation instanceof Terms.Equation)) {
         throw `solveFor only works on equations`
     }
@@ -503,7 +503,7 @@ function *solveForIterator(equation, x, steps = [], options = {}) {
         let eq = new Terms.Equation([newLhs, rhs1]);
         steps.push(`Dividing both sides by ${nterm.value}:`);
         steps.push({ latex: eq.latex });
-        for(let res of solveForIterator(eq, x, steps, options)) yield res;
+        for (let res of solveForIterator(eq, x, steps, options)) yield res;
         return;
     }
     if (_M('product(...Factors)', xterm, _v)) {
@@ -519,7 +519,7 @@ function *solveForIterator(equation, x, steps = [], options = {}) {
         let eq = new Terms.Equation([newXterm, rhs1]);
         steps.push({ latex: `\\text{Dividing both sides by&nbsp;} ${denominatorTerm.latex}\\text{:}` });
         steps.push({ latex: eq.latex });
-        for(let res of solveForIterator(eq, x, steps, options)) yield res;
+        for (let res of solveForIterator(eq, x, steps, options)) yield res;
         return;
     }
     if (_M('fraction(...Ops)', xterm, _v)) {
@@ -532,16 +532,36 @@ function *solveForIterator(equation, x, steps = [], options = {}) {
         if (xindex < 0) {
             throw `something went wrong ${xterm} should contain ${x}, but it doesn't`;
         }
-        if (xindex !== 0) {
-            throw `variable ${x} found in denominator; this is not yet supported`;
+        if (xindex === 1) {
+            //throw `variable ${x} found in denominator; this is not yet supported`;
+            let numeratorTerm = operandTerms[0];
+            let newXterm = operandTerms[1];
+            let rhs0 = new Terms.Fraction([numeratorTerm, newRhs]);
+            let eq = new Terms.Equation([newXterm, rhs0]);
+            steps.push({ latex: `\\text{Multiplying both sides with&nbsp;} ${newXterm.latex}\\text{:}` });
+            steps.push({ latex: eq.latex });
+            for (let res of solveForIterator(eq, x, steps, options)) yield res;
+            return;
+        } else {
+            let [newXterm] = operandTerms.splice(xindex, 1);
+            let factorTerm = operandTerms.length === 1 ? operandTerms[0] : new Terms.Product(operandTerms);
+            let rhs1 = new Terms.Product([newRhs, factorTerm]);
+            let eq = new Terms.Equation([newXterm, rhs1]);
+            steps.push({ latex: `\\text{Multiplying both sides with&nbsp;} ${factorTerm.latex}\\text{:}` });
+            steps.push({ latex: eq.latex });
+            for (let res of solveForIterator(eq, x, steps, options)) yield res;
+            return;
         }
-        let [newXterm] = operandTerms.splice(xindex, 1);
-        let factorTerm = operandTerms.length === 1 ? operandTerms[0] : new Terms.Product(operandTerms);
-        let rhs1 = new Terms.Product([newRhs, factorTerm]);
-        let eq = new Terms.Equation([newXterm, rhs1]);
-        steps.push({ latex: `\\text{Multiplying both sides with&nbsp;} ${factorTerm.latex}\\text{:}` });
+    }
+    if (_M('sqrt(D#, T)', xterm, _v)) {
+        let newLhs = _v.T;
+        let dterm = _v['D#'];
+        let degree = dterm.value;
+        let rhs1 = new Terms.Power([newRhs, dterm]);
+        let eq = new Terms.Equation([newLhs, rhs1]);
+        steps.push(`Applying power of ${degree} to both sides:`);
         steps.push({ latex: eq.latex });
-        for(let res of solveForIterator(eq, x, steps, options)) yield res;
+        for (let res of solveForIterator(eq, x, steps, options)) yield res;
         return;
     }
     if (_M('power(T, Exp#)', xterm, _v)) {
@@ -558,15 +578,15 @@ function *solveForIterator(equation, x, steps = [], options = {}) {
         let steps1 = steps;
         if (includeNegativeRoot) {
             steps1 = [];
-            steps.push({ section: { title: 'Positive root', steps: steps1, collapsible: true }});
+            steps.push({ section: { title: 'Positive root', steps: steps1, collapsible: true } });
         }
-        for(let res of solveForIterator(eq1, x, steps1, options)) yield res;
+        for (let res of solveForIterator(eq1, x, steps1, options)) yield res;
         if (includeNegativeRoot) {
             let rhs2 = new Terms.Product([numTermMinus1.clone(), rhs1]);
             let eq2 = new Terms.Equation([newLhs, rhs2]);
             let steps2 = [];
-            steps.push({ section: { title: 'Negative root', steps: steps2, collapsible: true }});
-            for(let res of solveForIterator(eq2, x, steps2, options)) yield res;
+            steps.push({ section: { title: 'Negative root', steps: steps2, collapsible: true } });
+            for (let res of solveForIterator(eq2, x, steps2, options)) yield res;
         }
         return;
     }
@@ -577,7 +597,7 @@ function *solveForIterator(equation, x, steps = [], options = {}) {
 
 const solveFor = (equation, x, steps = [], options = {}) => {
     const results = [];
-    for(let res of solveForIterator(equation, x, steps, options)) {
+    for (let res of solveForIterator(equation, x, steps, options)) {
         results.push(res);
     }
     console.log(`found ${results.length} results for solving ${equation} for "${x}"`);

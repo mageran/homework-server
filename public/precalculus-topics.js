@@ -651,7 +651,8 @@ const conicsParabolaProblems = [
     { label: 'Given Equation, find parabola parameters', value: 'fromEquation' },
     { label: 'Given Vertex and Focus, find parabola equation', value: 'fromVertexAndFocus' },
     { label: 'Given Vertex and Directrix, find parabola equation', value: 'fromVertexAndDirectrix' },
-    { label: 'Given Vertex, graph variant, and value for "a"', value: 'fromVertexVariantAndA' }
+    { label: 'Given Vertex, graph variant, and value for "a"', value: 'fromVertexVariantAndA' },
+    { label: 'Given Vertex, graph variant, and point on parabola', value: 'fromVertexVariantAndPoint' },
 ]
 
 const conicsEllipseProblems = [

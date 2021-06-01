@@ -1,6 +1,7 @@
 
 const { circleEquation, parabolaEquation, ellipseEquation, hyperbolaEquation, conicsEquation } = require('../lib/conics');
 const { basicEval, solveFor, getVarNamesList, substitute } = require('../lib/base');
+const Terms = require('../term');
 
 /*
 module.exports = [{
@@ -61,7 +62,16 @@ module.exports = [{
         const steps = [];
         const resultEquations = solveFor(term, x, steps, { onlyPositiveRoots: false });
         const terms = resultEquations.map(t => t.latex);
-        return { terms, steps };
+        const solutions = [];
+        resultEquations.forEach(term => {
+            if (term instanceof Terms.Equation) {
+                const { lhs, rhs } = term;
+                if (lhs.isIdentifierTerm && lhs.name === x) {
+                    solutions.push(rhs.latex);
+                }
+            }
+        })
+        return { terms, solutions, steps };
     },
     parameters: [
         { name: 'equation', parseIntoTerm: true },

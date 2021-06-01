@@ -50,6 +50,26 @@ function createParabolaInputFields(problemClass) {
             { separator: true },
         ]
     }
+    else if (problemClass === 'fromVertexVariantAndPoint') {
+        return [
+            { name: 'Vertex point', value: '', placeholder: '(h,k)', noEval: true },
+            { separator: true },
+            {
+                name: 'Parabola Variant',
+                type: 'select',
+                options: [
+                    { label: "open upwards", value: VERTICAL_UP },
+                    { label: "open downwards", value: VERTICAL_DOWN },
+                    { label: "open right", value: HORIZONTAL_RIGHT },
+                    { label: "open left", value: HORIZONTAL_LEFT },
+                ]
+            },
+            { separator: true },
+            { name: 'Point on Parabola', value: '', placeholder: '(x,y)', noEval: true },
+            { separator: true },
+        ]
+    }
+
     return [];
 }
 
@@ -104,6 +124,54 @@ function conicsParabola(problemClass, ...args) {
         steps.push(...parabolaSteps(pvariant, hvalue, kvalue, avalue));
         return steps;
     }
+    const fromVertexVariantAndPoint = (vertexPoint, pvariant, parabolaPoint) => {
+        const vertex = _parsePointString(vertexPoint);
+        const h = vertex.x;
+        const k = vertex.y;
+        const hlatex = _decimalToLatex(h);
+        const klatex = _decimalToLatex(k)
+        const { x, y } = _parsePointString(parabolaPoint);
+        const eq = pvariant === VERTICAL_UP
+            ? `(x - ${hlatex})^2 = 4a(y-${klatex})`
+            : pvariant === VERTICAL_DOWN
+                ? `(x - ${hlatex})^2 = -4a(y-${klatex})`
+                : pvariant === HORIZONTAL_RIGHT
+                    ? `(y-${klatex})^2 = 4a(x-${hlatex})`
+                    : `(y-${klatex})^2 = -4a(x-${hlatex})`;
+        const steps = [];
+        steps.push("Using parabola equation:");
+        steps.push({ latex: eq });
+        steps.push(`Using point on parabola (${x},${y}) to determine missing parameter "a":`);
+        callServerService('substitute', { term: eq, variable: 'x', substTerm: String(x) }, resObj => {
+            const substSteps = [];
+            if (resObj.term) {
+                if (resObj.steps) {
+                    substSteps.push(...resObj.steps);
+                }
+                callServerService('substitute', { term: resObj.term, variable: 'y', substTerm: String(y) }, resObj => {
+                    if (resObj.steps) {
+                        substSteps.push(...resObj.steps);
+                    }
+                    callServerService('solveFor', { equation: resObj.term, variable: 'a' }, resObj => {
+                        if (resObj.steps) {
+                            steps.push({ collapsibleSection: { title: 'Plugin values for "x" and "y"', steps: substSteps } });
+                            steps.push({ collapsibleSection: { title: 'Solve for "a"', steps: resObj.steps } });
+                            if (resObj.steps.length > 0) {
+                                steps.push(resObj.steps[resObj.steps.length - 1]);
+                            }
+                            const { solutions: [avalue] } = resObj;
+                            if (!avalue) {
+                                throw `something went wrong: no solution for "a" found.`;
+                            }
+                            console.log(`found avalue: ${avalue}`);
+                            steps.push(...parabolaSteps(pvariant, h, k, _d(avalue)));
+                            _showComputationSteps(o, steps);
+                        }
+                    })
+                })
+            }
+        })
+    }
     try {
         const steps = [];
         if (problemClass === 'fromEquation') {
@@ -117,6 +185,9 @@ function conicsParabola(problemClass, ...args) {
         }
         else if (problemClass === 'fromVertexVariantAndA') {
             steps.push(...fromVertexVariantAndA(...args));
+        }
+        else if (problemClass === 'fromVertexVariantAndPoint') {
+            fromVertexVariantAndPoint(...args);
         }
         _showComputationSteps(o, steps);
     } catch (err) {
@@ -208,7 +279,7 @@ const parabolaSteps = (pvariant, h, k, a, otherEquations = []) => {
                 color: "black",
                 borderRadius: "8px"
             },
-            steps: [ variantText, { latex, addProcessTermButton }]
+            steps: [variantText, { latex, addProcessTermButton }]
         }
     })
     //steps.push({ latex });

@@ -18,6 +18,12 @@ const ajaxErrorFunction = outputElem => (err => {
 });
 
 const callServerService = (serviceName, data, responseCallback, errorCallback) => {
+    const errorFunction = error => {
+        console.error(error);
+        if (typeof errorCallback === 'function') {
+            errorCallback.call(null, error);
+        }
+    }
     try {
         const url = `/api/${serviceName}`;
         //const data = { equation: formulaLatex, variable: 'x' };
@@ -33,12 +39,6 @@ const callServerService = (serviceName, data, responseCallback, errorCallback) =
             }
             if (typeof responseCallback === 'function') {
                 responseCallback.call(null, resObj);
-            }
-        }
-        const errorFunction = error => {
-            console.error(error);
-            if (typeof errorCallback === 'function') {
-                errorCallback.call(null, error);
             }
         }
         $.ajax({

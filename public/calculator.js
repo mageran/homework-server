@@ -109,7 +109,12 @@ function processTerm(formulaLatex, operation, substTermLatex) {
                 if (resObj.term) {
                     addResultTermsTable([resObj.term]);
                 }
-            })
+            }, ajaxErrorFunction(o))
+        }
+        else if (operation === 'simplify') {
+            callServerService('simplifyTerm', { term: formulaLatex }, term => {
+                addResultTermsTable([term]);
+            }, ajaxErrorFunction(o))
         }
     } catch (err) {
         _addErrorElement(o, err);
@@ -120,9 +125,12 @@ function processTerm(formulaLatex, operation, substTermLatex) {
 const processTermDynamicParameters = (term, callback) => {
     callServerService('getVarNames', { term }, varnames => {
         const options = [{ label: 'Select operation', value: null }];
+        options.push({ label: 'Simplify', value: 'simplify' }),
+        options.push({ label: '------------------------', value: null });
         options.push(...varnames.map(vname => {
             return { label: `Solve for "${vname}"`, value: `solve:${vname}` };
         }))
+        options.push({ label: '------------------------', value: null });
         options.push(...varnames.map(vname => {
             return { label: `Substitute "${vname}" with value or term`, value: `subst:${vname}` };
         }))
