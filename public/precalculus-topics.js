@@ -652,13 +652,14 @@ const conicsParabolaProblems = [
     { label: 'Given Vertex and Focus, find parabola equation', value: 'fromVertexAndFocus' },
     { label: 'Given Vertex and Directrix, find parabola equation', value: 'fromVertexAndDirectrix' },
     { label: 'Given Vertex, graph variant, and value for "a"', value: 'fromVertexVariantAndA' },
-    { label: 'Given Vertex, graph variant, and point on parabola', value: 'fromVertexVariantAndPoint' },
+    { label: 'App: Given Vertex, graph variant, and point on parabola', value: 'fromVertexVariantAndPoint' },
 ]
 
 const conicsEllipseProblems = [
     { label: 'From Equation', value: 'fromEquation' },
     { label: 'From Parameters (Vertices, Covertices, Center, Foci)', value: 'fromParameters' },
     { label: 'From Major Axis Direction, values for "a" and "b"', value: 'fromAxisAB' },
+    { label: 'App: From Center, distance to (co-)vertex, and point on ellipse', value: 'fromCenterDistancePoint' },
 ]
 
 const conicsHyperbolaProblems = [
@@ -716,6 +717,7 @@ const _conicsParabola = {
         { values: ['fromVertexAndFocus', '-4', '-5', '-4', '-\\frac{9}{2}'], label: 'Vertex+Focus 2' },
         { values: ['fromVertexAndDirectrix', '-3', '1', 'x', '1'], label: 'Vertex+Directrix 1' },
         { values: ['fromVertexVariantAndA', '3', '-1', VERTICAL_DOWN, '1'], label: 'Vertex+Variant+A 1' },
+        { values: ['fromVertexVariantAndPoint', '(0,8)', VERTICAL_DOWN, '2,0'], label: 'Doorway'}
     ]
 }
 

@@ -24,6 +24,11 @@ const parseLatexTerm = (latexTerm, context) => {
     return processAst(ast);
 }
 
+const parseListOfLatexTerms = (inputString, context, separatorSymbol = ",") => {
+    const latexTerms = inputString.split(separatorSymbol);
+    return latexTerms.map(latexTerm => parseLatexTerm(latexTerm, context));
+}
+
 const _parseInternal = (string, parse, contextIn) => {
     try {
         const context = contextIn;
@@ -134,6 +139,7 @@ module.exports = {
     parseRules,
     parseRulesFile,
     parseLatexTerm,
+    parseListOfLatexTerms,
     processTermWithRules,
     processTermWithRulesString,
     processLatexWithRules

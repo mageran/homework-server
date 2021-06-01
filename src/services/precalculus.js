@@ -1,6 +1,6 @@
 
 const { circleEquation, parabolaEquation, ellipseEquation, hyperbolaEquation, conicsEquation } = require('../lib/conics');
-const { basicEval, solveFor, getVarNamesList, substitute } = require('../lib/base');
+const { basicEval, solveFor, getVarNamesList, substitute, substituteAll, substitutionEquationsToMap } = require('../lib/base');
 const Terms = require('../term');
 
 /*
@@ -58,9 +58,10 @@ module.exports = [{
     ],
 },{
     service: 'solveFor',
-    func: (term, x) => {
+    func: (term, x, onlyPositiveRootsString ) => {
+        const onlyPositiveRoots = onlyPositiveRootsString === "true";
         const steps = [];
-        const resultEquations = solveFor(term, x, steps, { onlyPositiveRoots: false });
+        const resultEquations = solveFor(term, x, steps, { onlyPositiveRoots });
         const terms = resultEquations.map(t => t.latex);
         const solutions = [];
         resultEquations.forEach(term => {
@@ -75,7 +76,8 @@ module.exports = [{
     },
     parameters: [
         { name: 'equation', parseIntoTerm: true },
-        { name: 'variable' }
+        { name: 'variable' },
+        { name: 'onlyPositiveRoots' }
     ],
 },{
     service: 'substitute',
@@ -93,5 +95,29 @@ module.exports = [{
         { name: 'term', parseIntoTerm: true },
         { name: 'variable' },
         { name: 'substTerm', parseIntoTerm: true }
+    ],
+},{
+    service: 'substituteAll',
+    func: (t, substMap, substitutionEquations) => {
+        const steps = [];
+        if (!substMap) {
+            substMap = substitutionEquationsToMap(substitutionEquations);
+        }
+        const sterm = substituteAll(t, substMap);
+        steps.push('Perform substitutions:');
+        Object.keys(substMap).forEach(variable => {
+            const latex = substMap[variable].latex;
+            steps.push({ latex: `\\text{&nbsp;&nbsp;&nbsp;}${variable}\\rightarrow ${latex}`});
+        })
+        steps.push({ latex: sterm.latex });
+        const term = basicEval(sterm);
+        steps.push('Simplified/evaluated:');
+        steps.push({ latex: term.latex })
+        return { term: term.latex, steps };
+    },
+    parameters: [
+        { name: 'term', parseIntoTerm: true },
+        { name: 'substMap', parseValuesIntoTerms: true },
+        { name: 'substitutionEquations', parseIntoListOfTerms: true }
     ],
 }]

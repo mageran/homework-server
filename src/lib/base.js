@@ -445,6 +445,34 @@ const substitute = (term, varname, substTerm) => {
         })
 }
 
+const substituteAll = (term, substMap) => {
+    return term.
+        _(t => {
+            if (t.isIdentifierTerm && substMap.hasOwnProperty(t.name)) {
+                let substTerm = substMap[t.name];
+                if (substTerm instanceof Terms.Term) {
+                    return substTerm.clone();
+                }
+            }
+            return t;
+        })
+}
+
+const substitutionEquationsToMap = equations => {
+    const substMap = {};
+    equations.forEach(equation => {
+        if (!(equation instanceof Terms.Equation)) {
+            return;
+        }
+        const { lhs, rhs } = equation;
+        if (!lhs.isIdentifierTerm) {
+            return;
+        }
+        substMap[lhs.name] = rhs;
+    })
+    return substMap;
+}
+
 function* solveForIterator(equation, x, steps = [], options = {}) {
     if (!(equation instanceof Terms.Equation)) {
         throw `solveFor only works on equations`
@@ -617,6 +645,8 @@ module.exports = {
     getVarNames,
     getVarNamesList,
     substitute,
+    substituteAll,
+    substitutionEquationsToMap,
     combinePolynomialTerms,
     solveFor,
     solveForIterator,

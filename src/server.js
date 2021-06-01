@@ -15,7 +15,7 @@ app.use(express.static('public'));
 const bodyParser = require('body-parser');
 const termParser = require('./parser/term-parser');
 const ParseContext = require('./parse-context');
-const { logTerm } = require('./utils');
+const { logTerm, logTerms } = require('./utils');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
@@ -153,6 +153,7 @@ services.forEach(({ service, func, parameters }) => {
   const uri = `/api/${service}`;
   app.post(uri, (req, res) => {
     //const latex = req.body.latex;
+    console.log(`uri: ${uri}`);
     try {
       const args = parameters.map(param => {
         const pname = param.name;
@@ -162,6 +163,18 @@ services.forEach(({ service, func, parameters }) => {
           //paramValue = api.parseLatexTerm(paramValue);
           paramValue = new ParseContext().parseLatexTerm(paramValue);
           logTerm(paramValue);
+        }
+        else if (paramValue && param.parseIntoListOfTerms) {
+          paramValue = new ParseContext().parseListOfLatexTerms(paramValue);
+          logTerms(paramValue);
+        }
+        else if ((typeof paramValue === 'object') && param.parseValuesIntoTerms) {
+          Object.keys(paramValue).forEach(key => {
+            const termString = paramValue[key];
+            const term = new ParseContext().parseLatexTerm(termString);
+            paramValue[key] = term;
+          });
+          //console.log(`parameter ${pname} after values have been parsed into terms: ${JSON.stringify(paramValue, null, 2)}`);
         }
         return paramValue;
       });

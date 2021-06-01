@@ -60,7 +60,7 @@ function processTerm(formulaLatex, operation) {
 }
 */
 
-function processTerm(formulaLatex, operation, substTermLatex) {
+function processTerm(formulaLatex, operation, substTermsLatex) {
     const o = this;
     o.style.fontSize = '18pt';
     try {
@@ -85,6 +85,9 @@ function processTerm(formulaLatex, operation, substTermLatex) {
                 })
             })
         }
+        if (operation === 'substitute' && !substTermsLatex) {
+            operation = 'simplify';
+        }
         if (operation.startsWith("solve:")) {
             const vname = operation.substr(6);
             callServerService('solveFor', { equation: formulaLatex, variable: vname }, resObj => {
@@ -98,10 +101,11 @@ function processTerm(formulaLatex, operation, substTermLatex) {
                 }
             }, ajaxErrorFunction(o))
         }
-        else if (operation.startsWith("subst:")) {
-            const vname = operation.substr(6);
-            console.log(`subsituting ${vname} in ${formulaLatex} with ${substTermLatex}...`);
-            callServerService('substitute', { term: formulaLatex, variable: vname, substTerm: substTermLatex }, resObj => {
+        else if (operation === "substitute") {
+            if (!substTermsLatex) {
+                throw `no substitution given (e.g. "x = 27")`
+            }
+            callServerService('substituteAll', { term: formulaLatex, substitutionEquations: substTermsLatex }, resObj => {
                 if (resObj.steps) {
                     let steps = [{ collapsibleSection: { title: 'Steps', steps: resObj.steps } }];
                     _showComputationSteps(o, steps);
@@ -124,19 +128,16 @@ function processTerm(formulaLatex, operation, substTermLatex) {
 
 const processTermDynamicParameters = (term, callback) => {
     callServerService('getVarNames', { term }, varnames => {
-        const options = [{ label: 'Select operation', value: null }];
+        const options = [{ label: 'Substitute', value: 'substitute' }];
         options.push({ label: 'Simplify', value: 'simplify' }),
-        options.push({ label: '------------------------', value: null });
         options.push(...varnames.map(vname => {
             return { label: `Solve for "${vname}"`, value: `solve:${vname}` };
         }))
-        options.push({ label: '------------------------', value: null });
-        options.push(...varnames.map(vname => {
-            return { label: `Substitute "${vname}" with value or term`, value: `subst:${vname}` };
-        }))
         callback([
             { name: 'Operation', hideButtons: true, type: 'select', options },
-            { name: `Enter substitution value/term`, type: 'formula' }
+            { name: 'Substitutions', type: 'formula', cssClass: 'width500'},
+            { html: '<div style="padding-bottom:20px;font-style:italic;padding-left:10px;display:inline-block">Enter substitutions using comma-seaparated list of "varname = value" terms.</div>'},
+            { separator: true},
         ]);
     })
 }

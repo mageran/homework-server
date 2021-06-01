@@ -193,7 +193,7 @@ const populate = (tobj, initialInputs) => {
                     for (let i = 0; i < ielem.children.length; i++) {
                         let option = ielem.children[i];
                         if (option.tagName.toUpperCase() !== 'OPTION') continue;
-                        if (option.value === res) {
+                        if (String(option.value) === String(res)) {
                             option.selected = true;
                             break;
                         }
@@ -322,11 +322,13 @@ const populate = (tobj, initialInputs) => {
                 }
                 cont.style.display = 'inline-block';
                 cont.style.padding = '10px';
-                const label = document.createElement('div');
-                label.className = 'topic-input-label';
-                label.innerHTML = `${param.name}:`;
-                label.style.display = isTextarea ? 'block' : 'inline-block';
-                cont.appendChild(label);
+                if (param.name && param.name.length > 0) {
+                    const label = document.createElement('div');
+                    label.className = 'topic-input-label';
+                    label.innerHTML = param.name ? `${param.name}:` : "";
+                    label.style.display = isTextarea ? 'block' : 'inline-block';
+                    cont.appendChild(label);
+                }
                 const inpElem = createInputElement(param);
                 cont.appendChild(inpElem);
                 inputsContainer.appendChild(cont);

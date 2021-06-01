@@ -1,6 +1,6 @@
 const Terms = require('./term');
 const { parse } = require('./parser/term-parser');
-const { parseLatexTerm } = require('./api');
+const { parseLatexTerm, parseListOfLatexTerms } = require('./api');
 /**
  * context used during parsing of a term
  */
@@ -56,6 +56,11 @@ class ParseContext {
     parseLatexTerm(inputString) {
         const term = parseLatexTerm(inputString, this);
         return term;
+    }
+
+    parseListOfLatexTerms(inputString) {
+        const terms = parseListOfLatexTerms(inputString, this);
+        return terms;
     }
 
 }

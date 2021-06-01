@@ -28,6 +28,20 @@ function createEllipseInputFields(problemClass) {
             { separator: true },
         ]
     }
+    else if (problemClass === 'fromCenterDistancePoint') {
+        return [
+            { name: _fwl('Center point', 350), value: '', placeholder: '(h,k)', noEval: true },
+            { separator: true },
+            {
+                name: _fwl('Distance from center to endpoint on '),
+                type: 'select',
+                options: [{ label: 'x-axis', value: 'xaxis' }, { label: 'y-axis', value: 'yaxis' }]
+            },
+            { value: '' },
+            { separator: true },
+            { name: _fwl('Point on ellipse', 350), value: '', placeholder: '(x,y)', noEval: true },
+        ];
+    }
 }
 
 const _getMajorAxisDirection = (centerPoint, vertexPoint1, covertexPoint1, focusPoint1) => {
@@ -82,6 +96,83 @@ function conicsEllipse(problemClass, ...args) {
     const o = this;
     elemStyle(o, { fontSize: '16pt' });
     const fromParameters = _fromParametersForEllipseAndHyperbola(false);
+    const fromCenterDistancePoint = (centerPoint, axis, distance, pointOnEllipse) => {
+        const steps = [];
+        const center = _parsePointString(centerPoint);
+        const dvalue = _d(distance);
+        const epoint = _parsePointString(pointOnEllipse);
+        const h = center.x;
+        const k = center.y;
+        const hlatex = _decimalToLatex(h);
+        const klatex = _decimalToLatex(k);
+        const x = epoint.x;
+        const y = epoint.y;
+        const xlatex = _decimalToLatex(x);
+        const ylatex = _decimalToLatex(y);
+        steps.push('Because the major axis is not yet known, "p" and "q"</br> are used instead of "a" and "b":');
+        var latex = `\\frac{(x-h)^2}{p^2} + \\frac{(y-k)^2}{q^2} = 1`;
+        steps.push({ latex });
+        steps.push(`Plugging in values for "h" and "k":`);
+        latex = `\\frac{(x-${hlatex})^2}{p^2} + \\frac{(y-${klatex})^2}{q^2} = 1`;
+        steps.push({ latex });
+        const knownDistance = axis === 'xaxis' ? 'p' : 'q';
+        const unknownDistance = axis === 'xaxis' ? 'q' : 'p';
+        steps.push(`Plugging into the coordinates of the known point </br>${_pointToString(epoint)} for determining "${unknownDistance}":`);
+        latex = `\\frac{(${xlatex}-${hlatex})^2}{p^2} + \\frac{(${ylatex}-${klatex})^2}{q^2} = 1`;
+        steps.push({ latex });
+        var p, q;
+        {
+            p = axis === 'xaxis' ? dvalue : null;
+            q = axis === 'xaxis' ? null : dvalue;
+            steps.push(`The distance over the ${axis} is known, so ${knownDistance} = ${dvalue} is used:`)
+            let pqlatex = _decimalToLatex(dvalue);
+            latex = axis === 'xaxis'
+                ? `\\frac{(${xlatex}-${hlatex})^2}{${pqlatex}^2} + \\frac{(${ylatex}-${klatex})^2}{q^2} = 1`
+                : `\\frac{(${xlatex}-${hlatex})^2}{p^2} + \\frac{(${ylatex}-${klatex})^2}{${pqlatex}^2} = 1`;
+            steps.push({ latex });
+            let solveForVar = unknownDistance;
+            callServerService('solveFor', { equation: latex, variable: solveForVar, onlyPositiveRoots: true }, resObj => {
+                if (resObj.steps) {
+                    steps.push({ collapsibleSection: { title: `Solve for "${solveForVar}"`, steps: resObj.steps } });
+                }
+                if (resObj.steps.length > 0) {
+                    steps.push(resObj.steps[resObj.steps.length - 1]);
+                }
+                const { solutions: [pqvalue] } = resObj;
+                if (!pqvalue) {
+                    throw `something went wrong: no solution for "${solveForVar}" found.`;
+                }
+                console.log(`found pqvalue: ${pqvalue}`);
+                var pqdecimal;
+                try {
+                    pqdecimal = _d(pqvalue);
+                    //steps.push(...parabolaSteps(pvariant, h, k, adecimal));
+                    if (axis === 'xaxis') {
+                        q = pqdecimal;
+                    } else {
+                        p = pqdecimal;
+                    }
+                } catch (err) {
+                    steps.push(`could not simplify "${solveForVar}" to a value.`);
+                }
+                var a, b, majorAxis;
+                if (p >= q) {
+                    steps.push(`Because p > q, setting a = p and b = q:`);
+                    a = p;
+                    b = q;
+                    majorAxis = MAJOR_AXIS_HORIZONTAL;
+                } else {
+                    steps.push(`Because p < q, setting a = q and b = p:`);
+                    a = q;
+                    b = p;
+                    majorAxis = MAJOR_AXIS_VERTICAL;
+                }
+                steps.push({ latex: `a = ${a},\\text{&nbsp;&nbsp;} b = ${b}` });
+                steps.push(...ellipseSteps(majorAxis, h, k, a, b, null, [_pointToString(epoint)]));
+                _showComputationSteps(o, steps);
+            }, ajaxErrorFunction(o))
+        }
+    }
     try {
         Numeric.doNotAttemptToCreateValueWithPi = true;
         const steps = [];
@@ -93,6 +184,9 @@ function conicsEllipse(problemClass, ...args) {
         }
         else if (problemClass === 'fromAxisAB') {
             steps.push(...ellipseSteps(...args));
+        }
+        else if (problemClass === 'fromCenterDistancePoint') {
+            fromCenterDistancePoint(...args);
         }
         _showComputationSteps(o, steps);
     } catch (err) {

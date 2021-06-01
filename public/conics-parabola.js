@@ -142,32 +142,35 @@ function conicsParabola(problemClass, ...args) {
         steps.push("Using parabola equation:");
         steps.push({ latex: eq });
         steps.push(`Using point on parabola (${x},${y}) to determine missing parameter "a":`);
-        callServerService('substitute', { term: eq, variable: 'x', substTerm: String(x) }, resObj => {
+        const substMap = { x: String(x), y: String(y) }
+        callServerService('substituteAll', { term: eq, substMap }, resObj => {
             const substSteps = [];
             if (resObj.term) {
                 if (resObj.steps) {
                     substSteps.push(...resObj.steps);
                 }
-                callServerService('substitute', { term: resObj.term, variable: 'y', substTerm: String(y) }, resObj => {
+                callServerService('solveFor', { equation: resObj.term, variable: 'a' }, resObj => {
                     if (resObj.steps) {
-                        substSteps.push(...resObj.steps);
-                    }
-                    callServerService('solveFor', { equation: resObj.term, variable: 'a' }, resObj => {
-                        if (resObj.steps) {
-                            steps.push({ collapsibleSection: { title: 'Plugin values for "x" and "y"', steps: substSteps } });
-                            steps.push({ collapsibleSection: { title: 'Solve for "a"', steps: resObj.steps } });
-                            if (resObj.steps.length > 0) {
-                                steps.push(resObj.steps[resObj.steps.length - 1]);
-                            }
-                            const { solutions: [avalue] } = resObj;
-                            if (!avalue) {
-                                throw `something went wrong: no solution for "a" found.`;
-                            }
-                            console.log(`found avalue: ${avalue}`);
-                            steps.push(...parabolaSteps(pvariant, h, k, _d(avalue)));
-                            _showComputationSteps(o, steps);
+                        steps.push({ collapsibleSection: { title: 'Plugin values for "x" and "y"', steps: substSteps } });
+                        steps.push({ collapsibleSection: { title: 'Solve for "a"', steps: resObj.steps } });
+                        if (resObj.steps.length > 0) {
+                            steps.push(resObj.steps[resObj.steps.length - 1]);
                         }
-                    })
+                        const { solutions: [avalue] } = resObj;
+                        if (!avalue) {
+                            throw `something went wrong: no solution for "a" found.`;
+                        }
+                        console.log(`found avalue: ${avalue}`);
+                        let adecimal;
+                        try {
+                            adecimal = _d(avalue);
+                            steps.push(...parabolaSteps(pvariant, h, k, adecimal));
+                        } catch(err) {
+                            steps.push('could not simplify "a" to a value.');
+                        }
+                        console.log('steps: %o', steps);
+                        _showComputationSteps(o, steps);
+                    }
                 })
             }
         })
@@ -298,8 +301,9 @@ const parabolaSteps = (pvariant, h, k, a, otherEquations = []) => {
     steps.push({ latex });
     latex = _p2l(lrs[1]);
     steps.push({ latex });
-    latex = `\\text{<b>Length of Latus rectum:</b>&nbsp;' ${_dl(a4)}`;
-    steps.push({ latex });
+    steps.push('<b>Length of Latus rectum:</b>');
+    steps.push({ latex: `${a4}` });
+    //latex = `\\text{<b>Length of Latus rectum:</b>&nbsp;' ${_dl(a4)}`;
 
     steps.push({
         section: {
