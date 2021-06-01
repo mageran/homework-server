@@ -6,6 +6,7 @@ const termCache = {};
 
 const numTerm0 = new Terms.Num(_d(0));
 const numTerm1 = new Terms.Num(_d(1));
+const numTermMinus1 = new Terms.Num(_d(-1));
 
 const _T = termString => {
     const cachedTerm = termCache[termString];
@@ -184,10 +185,11 @@ const basicEval = (t, options = {}) => {
     fractionToProductsFunction = options.fractionsToProducts ? fractionsToProducts : identityTransform;
     return t
         .clone()
-        ._(flattenOperands)
         ._(fractionToProductsFunction)
+        ._(flattenOperands)
         ._(evalArithmetic)
-        ._(sortProductTerms);
+        ._(sortProductTerms)
+        ._(combinePolynomialTerms)
 }
 
 const sortProductTerms = t => {
@@ -313,6 +315,94 @@ const completeTheSquare = (term, x) => {
     return _completeTheSquare(term, x);
 }
 
+const kindVariableTerm = 0;
+const kindOtherTerm = 1;
+
+const combinePolynomialTerms_ = term => {
+    const ptermInfos = [];
+    const _insert = (variable, exponent, factor) => {
+        const index = ptermInfos.findIndex(info => {
+            return info.kind === kindVariableTerm
+                && info.variable === variable
+                && info.exponent.equals(exponent);
+        });
+        if (index < 0) {
+            let kind = kindVariableTerm;
+            ptermInfos.push({ kind, variable, exponent, factor });
+        } else {
+            let info = ptermInfos[index];
+            info.factor = info.factor.add(factor);
+        }
+    }
+    const _insertTerm = term => {
+        const kind = kindOtherTerm;
+        ptermInfos.push({ kind, term });
+    }
+    getSumTerms(term).forEach(t => {
+        const _v = {};
+        var exp, factor, variable;
+        if (t.isIdentifierTerm) {
+            _insert(t.name, _d(1), _d(1));
+        }
+        else if (_M('product(Num#,X)', t, _v) && _v.X.isIdentifierTerm) {
+            _insert(_v.X.name, _d(1), _v['Num#'].value);
+        }
+        else if (_M('power(X, Exp#)', t, _v) && _v.X.isIdentifierTerm) {
+            _insert(_v.X.name, _v['Exp#'].value, _d(1));
+        }
+        else if (_M('product(Num#, power(X, Exp#))', t, _v) && _v.X.isIdentifierTerm) {
+            _insert(_v.X.name, _v['Exp#'].value, _v['Num#'].value);
+        }
+        else {
+            _insertTerm(t);
+        }
+    })
+    //console.log(ptermInfos);
+    return ptermInfos;
+}
+
+const combinePolynomialTerms = term => {
+    const constructTerm = ptermInfos => {
+        const sumTerms = ptermInfos.map(info => {
+            if (info.kind === kindVariableTerm) {
+                let _id = t => t;
+                let _createPowerTerm = _id;
+                let _createProductTerm = _id;
+                let { variable, exponent, factor } = info;
+                if (exponent != 1) _createPowerTerm = t => new Terms.Power([t, new Terms.Num(exponent)]);
+                if (factor != 1) _createProductTerm = t => new Terms.Product([new Terms.Num(factor), t]);
+                return _createProductTerm(_createPowerTerm(new Terms.Identifier(variable)));
+            } else {
+                return info.term;
+            }
+        })
+        return sumTerms.length === 1 ? sumTerms[0] : new Terms.Sum(sumTerms);
+    }
+    if (term instanceof Terms.Equation) {
+        let lhsInfos = combinePolynomialTerms_(term.lhs);
+        let rhsInfos = combinePolynomialTerms_(term.rhs);
+        lhsInfos.forEach(lhsInfo => {
+            if (lhsInfo.kind === kindVariableTerm) {
+                // look for same variable/exponent combination on rhs
+                let rhsIndex = rhsInfos.findIndex(rhsInfo => {
+                    return rhsInfo.kind === kindVariableTerm
+                        && rhsInfo.variable === lhsInfo.variable
+                        && rhsInfo.exponent.equals(lhsInfo.exponent);
+                });
+                if (rhsIndex >= 0) {
+                    let [rhsInfo] = rhsInfos.splice(rhsIndex, 1);
+                    lhsInfo.factor = lhsInfo.factor.minus(rhsInfo.factor);
+                }
+            }
+        });
+        let newLhs = constructTerm(lhsInfos);
+        let newRhs = rhsInfos.length === 0 ? numTerm0.clone() : constructTerm(rhsInfos);
+        return new Terms.Equation([newLhs, newRhs]);
+    } else {
+        return constructTerm(combinePolynomialTerms_(term));
+    }
+}
+
 const getSumTerms = term => {
     const _v = {};
     if (_M('sum(...A)', term, _v)) {
@@ -329,14 +419,21 @@ const getSumTermsEquation = equation => {
 }
 
 const getVarNames = term => {
-    const varnames = [];
+    const varnames = {};
     term.traverse(t => {
         if (t.isIdentifierTerm) {
-            varnames.push(t.name);
+            let vname = t.name;
+            if (typeof varnames[vname] === 'number') {
+                varnames[vname]++;
+            } else {
+                varnames[vname] = 1;
+            }
         }
     });
     return varnames;
 }
+
+const getVarNamesList = term => Object.keys(getVarNames(term));
 
 const substitute = (term, varname, substTerm) => {
     return term.
@@ -346,6 +443,146 @@ const substitute = (term, varname, substTerm) => {
             }
             return t;
         })
+}
+
+function *solveForIterator(equation, x, steps = [], options = {}) {
+    if (!(equation instanceof Terms.Equation)) {
+        throw `solveFor only works on equations`
+    }
+    const { onlyPositiveRoots } = options;
+    const equationSimplified = basicEval(equation, { fractionsToProducts: false });
+    steps.push('Simplified:');
+    steps.push({ latex: equationSimplified.latex });
+    const allVars = getVarNames(equationSimplified);
+    if (!x) {
+        if (Object.keys(allVars).length !== 1) {
+            throw `please specify the variable to solve for`;
+        }
+        x = Object.keys(allVars)[0];
+    }
+    const vcnt = allVars[x];
+    if (typeof vcnt !== 'number') {
+        throw `can't solve for "${x}", because it's not part of ${equationSimplified.latex}`;
+    }
+    if (vcnt > 1) {
+        throw `can't solve for "${x}": more than one occurence found (not supported yet)`;
+    }
+    const lhsVars = getVarNames(equationSimplified.lhs);
+    const lhsContainsX = !!lhsVars[x];
+
+    const lhsTerms = getSumTerms(equationSimplified.lhs);
+    const rhsTerms = getSumTerms(equationSimplified.rhs);
+    const xSideTerms = lhsContainsX ? lhsTerms : rhsTerms;
+    const otherSideTerms = lhsContainsX ? rhsTerms : lhsTerms;
+
+    const xindex = xSideTerms.findIndex(t => getVarNames(t)[x]);
+    if (xindex < 0) {
+        throw `something went wrong; xindex can't be < 0`;
+    }
+    const [xterm] = xSideTerms.splice(xindex, 1);
+    otherSideTerms.push(...xSideTerms.map(t => new Terms.Product([numTermMinus1.clone(), t])));
+
+    const newRhs = otherSideTerms.length === 1 ? otherSideTerms[0] : new Terms.Sum(otherSideTerms);
+
+    steps.push(`Isolating term containing ${x}:`);
+    steps.push({ latex: new Terms.Equation([xterm, newRhs]).latex });
+
+    if (xterm.isIdentifierTerm) {
+        let newEquation = new Terms.Equation([xterm, newRhs]);
+        steps.push('Result:');
+        let res = basicEval(newEquation);
+        steps.push({ latex: res.latex });
+        yield res;
+        return;
+    }
+    const _v = {};
+    if (_M('product(Num#,T)', xterm, _v)) {
+        let newLhs = _v.T;
+        let nterm = _v['Num#'];
+        let rhs1 = new Terms.Fraction([newRhs, nterm]);
+        let eq = new Terms.Equation([newLhs, rhs1]);
+        steps.push(`Dividing both sides by ${nterm.value}:`);
+        steps.push({ latex: eq.latex });
+        for(let res of solveForIterator(eq, x, steps, options)) yield res;
+        return;
+    }
+    if (_M('product(...Factors)', xterm, _v)) {
+        let factorTerms = _v.Factors.operands;
+        let xindex = factorTerms.findIndex(t => getVarNames(t)[x]);
+        console.log(`term containing ${x} is at index ${xindex} in ${xterm}`)
+        if (xindex < 0) {
+            throw `something went wrong ${xterm} should contain ${x}, but it doesn't`;
+        }
+        let [newXterm] = factorTerms.splice(xindex, 1);
+        let denominatorTerm = factorTerms.length === 1 ? factorTerms[0] : new Terms.Product(factorTerms);
+        let rhs1 = new Terms.Fraction([newRhs, denominatorTerm]);
+        let eq = new Terms.Equation([newXterm, rhs1]);
+        steps.push({ latex: `\\text{Dividing both sides by&nbsp;} ${denominatorTerm.latex}\\text{:}` });
+        steps.push({ latex: eq.latex });
+        for(let res of solveForIterator(eq, x, steps, options)) yield res;
+        return;
+    }
+    if (_M('fraction(...Ops)', xterm, _v)) {
+        let operandTerms = _v.Ops.operands;
+        if (operandTerms.length !== 2) {
+            throw `something went wrong: fraction term with ${operandTerms.length} operands found; expected 2: ${xterm}`;
+        }
+        let xindex = operandTerms.findIndex(t => getVarNames(t)[x]);
+        console.log(`term containing ${x} is at index ${xindex} in ${xterm}`)
+        if (xindex < 0) {
+            throw `something went wrong ${xterm} should contain ${x}, but it doesn't`;
+        }
+        if (xindex !== 0) {
+            throw `variable ${x} found in denominator; this is not yet supported`;
+        }
+        let [newXterm] = operandTerms.splice(xindex, 1);
+        let factorTerm = operandTerms.length === 1 ? operandTerms[0] : new Terms.Product(operandTerms);
+        let rhs1 = new Terms.Product([newRhs, factorTerm]);
+        let eq = new Terms.Equation([newXterm, rhs1]);
+        steps.push({ latex: `\\text{Multiplying both sides with&nbsp;} ${factorTerm.latex}\\text{:}` });
+        steps.push({ latex: eq.latex });
+        for(let res of solveForIterator(eq, x, steps, options)) yield res;
+        return;
+    }
+    if (_M('power(T, Exp#)', xterm, _v)) {
+        let newLhs = _v.T;
+        let eterm = _v['Exp#'];
+        let exp = eterm.value;
+        let rhs1 = new Terms.Sqrt([eterm, newRhs])
+        let eq1 = new Terms.Equation([newLhs, rhs1]);
+        let includeNegativeRoot = !onlyPositiveRoots && (exp.modulo(2) == 0);
+        let rootNameString = exp == 2 ? "square" : exp == 3 ? "cubic" : `${exp}th`;
+        let rootPrefixString = includeNegativeRoot ? "\\pm " : "";
+        steps.push(`Taking ${rootNameString} root on both sides: `)
+        steps.push({ latex: `${newLhs.latex} = ${rootPrefixString}${rhs1.latex}` });
+        let steps1 = steps;
+        if (includeNegativeRoot) {
+            steps1 = [];
+            steps.push({ section: { title: 'Positive root', steps: steps1, collapsible: true }});
+        }
+        for(let res of solveForIterator(eq1, x, steps1, options)) yield res;
+        if (includeNegativeRoot) {
+            let rhs2 = new Terms.Product([numTermMinus1.clone(), rhs1]);
+            let eq2 = new Terms.Equation([newLhs, rhs2]);
+            let steps2 = [];
+            steps.push({ section: { title: 'Negative root', steps: steps2, collapsible: true }});
+            for(let res of solveForIterator(eq2, x, steps2, options)) yield res;
+        }
+        return;
+    }
+    let eq3 = new Terms.Equation([xterm, newRhs]);
+    console.log(`can't simplify any further: ${eq3}`);
+    yield eq3;
+}
+
+const solveFor = (equation, x, steps = [], options = {}) => {
+    const results = [];
+    for(let res of solveForIterator(equation, x, steps, options)) {
+        results.push(res);
+    }
+    console.log(`found ${results.length} results for solving ${equation} for "${x}"`);
+    return results;
+    //throw `couldn't solve for ${x}`;
 }
 
 module.exports = {
@@ -358,9 +595,14 @@ module.exports = {
     getSumTermsEquation,
     completeTheSquare,
     getVarNames,
+    getVarNamesList,
     substitute,
+    combinePolynomialTerms,
+    solveFor,
+    solveForIterator,
     _M,
     _T,
     numTerm0,
-    numTerm1
+    numTerm1,
+    numTermMinus1
 }

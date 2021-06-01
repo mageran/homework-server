@@ -1537,7 +1537,7 @@ function peg$parse(input, options) {
     }
 
     const _pullUminusIntoProduct = productTerm => {
-      assert(productTerm.op === '*', `"_pullUminusIntoProduct" called on non-product term ${JSON.stringify(productTerm)}`);
+      //assert(productTerm.op === '*', `"_pullUminusIntoProduct" called on non-product term ${JSON.stringify(productTerm)}`);
       const [factor0,...factors] = productTerm.operands;
       const operands = [simplifyUminus(factor0),...factors];
       return { op: '*', operands };
@@ -1588,7 +1588,7 @@ function peg$parse(input, options) {
       return newOperands;
     }
 
-    //console.log(`parser called with options: ${JSON.stringify(options)}`);
+    console.log(`parser called with options: ${JSON.stringify(options)}`);
 
     const { useSingleCharacterIdentifiers } = options || {};
     //console.log(`useSingleCharacterIdentifiers: ${useSingleCharacterIdentifiers}`);

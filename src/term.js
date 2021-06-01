@@ -510,6 +510,15 @@ class Term {
         traverseFunction.call(null, this);
     }
 
+    traverseTopDown(traverseFunction, ...args) {
+        const levelRes = traverseFunction.call(null, this, ...args);
+        const nextLevelArgs = !levelRes ? [] : Array.isArray(levelRes) ? levelRes : [levelRes];
+        if (Array.isArray(this.operands)) {
+            this.operands.forEach(t => t.traverseTopDown(traverseFunction, ...nextLevelArgs));
+        }
+        return levelRes;
+    }
+
     static uminusTerm(t) {
         return new Product([new Num(_d(-1)), t]);
     }
@@ -984,12 +993,13 @@ class Sqrt extends Term {
     }
 
     get latex() {
-        var s = '\\sqrt{';
+        var s = '\\sqrt';
         if (this.degree != 2) {
             s += `[${this.degree.latex}]`;
         }
+        s += '{';
         s += this.radicand.latex;
-        s += '}'
+        s += '}';
         return s;
     }
 

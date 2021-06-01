@@ -1,4 +1,5 @@
 const express = require('express');
+const { readFileSync } = require('fs');
 const app = express();
 
 const services = [...require('./services/precalculus')];
@@ -21,6 +22,43 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.get('/precalculus', (req, res) => {
   res.redirect('/precalculus.html');
 });
+
+app.get('/pc', (req, res) => {
+  const substString = "//INSERT_JAVASCRIPT";
+  const { topic, headless } = req.query;
+  var jsCode = "";
+  const generalParamNames = ['topic', 'headless'];
+  if (topic) {
+    jsCode += `initialTopicTitle = "${topic}";\n`
+  }
+  if (headless === "true") {
+    jsCode += `headlessPage = true;\n`
+  }
+  const inputsHash = {};
+  Object.keys(req.query).forEach(pname => {
+    const m = pname.match(/^input([0-9]*)$/);
+    if (m) {
+      const index = Number(m[1] || 0);
+      const pvalue = req.query[pname];
+      //console.log(`found input query parameter with index ${index}: ${pvalue}`);
+      inputsHash[index] = pvalue;
+    }
+  });
+  if (Object.keys(inputsHash).length > 0) {
+    console.log(inputsHash);
+    const maxIndex = Math.max(...Object.keys(inputsHash).map(nstr => Number(nstr)));
+    console.log(`max index of inputs array: ${maxIndex}`);
+    const inputsArray = Array(maxIndex + 1).fill('');
+    Object.keys(inputsHash).forEach(index => {
+      inputsArray[index] = inputsHash[index];
+    })
+    console.log(inputsArray);
+    jsCode += `inputsArray = ${JSON.stringify(inputsArray)};\n`;
+  }
+  const htmlString = readFileSync('public/precalculus.html', 'utf-8')
+    .replace(substString, jsCode);
+  res.send(htmlString);
+})
 
 // API methods
 app.post('/api/parselatex', (req, res) => {
@@ -121,7 +159,8 @@ services.forEach(({ service, func, parameters }) => {
         if (!pname) return;
         var paramValue = req.body[pname];
         if (paramValue && param.parseIntoTerm) {
-          paramValue = api.parseLatexTerm(paramValue);
+          //paramValue = api.parseLatexTerm(paramValue);
+          paramValue = new ParseContext().parseLatexTerm(paramValue);
           logTerm(paramValue);
         }
         return paramValue;

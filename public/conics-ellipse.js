@@ -175,7 +175,7 @@ const ellipseSteps = (majorAxis, h, k, a, b, c, otherEquations = []) => {
     const equation = `\\frac{(${xnum.toLatex()})^2}{${xdenominator}} + \\frac{(${ynum.toLatex()})^2}{${ydenominator}} = 1`
 
     steps.push('Ellipse equation:');
-    steps.push({ latex: equation });
+    steps.push({ latex: equation, addProcessTermButton: true });
 
     steps.push({
         section: {

@@ -75,7 +75,7 @@ class Numeric {
         var numerator = num;
         var denominator = 1;
         var isRealFraction = false;
-        for(let i = 1; i < 1000; i++) {
+        for (let i = 1; i < 1000; i++) {
             let p = num * i;
             if (Math.trunc(p) === p) {
                 numerator = p;
@@ -93,7 +93,7 @@ class Numeric {
         var numerator = num;
         var denominator = 1;
         var isRealFraction = false;
-        for(let i = 1; i < 1000; i++) {
+        for (let i = 1; i < 1000; i++) {
             let p = numx.mul(_d(i)).div(cval);
             let pp = _d(p.toPrecision(Numeric.precision - 2));
             if (pp.eq(pp.trunc())) {
@@ -116,9 +116,9 @@ class Numeric {
         var numeratorRadicand = numx.pow(_d(2));
         var denominator = _d(1);
         var isRealFraction = false;
-        for(let i = 1; i < 1000; i++) {
+        for (let i = 1; i < 1000; i++) {
             let p = numx.mul(_d(i));
-            let pSquare = _d(p.pow(_d(2)).toPrecision(Numeric.precision-2));
+            let pSquare = _d(p.pow(_d(2)).toPrecision(Numeric.precision - 2));
             if (pSquare.eq(pSquare.trunc())) {
                 numeratorRadicand = pSquare.toNumber();
                 denominator = i;
@@ -134,10 +134,14 @@ class Numeric {
         const res0 = Numeric._findFractionWithSquareRoot(num);
         if (res0.isRealFraction) {
             //return res0;
+            let sqrtRes = Math.sqrt(res0.numeratorRadicand);
+            if (Math.trunc(sqrtRes) === sqrtRes) {
+                return res0;
+            }
             candidates.push(shallowCopy(res0));
         }
         //console.log(`findFractionWithSquareRoot(${num})...`);
-        for(let smd = -100; smd <= 100; smd++) {
+        for (let smd = -100; smd <= 100; smd++) {
             if (smd === 0) continue;
             let summand = smd;
             let num0 = summand - Number(num);
@@ -162,12 +166,15 @@ class Numeric {
         if (candidates.length === 0) {
             return res0;
         }
-        candidates.sort((a, b) => {
-            const aq = Math.abs(a.numeratorRadicand) + Math.abs(a.denominator);
-            const bq = Math.abs(b.numeratorRadicand) + Math.abs(b.denominator);
+        const sortFun = (a, b) => {
+            //if (!a.summand && b.summand) return -1;
+            //if (!b.summand && a.summand) return 1;
+            const aq = Math.abs(Math.sqrt(a.numeratorRadicand)) + Math.abs(a.denominator);
+            const bq = Math.abs(Math.sqrt(b.numeratorRadicand)) + Math.abs(b.denominator);
             return aq < bq ? -1 : bq < aq ? 1 : 0;
-        })
-        //console.log('candidates: %o', candidates);
+        }
+        candidates.sort(sortFun)
+        //console.log(candidates);
         return candidates[0];
     }
 
@@ -226,7 +233,7 @@ class Numeric {
                     return retValue(_mayAddSummand(numerator));
                 }
                 return retValue(_mayAddSummand(fraction(numerator, denominator).simplify()));
-            } 
+            }
         }
         info.success = false;
         return retValue(new Decimal(value));

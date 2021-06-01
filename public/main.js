@@ -70,7 +70,7 @@ const _clearTopicArea = () => {
     }
 }
 
-const populate = tobj => {
+const populate = (tobj, initialInputs) => {
     const createInputElement = param => {
         const isTextarea = !!param.rows;
         var inpElem;
@@ -280,17 +280,31 @@ const populate = tobj => {
                     const clearDynamicSection = () => {
                         dynamicSectionDiv.innerHTML = "";
                     }
+                    var populatingDynamicSection = false;
                     const populateDynamicSection = () => {
                         clearDynamicSection();
-                        try {
-                            const parametersSoFar = _getArgsFromInputElements(inputElementsForDynamicField);
-                            console.log(`args for creating dynamic section: %o`, parametersSoFar);
-                            const dynamicParameters = fun.call(null, ...parametersSoFar);
+                        const _processDynamicParameters = dynamicParameters => {
+                            clearDynamicSection();
                             console.log('calculated dynamic parameters: %o', dynamicParameters);
                             const dynamicInputsElements = _createInputElementsForParameters(dynamicSectionDiv, dynamicParameters);
                             subInputsObject.inputElements = dynamicInputsElements;
-                        } catch (err) {
-                            console.log(`error generating dynamic section: ${err}`);
+                        }
+                        if (param.async) {
+                            const parametersSoFar = _getArgsFromInputElements(inputElementsForDynamicField);
+                            console.log(`args for creating dynamic section: %o`, parametersSoFar);
+                            const allArgs = [...parametersSoFar, _processDynamicParameters];
+                            fun.call(null, ...allArgs);
+                        } else {
+                            try {
+                                const parametersSoFar = _getArgsFromInputElements(inputElementsForDynamicField);
+                                console.log(`args for creating dynamic section: %o`, parametersSoFar);
+                                const dynamicParameters = fun.call(null, ...parametersSoFar);
+                                console.log('calculated dynamic parameters: %o', dynamicParameters);
+                                const dynamicInputsElements = _createInputElementsForParameters(dynamicSectionDiv, dynamicParameters);
+                                subInputsObject.inputElements = dynamicInputsElements;
+                            } catch (err) {
+                                console.log(`error generating dynamic section: ${err}`);
+                            }
                         }
                     }
                     b && b.addEventListener('click', populateDynamicSection);
@@ -337,7 +351,7 @@ const populate = tobj => {
     const parametersExist = inputElements.length > 0;
 
 
-    const doExecute = (testValues) => {
+    const doExecute = (testValues, skipExecution = false) => {
         if (typeof tobj.func !== 'function') {
             return;
         }
@@ -362,18 +376,25 @@ const populate = tobj => {
 
         console.log(args);
         //console.log(`#input elements: ${inputElements.length}`);
-        let output = "no output generated";
-        try {
-            currentInputElements = inputElements;
-            output = tobj.func.call(outputElement, ...args);
-        } catch (err) {
-            output = err;
-            console.error(err);
-        }
-        if (typeof output === 'string') {
-            outputElement.innerHTML = output;
+        if (!skipExecution) {
+            let output = "no output generated";
+            try {
+                currentInputElements = inputElements;
+                output = tobj.func.call(outputElement, ...args);
+            } catch (err) {
+                output = err;
+                console.error(err);
+            }
+            if (typeof output === 'string') {
+                outputElement.innerHTML = output;
+            }
         }
     }
+
+    const populateInputFields = values => {
+        doExecute(values, true);
+    }
+
     if (typeof (tobj.func) === 'function') {
         let button = document.createElement('input');
         button.className = 'main-button';
@@ -475,11 +496,18 @@ const populate = tobj => {
             })
         })
     }
-    MathJax.typeset();
+    try {
+        MathJax.typeset();
+    } catch (err) {
+        console.log(err);
+    }
     if (!parametersExist) {
         doExecute();
     }
     DO_EXECUTE = doExecute;
+    if (Array.isArray(initialInputs)) {
+        populateInputFields(initialInputs);
+    }
 };
 
 const addMathResult = (cont, callback, { notext, isInput } = {}, options = {}) => {

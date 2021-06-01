@@ -71,10 +71,12 @@
 
 <body onload="init()">
     <div id="main">
-        <h1>Precalculus Helper</h1>
-        <select id="content-select">
-            <option value="">Choose topic</option>
-        </select>
+        <div id="page-header">
+            <h1>Precalculus Helper</h1>
+            <select id="content-select">
+                <option value="">Choose topic</option>
+            </select>
+        </div>
         <div id="topic-content">
             <h2 id="topic-title"></h2>
             <p id="topic-description"></p>
@@ -82,4 +84,34 @@
             <p id="topic-output" style="padding: 5px"></p>
             </topic-content>
         </div>
+    </div>
+    <script>
+        var headlessPage = false;
+        var inputsArray = null;
+        // do not change the following line:
+        //INSERT_JAVASCRIPT
+        ;
+        if (typeof initialTopicTitle === 'string') {
+            let topicTitle = initialTopicTitle.toLowerCase();
+            let [tobj] = topicObjects.filter(tobj => tobj.title && tobj.title.toLowerCase() === topicTitle);
+            if (tobj) {
+                try {
+                    populate(tobj, inputsArray);
+                } catch (err) {
+
+                }
+            } else {
+                let div = document.getElementById('topic-content');
+                if (div) {
+                    _addErrorElement(div, `topic with title "${initialTopicTitle}" not found`);
+                }
+            }
+        }
+        if (headlessPage) {
+            let div = document.getElementById('page-header');
+            if (div) {
+                div.style.display = 'none';
+            }
+        }
+    </script>
 </body>

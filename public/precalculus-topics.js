@@ -427,6 +427,16 @@ const _calculator = {
     func: calculator
 }
 
+const _processTerm = {
+    title: 'Process Term',
+    description: '',
+    parameters: [
+        { name: 'Formula', type: 'formula', cssClass: 'width700' },
+        { name: '', type: 'dynamic', async:true, hideButtons: true, func: processTermDynamicParameters }
+    ],
+    func: processTerm
+}
+
 const _bearingAngles = {
     title: 'Bearing Angles',
     description: 'draw bearing angles of the form 170 or N20E',
@@ -819,6 +829,7 @@ const topicObjects = [
     _imageOnly('Parent Functions', 'images/parent_functions.png'),
     '<b>---------------------</b>',
     _calculator,
+    _processTerm,
     '<b>---------------------</b>',
     _debug,
 ];

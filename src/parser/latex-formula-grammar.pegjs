@@ -31,7 +31,7 @@
   }
 
   const _pullUminusIntoProduct = productTerm => {
-    assert(productTerm.op === '*', `"_pullUminusIntoProduct" called on non-product term ${JSON.stringify(productTerm)}`);
+    //assert(productTerm.op === '*', `"_pullUminusIntoProduct" called on non-product term ${JSON.stringify(productTerm)}`);
     const [factor0,...factors] = productTerm.operands;
     const operands = [simplifyUminus(factor0),...factors];
     return { op: '*', operands };

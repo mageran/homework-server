@@ -2,7 +2,8 @@ const { parse } = require('../parser/term-parser');
 const Terms = require('../term');
 const ParseContext = require('../parse-context');
 const { _d } = require('../utils');
-const { flattenOperands, evalArithmetic, sortProductTerms, getSumTerms, getVarNames, substitute, basicEval } = require('../lib/base.js');
+const { flattenOperands, evalArithmetic, sortProductTerms, getSumTerms,
+    getVarNames, substitute, basicEval, _M, combinePolynomialTerms } = require('../lib/base.js');
 
 const termString = () => {
     if (process.argv.length > 2) {
@@ -53,22 +54,8 @@ try {
     //console.log(`resulting term: ${cterm.toTermString()}`);
     console.log(`resulting term: ${cterm.toTermString()}, latex: ${cterm.latex}`);
 
-    const sumTerms = getSumTerms(cterm);
-    sumTerms.forEach(t => {
-        const varnames = getVarNames(t);
-        console.log(`${t}: ${varnames}`);
-    })
-
-    const numx = _d(1);
-    var sterm = substitute(cterm, 'x', new Terms.Num(numx));
-    console.log(`substitute 'x' with ${numx}: ${sterm}`);
-    console.log(`evaluated: ${basicEval(sterm)}`);
-
-    const numy = _d(1);
-    sterm = substitute(sterm, 'y', new Terms.Num(numy));
-    console.log(`substitute 'y' with ${numy}: ${sterm}`);
-    console.log(`evaluated: ${basicEval(sterm)}`);
-
+    let t = cterm._(combinePolynomialTerms);
+    console.log(`combine polynomial terms: ${t} ${t.latex}`);
 
 } catch (e) {
     console.error(e);
