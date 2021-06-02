@@ -39,8 +39,8 @@ function conicsCircle(problemClass, ...args) {
     const o = this;
     elemStyle(o, { fontSize: '16pt' });
     const findEquationFromCenterRadius = (hLatex, kLatex, rLatex) => {
-        const hvalue = _latexToDecimal(hLatex).negated();
-        const kvalue = _latexToDecimal(kLatex).negated();
+        const hvalue = _latexToDecimal(hLatex);
+        const kvalue = _latexToDecimal(kLatex);
         const rvalue = _latexToDecimal(rLatex);
         const rSquare = rvalue.pow(2);
         _showComputationSteps(o, getStepsForCircleGraph({ h: hvalue, k: kvalue, r: rvalue, rSquare }));
@@ -125,7 +125,7 @@ const getStepsForCircleGraph = ({ h, k, r, rSquare }, originalEquation, morePoin
     steps.push({
         section: {
             title: "Graph",
-            style: { position: 'absolute', top: 0, left: '500px' },
+            style: { position: 'absolute', top: 0, left: '800px' },
             steps: [{ desmos: { equations, points } }],
             height: '800px'
         }
