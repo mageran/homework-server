@@ -19,6 +19,16 @@ function createParabolaInputFields(problemClass) {
             { separator: true },
         ]
     }
+    else if (problemClass === 'fromFocusAndDirectrix') {
+        return [
+            { name: 'Focus point x', value: '', type: 'formula' },
+            { name: 'y', value: '', type: 'formula' },
+            { separator: true },
+            { name: 'Directrix', type: 'select', options: [{ label: 'x', value: 'x' }, { label: 'y', value: 'y' }] },
+            { name: 'Value', value: '', type: 'formula' },
+            { separator: true },
+        ]
+    }
     else if (problemClass === 'fromVertexAndFocus') {
         return [
             { name: 'Vertex point h', value: '', type: 'formula' },
@@ -90,6 +100,22 @@ function conicsParabola(problemClass, ...args) {
             focusy = String(kvalue.add(kvalue.sub(dvalue)));
         }
         steps.push(...fromVertexAndFocus(h, k, focusx, focusy));
+        return steps;
+    }
+    const fromFocusAndDirectrix = (x, y, xOry, d) => {
+        const steps = [];
+        const focusx = _latexToDecimal(x);
+        const focusy = _latexToDecimal(y);
+        const dvalue = _latexToDecimal(d);
+        var h, k;
+        if (xOry === 'x') {
+            k = String(focusy);
+            h = String(focusx.add(dvalue).div(2));
+        } else {
+            h = String(focusx);
+            k = String(focusy.add(dvalue).div(2));
+        }
+        steps.push(...fromVertexAndFocus(h, k, String(focusx), String(focusy)));
         return steps;
     }
     const fromVertexAndFocus = (h, k, x, y) => {
@@ -183,6 +209,9 @@ function conicsParabola(problemClass, ...args) {
         else if (problemClass === 'fromVertexAndDirectrix') {
             steps.push(...fromVertexAndDirectrix(...args));
         }
+        else if (problemClass === 'fromFocusAndDirectrix') {
+            steps.push(...fromFocusAndDirectrix(...args));
+        }
         else if (problemClass === 'fromVertexAndFocus') {
             steps.push(...fromVertexAndFocus(...args));
         }
@@ -226,50 +255,58 @@ const parabolaSteps = (pvariant, h, k, a, otherEquations = []) => {
     const minush = hvalue.negated();
     const minusk = kvalue.negated();
     const vertex = { x: _dl(hvalue), y: _dl(kvalue) };
-    var equation, focus, directrix, directrixEquation, lrs, variantText;
+    var equation, equationPattern, focus, directrix, directrixEquation, lrs, variantText, symmetryAxisEquation;
     if (pvariant === VERTICAL_UP) {
         variantText = "<b>Vertical</b> axis of symmetry, open upwards";
         equation = `(x ${_valueAsSummandLatex(minush)})^2 = ${_dl(a4)}(y ${_valueAsSummandLatex(minusk)})`;
+        equationPattern = '(x-h)^2 = 4a(y-k)';
         focus = [{ x: 'h', y: 'k+a' }, { x: _dl(hvalue), y: _dl(kvalue.add(avalue)) }];
         directrix = `y = k - a = ${_dl(kvalue.sub(avalue))}`;
         directrixEquation = `y = ${_dl(kvalue.sub(avalue))}`;
         lrs = [
             [{ x: 'h-2a', y: 'k+a' }, { x: _dl(hvalue.sub(a2)), y: _dl(kvalue.add(avalue)) }],
             [{ x: 'h+2a', y: 'k+a' }, { x: _dl(hvalue.add(a2)), y: _dl(kvalue.add(avalue)) }],
-        ]
+        ];
+        symmetryAxisEquation = `x = ${_dl(hvalue)}`;
     }
     else if (pvariant === VERTICAL_DOWN) {
         variantText = "<b>Vertical</b> axis of symmetry, open downwards";
         equation = `(x ${_valueAsSummandLatex(minush)})^2 = -${_dl(a4)}(y ${_valueAsSummandLatex(minusk)})`;
+        equationPattern = '(x-h)^2 = -4a(y-k)';
         focus = [{ x: 'h', y: 'k-a' }, { x: _dl(hvalue), y: _dl(kvalue.sub(avalue)) }];
         directrix = `y = k + a = ${_dl(kvalue.add(avalue))}`;
         directrixEquation = `y = ${_dl(kvalue.add(avalue))}`;
         lrs = [
             [{ x: 'h - 2a', y: 'k-a' }, { x: _dl(hvalue.sub(a2)), y: _dl(kvalue.sub(avalue)) }],
             [{ x: 'h+2a', y: 'k-a' }, { x: _dl(hvalue.add(a2)), y: _dl(kvalue.sub(avalue)) }],
-        ]
+        ];
+        symmetryAxisEquation = `x = ${_dl(hvalue)}`;
     }
     else if (pvariant === HORIZONTAL_RIGHT) {
         variantText = "<b>Horizontal</b> axis of symmetry, open to the right";
         equation = `(y ${_valueAsSummandLatex(minusk)})^2 = ${_dl(a4)}(x ${_valueAsSummandLatex(minush)})`;
+        equationPattern = '(y-k)^2 = 4a(x-h)';
         focus = [{ x: 'h+a', y: 'k' }, { x: _dl(hvalue.add(avalue)), y: _dl(kvalue) }];
         directrix = `x = h - a = ${_dl(hvalue.sub(avalue))}`;
         directrixEquation = `x = ${_dl(hvalue.sub(avalue))}`;
         lrs = [
             [{ x: 'h+a', y: 'k-2a' }, { x: _dl(hvalue.add(avalue)), y: _dl(kvalue.sub(a2)) }],
             [{ x: 'h+a', y: 'k+2a' }, { x: _dl(hvalue.add(avalue)), y: _dl(kvalue.add(a2)) }],
-        ]
+        ];
+        symmetryAxisEquation = `y = ${_dl(kvalue)}`;
     }
     else if (pvariant === HORIZONTAL_LEFT) {
         variantText = "<b>Horizontal</b> axis of symmetry, open to the left";
         equation = `(y ${_valueAsSummandLatex(minusk)})^2 = -${_dl(a4)}(x ${_valueAsSummandLatex(minush)})`;
+        equationPattern = '(y-k)^2 = -4a(x-h)';
         focus = [{ x: 'h-a', y: 'k' }, { x: _dl(hvalue.sub(avalue)), y: _dl(kvalue) }];
         directrix = `x = h + a = ${_dl(hvalue.add(avalue))}`;
         directrixEquation = `x = ${_dl(hvalue.add(avalue))}`;
         lrs = [
             [{ x: 'h-a', y: 'k-2a' }, { x: _dl(hvalue.sub(avalue)), y: _dl(kvalue.sub(a2)) }],
             [{ x: 'h-a', y: 'k+2a' }, { x: _dl(hvalue.sub(avalue)), y: _dl(kvalue.add(a2)) }],
-        ]
+        ];
+        symmetryAxisEquation = `y = ${_dl(kvalue)}`;
     }
     var latex = equation;
     const addProcessTermButton = true;
@@ -282,7 +319,7 @@ const parabolaSteps = (pvariant, h, k, a, otherEquations = []) => {
                 color: "black",
                 borderRadius: "8px"
             },
-            steps: [variantText, { latex, addProcessTermButton }]
+            steps: [variantText, { latex: equationPattern }, { latex, addProcessTermButton }]
         }
     })
     //steps.push({ latex });
@@ -294,6 +331,8 @@ const parabolaSteps = (pvariant, h, k, a, otherEquations = []) => {
     latex = `\\text{<b>Focus:</b>&nbsp;} ${_p2l(focus)}`;
     steps.push({ latex });
     latex = `\\text{<b>Directrix:</b>&nbsp;} ${directrix}`;
+    steps.push({ latex });
+    latex = `\\text{<b>Axis of Symmetry:</b>&nbsp;} ${symmetryAxisEquation}`;
     steps.push({ latex });
     //latex += lrs.map(p => `(${p.x}, ${p.y})`).join(",");
     steps.push('<b>Latus rectum endpoints:</b>');
@@ -313,7 +352,7 @@ const parabolaSteps = (pvariant, h, k, a, otherEquations = []) => {
                 desmos: {
                     equations: [...otherEquations, equation],
                     points: [vertex, focus[1], ...lrs.map(pl => pl[1])],
-                    dashedLines: [directrixEquation],
+                    dashedLines: [directrixEquation, symmetryAxisEquation],
                     height: '800px',
                 }
             }]

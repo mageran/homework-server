@@ -651,6 +651,7 @@ const conicsParabolaProblems = [
     { label: 'Given Equation, find parabola parameters', value: 'fromEquation' },
     { label: 'Given Vertex and Focus, find parabola equation', value: 'fromVertexAndFocus' },
     { label: 'Given Vertex and Directrix, find parabola equation', value: 'fromVertexAndDirectrix' },
+    { label: 'Given Focus and Directrix, find parabola equation', value: 'fromFocusAndDirectrix' },
     { label: 'Given Vertex, graph variant, and value for "a"', value: 'fromVertexVariantAndA' },
     { label: 'App: Given Vertex, graph variant, and point on parabola', value: 'fromVertexVariantAndPoint' },
 ]
@@ -669,7 +670,7 @@ const conicsHyperbolaProblems = [
 ]
 
 const _conicsCircle = {
-    title: 'Conics: Circle',
+    title: 'Conics Circle',
     description: 'Problems regarding circle equations (x-h)^2 + (y-k)^2 = r^2',
     parameters: [
         { name: 'Problem', type: 'select', options: [{ label: 'Select Problem', value: '' }, ...conicsCircleProblems] },
@@ -698,7 +699,7 @@ const _conicsCircle = {
 }
 
 const _conicsParabola = {
-    title: 'Conics Parbola',
+    title: 'Conics Parabola',
     description: 'Problems regarding parabola equations (x-h)^2 = 4a(y-k) or x and y swapped',
     parameters: [
         { name: 'Problem', type: 'select', options: [{ label: 'Select Problem', value: '' }, ...conicsParabolaProblems] },
@@ -717,7 +718,8 @@ const _conicsParabola = {
         { values: ['fromVertexAndFocus', '-4', '-5', '-4', '-\\frac{9}{2}'], label: 'Vertex+Focus 2' },
         { values: ['fromVertexAndDirectrix', '-3', '1', 'x', '1'], label: 'Vertex+Directrix 1' },
         { values: ['fromVertexVariantAndA', '3', '-1', VERTICAL_DOWN, '1'], label: 'Vertex+Variant+A 1' },
-        { values: ['fromVertexVariantAndPoint', '(0,8)', VERTICAL_DOWN, '2,0'], label: 'Doorway'}
+        { values: ['fromVertexVariantAndPoint', '(0,8)', VERTICAL_DOWN, '2,0'], label: 'Doorway'},
+        { values: ['fromFocusAndDirectrix', '2', '4', 'x', '-4'], label: 'Focus+Directrix' },
     ]
 }
 
